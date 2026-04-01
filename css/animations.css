@@ -1,0 +1,107 @@
+/* =============================================
+   ANIMATIONS - Hawk Academy
+   ============================================= */
+
+/* Marquee - Right to Left */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Marquee - Left to Right */
+@keyframes marqueeLTR {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Badge rotation */
+@keyframes rotateBadge {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Pulse animation */
+@keyframes haPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Fade up entrance */
+@keyframes haFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Awards logo scroll */
+@keyframes scrollLogos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+/* Video glow pulse */
+@keyframes videoBorderPulse {
+  0%, 100% {
+    box-shadow:
+      rgba(0, 0, 0, 0.5) 0px 8px 40px,
+      rgba(1, 255, 255, 0.5) 0px 0px 0px 0px,
+      rgba(173, 186, 255, 0.3) 0px 0px 0px 0px;
+  }
+  50% {
+    box-shadow:
+      rgba(0, 0, 0, 0.5) 0px 8px 40px,
+      rgba(1, 255, 255, 0.15) 0px 0px 0px 10px,
+      rgba(173, 186, 255, 0) 0px 0px 0px 20px;
+  }
+}
+
+.video-pulse-container {
+  animation: videoBorderPulse 2.5s ease-in-out infinite;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #111;
+}
+
+/* Scroll-triggered reveal class */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.1s; }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.2s; }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.3s; }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.4s; }
+.reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.5s; }
+.reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.6s; }
+
+.reveal-stagger.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
