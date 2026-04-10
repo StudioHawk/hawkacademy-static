@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Core Web Vitals Checklist: Fix LCP, CLS & INP (2026) | Hawk Academy</title>
+  <meta name="description" content="Step-by-step guide to diagnose and fix Core Web Vitals issues. Plain English explanations of LCP, CLS, and INP with exact fixes for business owners.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
+    /* Blog hero */
+    .blog-hero {
+      background: var(--color-black);
+      padding: 120px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: 30px; right: 8%;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--color-yellow); opacity: 0.5;
+    }
+    .blog-hero::after {
+      content: ''; position: absolute; bottom: 30px; left: 5%;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--color-lavender); opacity: 0.3;
+    }
+    .blog-hero__tag {
+      display: inline-block; font-family: var(--font-body);
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(173,186,255,0.18); color: #7B8BE0;
+      margin-bottom: 20px;
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 600; color: var(--color-white);
+      line-height: 1.15; max-width: 720px; margin-bottom: 24px;
+    }
+    .blog-hero__meta {
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap; font-size: 14px; color: var(--color-light-body);
+    }
+    .blog-hero__author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .blog-hero__avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gradient-cta);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 14px; color: var(--color-black);
+    }
+    .blog-hero__author-name { font-weight: 600; color: var(--color-white); }
+    .blog-hero__dot { color: var(--color-light-body); }
+    .blog-hero__share {
+      display: flex; gap: 8px; margin-left: auto;
+    }
+    .blog-hero__share a {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .blog-hero__share a:hover { background: rgba(255,255,255,0.18); }
+    .blog-hero__share svg { width: 14px; height: 14px; fill: var(--color-white); }
+
+    /* Blog layout */
+    .blog-layout {
+      background: var(--color-off-white);
+      padding: 60px 0 100px;
+    }
+    .blog-layout .container {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* TOC sidebar */
+    .blog-toc {
+      position: sticky; top: 100px;
+      padding: 24px 0;
+    }
+    .blog-toc__label {
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--color-light-body);
+      margin-bottom: 16px;
+    }
+    .blog-toc__list {
+      list-style: none;
+    }
+    .blog-toc__list li {
+      margin-bottom: 10px;
+    }
+    .blog-toc__list a {
+      font-size: 13px; color: var(--color-body-text);
+      line-height: 1.5; display: block;
+      padding-left: 12px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .blog-toc__list a:hover,
+    .blog-toc__list a.active {
+      color: var(--color-dark-text);
+      border-left-color: var(--color-lavender);
+    }
+
+    /* Article body */
+    .blog-article {
+      background: var(--color-white);
+      border-radius: var(--radius-card);
+      padding: 48px 56px;
+      max-width: 760px;
+    }
+
+    /* TL;DR box */
+    .blog-tldr {
+      background: rgba(173,186,255,0.08);
+      border: 1px solid rgba(173,186,255,0.2);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .blog-tldr__label {
+      font-family: var(--font-heading);
+      font-size: 14px; font-weight: 700;
+      color: var(--color-lavender);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .blog-tldr ul {
+      list-style: none; padding: 0;
+    }
+    .blog-tldr li {
+      font-size: 15px; color: var(--color-body-text);
+      line-height: 1.7; padding-left: 20px;
+      position: relative; margin-bottom: 8px;
+    }
+    .blog-tldr li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-lavender);
+    }
+
+    /* Article typography */
+    .blog-article h2 {
+      font-family: var(--font-heading);
+      font-size: 26px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 48px 0 16px;
+      line-height: 1.2;
+    }
+    .blog-article h2:first-of-type { margin-top: 0; }
+    .blog-article h3 {
+      font-family: var(--font-heading);
+      font-size: 20px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 32px 0 12px;
+      line-height: 1.3;
+    }
+    .blog-article p {
+      font-size: 17px; line-height: 1.8;
+      color: var(--color-body-text);
+      margin-bottom: 20px;
+    }
+    .blog-article a {
+      color: var(--color-lavender);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .blog-article a:hover { color: var(--color-dark-text); }
+    .blog-article ul, .blog-article ol {
+      padding-left: 20px; margin-bottom: 20px;
+    }
+    .blog-article li {
+      font-size: 16px; line-height: 1.8;
+      color: var(--color-body-text);
+      margin-bottom: 8px;
+    }
+    .blog-article strong { color: var(--color-dark-text); }
+    .blog-article code {
+      background: var(--color-off-white);
+      padding: 2px 6px; border-radius: 4px;
+      font-size: 14px;
+    }
+
+    /* Case study callout */
+    .blog-casestudy {
+      background: rgba(1,255,255,0.04);
+      border-left: 3px solid var(--color-cyan);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 24px 0 32px;
+    }
+    .blog-casestudy strong { color: var(--color-dark-text); }
+    .blog-casestudy p {
+      font-size: 15px; margin-bottom: 8px;
+    }
+    .blog-casestudy a {
+      font-size: 14px; font-weight: 600;
+      color: var(--color-cyan);
+    }
+
+    /* FAQ section */
+    .blog-faq { margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.06); }
+    .blog-faq h2 { margin-top: 0; }
+    .blog-faq h3 {
+      font-size: 18px; margin-top: 28px;
+      color: var(--color-dark-text);
+    }
+    .blog-faq p { font-size: 16px; }
+
+    /* Newsletter CTA */
+    .blog-newsletter {
+      background: var(--color-black);
+      border-radius: var(--radius-card);
+      padding: 48px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .blog-newsletter h3 {
+      font-family: var(--font-heading);
+      font-size: 24px; font-weight: 600;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+    .blog-newsletter p {
+      color: var(--color-light-body);
+      font-size: 15px; margin-bottom: 24px;
+    }
+    .blog-newsletter a {
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: var(--radius-pill);
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      font-family: var(--font-body);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .blog-layout .container {
+        grid-template-columns: 1fr;
+      }
+      .blog-toc { display: none; }
+      .blog-article { padding: 36px 28px; }
+    }
+    @media (max-width: 768px) {
+      .blog-hero { padding: 100px 0 48px; }
+      .blog-hero h1 { font-size: 28px; }
+      .blog-hero__share { display: none; }
+      .blog-article { padding: 28px 20px; }
+      .blog-article h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="header__logo">
+        <img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy">
+      </a>
+      <nav class="header__nav">
+        <a href="../index.html">Home</a>
+        <a href="../whats-included.html">What's Included</a>
+        <a href="../about.html">About Us</a>
+        <a href="../resources.html" class="active">Resources</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
+        <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav">
+    <a href="../index.html">Home</a>
+    <a href="../whats-included.html">What's Included</a>
+    <a href="../about.html">About Us</a>
+    <a href="../resources.html">Resources</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
+    <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
+  </div>
+
+  <!-- BLOG HERO -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-hero__tag tag-technical-seo">Technical SEO</div>
+      <h1>Core Web Vitals: A Practical Optimisation Checklist for Business Owners</h1>
+      <div class="blog-hero__meta">
+        <div class="blog-hero__author">
+          <div class="blog-hero__avatar">HS</div>
+          <span class="blog-hero__author-name">Harry Sanders</span>
+        </div>
+        <span class="blog-hero__dot">11 April 2026</span>
+        <span class="blog-hero__dot">7 min read</span>
+        <div class="blog-hero__share">
+          <a href="https://twitter.com/share?text=Core%20Web%20Vitals%3A%20A%20Practical%20Optimisation%20Checklist%20for%20Business%20Owners&url=https://hawkacademy.co/blog/core-web-vitals-checklist" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hawkacademy.co/blog/core-web-vitals-checklist" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG LAYOUT -->
+  <section class="blog-layout">
+    <div class="container">
+
+      <!-- TOC SIDEBAR -->
+      <aside class="blog-toc">
+        <div class="blog-toc__label">Contents</div>
+        <ul class="blog-toc__list">
+          <li><a href="#speed-affects-rankings">Site Speed Affects Rankings</a></li>
+          <li><a href="#test-vitals">How to Test Your Vitals</a></li>
+          <li><a href="#lcp-failures">LCP Failures</a></li>
+          <li><a href="#layout-shifts">Layout Shifts</a></li>
+          <li><a href="#inp-metric">INP Metric</a></li>
+          <li><a href="#mobile-performance">Mobile Performance</a></li>
+          <li><a href="#monthly-check">Monthly Vitals Check</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+
+      <!-- ARTICLE -->
+      <article class="blog-article">
+
+        <!-- TL;DR -->
+        <div class="blog-tldr">
+          <div class="blog-tldr__label">TL;DR</div>
+          <ul>
+            <li>Core Web Vitals measure three things: how fast your page loads (LCP), how stable the layout is while loading (CLS), and how quickly buttons respond when clicked (INP).</li>
+            <li>You can test all three for free using Google's PageSpeed Insights. The fixes are mostly image compression, font loading, and lazy-loaded content pushing things around.</li>
+            <li>Slow sites lose rankings and conversions. Fix the biggest metric first, not all three at once.</li>
+          </ul>
+        </div>
+
+        <p>After auditing over 50,000 hours' worth of websites at StudioHawk, I can tell you the single most common technical SEO problem we find is poor Core Web Vitals. Not thin content. Not missing meta descriptions. Speed and stability.</p>
+        <p>Google uses Core Web Vitals as a ranking signal. That is not speculation. They confirmed it. But rankings aside, slow pages lose customers. A page that takes four seconds to load will haemorrhage visitors before they even see your product.</p>
+        <p>This checklist walks you through exactly what each metric means, how to test it, and the specific fixes that work. No developer jargon, no vague advice. Just the steps.</p>
+        <p>If you are brand new to SEO, start with our <a href="/blog/beginners-guide-to-seo-2026/">beginner's guide to SEO in 2026</a> for the full picture before diving into technical metrics.</p>
+
+        <h2 id="speed-affects-rankings">Your Site Speed Affects Rankings More Than You Think</h2>
+        <p>Google has three Core Web Vitals metrics. Each one measures a different part of the user experience. Here is what they actually mean in plain English.</p>
+        <p><strong>LCP (Largest Contentful Paint)</strong> measures how long it takes for the biggest visible element on your page to finish loading. That is usually your hero image or main headline. Google wants this under 2.5 seconds.</p>
+        <p><strong>CLS (Cumulative Layout Shift)</strong> measures how much the page jumps around while it loads. You know when you go to tap a button and an ad shoves it down the page? That is a layout shift. Google wants this score below 0.1.</p>
+        <p><strong>INP (Interaction to Next Paint)</strong> replaced the old FID metric in 2024. It measures how long it takes for the page to respond after someone clicks, taps, or presses a key. Google wants this under 200 milliseconds.</p>
+        <p>All three metrics matter. But LCP is the one I see fail most often on business websites, so that is where we will start.</p>
+
+        <h2 id="test-vitals">How to Test Your Core Web Vitals in Under Two Minutes</h2>
+        <p>Open <a href="https://pagespeed.web.dev/">Google PageSpeed Insights</a> and paste in your homepage URL. Hit analyse. You will get two sets of results.</p>
+        <p>The top section shows <strong>field data</strong> from real users who visited your site over the past 28 days. This is what Google actually uses for ranking decisions.</p>
+        <p>The bottom section shows <strong>lab data</strong> from a simulated test. This is useful for diagnosing problems but does not directly affect rankings.</p>
+        <p>Look at the field data first. Each metric will show green (good), orange (needs improvement), or red (poor). Focus on whichever metric is red. If nothing is red, focus on orange.</p>
+        <p>You can also check Core Web Vitals inside Google Search Console under the Experience section. This gives you a site-wide view rather than page by page.</p>
+        <p>For a deeper look at how to read these reports and connect them to your broader analytics, see our guide on <a href="/blog/ga4-seo-metrics/">GA4 SEO metrics that actually matter</a>.</p>
+
+        <h2 id="lcp-failures">LCP Failures Are Almost Always an Image Problem</h2>
+        <p>Nine times out of ten, a slow LCP score comes down to images. The hero image on your homepage is probably a 3MB PNG that your web designer uploaded in 2021 and nobody has touched since.</p>
+        <p>Here is the fix, step by step:</p>
+        <ol>
+          <li><strong>Identify the LCP element.</strong> PageSpeed Insights tells you exactly which element is your LCP. Scroll down to the diagnostics and look for the entry labelled "Largest Contentful Paint element."</li>
+          <li><strong>Compress the image.</strong> Convert it to WebP format. A 2MB JPEG becomes a 200KB WebP with virtually no visible quality loss. Tools like Squoosh (free, browser-based) handle this in seconds.</li>
+          <li><strong>Set explicit width and height.</strong> Add width and height attributes to your image tag so the browser reserves space before the image loads. This prevents layout shifts too.</li>
+          <li><strong>Preload the hero image.</strong> Add a preload link in your page's head section. This tells the browser to start downloading the hero image immediately rather than waiting until it discovers it in the HTML.</li>
+          <li><strong>Serve images from a CDN.</strong> If you are not using a content delivery network, your images are being served from one server location. A CDN puts copies closer to your visitors.</li>
+        </ol>
+        <p>If your LCP element is text rather than an image, the problem is usually web fonts. The browser downloads the font file before rendering the text, which delays everything. The fix is to add <code>font-display: swap</code> to your font declarations so the browser shows a fallback font instantly, then swaps in your custom font once it loads.</p>
+
+        <div class="blog-casestudy">
+          <p><strong>Why does this matter?</strong></p>
+          <p>We worked with an ecommerce brand whose product pages were loading in over 4 seconds on mobile. Image optimisation alone cut that to 1.8 seconds. Faster load times directly correlate with lower bounce rates and higher conversion.</p>
+          <p><a href="https://studiohawk.com.au/case-studies/hush-puppies">Read the full case study: Hush Puppies &rarr;</a></p>
+        </div>
+
+        <h2 id="layout-shifts">Layout Shifts Destroy Trust Before Users Notice Them</h2>
+        <p>CLS is the most frustrating metric because it is invisible to you during testing but painfully obvious to real users on slower connections.</p>
+        <p>The most common causes of layout shifts on business websites:</p>
+        <p><strong>Images without dimensions.</strong> If you do not specify width and height on your images, the browser does not know how much space to reserve. When the image finally loads, everything below it jumps down. Fix: add explicit <code>width</code> and <code>height</code> attributes to every image.</p>
+        <p><strong>Late-loading ads or embeds.</strong> Google Maps iframes, YouTube embeds, and ad units that load after the page content will shove everything around. Fix: reserve the space with a CSS container that has a fixed aspect ratio before the embed loads.</p>
+        <p><strong>Web fonts causing text reflow.</strong> When a custom font loads and replaces the fallback font, the text changes size slightly, shifting everything below it. Fix: use <code>font-display: swap</code> and choose fallback fonts that closely match your custom font's metrics.</p>
+        <p><strong>Dynamically injected content.</strong> Chat widgets, cookie banners, and notification bars that slide in after load push content down. Fix: reserve space for these elements in your initial layout, or overlay them on top of existing content rather than inserting them into the document flow.</p>
+        <p>Here is my rule of thumb: if you load your page on a fast connection and everything looks fine, test it again with Chrome DevTools throttled to a slow 3G connection. That is where the layout shifts reveal themselves.</p>
+
+        <h2 id="inp-metric">INP Is the Metric Most Businesses Ignore</h2>
+        <p>INP (Interaction to Next Paint) is the newest Core Web Vital and the one I see the most confusion around. It measures responsiveness. When a user taps a button, how long until something visually changes on screen?</p>
+        <p>Poor INP scores usually come from heavy JavaScript blocking the main thread. In practical terms, that means your site has too many scripts fighting for the browser's attention when someone tries to interact.</p>
+        <p>Common fixes:</p>
+        <p><strong>Defer non-critical JavaScript.</strong> Analytics scripts, chat widgets, and marketing tags do not need to load before the page is interactive. Add <code>defer</code> or <code>async</code> attributes so they load in the background.</p>
+        <p><strong>Break up long tasks.</strong> If you have JavaScript functions that take over 50 milliseconds to execute, they block user interaction. Modern frameworks can split these into smaller chunks using techniques like <code>requestIdleCallback</code> or web workers.</p>
+        <p><strong>Reduce third-party scripts.</strong> Every tracking pixel, A/B testing tool, and social sharing widget adds JavaScript. Audit your tag manager and remove anything you are not actively using. I have seen sites with 40+ marketing tags where the team only uses five of them.</p>
+        <p>For most business websites running on WordPress, Shopify, or similar platforms, the biggest INP win comes from simply removing unused plugins and deferring tag manager scripts. You do not need a developer for that.</p>
+
+        <h2 id="mobile-performance">Mobile Performance Is Where Most Sites Actually Fail</h2>
+        <p>Google uses mobile-first indexing, which means it evaluates the mobile version of your site for rankings. Yet most business owners only check their site on desktop.</p>
+        <p>Run your PageSpeed test on the mobile tab, not desktop. The scores will almost certainly be worse. Mobile devices have less processing power, slower connections, and smaller screens that make layout shifts more noticeable.</p>
+        <p>Key mobile-specific optimisations include keeping <a href="https://studiohawk.com.au/blog/7-mobile-seo-factors-for-ecommerce">mobile SEO factors</a> front of mind:</p>
+        <ul>
+          <li>Serve appropriately sized images. A 1920px-wide hero image on a 375px-wide phone screen is wasteful. Use responsive images with <code>srcset</code> to serve smaller files on smaller screens.</li>
+          <li>Minimise render-blocking CSS. On mobile, every kilobyte matters. Inline your critical CSS and defer the rest.</li>
+          <li>Test on real devices. Emulators are useful, but nothing replaces loading your site on an actual mid-range Android phone.</li>
+        </ul>
+
+        <div class="blog-casestudy">
+          <p><strong>Why does this matter?</strong></p>
+          <p>Technical optimisation across an ecommerce site drove measurable revenue growth when we paired Core Web Vitals fixes with broader site architecture improvements.</p>
+          <p><a href="https://studiohawk.com.au/case-studies/shoes-and-sox">Read the full case study: Shoes &amp; Sox &rarr;</a></p>
+        </div>
+
+        <h2 id="monthly-check">A Monthly Vitals Check Takes Ten Minutes</h2>
+        <p>Core Web Vitals are not a set-and-forget project. New content, plugin updates, and design changes can regress your scores overnight. I recommend a simple monthly check:</p>
+        <ol>
+          <li>Open PageSpeed Insights. Test your homepage, your top landing page, and one product or service page.</li>
+          <li>Check Search Console. Look at the Core Web Vitals report under Experience. If new "poor" URLs have appeared, investigate what changed.</li>
+          <li>Review your tag manager. Has anyone added new scripts this month? If so, check whether they affected INP.</li>
+          <li>Test on mobile. Always. Every time.</li>
+        </ol>
+        <p>This ties into broader <a href="/blog/site-architecture-crawl-budget/">site architecture and crawl budget</a> principles. A fast, well-structured site is easier for both users and search engines to navigate.</p>
+        <p>If you want to build these habits into a proper workflow, the <a href="https://hawkacademy.co/resources/skills/ecommerce">ecommerce SEO skill</a> inside Hawk Academy walks you through technical audits step by step.</p>
+
+        <!-- FAQ -->
+        <div class="blog-faq" id="faq">
+          <h2>FAQ</h2>
+
+          <h3>Do Core Web Vitals directly affect Google rankings?</h3>
+          <p>Yes. Google confirmed Core Web Vitals as a ranking signal in 2021 and has continued to refine how they are measured. They are part of the broader page experience signals. A page with poor vitals will not outrank an identical page with good vitals, all else being equal. That said, content relevance still matters more than speed alone.</p>
+
+          <h3>Which Core Web Vital should I fix first?</h3>
+          <p>Fix whichever metric is in the red zone first. If multiple metrics are red, start with LCP because it has the largest impact on perceived load time and typically the most straightforward fix (image optimisation). CLS is next because it affects user trust. INP is last because it usually requires JavaScript changes that may need a developer.</p>
+
+          <h3>Can I pass Core Web Vitals on WordPress or Shopify?</h3>
+          <p>Absolutely. Both platforms can achieve green scores across all three metrics. The keys are using a lightweight theme, compressing images, limiting plugins to only what you need, and deferring non-critical scripts. Most poor scores on these platforms come from bloated themes or excessive third-party plugins, not the platform itself.</p>
+
+          <h3>How often does Google update Core Web Vitals data?</h3>
+          <p>The field data in PageSpeed Insights is based on a rolling 28-day window from the Chrome User Experience Report. Changes you make today will not show up in field data for roughly a month. Lab data updates immediately when you re-test. Search Console updates its Core Web Vitals report periodically but not in real time.</p>
+
+          <h3>What is a good LCP score for an ecommerce site?</h3>
+          <p>Google considers LCP under 2.5 seconds to be good. For ecommerce specifically, I aim for under 2 seconds on product pages because faster load times have a direct, measurable impact on conversion rates. Anything over 4 seconds is a revenue problem, not just an SEO problem.</p>
+        </div>
+
+        <!-- Newsletter CTA -->
+        <div class="blog-newsletter">
+          <h3>Learn SEO and AI Search. For Free.</h3>
+          <p>Join 22,000+ people learning how to get found on Google and AI search.</p>
+          <a href="https://learn.hawkacademy.co/register">Enroll in Hawk Academy</a>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="../index.html" class="footer__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+          <p class="footer__description">Hawk Academy is created by StudioHawk, a global SEO agency trusted by the world's best-loved brands and fastest-growing startups.</p>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Follow us:</p>
+          <div class="footer__social-links">
+            <a href="https://www.linkedin.com/company/studiohawk/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.instagram.com/studiohawkseo/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.youtube.com/@StudioHawk" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__divider">
+      <div class="footer__nav">
+        <div class="footer__nav-left"><a href="../quiz.html">Quiz</a><a href="../contact.html">Contact</a></div>
+        <div class="footer__nav-right"><a href="https://www.studiohawk.com.au" target="_blank" rel="noopener">StudioHawk Australia</a><a href="https://www.studiohawk.co.uk" target="_blank" rel="noopener">StudioHawk UK</a><a href="https://www.studiohawk.com" target="_blank" rel="noopener">StudioHawk USA</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>Copyright &copy; 2026 Hawk Academy</span>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // TOC active state on scroll
+    const tocLinks = document.querySelectorAll('.blog-toc__list a');
+    const sections = [];
+    tocLinks.forEach(link => {
+      const id = link.getAttribute('href').replace('#','');
+      const el = document.getElementById(id);
+      if (el) sections.push({ el, link });
+    });
+    window.addEventListener('scroll', () => {
+      let current = sections[0];
+      sections.forEach(s => {
+        if (s.el.getBoundingClientRect().top <= 120) current = s;
+      });
+      tocLinks.forEach(l => l.classList.remove('active'));
+      if (current) current.link.classList.add('active');
+    });
+  </script>
+</body>
+</html>

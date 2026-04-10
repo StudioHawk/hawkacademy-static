@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimise for ChatGPT, Perplexity & LLM Search (2026) | Hawk Academy</title>
+  <meta name="description" content="The 5 factors that determine whether AI assistants cite your business. How to check your AI visibility and what to do about it. Practical playbook for 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
+    /* Blog hero */
+    .blog-hero {
+      background: var(--color-black);
+      padding: 120px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: 30px; right: 8%;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--color-yellow); opacity: 0.5;
+    }
+    .blog-hero::after {
+      content: ''; position: absolute; bottom: 30px; left: 5%;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--color-lavender); opacity: 0.3;
+    }
+    .blog-hero__tag {
+      display: inline-block; font-family: var(--font-body);
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(173,186,255,0.18); color: #7B8BE0;
+      margin-bottom: 20px;
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 600; color: var(--color-white);
+      line-height: 1.15; max-width: 720px; margin-bottom: 24px;
+    }
+    .blog-hero__meta {
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap; font-size: 14px; color: var(--color-light-body);
+    }
+    .blog-hero__author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .blog-hero__avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gradient-cta);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 14px; color: var(--color-black);
+    }
+    .blog-hero__author-name { font-weight: 600; color: var(--color-white); }
+    .blog-hero__dot { color: var(--color-light-body); }
+    .blog-hero__share {
+      display: flex; gap: 8px; margin-left: auto;
+    }
+    .blog-hero__share a {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .blog-hero__share a:hover { background: rgba(255,255,255,0.18); }
+    .blog-hero__share svg { width: 14px; height: 14px; fill: var(--color-white); }
+
+    /* Blog layout */
+    .blog-layout {
+      background: var(--color-off-white);
+      padding: 60px 0 100px;
+    }
+    .blog-layout .container {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* TOC sidebar */
+    .blog-toc {
+      position: sticky; top: 100px;
+      padding: 24px 0;
+    }
+    .blog-toc__label {
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--color-light-body);
+      margin-bottom: 16px;
+    }
+    .blog-toc__list {
+      list-style: none;
+    }
+    .blog-toc__list li {
+      margin-bottom: 10px;
+    }
+    .blog-toc__list a {
+      font-size: 13px; color: var(--color-body-text);
+      line-height: 1.5; display: block;
+      padding-left: 12px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .blog-toc__list a:hover,
+    .blog-toc__list a.active {
+      color: var(--color-dark-text);
+      border-left-color: var(--color-lavender);
+    }
+
+    /* Article body */
+    .blog-article {
+      background: var(--color-white);
+      border-radius: var(--radius-card);
+      padding: 48px 56px;
+      max-width: 760px;
+    }
+
+    /* TL;DR box */
+    .blog-tldr {
+      background: rgba(173,186,255,0.08);
+      border: 1px solid rgba(173,186,255,0.2);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .blog-tldr__label {
+      font-family: var(--font-heading);
+      font-size: 14px; font-weight: 700;
+      color: var(--color-lavender);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .blog-tldr ul {
+      list-style: none; padding: 0;
+    }
+    .blog-tldr li {
+      font-size: 15px; color: var(--color-body-text);
+      line-height: 1.7; padding-left: 20px;
+      position: relative; margin-bottom: 8px;
+    }
+    .blog-tldr li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-lavender);
+    }
+
+    /* Article typography */
+    .blog-article h2 {
+      font-family: var(--font-heading);
+      font-size: 26px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 48px 0 16px;
+      line-height: 1.2;
+    }
+    .blog-article h2:first-of-type { margin-top: 0; }
+    .blog-article h3 {
+      font-family: var(--font-heading);
+      font-size: 20px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 32px 0 12px;
+      line-height: 1.3;
+    }
+    .blog-article p {
+      font-size: 17px; line-height: 1.8;
+      color: var(--color-body-text);
+      margin-bottom: 20px;
+    }
+    .blog-article a {
+      color: var(--color-lavender);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .blog-article a:hover { color: var(--color-dark-text); }
+    .blog-article ul, .blog-article ol {
+      padding-left: 20px; margin-bottom: 20px;
+    }
+    .blog-article li {
+      font-size: 16px; line-height: 1.8;
+      color: var(--color-body-text);
+      margin-bottom: 8px;
+    }
+    .blog-article strong { color: var(--color-dark-text); }
+    .blog-article code {
+      background: var(--color-off-white);
+      padding: 2px 6px; border-radius: 4px;
+      font-size: 14px;
+    }
+
+    /* Case study callout */
+    .blog-casestudy {
+      background: rgba(1,255,255,0.04);
+      border-left: 3px solid var(--color-cyan);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 24px 0 32px;
+    }
+    .blog-casestudy strong { color: var(--color-dark-text); }
+    .blog-casestudy p {
+      font-size: 15px; margin-bottom: 8px;
+    }
+    .blog-casestudy a {
+      font-size: 14px; font-weight: 600;
+      color: var(--color-cyan);
+    }
+
+    /* FAQ section */
+    .blog-faq { margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.06); }
+    .blog-faq h2 { margin-top: 0; }
+    .blog-faq h3 {
+      font-size: 18px; margin-top: 28px;
+      color: var(--color-dark-text);
+    }
+    .blog-faq p { font-size: 16px; }
+
+    /* Newsletter CTA */
+    .blog-newsletter {
+      background: var(--color-black);
+      border-radius: var(--radius-card);
+      padding: 48px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .blog-newsletter h3 {
+      font-family: var(--font-heading);
+      font-size: 24px; font-weight: 600;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+    .blog-newsletter p {
+      color: var(--color-light-body);
+      font-size: 15px; margin-bottom: 24px;
+    }
+    .blog-newsletter a {
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: var(--radius-pill);
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      font-family: var(--font-body);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .blog-layout .container {
+        grid-template-columns: 1fr;
+      }
+      .blog-toc { display: none; }
+      .blog-article { padding: 36px 28px; }
+    }
+    @media (max-width: 768px) {
+      .blog-hero { padding: 100px 0 48px; }
+      .blog-hero h1 { font-size: 28px; }
+      .blog-hero__share { display: none; }
+      .blog-article { padding: 28px 20px; }
+      .blog-article h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="header__logo">
+        <img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy">
+      </a>
+      <nav class="header__nav">
+        <a href="../index.html">Home</a>
+        <a href="../whats-included.html">What's Included</a>
+        <a href="../about.html">About Us</a>
+        <a href="../resources.html" class="active">Resources</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
+        <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav">
+    <a href="../index.html">Home</a>
+    <a href="../whats-included.html">What's Included</a>
+    <a href="../about.html">About Us</a>
+    <a href="../resources.html">Resources</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
+    <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
+  </div>
+
+  <!-- BLOG HERO -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-hero__tag tag-ai-search">AI Search</div>
+      <h1>Optimising for ChatGPT, Perplexity, and LLM-Powered Search</h1>
+      <div class="blog-hero__meta">
+        <div class="blog-hero__author">
+          <div class="blog-hero__avatar">HS</div>
+          <span class="blog-hero__author-name">Harry Sanders</span>
+        </div>
+        <span class="blog-hero__dot">11 April 2026</span>
+        <span class="blog-hero__dot">8 min read</span>
+        <div class="blog-hero__share">
+          <a href="https://twitter.com/share?text=Optimising%20for%20ChatGPT%2C%20Perplexity%2C%20and%20LLM-Powered%20Search&url=https://hawkacademy.co/blog/optimising-for-chatgpt-perplexity-llm" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hawkacademy.co/blog/optimising-for-chatgpt-perplexity-llm" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG LAYOUT -->
+  <section class="blog-layout">
+    <div class="container">
+
+      <!-- TOC SIDEBAR -->
+      <aside class="blog-toc">
+        <div class="blog-toc__label">Contents</div>
+        <ul class="blog-toc__list">
+          <li><a href="#not-google">AI Search Is Not Google Search</a></li>
+          <li><a href="#five-factors">The 5 Factors That Determine AI Citations</a></li>
+          <li><a href="#check-visibility">Check Your AI Visibility Now</a></li>
+          <li><a href="#technical-foundation">The Technical Foundation</a></li>
+          <li><a href="#not-a-fad">This Is Not a Fad</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+
+      <!-- ARTICLE -->
+      <article class="blog-article">
+
+        <!-- TL;DR -->
+        <div class="blog-tldr">
+          <div class="blog-tldr__label">TL;DR</div>
+          <ul>
+            <li>AI search tools like ChatGPT, Perplexity, and Google AI Overviews choose which businesses to cite based on five factors: topical depth, structured content, authorship, co-citation networks, and freshness.</li>
+            <li>Brand mentions across the web now matter more than backlinks for AI visibility. Unlinked mentions correlate three times more strongly with AI citations than traditional links.</li>
+            <li>You can check your AI visibility today by asking these tools questions your customers would ask. If you are not showing up, this guide tells you exactly what to fix.</li>
+          </ul>
+        </div>
+
+        <p>Your customers are already using AI to make buying decisions. They are asking ChatGPT for product recommendations, using Perplexity to research service providers, and reading AI Overviews before they ever click a link. The question is not whether AI search matters. The question is whether your business is visible inside it.</p>
+        <p>After running an SEO agency with 120 people across four countries for over a decade, I have watched plenty of "next big things" come and go. AI search is not one of those. It is fundamentally changing how people find and choose businesses, and the playbook for showing up is different from traditional SEO.</p>
+
+        <h2 id="not-google">AI Search Is Not Google Search With a Chatbot Skin</h2>
+        <p>The first mistake I see business owners make is assuming that ranking on Google means they will show up in AI search. It does not work that way.</p>
+        <p>Traditional Google shows you ten blue links ranked by hundreds of signals. AI search tools generate answers. They read dozens of sources, synthesise the information, and present a single response, sometimes citing sources, sometimes not. The mechanics are completely different.</p>
+        <p>Here is how the major platforms work:</p>
+        <ul>
+          <li><strong>ChatGPT Search</strong> pulls from Bing's index. It favours pages with clear structure (lists, tables, FAQs) and strong trust signals. It sometimes cites sources, sometimes doesn't.</li>
+          <li><strong>Perplexity</strong> maintains its own crawl infrastructure and cites sources in every single answer. It values factual, data-rich content and also pulls from forums like Reddit.</li>
+          <li><strong>Google AI Overviews</strong> draws from Google's own organic index. Pages already ranking well in traditional search have an advantage, but the content format matters enormously. Google's AI prefers direct answers, comparison tables, and structured data.</li>
+        </ul>
+        <p>Each platform has its own approach, but they share common ground: all of them preferentially cite content that is well-structured, trustworthy, and demonstrates genuine expertise. If you want to understand how AI Overviews specifically are reshaping search behaviour, our guide on <a href="how-ai-overviews-changing-seo.html">how AI Overviews are changing SEO</a> goes deep on that.</p>
+
+        <h2 id="five-factors">The 5 Factors That Determine Whether AI Cites You</h2>
+        <p>After analysing which of our clients' sites get cited by AI tools and which get ignored, five factors consistently separate the visible from the invisible.</p>
+
+        <h3>1. Topical Depth Beats Surface-Level Content Every Time</h3>
+        <p>AI tools do not cite thin content. They are looking for the most comprehensive, authoritative source on a topic so they can synthesise a complete answer for the user.</p>
+        <p>A 300-word blog post that skims the surface of "how to improve your website SEO" will never get cited. A 2,000-word guide that covers technical foundations, content strategy, link building, and measurement, structured with clear headings and specific advice, absolutely will.</p>
+        <p>This is where <a href="content-hub-topic-clusters.html">content hubs and topic clusters</a> become critical. AI systems assess your site's topical authority holistically. A single good article is not enough. They look for clusters of interconnected content that demonstrate deep expertise in a subject area. Ten articles covering different aspects of local SEO, all linking to each other and to a comprehensive pillar page, sends a far stronger signal than one isolated post.</p>
+        <p>Build your content in clusters. Cover your topic from every angle your customers care about. Go deeper than your competitors on the specific questions your audience asks.</p>
+
+        <h3>2. Structured Content Gets Extracted, Unstructured Content Gets Ignored</h3>
+        <p>AI tools extract information in small chunks, typically 50 to 150 words at a time. They pull the section that best answers the user's specific question. This means the structure of your content directly determines whether it gets cited.</p>
+        <p>What works:</p>
+        <ul>
+          <li><strong>H2 headings framed as questions.</strong> "How much does SEO cost?" is extractable. "Pricing considerations" is not.</li>
+          <li><strong>Direct answers in the first sentence after each heading.</strong> AI grabs the first 50 to 150 words under a heading. If your first sentence is a preamble, the AI skips to a source that leads with the answer.</li>
+          <li><strong>Lists, tables, and comparison formats.</strong> These are extracted at significantly higher rates than narrative paragraphs.</li>
+          <li><strong>FAQ sections with structured markup.</strong> FAQPage schema helps AI systems parse your Q&A content correctly.</li>
+        </ul>
+        <p>This is not about writing for robots. Content structured for AI extraction is also easier for humans to scan and use. It is better content, full stop.</p>
+
+        <h3>3. Named Authorship Beats Anonymous Content</h3>
+        <p>AI tools assess source credibility in part through author reputation. Content attributed to a named expert with verifiable credentials gets cited more than identical content published anonymously.</p>
+        <p>This connects directly to <a href="eeat-explained.html">E-E-A-T (Experience, Expertise, Authoritativeness, and Trustworthiness)</a>. AI systems are essentially applying the same quality framework Google uses, but with even more emphasis on the "Experience" element. They have already ingested all the commonly available information on most topics. What they need from your content is your unique contribution: original data, case study results, practitioner insights.</p>
+        <p>What to do:</p>
+        <ul>
+          <li>Add detailed author bios with credentials, headshot, and links to professional profiles on every piece of content</li>
+          <li>Use Person schema markup to help AI systems connect your author entity to their knowledge graph</li>
+          <li>Demonstrate first-hand experience through original data, screenshots, and specific results</li>
+          <li>Build a consistent author presence across platforms. The same name and expertise showing up on LinkedIn, YouTube, and industry publications reinforces your entity in AI training data</li>
+        </ul>
+
+        <div class="blog-casestudy">
+          <p><strong>Why does this matter?</strong></p>
+          <p>Structured, authoritative content is what drives AI visibility at scale. When Hush Puppies invested in well-structured, topically deep content backed by clear brand authority, it translated directly into sustained organic growth across both traditional and AI-powered search channels.</p>
+          <p><a href="https://studiohawk.com.au/case-studies/hush-puppies">Read the full case study: Hush Puppies →</a></p>
+        </div>
+
+        <h3>4. Co-Citation Networks Are the New Backlinks</h3>
+        <p>In traditional SEO, backlinks are king. In AI search, brand mentions matter more. Research across large brand datasets shows that unlinked brand mentions correlate roughly three times more strongly with AI citation frequency than traditional backlinks.</p>
+        <p>This makes intuitive sense. AI models are trained on vast amounts of web data. They build an understanding of which brands are relevant to which topics based on how often those brands are mentioned across the web, not just how often they are linked to.</p>
+        <p>What this means for your strategy:</p>
+        <ul>
+          <li><strong>Digital PR that generates mentions, not just links.</strong> Being quoted as an expert in an industry publication matters even without a followed backlink. Our guide to <a href="digital-pr-link-building.html">digital PR and link building</a> covers this in detail.</li>
+          <li><strong>Multi-platform presence.</strong> Being active on YouTube, Reddit, LinkedIn, and industry forums all contribute to your mention graph. YouTube mentions in particular show extremely strong correlation with AI visibility.</li>
+          <li><strong>Community participation.</strong> Answering questions in forums, contributing to industry discussions, and sharing original insights all build the co-citation network that AI systems use to evaluate your authority.</li>
+          <li><strong>Customer reviews and testimonials across the web.</strong> Every review that mentions your brand by name on Google, Trustpilot, Product Review, or industry-specific platforms strengthens your entity.</li>
+        </ul>
+
+        <h3>5. Freshness Is a Prerequisite, Not a Bonus</h3>
+        <p>AI search tools actively prioritise recently updated content. Research shows that a large majority of the most-cited pages in AI search results were updated within the last 30 days. For rapidly evolving topics, stale content drops out of the citation pool entirely.</p>
+        <p>This does not mean you need to rewrite everything monthly. It means your most important pages, the ones you want AI to cite, need regular, meaningful updates. New data points, updated statistics, fresh examples, additional sections covering recent developments.</p>
+        <p>A monthly update cycle on your top 10 to 20 pages is the minimum. And the updates need to be substantial. Changing the date and swapping a few words does not count. Google's systems distinguish between cosmetic updates and genuine content changes.</p>
+
+        <div class="blog-casestudy">
+          <p><strong>Why does this matter?</strong></p>
+          <p>Structured documentation and regularly refreshed content are what make AI systems confident enough to cite you. When QuickBooks invested in comprehensive, well-structured documentation and kept it systematically updated, it built the kind of content foundation that AI search tools consistently draw from.</p>
+          <p><a href="https://studiohawk.com.au/case-studies/quickbooks">Read the full case study: QuickBooks →</a></p>
+        </div>
+
+        <h2 id="check-visibility">How to Check If You Are Visible in AI Search Right Now</h2>
+        <p>You do not need expensive tools for this. Open ChatGPT, Perplexity, and Google (with AI Overviews enabled) and ask 10 to 15 questions your target customers would ask. Questions like:</p>
+        <ul>
+          <li>"What is the best [your service] in [your city]?"</li>
+          <li>"How do I choose a [your industry] provider?"</li>
+          <li>"[Your product category] recommendations for [specific use case]"</li>
+          <li>"What should I look for when hiring a [your service]?"</li>
+        </ul>
+        <p>Record whether your brand appears in the response. If it does, note whether you are cited with a link, mentioned by name, or recommended as an option. If you do not appear at all, that tells you where you stand.</p>
+        <p>For a more systematic approach, check your Google Analytics (GA4) for referral traffic from chatgpt.com, perplexity.ai, and bing.com/copilot. If you are getting AI referral traffic, it means you are being cited somewhere. If not, you have work to do.</p>
+        <p>Our <a href="beginners-guide-to-seo-2026.html">beginner's guide to SEO in 2026</a> covers the broader context of how AI search fits into your overall SEO strategy.</p>
+
+        <h2 id="technical-foundation">The Technical Foundation: Let AI Crawlers In</h2>
+        <p>None of the above matters if AI crawlers cannot access your site. This is a surprisingly common problem.</p>
+        <p>Check your robots.txt file. Make sure you are not blocking:</p>
+        <ul>
+          <li><strong>GPTBot</strong> (ChatGPT's crawler)</li>
+          <li><strong>PerplexityBot</strong> (Perplexity's crawler)</li>
+          <li><strong>ClaudeBot</strong> (Anthropic's crawler)</li>
+          <li><strong>Bingbot</strong> (feeds ChatGPT Search and Microsoft Copilot)</li>
+        </ul>
+        <p>Many sites inadvertently block AI crawlers through overly broad robots.txt rules inherited from old configurations. Blocking any of these means your content cannot appear in that platform's responses.</p>
+        <p>Beyond access, page speed and clean HTML matter. AI crawlers have timeouts. If your pages are slow to load or rely heavily on client-side JavaScript to render content, the crawler may not process them fully. Server-side rendering, clean heading structures, and fast load times all improve your AI crawl quality.</p>
+        <p>For ecommerce and SaaS businesses, the <a href="https://hawkacademy.co/resources/skills/ecommerce">Hawk Academy ecommerce skill</a> and <a href="https://hawkacademy.co/resources/skills/saas">SaaS skill</a> cover platform-specific technical requirements for AI search readiness.</p>
+        <p>Submit your site to Bing Webmaster Tools if you have not already. ChatGPT and Copilot both pull from Bing's index, so being properly indexed in Bing directly expands your AI visibility. For more on how to set up your <a href="site-architecture-crawl-budget.html">site architecture for both crawl efficiency and AI visibility</a>, we have a dedicated guide.</p>
+
+        <h2 id="not-a-fad">This Is Not a Fad. It Is the Next Layer of Search.</h2>
+        <p>AI search is not replacing Google. Traditional organic search still drives the vast majority of commercial traffic. But AI search is growing fast, and the businesses that build AI visibility now will have a compounding advantage.</p>
+        <p>The good news is that almost everything that makes you visible in AI search also improves your traditional SEO. Building topical depth, structuring content clearly, demonstrating real expertise, and earning brand mentions across the web are good for every channel.</p>
+        <p>Start by auditing your current AI visibility with the manual test described above. Then prioritise: fix technical access first, structure your existing content for extraction second, and invest in authorship and brand presence third. The StudioHawk blog covers <a href="https://studiohawk.com.au/blog/how-to-optimise-content-for-ai-search">how to optimise content specifically for AI search</a> and <a href="https://studiohawk.com.au/blog/3-things-that-matter-most-for-llm-seo">the three things that matter most for LLM SEO</a> if you want to go deeper.</p>
+        <p>For businesses that want hands-on help, StudioHawk offers dedicated <a href="https://studiohawk.com.au/seo-services/chatgpt-optimisation">ChatGPT optimisation services</a> built around these exact principles.</p>
+
+        <!-- FAQ -->
+        <div class="blog-faq" id="faq">
+          <h2>FAQ</h2>
+
+          <h3>How is optimising for AI search different from regular SEO?</h3>
+          <p>Regular SEO focuses on ranking in a list of links. AI search optimisation focuses on getting cited inside generated answers. The content quality standards overlap heavily, but AI search places more weight on content structure (extractable chunks), brand mentions (not just links), named authorship, and content freshness. You should not abandon regular SEO. You should layer AI optimisation on top of it.</p>
+
+          <h3>Can small businesses compete in AI search against big brands?</h3>
+          <p>Yes. AI tools are becoming more willing to cite lesser-known brands as long as they are backed by genuine authority signals. A local plumber with excellent Google reviews, a detailed website, and mentions in local news can absolutely get cited ahead of a national franchise with thin local content. The playing field is more level than traditional search in many ways.</p>
+
+          <h3>How often should I update content for AI search visibility?</h3>
+          <p>Your most important pages should be updated at least monthly with meaningful additions: new data, fresh examples, updated statistics, or new sections covering recent developments. Changing a date without adding substance does not help. AI systems can distinguish between cosmetic updates and genuine content improvements.</p>
+
+          <h3>Do I need to create separate content for AI search?</h3>
+          <p>No. The same content that ranks well in traditional search can also get cited by AI, provided it is structured correctly. Focus on adding clear heading structures, direct-answer lead paragraphs, FAQ sections with schema markup, and comparison tables to your existing content. You do not need a separate AI content strategy. You need an AI-aware content structure.</p>
+
+          <h3>Is it worth blocking AI crawlers to protect my content?</h3>
+          <p>For most businesses, no. The visibility and brand awareness benefits of being cited in AI search far outweigh content use concerns. Blocking AI crawlers removes you from the fastest-growing search channel. Unless you have a very specific intellectual property reason to block access, allow all major AI crawlers.</p>
+        </div>
+
+        <!-- Newsletter CTA -->
+        <div class="blog-newsletter">
+          <h3>Learn SEO and AI Search. For Free.</h3>
+          <p>Join 22,000+ people learning how to get found on Google and AI search.</p>
+          <a href="https://learn.hawkacademy.co/register">Enroll in Hawk Academy</a>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="../index.html" class="footer__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+          <p class="footer__description">Hawk Academy is created by StudioHawk, a global SEO agency trusted by the world's best-loved brands and fastest-growing startups.</p>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Follow us:</p>
+          <div class="footer__social-links">
+            <a href="https://www.linkedin.com/company/studiohawk/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.instagram.com/studiohawkseo/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.youtube.com/@StudioHawk" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__divider">
+      <div class="footer__nav">
+        <div class="footer__nav-left"><a href="../quiz.html">Quiz</a><a href="../contact.html">Contact</a></div>
+        <div class="footer__nav-right"><a href="https://www.studiohawk.com.au" target="_blank" rel="noopener">StudioHawk Australia</a><a href="https://www.studiohawk.co.uk" target="_blank" rel="noopener">StudioHawk UK</a><a href="https://www.studiohawk.com" target="_blank" rel="noopener">StudioHawk USA</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>Copyright &copy; 2026 Hawk Academy</span>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // TOC active state on scroll
+    const tocLinks = document.querySelectorAll('.blog-toc__list a');
+    const sections = [];
+    tocLinks.forEach(link => {
+      const id = link.getAttribute('href').replace('#','');
+      const el = document.getElementById(id);
+      if (el) sections.push({ el, link });
+    });
+    window.addEventListener('scroll', () => {
+      let current = sections[0];
+      sections.forEach(s => {
+        if (s.el.getBoundingClientRect().top <= 120) current = s;
+      });
+      tocLinks.forEach(l => l.classList.remove('active'));
+      if (current) current.link.classList.add('active');
+    });
+  </script>
+</body>
+</html>
