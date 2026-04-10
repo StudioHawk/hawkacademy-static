@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Knowledge Quiz - Hawk Academy</title>
+  <meta name="description" content="Test your SEO knowledge with Hawk Academy's free quiz. Discover gaps in your skills and get personalised recommendations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+    /* Quiz Page Styles */
+    .quiz-section {
+      min-height: calc(100vh - var(--header-height));
+      padding: 60px 0 100px;
+      background: var(--color-off-white);
+      position: relative;
+    }
+
+    .quiz-card {
+      background: var(--color-white);
+      border-radius: var(--radius-card);
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 60px;
+      position: relative;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    }
+
+    /* Decorative dots */
+    .quiz-card::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      width: 120px;
+      height: 120px;
+      background-image: radial-gradient(circle, var(--color-lavender) 2px, transparent 2px);
+      background-size: 14px 14px;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .quiz-card::after {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      right: -20px;
+      width: 140px;
+      height: 140px;
+      background-image: radial-gradient(circle, var(--color-cyan) 2px, transparent 2px);
+      background-size: 14px 14px;
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .quiz-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-title {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--color-dark-text);
+      text-align: center;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    /* Intro screen */
+    .quiz-intro {
+      text-align: center;
+    }
+
+    .quiz-intro p {
+      color: var(--color-body-text);
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .quiz-intro .checklist {
+      text-align: left;
+      max-width: 480px;
+      margin: 24px auto 20px;
+    }
+
+    .quiz-intro .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      color: var(--color-body-text);
+      font-size: 16px;
+    }
+
+    .checklist-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gradient-cta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .checklist-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .quiz-start-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      padding: 16px 48px;
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      border: 0.8px solid var(--color-lavender);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 16px;
+    }
+
+    .quiz-start-btn:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    /* Progress bar */
+    .quiz-progress {
+      margin-bottom: 32px;
+    }
+
+    .quiz-progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .quiz-progress-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--color-lavender);
+    }
+
+    .quiz-progress-pct {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-body-text);
+    }
+
+    .quiz-progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #E8E6E2;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--gradient-cta);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    /* Question */
+    .quiz-question {
+      display: none;
+    }
+
+    .quiz-question.active {
+      display: block;
+    }
+
+    .quiz-question h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-dark-text);
+      margin-bottom: 28px;
+      line-height: 1.4;
+    }
+
+    /* Options grid */
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border: 1.5px solid #E8E6E2;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: var(--color-white);
+    }
+
+    .quiz-option:hover {
+      border-color: var(--color-lavender);
+      background: rgba(173, 186, 255, 0.05);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--color-lavender);
+      background: rgba(173, 186, 255, 0.1);
+    }
+
+    .quiz-option-radio {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .quiz-option.selected .quiz-option-radio {
+      border-color: var(--color-lavender);
+      background: var(--color-lavender);
+    }
+
+    .quiz-option.selected .quiz-option-radio::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-white);
+    }
+
+    .quiz-option-text {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--color-dark-text);
+      line-height: 1.4;
+    }
+
+    /* Navigation */
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .quiz-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      padding: 14px 36px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .quiz-nav-btn.prev {
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      opacity: 0.7;
+    }
+
+    .quiz-nav-btn.prev:hover {
+      opacity: 1;
+    }
+
+    .quiz-nav-btn.next {
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      margin-left: auto;
+    }
+
+    .quiz-nav-btn.next:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .quiz-nav-btn.hidden {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .quiz-nav-btn.submit {
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      padding: 14px 44px;
+      font-size: 16px;
+      margin-left: auto;
+    }
+
+    /* Results screen */
+    .quiz-results {
+      display: none;
+      text-align: center;
+    }
+
+    .quiz-results.active {
+      display: block;
+    }
+
+    .results-score-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin: 20px auto 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .results-score-ring svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .results-score-ring circle {
+      fill: none;
+      stroke-width: 8;
+    }
+
+    .results-score-ring .ring-bg {
+      stroke: #E8E6E2;
+    }
+
+    .results-score-ring .ring-fill {
+      stroke: url(#scoreGradient);
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s ease;
+    }
+
+    .results-score-number {
+      font-family: var(--font-heading);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--color-dark-text);
+      position: relative;
+      z-index: 1;
+    }
+
+    .results-score-number span {
+      font-size: 20px;
+      color: var(--color-body-text);
+      font-weight: 400;
+    }
+
+    .results-level {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .results-level.beginner { color: var(--color-yellow); }
+    .results-level.intermediate { color: var(--color-lavender); }
+    .results-level.advanced { color: var(--color-cyan); }
+
+    .results-message {
+      color: var(--color-body-text);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+
+    .results-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .results-cta .btn {
+      padding: 14px 36px;
+      font-size: 15px;
+    }
+
+    .btn-ghost-dark {
+      border: 1.5px solid #ccc;
+      color: var(--color-dark-text);
+      background: transparent;
+    }
+
+    .btn-ghost-dark:hover {
+      border-color: var(--color-lavender);
+      color: var(--color-lavender);
+    }
+
+    /* Recommended modules */
+    .results-modules {
+      text-align: left;
+      margin: 32px 0;
+    }
+
+    .results-modules h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-dark-text);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .module-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1.5px solid #E8E6E2;
+      margin-bottom: 12px;
+      background: var(--color-white);
+      transition: border-color 0.2s;
+    }
+
+    .module-card:hover {
+      border-color: var(--color-lavender);
+    }
+
+    .module-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+
+    .module-icon.incorrect { background: rgba(255, 77, 77, 0.1); }
+    .module-icon.correct { background: rgba(46, 204, 113, 0.1); }
+
+    .module-info { flex: 1; }
+
+    .module-info h4 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-dark-text);
+      margin-bottom: 2px;
+    }
+
+    .module-info .module-topic {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-lavender);
+      margin-bottom: 4px;
+    }
+
+    .module-info p {
+      font-size: 13px;
+      color: var(--color-body-text);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .module-info .your-answer {
+      font-size: 13px;
+      color: #e74c3c;
+      margin-top: 4px;
+    }
+
+    .module-info .correct-answer {
+      font-size: 13px;
+      color: #2ecc71;
+      margin-top: 2px;
+    }
+
+    .results-breakdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-lavender);
+      cursor: pointer;
+      background: none;
+      border: none;
+      margin: 20px auto 0;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--color-lavender);
+      transition: all 0.2s;
+    }
+
+    .results-breakdown-toggle:hover {
+      background: rgba(173, 186, 255, 0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .quiz-card {
+        padding: 32px 24px;
+        margin: 0 8px;
+      }
+
+      .quiz-title {
+        font-size: 26px;
+      }
+
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-question h3 {
+        font-size: 17px;
+      }
+
+      .quiz-nav-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+
+      .results-score-ring {
+        width: 130px;
+        height: 130px;
+      }
+
+      .results-score-number {
+        font-size: 36px;
+      }
+
+      .results-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .module-card {
+        padding: 14px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="header__logo"><img src="assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+      <nav class="header__nav">
+        <a href="index.html">Home</a>
+        <a href="whats-included.html">What's Included</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
+        <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="whats-included.html">What's Included</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="resources.html">Resources</a>
+    <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
+    <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
+  </div>
+
+  <!-- QUIZ SECTION -->
+  <section class="quiz-section">
+    <div class="container">
+      <div class="quiz-card">
+
+        <!-- INTRO SCREEN -->
+        <div id="quizIntro" class="quiz-intro">
+          <h1 class="quiz-title">Test your knowledge with Hawk Academy</h1>
+          <p>This quick quiz is designed to help you find gaps in your SEO knowledge so that you can:</p>
+          <ul class="checklist">
+            <li>
+              <span class="checklist-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Get a snapshot of your current SEO knowledge
+            </li>
+            <li>
+              <span class="checklist-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Identify gaps so you know where to focus your learning
+            </li>
+            <li>
+              <span class="checklist-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Uncover growth opportunities for your business
+            </li>
+          </ul>
+          <p>Think of your score as your starting point. A snapshot of where you're at now, and a guide for where to focus as you continue your SEO journey.</p>
+          <button class="quiz-start-btn" onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <!-- QUESTIONS -->
+        <div id="quizQuestions" style="display:none;">
+          <h2 class="quiz-title" style="margin-bottom:16px;">Test your knowledge with Hawk Academy</h2>
+
+          <div class="quiz-progress">
+            <div class="quiz-progress-header">
+              <span class="quiz-progress-label" id="progressLabel">QUESTION 1 OF 10</span>
+              <span class="quiz-progress-pct" id="progressPct">10% answered</span>
+            </div>
+            <div class="quiz-progress-bar">
+              <div class="quiz-progress-fill" id="progressFill" style="width:10%"></div>
+            </div>
+          </div>
+
+          <div id="questionsContainer"></div>
+
+          <div class="quiz-nav">
+            <button class="quiz-nav-btn prev hidden" id="prevBtn" onclick="prevQuestion()">&#8249; Previous</button>
+            <button class="quiz-nav-btn next hidden" id="nextBtn" onclick="nextQuestion()">Next &#8250;</button>
+            <button class="quiz-nav-btn submit hidden" id="submitBtn" onclick="showResults()">See Results</button>
+          </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="quizResults" class="quiz-results">
+          <h2 class="quiz-title" style="margin-bottom:4px;">Your Results</h2>
+
+          <div class="results-score-ring">
+            <svg viewBox="0 0 160 160">
+              <defs>
+                <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ADBAFF"/>
+                  <stop offset="100%" stop-color="#01FFFF"/>
+                </linearGradient>
+              </defs>
+              <circle class="ring-bg" cx="80" cy="80" r="72"/>
+              <circle class="ring-fill" id="scoreRing" cx="80" cy="80" r="72" stroke-dasharray="452.39" stroke-dashoffset="452.39"/>
+            </svg>
+            <span class="results-score-number" id="scoreDisplay">0<span>/10</span></span>
+          </div>
+
+          <p class="results-level" id="resultLevel">Beginner</p>
+          <p class="results-message" id="resultMessage"></p>
+
+          <!-- Recommended Modules -->
+          <div class="results-modules" id="recommendedModules"></div>
+
+          <!-- Full Breakdown Toggle -->
+          <button class="results-breakdown-toggle" id="breakdownToggle" onclick="toggleBreakdown()">
+            View Full Breakdown &#9662;
+          </button>
+
+          <!-- Question-by-question breakdown -->
+          <div class="results-modules" id="fullBreakdown" style="display:none;margin-top:16px;"></div>
+
+          <div class="results-cta" style="margin-top:32px;">
+            <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="padding:14px 36px;">Enroll For Free</a>
+            <button class="btn btn-ghost-dark" onclick="retakeQuiz()">Retake Quiz</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-gradient-bar"></div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="index.html" class="footer__logo"><img src="assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+          <p class="footer__description">Hawk Academy is created by StudioHawk, a global SEO agency trusted by the world's best-loved brands and fastest-growing startups.</p>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Follow us:</p>
+          <div class="footer__social-links">
+            <a href="https://www.linkedin.com/company/studiohawk/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.instagram.com/studiohawkseo/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.youtube.com/@StudioHawk" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__divider">
+      <div class="footer__nav">
+        <div class="footer__nav-left"><a href="quiz.html">Quiz</a><a href="contact.html">Contact</a></div>
+        <div class="footer__nav-right"><a href="https://www.studiohawk.com.au" target="_blank" rel="noopener">StudioHawk Australia</a><a href="https://www.studiohawk.co.uk" target="_blank" rel="noopener">StudioHawk UK</a><a href="https://www.studiohawk.com" target="_blank" rel="noopener">StudioHawk USA</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>Copyright &copy; 2026 Hawk Academy</span>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const quizData = [
+      {
+        question: "1. Which HTTP status code tells search engines that a page has been permanently moved?",
+        options: ["302 (Temporary Redirect)", "301 (Permanent Redirect)", "404 (Not Found)", "503 (Service Unavailable)"],
+        correct: 1,
+        topic: "Technical SEO",
+        module: "Technical SEO Foundations",
+        moduleDesc: "Learn how redirects, status codes, and crawlability affect your site's search performance."
+      },
+      {
+        question: "2. In Google's Core Web Vitals, which metric measures visual stability?",
+        options: ["LCP (Largest Contentful Paint)", "FID (First Input Delay)", "CLS (Cumulative Layout Shift)", "TTFB (Time to First Byte)"],
+        correct: 2,
+        topic: "Site Performance",
+        module: "Core Web Vitals & Page Speed",
+        moduleDesc: "Master LCP, CLS, and INP - the metrics Google uses to evaluate your user experience."
+      },
+      {
+        question: "3. What is the primary purpose of a robots.txt file?",
+        options: ["To improve page load speed", "To control which pages search engines can crawl", "To redirect broken links automatically", "To encrypt website data for security"],
+        correct: 1,
+        topic: "Technical SEO",
+        module: "Crawling & Indexation",
+        moduleDesc: "Understand how search engines discover and index your pages, and how to control the process."
+      },
+      {
+        question: "4. Which type of link typically passes the most SEO value?",
+        options: ["Nofollow link from a forum comment", "Dofollow editorial link from a high-authority site", "Link from a paid directory listing", "Social media share link"],
+        correct: 1,
+        topic: "Link Building",
+        module: "Link Building Strategies",
+        moduleDesc: "Learn which links move the needle and how to earn high-authority backlinks at scale."
+      },
+      {
+        question: "5. What does the 'E' stand for in Google's E-E-A-T quality guidelines?",
+        options: ["Engagement", "Experience", "Efficiency", "Equity"],
+        correct: 1,
+        topic: "Content & Authority",
+        module: "E-E-A-T & Content Quality",
+        moduleDesc: "Understand Google's quality framework and how to demonstrate expertise, experience, and trust."
+      },
+      {
+        question: "6. Which schema markup type would you use for a FAQ section on your page?",
+        options: ["Article schema", "FAQPage schema", "HowTo schema", "BreadcrumbList schema"],
+        correct: 1,
+        topic: "Structured Data",
+        module: "Schema Markup & Rich Results",
+        moduleDesc: "Implement structured data to win rich snippets and stand out in search results."
+      },
+      {
+        question: "7. What is the recommended approach when multiple URLs serve the same content?",
+        options: ["Delete all duplicate pages immediately", "Use canonical tags to indicate the preferred version", "Block all versions in robots.txt", "Add noindex to every page"],
+        correct: 1,
+        topic: "Technical SEO",
+        module: "Duplicate Content & Canonicalisation",
+        moduleDesc: "Fix duplicate content issues that dilute your rankings and confuse search engines."
+      },
+      {
+        question: "8. In Google Analytics 4, what replaced 'bounce rate' as a key engagement metric?",
+        options: ["Exit rate", "Engagement rate", "Session duration", "Pages per session"],
+        correct: 1,
+        topic: "Analytics",
+        module: "GA4 & SEO Reporting",
+        moduleDesc: "Navigate GA4 like a pro and build reports that prove SEO ROI to stakeholders."
+      },
+      {
+        question: "9. How can you best optimise content for AI-powered search engines like Google SGE?",
+        options: ["Stuff keywords into every paragraph", "Write concise, well-structured answers to specific questions", "Hide content behind login walls", "Use only long-tail keywords in headers"],
+        correct: 1,
+        topic: "AI Search",
+        module: "AI Search & SGE Optimisation",
+        moduleDesc: "Adapt your SEO strategy for Google's AI Overviews, ChatGPT, and the new search landscape."
+      },
+      {
+        question: "10. What is the most important factor when building a site's internal linking structure?",
+        options: ["Linking every page to the homepage only", "Creating a logical hierarchy that distributes authority to key pages", "Using the same anchor text for every internal link", "Minimising the total number of internal links"],
+        correct: 1,
+        topic: "On-Page SEO",
+        module: "Internal Linking & Site Architecture",
+        moduleDesc: "Build a linking structure that helps users and search engines discover your most important content."
+      }
+    ];
+
+    let currentQuestion = 0;
+    let answers = new Array(quizData.length).fill(-1);
+
+    function buildQuestions() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+      quizData.forEach((q, i) => {
+        let html = '<div class="quiz-question' + (i === 0 ? ' active' : '') + '" data-index="' + i + '">';
+        html += '<h3>' + q.question + '</h3>';
+        html += '<div class="quiz-options">';
+        q.options.forEach((opt, j) => {
+          html += '<div class="quiz-option" data-question="' + i + '" data-option="' + j + '" onclick="selectOption(' + i + ',' + j + ')">';
+          html += '<div class="quiz-option-radio"></div>';
+          html += '<span class="quiz-option-text">' + opt + '</span>';
+          html += '</div>';
+        });
+        html += '</div></div>';
+        container.innerHTML += html;
+      });
+    }
+
+    function startQuiz() {
+      document.getElementById('quizIntro').style.display = 'none';
+      document.getElementById('quizQuestions').style.display = 'block';
+      buildQuestions();
+      updateUI();
+    }
+
+    function selectOption(qIndex, optIndex) {
+      answers[qIndex] = optIndex;
+      const options = document.querySelectorAll('.quiz-option[data-question="' + qIndex + '"]');
+      options.forEach(o => o.classList.remove('selected'));
+      options[optIndex].classList.add('selected');
+      updateUI();
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < quizData.length - 1) {
+        document.querySelectorAll('.quiz-question')[currentQuestion].classList.remove('active');
+        currentQuestion++;
+        document.querySelectorAll('.quiz-question')[currentQuestion].classList.add('active');
+        updateUI();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        document.querySelectorAll('.quiz-question')[currentQuestion].classList.remove('active');
+        currentQuestion--;
+        document.querySelectorAll('.quiz-question')[currentQuestion].classList.add('active');
+        updateUI();
+      }
+    }
+
+    function updateUI() {
+      const total = quizData.length;
+      const answered = answers.filter(a => a !== -1).length;
+      const pct = Math.round((answered / total) * 100);
+
+      document.getElementById('progressLabel').textContent = 'QUESTION ' + (currentQuestion + 1) + ' OF ' + total;
+      document.getElementById('progressPct').textContent = pct + '% answered';
+      document.getElementById('progressFill').style.width = pct + '%';
+
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const submitBtn = document.getElementById('submitBtn');
+
+      prevBtn.classList.toggle('hidden', currentQuestion === 0);
+
+      const hasAnswer = answers[currentQuestion] !== -1;
+      const isLast = currentQuestion === quizData.length - 1;
+
+      if (isLast) {
+        nextBtn.classList.add('hidden');
+        submitBtn.classList.toggle('hidden', !hasAnswer);
+      } else {
+        submitBtn.classList.add('hidden');
+        nextBtn.classList.toggle('hidden', !hasAnswer);
+      }
+    }
+
+    function showResults() {
+      let score = 0;
+      const incorrect = [];
+      const allResults = [];
+
+      answers.forEach((a, i) => {
+        const isCorrect = a === quizData[i].correct;
+        if (isCorrect) score++;
+        else incorrect.push(i);
+        allResults.push({ index: i, isCorrect, userAnswer: a });
+      });
+
+      document.getElementById('quizQuestions').style.display = 'none';
+      const results = document.getElementById('quizResults');
+      results.classList.add('active');
+
+      document.getElementById('scoreDisplay').innerHTML = score + '<span>/' + quizData.length + '</span>';
+
+      const circumference = 2 * Math.PI * 72;
+      const offset = circumference - (score / quizData.length) * circumference;
+      setTimeout(() => {
+        document.getElementById('scoreRing').style.strokeDashoffset = offset;
+      }, 100);
+
+      // Level and message
+      const levelEl = document.getElementById('resultLevel');
+      const msgEl = document.getElementById('resultMessage');
+
+      if (score <= 3) {
+        levelEl.textContent = 'Beginner';
+        levelEl.className = 'results-level beginner';
+        msgEl.textContent = "You're just getting started on your SEO journey. The modules below will build a strong foundation.";
+      } else if (score <= 6) {
+        levelEl.textContent = 'Intermediate';
+        levelEl.className = 'results-level intermediate';
+        msgEl.textContent = "Solid SEO basics! Focus on the recommended modules below to fill your knowledge gaps.";
+      } else if (score <= 9) {
+        levelEl.textContent = 'Advanced';
+        levelEl.className = 'results-level advanced';
+        msgEl.textContent = "Great work! You have strong SEO knowledge. Check below for the areas you can sharpen further.";
+      } else {
+        levelEl.textContent = 'SEO Expert';
+        levelEl.className = 'results-level advanced';
+        msgEl.textContent = "Perfect score! You clearly know your SEO. Hawk Academy's expert-level content will keep you at the cutting edge.";
+      }
+
+      // Recommended modules (incorrect answers only)
+      const modulesContainer = document.getElementById('recommendedModules');
+      if (incorrect.length > 0) {
+        let html = '<h3>Recommended Modules For You</h3>';
+        incorrect.forEach(i => {
+          const q = quizData[i];
+          html += '<div class="module-card">';
+          html += '<div class="module-icon incorrect">&#10060;</div>';
+          html += '<div class="module-info">';
+          html += '<div class="module-topic">' + q.topic + '</div>';
+          html += '<h4>' + q.module + '</h4>';
+          html += '<p>' + q.moduleDesc + '</p>';
+          html += '<p class="your-answer">Your answer: ' + q.options[answers[i]] + '</p>';
+          html += '<p class="correct-answer">Correct answer: ' + q.options[q.correct] + '</p>';
+          html += '</div></div>';
+        });
+        modulesContainer.innerHTML = html;
+        modulesContainer.style.display = 'block';
+      } else {
+        modulesContainer.style.display = 'none';
+      }
+
+      // Full breakdown
+      const breakdownContainer = document.getElementById('fullBreakdown');
+      let bHtml = '<h3>Full Question Breakdown</h3>';
+      allResults.forEach(r => {
+        const q = quizData[r.index];
+        const icon = r.isCorrect ? '&#9989;' : '&#10060;';
+        const iconClass = r.isCorrect ? 'correct' : 'incorrect';
+        bHtml += '<div class="module-card">';
+        bHtml += '<div class="module-icon ' + iconClass + '">' + icon + '</div>';
+        bHtml += '<div class="module-info">';
+        bHtml += '<div class="module-topic">' + q.topic + '</div>';
+        bHtml += '<h4>Q' + (r.index + 1) + '. ' + q.question.replace(/^\d+\.\s*/, '') + '</h4>';
+        if (r.isCorrect) {
+          bHtml += '<p class="correct-answer">Correct! ' + q.options[q.correct] + '</p>';
+        } else {
+          bHtml += '<p class="your-answer">Your answer: ' + q.options[r.userAnswer] + '</p>';
+          bHtml += '<p class="correct-answer">Correct answer: ' + q.options[q.correct] + '</p>';
+        }
+        bHtml += '</div></div>';
+      });
+      breakdownContainer.innerHTML = bHtml;
+
+      // Show/hide toggle
+      document.getElementById('breakdownToggle').style.display = 'inline-flex';
+      breakdownContainer.style.display = 'none';
+    }
+
+    function toggleBreakdown() {
+      const el = document.getElementById('fullBreakdown');
+      const btn = document.getElementById('breakdownToggle');
+      if (el.style.display === 'none') {
+        el.style.display = 'block';
+        btn.innerHTML = 'Hide Breakdown &#9652;';
+      } else {
+        el.style.display = 'none';
+        btn.innerHTML = 'View Full Breakdown &#9662;';
+      }
+    }
+
+    function retakeQuiz() {
+      currentQuestion = 0;
+      answers = new Array(quizData.length).fill(-1);
+      document.getElementById('quizResults').classList.remove('active');
+      document.getElementById('quizIntro').style.display = 'block';
+      document.getElementById('quizQuestions').style.display = 'none';
+      document.getElementById('recommendedModules').innerHTML = '';
+      document.getElementById('fullBreakdown').innerHTML = '';
+      document.getElementById('breakdownToggle').innerHTML = 'View Full Breakdown &#9662;';
+    }
+  </script>
+</body>
+</html>

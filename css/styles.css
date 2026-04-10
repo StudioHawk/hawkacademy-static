@@ -411,7 +411,7 @@ h5 {
 .hero__badge {
   position: absolute;
   top: 8%;
-  right: 12%;
+  left: 12%;
   width: 160px;
   height: 160px;
   z-index: 3;
@@ -445,7 +445,7 @@ h5 {
 .hero__dot-yellow {
   position: absolute;
   top: 5%;
-  left: 15%;
+  right: 15%;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -537,7 +537,7 @@ h5 {
 .hero--home .hero__circle-bg {
   width: 550px;
   height: 550px;
-  top: 35%;
+  top: 45%;
 }
 
 .hero--home .hero__visual {
@@ -571,7 +571,8 @@ h5 {
 
 .hero--wi .hero__photo {
   max-width: 550px;
-  margin-bottom: -350px;
+  margin-bottom: -380px;
+  margin-top: -30px;
   position: relative;
   z-index: 1;
 }
@@ -579,7 +580,7 @@ h5 {
 .hero--wi .hero__circle-bg {
   width: 450px;
   height: 450px;
-  top: 35%;
+  top: 42%;
 }
 
 .hero--wi + .awards-bar {
@@ -668,7 +669,7 @@ h5 {
 }
 
 .mission__video {
-  max-width: 900px;
+  width: 100%;
   margin: 0 auto;
   border-radius: 12px;
   overflow: hidden;
@@ -843,46 +844,97 @@ h5 {
    COMPARISON SECTION
    ============================================= */
 .comparison {
-  background: #0D0D0D;
+  background: #0A0A0A;
   padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.comparison::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(173, 186, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .comparison h1 {
   color: var(--color-white);
   text-align: center;
   margin-bottom: 12px;
+  font-size: 48px;
 }
 
 .comparison__subtitle {
   text-align: center;
   color: #888;
-  margin-bottom: 48px;
+  margin-bottom: 56px;
+  font-size: 17px;
 }
 
 .comparison__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 28px;
   max-width: 960px;
   margin: 0 auto;
+  position: relative;
+}
+
+.comparison__grid::after {
+  content: 'VS';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0A0A0A;
+  border: 2px solid rgba(173, 186, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-lavender);
+  letter-spacing: 1px;
+  z-index: 2;
 }
 
 .comparison__card {
-  background: #151515;
-  border-radius: 16px;
-  padding: 32px;
-  border: 0.8px solid rgba(255, 255, 255, 0.06);
+  background: #111111;
+  border-radius: 20px;
+  padding: 40px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.comparison__card:hover {
+  transform: translateY(-4px);
 }
 
 .comparison__card--highlight {
-  background: linear-gradient(145deg, rgba(173, 186, 255, 0.08), rgba(1, 255, 255, 0.05));
-  border: 0.8px solid rgba(173, 186, 255, 0.18);
+  background: linear-gradient(160deg, rgba(173, 186, 255, 0.1) 0%, rgba(1, 255, 255, 0.04) 100%);
+  border: 1px solid rgba(173, 186, 255, 0.25);
+  box-shadow: 0 0 60px rgba(173, 186, 255, 0.06), 0 0 120px rgba(1, 255, 255, 0.03);
+}
+
+.comparison__card--highlight:hover {
+  border-color: rgba(173, 186, 255, 0.4);
 }
 
 .comparison__card h3 {
-  font-size: 20px;
-  margin-bottom: 24px;
-  color: #666;
+  font-size: 22px;
+  margin-bottom: 28px;
+  color: #555;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .comparison__card--highlight h3 {
@@ -890,36 +942,51 @@ h5 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  border-bottom-color: rgba(173, 186, 255, 0.15);
 }
 
 .comparison__list {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 4px;
 }
 
 .comparison__list-item {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   font-size: 15px;
-  line-height: 1.5;
-  padding: 11px 0;
-  border-bottom: 0.8px solid rgba(255, 255, 255, 0.06);
+  line-height: 1.6;
+  padding: 8px 0;
+  border-bottom: none;
 }
 
 .comparison__list-item .icon-x {
-  color: #555;
-  font-size: 16px;
+  color: #444;
+  font-size: 13px;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 3px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .comparison__list-item .icon-check {
   color: var(--color-cyan);
-  font-size: 16px;
+  font-size: 13px;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 3px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(1, 255, 255, 0.08);
 }
 
 .comparison__card .comparison__list-item span:last-child {
@@ -927,25 +994,31 @@ h5 {
 }
 
 .comparison__card--highlight .comparison__list-item span:last-child {
-  color: var(--color-light-body);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .comparison__card .price {
-  margin-top: 24px;
-  font-size: 18px;
-  color: #555;
+  margin-top: 28px;
+  font-size: 20px;
+  color: #444;
   text-decoration: line-through;
   opacity: 0.6;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .comparison__card--highlight .price {
   color: var(--color-white);
   text-decoration: none;
   opacity: 1;
+  font-weight: 600;
+  border-top-color: rgba(173, 186, 255, 0.15);
 }
 
 .comparison__card--highlight .btn {
   margin-top: 24px;
+  width: 100%;
+  text-align: center;
 }
 
 /* =============================================
@@ -1546,12 +1619,24 @@ h5 {
   justify-content: center;
   gap: 60px;
   flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.client-logos__row:last-child {
+  margin-bottom: 0;
 }
 
 .client-logos__row img {
   height: 40px;
   width: auto;
-  opacity: 0.8;
+  opacity: 0.7;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.client-logos__row img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
 }
 
 /* =============================================
@@ -1948,31 +2033,44 @@ h5 {
     line-height: 40px;
   }
 
+  /* Hero mobile - all variants */
+  .hero__visual {
+    min-height: 300px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .hero__circle-bg {
-    width: 280px;
-    height: 280px;
+    width: 240px;
+    height: 240px;
   }
 
   .hero__photo {
     max-width: 260px;
   }
 
+  .hero__photo-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+  }
+
   .hero__testimonial {
     display: flex;
-    position: relative;
-    transform: none;
-    width: auto;
-    max-width: 220px;
-    margin: -10px auto 4px;
-    font-size: 10px;
-    padding: 6px 10px;
+    position: absolute;
+    padding: 8px 10px;
     gap: 8px;
-    border-radius: 8px;
+    max-width: 160px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    z-index: 10;
   }
 
   .hero__testimonial img {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 
   .hero__testimonial-name {
@@ -1980,90 +2078,89 @@ h5 {
   }
 
   .hero__testimonial-text {
-    font-size: 9px;
+    font-size: 8px;
     line-height: 1.3;
   }
 
   .hero__testimonial-stars {
     font-size: 9px;
+    margin-top: 2px;
   }
 
-  .hero__visual {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .hero__testimonial--left {
+    left: -5px;
+    bottom: 30%;
+  }
+
+  .hero__testimonial--right {
+    right: -5px;
+    bottom: 15%;
   }
 
   .hero__badge {
-    width: 100px;
-    height: 100px;
-    top: 5%;
-    right: 5%;
+    width: 80px;
+    height: 80px;
+    top: 0;
+    left: 5%;
+    right: auto;
   }
 
   .hero__badge svg {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
 
   .hero__badge-center {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .hero__dot-yellow {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
   }
 
   .hero__dot-lavender {
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
   }
 
   .hero__stat {
-    margin-bottom: 20px;
-    font-size: 12px;
-    padding: 8px 16px;
+    margin-bottom: 10px;
+    font-size: 11px;
+    padding: 6px 14px;
   }
 
+  /* HOME hero mobile */
   .hero--home .hero__photo {
-    max-width: 280px;
+    max-width: 260px;
+    margin-bottom: -80px;
   }
 
   .hero--home .hero__circle-bg {
-    width: 260px;
-    height: 260px;
+    width: 240px;
+    height: 240px;
+    top: 45%;
   }
 
   .hero--home .hero__visual {
-    min-height: 300px;
+    min-height: 260px !important;
   }
 
-  .hero--home .hero__photo-wrapper {
-    margin-top: 0;
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero--home .hero__visual {
-    min-height: 300px;
-    align-items: center;
-  }
-
-  .hero--wi .hero__visual {
-    align-items: center;
-  }
-
+  /* WI hero mobile */
   .hero--wi .hero__photo {
-    max-width: 250px;
-    margin-bottom: -250px;
-    margin-top: 100px;
+    max-width: 220px;
+    margin-bottom: -70px;
+    margin-top: 0;
   }
 
   .hero--wi .hero__circle-bg {
-    width: 280px;
-    height: 280px;
-    top: 70%;
+    width: 240px;
+    height: 240px;
+    top: 50%;
+  }
+
+  .hero--wi .hero__visual {
+    min-height: 260px !important;
   }
 
   .grid-2 {
@@ -2140,6 +2237,14 @@ h5 {
     break-inside: avoid;
   }
 
+  .team__member--reverse {
+    direction: ltr;
+  }
+
+  .team__member--reverse .team__photo-wrapper {
+    order: -1;
+  }
+
   .team__photo-circle {
     width: 220px;
     height: 220px;
@@ -2169,6 +2274,10 @@ h5 {
     margin-bottom: 40px;
   }
 
+  .team__member .team__photo-wrapper {
+    order: -1;
+  }
+
   .team__member:last-child {
     margin-bottom: 0;
   }
@@ -2192,11 +2301,6 @@ h5 {
 
   .start-section__image-wrapper img {
     max-width: 280px;
-  }
-
-  /* WI hawk/awards padding fix */
-  .hero--wi .hero__photo {
-    margin-bottom: -80px;
   }
 
   /* About page: image above text on mobile, left-aligned */
