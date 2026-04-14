@@ -1,0 +1,43 @@
+# Tool URL redirects (folder rename + filename simplification)
+/tools/ai-visibility-tester  /seo-tools/ai-visibility  301
+/tools/ai-visibility-tester.html  /seo-tools/ai-visibility  301
+/tools/google-trust-scanner  /seo-tools/google-trust  301
+/tools/google-trust-scanner.html  /seo-tools/google-trust  301
+/tools/content-gap-scanner  /seo-tools/content-gap  301
+/tools/content-gap-scanner.html  /seo-tools/content-gap  301
+/tools/ad-spend-calculator  /seo-tools/ad-spend-calculator  301
+/tools/ad-spend-calculator.html  /seo-tools/ad-spend-calculator  301
+/tools/competitor-comparison  /seo-tools/competitor-comparison  301
+/tools/competitor-comparison.html  /seo-tools/competitor-comparison  301
+/tools/gsc-quick-wins  /seo-tools/gsc-quick-wins  301
+/tools/gsc-quick-wins.html  /seo-tools/gsc-quick-wins  301
+/tools/*  /seo-tools/:splat  301
+
+# Skill URL redirects (folder rename + filename simplification)
+/resources/skills/ai-visibility-check  /claude-seo-skills/ai-visibility  301
+/resources/skills/ai-visibility-check.html  /claude-seo-skills/ai-visibility  301
+/resources/skills/google-trust-check  /claude-seo-skills/google-trust  301
+/resources/skills/google-trust-check.html  /claude-seo-skills/google-trust  301
+/resources/skills/competitor-gap-check  /claude-seo-skills/competitor-gap  301
+/resources/skills/competitor-gap-check.html  /claude-seo-skills/competitor-gap  301
+/resources/skills/website-gap-finder  /claude-seo-skills/website-gap  301
+/resources/skills/website-gap-finder.html  /claude-seo-skills/website-gap  301
+/resources/skills/information-gain-prompt  /claude-seo-skills/information-gain  301
+/resources/skills/information-gain-prompt.html  /claude-seo-skills/information-gain  301
+/resources/skills/website-score-prompt  /claude-seo-skills/website-score  301
+/resources/skills/website-score-prompt.html  /claude-seo-skills/website-score  301
+/resources/skills/ecommerce  /claude-seo-skills/ecommerce-seo-audit  301
+/resources/skills/ecommerce.html  /claude-seo-skills/ecommerce-seo-audit  301
+/resources/skills/local  /claude-seo-skills/local-seo-audit  301
+/resources/skills/local.html  /claude-seo-skills/local-seo-audit  301
+/resources/skills/restaurant  /claude-seo-skills/restaurant-seo-audit  301
+/resources/skills/restaurant.html  /claude-seo-skills/restaurant-seo-audit  301
+/resources/skills/b2b  /claude-seo-skills/b2b-seo-audit  301
+/resources/skills/b2b.html  /claude-seo-skills/b2b-seo-audit  301
+/resources/skills/saas  /claude-seo-skills/saas-seo-audit  301
+/resources/skills/saas.html  /claude-seo-skills/saas-seo-audit  301
+/resources/skills/downloads/*  /claude-seo-skills/downloads/:splat  301
+/resources/skills/*  /claude-seo-skills/:splat  301
+
+# Blog → SEO Guides
+/blog/*  /seo-guides/:splat  301

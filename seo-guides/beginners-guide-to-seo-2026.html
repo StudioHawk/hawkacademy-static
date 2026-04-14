@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beginner's Guide to SEO in 2026 | Hawk Academy</title>
+  <meta name="description" content="Everything you need to start ranking on Google and AI search. No jargon. Real fixes. Updated for 2026 by Harry Sanders.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
+    /* Blog hero */
+    .blog-hero {
+      background: var(--color-black);
+      padding: 120px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: 30px; right: 8%;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--color-yellow); opacity: 0.5;
+    }
+    .blog-hero::after {
+      content: ''; position: absolute; bottom: 30px; left: 5%;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--color-lavender); opacity: 0.3;
+    }
+    .blog-hero__tag {
+      display: inline-block; font-family: var(--font-body);
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(173,186,255,0.18); color: #7B8BE0;
+      margin-bottom: 20px;
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 600; color: var(--color-white);
+      line-height: 1.15; max-width: 720px; margin-bottom: 24px;
+    }
+    .blog-hero__meta {
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap; font-size: 14px; color: var(--color-light-body);
+    }
+    .blog-hero__author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .blog-hero__avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gradient-cta);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 14px; color: var(--color-black);
+    }
+    .blog-hero__author-name { font-weight: 600; color: var(--color-white); }
+    .blog-hero__dot { color: var(--color-light-body); }
+    .blog-hero__share {
+      display: flex; gap: 8px; margin-left: auto;
+    }
+    .blog-hero__share a {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .blog-hero__share a:hover { background: rgba(255,255,255,0.18); }
+    .blog-hero__share svg { width: 14px; height: 14px; fill: var(--color-white); }
+
+    /* Blog layout */
+    .blog-layout {
+      background: var(--color-off-white);
+      padding: 60px 0 100px;
+    }
+    .blog-layout .container {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* TOC sidebar */
+    .blog-toc {
+      position: sticky; top: 100px;
+      padding: 24px 0;
+    }
+    .blog-toc__label {
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--color-light-body);
+      margin-bottom: 16px;
+    }
+    .blog-toc__list {
+      list-style: none;
+    }
+    .blog-toc__list li {
+      margin-bottom: 10px;
+    }
+    .blog-toc__list a {
+      font-size: 13px; color: var(--color-body-text);
+      line-height: 1.5; display: block;
+      padding-left: 12px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .blog-toc__list a:hover,
+    .blog-toc__list a.active {
+      color: var(--color-dark-text);
+      border-left-color: var(--color-lavender);
+    }
+
+    /* Article body */
+    .blog-article {
+      background: var(--color-white);
+      border-radius: var(--radius-card);
+      padding: 48px 56px;
+      max-width: 760px;
+    }
+
+    /* TL;DR box */
+    .blog-tldr {
+      background: rgba(173,186,255,0.08);
+      border: 1px solid rgba(173,186,255,0.2);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .blog-tldr__label {
+      font-family: var(--font-heading);
+      font-size: 14px; font-weight: 700;
+      color: var(--color-lavender);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .blog-tldr ul {
+      list-style: none; padding: 0;
+    }
+    .blog-tldr li {
+      font-size: 15px; color: var(--color-body-text);
+      line-height: 1.7; padding-left: 20px;
+      position: relative; margin-bottom: 8px;
+    }
+    .blog-tldr li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-lavender);
+    }
+
+    /* Article typography */
+    .blog-article h2 {
+      font-family: var(--font-heading);
+      font-size: 26px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 48px 0 16px;
+      line-height: 1.2;
+    }
+    .blog-article h2:first-of-type { margin-top: 0; }
+    .blog-article h3 {
+      font-family: var(--font-heading);
+      font-size: 20px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 32px 0 12px;
+      line-height: 1.3;
+    }
+    .blog-article p {
+      font-size: 17px; line-height: 1.8;
+      color: var(--color-body-text);
+      margin-bottom: 20px;
+    }
+    .blog-article a {
+      color: var(--color-lavender);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .blog-article a:hover { color: var(--color-dark-text); }
+    .blog-article ul, .blog-article ol {
+      padding-left: 20px; margin-bottom: 20px;
+    }
+    .blog-article li {
+      font-size: 16px; line-height: 1.8;
+      color: var(--color-body-text);
+      margin-bottom: 8px;
+    }
+    .blog-article strong { color: var(--color-dark-text); }
+    .blog-article code {
+      background: var(--color-off-white);
+      padding: 2px 6px; border-radius: 4px;
+      font-size: 14px;
+    }
+
+    /* Case study callout */
+    .blog-casestudy {
+      background: rgba(1,255,255,0.04);
+      border-left: 3px solid var(--color-cyan);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 24px 0 32px;
+    }
+    .blog-casestudy strong { color: var(--color-dark-text); }
+    .blog-casestudy p {
+      font-size: 15px; margin-bottom: 8px;
+    }
+    .blog-casestudy a {
+      font-size: 14px; font-weight: 600;
+      color: var(--color-cyan);
+    }
+
+    /* FAQ section */
+    .blog-faq { margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.06); }
+    .blog-faq h2 { margin-top: 0; }
+    .blog-faq h3 {
+      font-size: 18px; margin-top: 28px;
+      color: var(--color-dark-text);
+    }
+    .blog-faq p { font-size: 16px; }
+
+    /* Newsletter CTA */
+    .blog-newsletter {
+      background: var(--color-black);
+      border-radius: var(--radius-card);
+      padding: 48px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .blog-newsletter h3 {
+      font-family: var(--font-heading);
+      font-size: 24px; font-weight: 600;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+    .blog-newsletter p {
+      color: var(--color-light-body);
+      font-size: 15px; margin-bottom: 24px;
+    }
+    .blog-newsletter a {
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: var(--radius-pill);
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      font-family: var(--font-body);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .blog-layout .container {
+        grid-template-columns: 1fr;
+      }
+      .blog-toc { display: none; }
+      .blog-article { padding: 36px 28px; }
+    }
+    @media (max-width: 768px) {
+      .blog-hero { padding: 100px 0 48px; }
+      .blog-hero h1 { font-size: 28px; }
+      .blog-hero__share { display: none; }
+      .blog-article { padding: 28px 20px; }
+      .blog-article h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="header__logo">
+        <img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy">
+      </a>
+      <nav class="header__nav">
+        <a href="../index.html">Home</a>
+        <a href="../whats-included.html">What's Included</a>
+        <a href="../about.html">About Us</a>
+        <div class="header__nav-item">
+          <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="header__dropdown">
+            <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../seo-tools.html">SEO Tools</a>
+            <a href="../seo-guides.html">SEO Guides</a>
+          </div>
+        </div>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
+        <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav">
+    <a href="../index.html">Home</a>
+    <a href="../whats-included.html">What's Included</a>
+    <a href="../about.html">About Us</a>
+    <a href="../resources.html">Resources</a>
+    <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
+    <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
+    <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
+  </div>
+
+  <!-- BLOG HERO -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-hero__tag">SEO Guides</div>
+      <h1>The Complete Beginner's Guide to SEO in 2026</h1>
+      <div class="blog-hero__meta">
+        <div class="blog-hero__author">
+          <div class="blog-hero__avatar">HS</div>
+          <span class="blog-hero__author-name">Harry Sanders</span>
+        </div>
+        <span class="blog-hero__dot">11 April 2026</span>
+        <span class="blog-hero__dot">12 min read</span>
+        <div class="blog-hero__share">
+          <a href="https://twitter.com/share?text=The%20Complete%20Beginner%27s%20Guide%20to%20SEO%20in%202026&url=https://hawkacademy.co/seo-guides/beginners-guide-to-seo-2026" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://hawkacademy.co/seo-guides/beginners-guide-to-seo-2026" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG LAYOUT -->
+  <section class="blog-layout">
+    <div class="container">
+
+      <!-- TOC SIDEBAR -->
+      <aside class="blog-toc">
+        <div class="blog-toc__label">Contents</div>
+        <ul class="blog-toc__list">
+          <li><a href="#what-matters">What Actually Matters</a></li>
+          <li><a href="#search-beyond-google">Search Beyond Google</a></li>
+          <li><a href="#four-jobs">Your Website's Four Jobs</a></li>
+          <li><a href="#how-google-ranks">How Google Decides Rankings</a></li>
+          <li><a href="#first-five">Your First Five Moves</a></li>
+          <li><a href="#seo-vs-ads">SEO vs Paid Ads</a></li>
+          <li><a href="#how-long">How Long Does SEO Take</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+
+      <!-- ARTICLE -->
+      <article class="blog-article">
+
+        <!-- TL;DR -->
+        <div class="blog-tldr">
+          <div class="blog-tldr__label">TL;DR</div>
+          <ul>
+            <li>SEO is what gets your business found when someone searches Google or asks ChatGPT for a recommendation. In 2026, if you're not visible in both, you're leaving customers to your competitors.</li>
+            <li>The fundamentals haven't changed: make your site easy to crawl, write content that matches what people search for, and earn trust signals. What's new is AI search, and it rewards the same work.</li>
+            <li>Start with five moves: fix your title tags, one page per service, claim your Google Business Profile, publish one useful article a month, and make sure your site loads fast on mobile.</li>
+          </ul>
+        </div>
+
+        <h2 id="what-matters">After 50,000 Hours of SEO, Here's What Actually Matters</h2>
+        <p>I get asked "where do I even start with SEO?" more than any other question. After building a 120-person SEO agency across three countries, the honest answer hasn't changed: the fundamentals work, and most businesses skip them.</p>
+        <p>This guide is the answer. No jargon without explanation. No theory without action. Just what you need to know to get your business found on Google and AI search in 2026.</p>
+
+        <h2 id="search-beyond-google">"Search" Means More Than Google Now</h2>
+        <p>Three years ago, SEO meant ranking on Google. That's still the majority of the game, but in 2026, "search" also means ChatGPT, Perplexity, Google's AI Mode, and Claude. When a potential customer asks an AI assistant for a recommendation in your industry, SEO is what determines whether your business gets mentioned.</p>
+        <p>The good news: the fundamentals are the same. Good SEO has always been about relevance, trust, and structure. <a href="how-ai-overviews-changing-seo.html">AI search just raised the bar on all three</a>.</p>
+
+        <h2 id="four-jobs">Your Website Has Four Jobs (Most Sites Fail at Two)</h2>
+
+        <h3>1. Technical foundations: Google needs to be able to read your site</h3>
+        <p>Your website's "technical SEO" is the behind-the-scenes plumbing. If Google's crawlers (the bots that scan your site) can't access, read, and index your pages, nothing else matters.</p>
+        <p>Think of it like a shop. If the front door is locked, the lights are off, and the aisles are a maze, customers leave. Google does the same thing.</p>
+        <p>The non-negotiables:</p>
+        <ul>
+          <li><strong>Site speed.</strong> If your page takes more than 3 seconds to load on mobile, visitors bounce before they see a thing. Google tracks this through <a href="core-web-vitals-checklist.html">Core Web Vitals</a>, a set of performance metrics they use as ranking signals.</li>
+          <li><strong>Mobile-first.</strong> Google indexes your mobile site, not your desktop site. If your mobile experience is broken, your rankings are broken.</li>
+          <li><strong>HTTPS.</strong> Your URL should start with <code>https://</code>. Without SSL (the security certificate), browsers show a warning and Google downgrades you.</li>
+          <li><strong>XML sitemap.</strong> This is the map you hand to Google so it knows every page exists. Submit it through <a href="https://search.google.com/search-console/about">Google Search Console</a>.</li>
+          <li><strong>Clean URLs.</strong> <code>/services/plumbing</code> tells Google what the page is about. <code>/page?id=4837&cat=2</code> tells it nothing.</li>
+        </ul>
+        <p>For a deeper look at how crawling and indexation work, read <a href="https://studiohawk.com.au/seo-guides/how-does-google-crawl-websites/">how Google crawls websites</a> and our guide on <a href="site-architecture-crawl-budget.html">site architecture and crawl budget</a>.</p>
+
+        <h3>2. Content: your site needs to answer what people actually search for</h3>
+        <p>The most common problem I see isn't bad content. It's content that doesn't match what anyone is searching for.</p>
+        <p>Keyword research (the process of finding the exact phrases your customers type into Google) is where this starts. You need to know the words your customers use, then build pages that directly answer those searches.</p>
+        <p>What good SEO content looks like:</p>
+        <ul>
+          <li><strong>One clear topic per page.</strong> A page about "emergency plumber Melbourne" should only be about that. Not plumbing in general.</li>
+          <li><strong>The keyword in the right places.</strong> Your title tag (the blue clickable text in Google results), your H1 (the main heading on the page), your URL, and naturally in the body copy.</li>
+          <li><strong>Real answers with real numbers.</strong> If someone searches "how much does a roof repair cost in Sydney", give them a straight answer with a price range. <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content">Google rewards specificity</a>.</li>
+          <li><strong>Fresh content.</strong> A blog last updated in 2022 tells Google you've given up. One solid article a month is enough to stay in the game.</li>
+        </ul>
+        <p>For more on structuring content that ranks, see <a href="content-hub-topic-clusters.html">building a content hub with topic clusters</a>.</p>
+
+        <h3>3. Backlinks: other websites need to vouch for you</h3>
+        <p>A backlink is when another website links to yours. Google treats each quality backlink as a vote of confidence. The more reputable sites that link to you, the more authority Google gives your domain.</p>
+        <p>You can't shortcut this. Buying cheap links gets you penalised, not promoted. What works is earning links through genuinely useful content, getting featured in industry publications, and <a href="digital-pr-link-building.html">digital PR</a> (pitching data-driven stories to journalists).</p>
+        <p>Quality beats quantity every time. One link from a respected publication is worth more than 100 from directories nobody visits. For specific tactics, read <a href="https://studiohawk.com.au/seo-guides/how-to-build-links-for-ecommerce/">how StudioHawk approaches link building for ecommerce</a>.</p>
+
+        <div class="blog-casestudy">
+          <p><strong>Why does this matter?</strong></p>
+          <p>Here's why: we helped City Beach reverse declining SEO performance through strategic content and link building. Quality backlinks were a core driver of that turnaround.</p>
+          <p><a href="https://studiohawk.com.au/case-studies/city-beach">Read the full case study: City Beach →</a></p>
+        </div>
+
+        <h3>4. AI search readiness: will ChatGPT recommend you?</h3>
+        <p>This is the 2026 addition. When someone asks an AI assistant for a recommendation in your industry, the AI looks for websites with structured, authoritative, in-depth content. A thin brochure site with five pages gives AI nothing to work with.</p>
+        <p>Being AI-ready means:</p>
+        <ul>
+          <li><strong>Structured content.</strong> Clean headings, lists, and tables that AI can parse and cite.</li>
+          <li><strong>Topical depth.</strong> Service pages, guides, FAQs, and articles. Not just a homepage and a contact page.</li>
+          <li><strong>Real authorship.</strong> AI trusts content attributed to named experts. A faceless About page and unsigned blog posts tell AI there's nobody credible behind the site.</li>
+        </ul>
+        <p>For a full breakdown on what AI search looks for, read <a href="optimising-for-chatgpt-perplexity-llm.html">optimising for ChatGPT, Perplexity, and LLM-powered search</a> and StudioHawk's guide on <a href="https://studiohawk.com.au/seo-guides/3-things-that-matter-most-for-llm-seo/">3 things that matter most for LLM SEO</a>.</p>
+
+        <h2 id="how-google-ranks">How Google Actually Decides Who Ranks First</h2>
+        <p>Google's algorithm uses hundreds of signals, but they answer three questions:</p>
+        <ol>
+          <li><strong>Is this page relevant?</strong> Does the content match what the person searched for?</li>
+          <li><strong>Is this page trustworthy?</strong> Do other reputable sites link here? Is the author credible? <a href="eeat-explained.html">Does the site demonstrate E-E-A-T</a>?</li>
+          <li><strong>Does this page give a good experience?</strong> Does it load fast? Work on mobile? Is it easy to use?</li>
+        </ol>
+        <p><strong>Crawl > Index > Rank.</strong> If Google can't crawl your site, it can't index it. If it can't index it, you don't exist in search results.</p>
+
+        <h2 id="first-five">Your First Five Moves (Start Here)</h2>
+        <p>Don't try to do everything. These five moves give you the biggest return for the least effort:</p>
+        <p><strong>1. Fix your title tags.</strong><br>Every page has a title tag, the blue text in Google results. Make sure each one contains the primary keyword, stays under 60 characters, and is unique. "Home" is not a title tag.</p>
+        <p><strong>2. One page per service or product category.</strong><br>The single biggest mistake I see: cramming 15 services onto one page. Google can't rank one page for everything. Split each service into its own page with its own title, heading, and content.</p>
+
+        <div class="blog-casestudy">
+          <p><strong>Why does this matter?</strong></p>
+          <p>Here's why: we helped Hunter Talent grow organic visibility by splitting their talent management services into dedicated pages, each targeting a specific customer need.</p>
+          <p><a href="https://studiohawk.com.au/case-studies/hunter-talent">Read the full case study: Hunter Talent →</a></p>
+        </div>
+
+        <p><strong>3. Claim your Google Business Profile.</strong><br>If you serve local customers, this is free and non-negotiable. Fill every field, add real photos, collect reviews, respond to every review, keep hours accurate.</p>
+        <p><strong>4. Publish one useful article per month.</strong><br>Answer the questions your customers actually ask you. Over time, these articles compound and drive traffic for years.</p>
+        <p><strong>5. Make sure your site loads fast on mobile.</strong><br>Test at <a href="https://pagespeed.web.dev/">pagespeed.web.dev</a>. If your mobile score is below 50, your site is actively hurting your rankings. Our <a href="core-web-vitals-checklist.html">Core Web Vitals checklist</a> walks you through the fixes.</p>
+
+        <h2 id="seo-vs-ads">SEO vs Paid Ads: You Need Both (But Not Forever)</h2>
+        <p>Paid ads rent space on page one. SEO earns it.</p>
+        <p>Ads give you immediate visibility, but the day you stop paying, you vanish. SEO takes three to six months to build, but the traffic compounds. A well-optimised page drives leads for years with no ongoing ad spend.</p>
+        <p>The smart play: use ads for immediate pipeline while building your SEO foundation. As organic traffic grows, reduce ad spend. For the full cost comparison, read <a href="https://studiohawk.com.au/seo-guides/roi-seo/">how to measure the ROI of SEO</a>.</p>
+
+        <h2 id="how-long">How Long Does SEO Take?</h2>
+        <p>Three to six months to see movement. Six to twelve for significant results. The work doesn't stop because your competitors don't stop.</p>
+        <p>If anyone promises page one rankings in 30 days, walk away. But the businesses that commit build assets that compound. One article that ranks today keeps driving traffic five years from now.</p>
+        <p>I made Hawk Academy free because every business owner should understand this. You don't need to become an SEO expert. You need to know enough to make smart decisions and hold your agency accountable.</p>
+
+        <!-- FAQ -->
+        <div class="blog-faq" id="faq">
+          <h2>FAQ</h2>
+
+          <h3>What is the most important part of SEO for a small business?</h3>
+          <p>One dedicated page per service you offer and a claimed Google Business Profile. These two things determine whether Google can match your business to the right searches. Everything else builds on that.</p>
+
+          <h3>How much does SEO cost?</h3>
+          <p>DIY costs your time. Hiring an agency typically starts from $1,500-$3,000/month for a small business. The real question: what does it cost when customers search for your service and find your competitor instead?</p>
+
+          <h3>Is SEO still worth it with AI search taking over?</h3>
+          <p>More than ever. AI search engines like ChatGPT pull recommendations from the same signals SEO builds: authoritative content, topical depth, and trusted sources. Good SEO is AI SEO. Read more in <a href="optimising-for-chatgpt-perplexity-llm.html">optimising for ChatGPT, Perplexity, and LLM search</a>.</p>
+
+          <h3>Can I do SEO myself?</h3>
+          <p>The basics, yes. Title tags, Google Business Profile, one page per service, monthly content. Where an agency adds value is technical audits, competitive strategy, and link building. I built free audit skills you can try right now: <a href="https://hawkacademy.co/claude-seo-skills/ecommerce">ecommerce</a>, <a href="https://hawkacademy.co/claude-seo-skills/local">local</a>, <a href="https://hawkacademy.co/claude-seo-skills/restaurant">restaurant</a>, <a href="https://hawkacademy.co/claude-seo-skills/b2b">B2B</a>, and <a href="https://hawkacademy.co/claude-seo-skills/saas">SaaS</a>.</p>
+
+          <h3>How do I know if SEO is working?</h3>
+          <p>Track three things in <a href="https://search.google.com/search-console/about">Google Search Console</a> (free): impressions, clicks, and average position. All three trending up month over month means it's working. For a deeper walkthrough, see our guide on <a href="ga4-seo-metrics.html">GA4 metrics that actually matter for SEO</a>.</p>
+        </div>
+
+        <!-- Newsletter CTA -->
+        <div class="blog-newsletter">
+          <h3>Learn SEO and AI Search. For Free.</h3>
+          <p>Join 22,000+ people learning how to get found on Google and AI search.</p>
+          <a href="https://learn.hawkacademy.co/register">Enroll in Hawk Academy</a>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="../index.html" class="footer__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+          <p class="footer__description">Hawk Academy is created by StudioHawk, a global SEO agency trusted by the world's best-loved brands and fastest-growing startups.</p>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Follow us:</p>
+          <div class="footer__social-links">
+            <a href="https://www.linkedin.com/company/studiohawk/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.instagram.com/studiohawkseo/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.youtube.com/@StudioHawk" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__divider">
+      <div class="footer__nav">
+        <div class="footer__nav-left"><a href="../quiz.html">Quiz</a><a href="../contact.html">Contact</a></div>
+        <div class="footer__nav-right"><a href="https://www.studiohawk.com.au" target="_blank" rel="noopener">StudioHawk Australia</a><a href="https://www.studiohawk.co.uk" target="_blank" rel="noopener">StudioHawk UK</a><a href="https://www.studiohawk.com" target="_blank" rel="noopener">StudioHawk USA</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>Copyright &copy; 2026 Hawk Academy</span>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // TOC active state on scroll
+    const tocLinks = document.querySelectorAll('.blog-toc__list a');
+    const sections = [];
+    tocLinks.forEach(link => {
+      const id = link.getAttribute('href').replace('#','');
+      const el = document.getElementById(id);
+      if (el) sections.push({ el, link });
+    });
+    window.addEventListener('scroll', () => {
+      let current = sections[0];
+      sections.forEach(s => {
+        if (s.el.getBoundingClientRect().top <= 120) current = s;
+      });
+      tocLinks.forEach(l => l.classList.remove('active'));
+      if (current) current.link.classList.add('active');
+    });
+  </script>
+</body>
+</html>
