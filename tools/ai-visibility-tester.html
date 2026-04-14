@@ -77,6 +77,35 @@
     .explainer-steps ol li { margin-bottom: 4px; }
     .explainer-steps a { color: var(--color-lavender); font-weight: 600; }
 
+    .help-popup {
+      position: fixed; bottom: 24px; right: 24px; max-width: 340px;
+      background: var(--color-white); border-radius: 12px; padding: 20px 22px 20px 22px;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.15); z-index: 999;
+      transform: translateY(120%); opacity: 0;
+      transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      border: 1px solid #E5E3DF;
+    }
+    .help-popup.visible { transform: translateY(0); opacity: 1; }
+    .help-popup h4 { font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; padding-right: 24px; }
+    .help-popup p { font-size: 14px; line-height: 1.6; color: var(--color-body-text); margin-bottom: 14px; }
+    .help-popup .popup-btn {
+      width: 100%; padding: 12px; border-radius: var(--radius-pill); border: none; cursor: pointer;
+      background: var(--gradient-cta); color: var(--color-black);
+      font-family: var(--font-body); font-size: 14px; font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .help-popup .popup-btn:hover { opacity: 0.85; }
+    .help-popup .popup-close {
+      position: absolute; top: 12px; right: 12px; background: transparent; border: none;
+      width: 24px; height: 24px; cursor: pointer; color: var(--color-body-text);
+      font-size: 18px; line-height: 1; padding: 0;
+    }
+    .help-popup .popup-close:hover { color: var(--color-dark-text); }
+
+    @media (max-width: 600px) {
+      .help-popup { left: 16px; right: 16px; bottom: 16px; max-width: none; }
+    }
+
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 6px; }
     .form-group .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
@@ -409,6 +438,14 @@
     </div>
   </section>
 
+  <!-- HELP POPUP (appears after 7s) -->
+  <div class="help-popup" id="helpPopup" role="dialog" aria-label="Help getting started">
+    <button class="popup-close" id="helpPopupClose" aria-label="Close">×</button>
+    <h4>Need a simpler way?</h4>
+    <p>Don't want to mess with API keys? We can just give you the 8 queries to run yourself — no setup required.</p>
+    <button class="popup-btn" id="helpPopupBtn" type="button">Show me the queries</button>
+  </div>
+
   <!-- BOTTOM CTA -->
   <section class="tool-cta-bottom">
     <div class="container">
@@ -495,6 +532,42 @@
           setTimeout(() => bizName.focus(), 400);
         });
       }
+
+      // ----- Help popup (appears after 7s) -----
+      const popup = document.getElementById('helpPopup');
+      const popupClose = document.getElementById('helpPopupClose');
+      const popupBtn = document.getElementById('helpPopupBtn');
+      const POPUP_DISMISSED_KEY = 'ha_ai_visibility_popup_dismissed_v1';
+      let popupDismissed = sessionStorage.getItem(POPUP_DISMISSED_KEY) === '1';
+      let userInteracted = false;
+
+      // Any meaningful interaction cancels the popup
+      const markInteracted = () => { userInteracted = true; };
+      document.querySelectorAll('.mode-btn, #runBtn, #tooHardBtn, input, select').forEach(el => {
+        el.addEventListener('focus', markInteracted, { once: true });
+        el.addEventListener('click', markInteracted, { once: true });
+      });
+
+      const dismissPopup = () => {
+        popup.classList.remove('visible');
+        sessionStorage.setItem(POPUP_DISMISSED_KEY, '1');
+        popupDismissed = true;
+      };
+
+      popupClose.addEventListener('click', dismissPopup);
+      popupBtn.addEventListener('click', () => {
+        dismissPopup();
+        setMode('manual');
+        const bizName = document.getElementById('bizName');
+        bizName.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => bizName.focus(), 400);
+      });
+
+      setTimeout(() => {
+        if (!popupDismissed && !userInteracted && currentMode === 'real') {
+          popup.classList.add('visible');
+        }
+      }, 7000);
     });
 
     function generateQueries(bizName, industry, location) {
