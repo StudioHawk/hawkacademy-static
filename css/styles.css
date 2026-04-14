@@ -232,7 +232,8 @@ h5 {
   gap: 8px;
 }
 
-.header__nav a {
+.header__nav > a,
+.header__nav-item > a {
   font-size: 14px;
   font-weight: 400;
   color: var(--color-white);
@@ -240,8 +241,10 @@ h5 {
   transition: color 0.3s ease;
 }
 
-.header__nav a:hover,
-.header__nav a.active {
+.header__nav > a:hover,
+.header__nav > a.active,
+.header__nav-item > a:hover,
+.header__nav-item > a.active {
   color: var(--color-lavender);
 }
 
