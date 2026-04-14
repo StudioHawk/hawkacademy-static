@@ -40,6 +40,43 @@
     }
     .key-warning strong { color: #065f46; }
 
+    .explainer {
+      background: rgba(173,186,255,0.1); border: 1px solid rgba(173,186,255,0.3); border-radius: 10px;
+      padding: 0; margin-bottom: 24px;
+    }
+    .explainer summary {
+      padding: 16px 20px; cursor: pointer; font-family: var(--font-heading);
+      font-size: 15px; font-weight: 600; color: var(--color-dark-text);
+      list-style: none; display: flex; align-items: center; gap: 10px;
+    }
+    .explainer summary::-webkit-details-marker { display: none; }
+    .explainer summary::before {
+      content: '▶'; font-size: 10px; color: var(--color-lavender); transition: transform 0.2s;
+    }
+    .explainer[open] summary::before { transform: rotate(90deg); }
+    .explainer-content { padding: 0 20px 20px; }
+    .explainer-content p { font-size: 14px; line-height: 1.7; color: var(--color-body-text); margin-bottom: 14px; }
+    .explainer-content h4 {
+      font-family: var(--font-heading); font-size: 14px; font-weight: 700;
+      color: var(--color-dark-text); margin-top: 20px; margin-bottom: 8px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .explainer-steps {
+      background: var(--color-white); border-radius: 8px; padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+    .explainer-steps .provider-title {
+      font-family: var(--font-heading); font-size: 13px; font-weight: 700;
+      color: var(--color-dark-text); margin-bottom: 8px; display: flex; gap: 8px; align-items: center;
+    }
+    .provider-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .provider-dot.anthropic { background: #D97757; }
+    .provider-dot.openai { background: #10A37F; }
+    .provider-dot.gemini { background: #4285F4; }
+    .explainer-steps ol { padding-left: 20px; margin: 0; font-size: 13px; line-height: 1.7; color: var(--color-body-text); }
+    .explainer-steps ol li { margin-bottom: 4px; }
+    .explainer-steps a { color: var(--color-lavender); font-weight: 600; }
+
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 6px; }
     .form-group .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
@@ -192,6 +229,55 @@
       <div class="tool-card" id="keysCard">
         <h3>API keys</h3>
         <p>Enter API keys for the AI tools you want to test. You only need one to run the test, but more coverage = more accurate score. Total cost per test: roughly $0.02–0.05 on your account.</p>
+
+        <details class="explainer">
+          <summary>New to API keys? Read this first (2 min)</summary>
+          <div class="explainer-content">
+            <h4>What's an API key?</h4>
+            <p>Think of it as a personal access code for an AI's "engine." When you chat on chatgpt.com, you're using the <em>website</em>. An API key lets this tool talk directly to ChatGPT's (or Claude's, or Gemini's) engine using your own account — so you see real results for YOUR business, not made-up ones.</p>
+
+            <h4>Is it expensive?</h4>
+            <p><strong>No.</strong> A full test (24 queries across all 3 AIs) costs roughly <strong>$0.02–$0.05 total</strong>, charged directly to your AI account. Google Gemini is actually free for most usage. Most providers also give you free credits when you sign up.</p>
+
+            <h4>Is it safe?</h4>
+            <p>Yes. Your keys live only in your browser — they're never sent to us. You can delete or rotate them anytime in your AI account dashboard. You can also set a spending cap on each account for extra peace of mind.</p>
+
+            <h4>How to get each key (5-10 minutes each)</h4>
+
+            <div class="explainer-steps">
+              <div class="provider-title"><span class="provider-dot anthropic"></span>Anthropic API key (for Claude)</div>
+              <ol>
+                <li>Go to <a href="https://console.anthropic.com/" target="_blank" rel="noopener">console.anthropic.com</a> and sign up (this is different from Claude.ai — but you can use the same email).</li>
+                <li>Click <strong>Settings → Billing</strong> and add $5 credit.</li>
+                <li>Click <strong>Settings → API Keys → Create Key</strong>. Copy the key (starts with <code>sk-ant-</code>) and paste it below.</li>
+              </ol>
+            </div>
+
+            <div class="explainer-steps">
+              <div class="provider-title"><span class="provider-dot openai"></span>OpenAI API key (for ChatGPT)</div>
+              <ol>
+                <li>Go to <a href="https://platform.openai.com/" target="_blank" rel="noopener">platform.openai.com</a> and sign in with your ChatGPT account.</li>
+                <li>Click <strong>Settings → Billing</strong> and add a payment method (minimum $5 credit).</li>
+                <li>Click <strong>API keys → Create new secret key</strong>. Copy (starts with <code>sk-</code>) and paste below.</li>
+              </ol>
+            </div>
+
+            <div class="explainer-steps">
+              <div class="provider-title"><span class="provider-dot gemini"></span>Google Gemini API key (usually free)</div>
+              <ol>
+                <li>Go to <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com/app/apikey</a> and sign in with your Google account.</li>
+                <li>Click <strong>Create API key</strong> (no payment needed — Google's free tier covers most usage).</li>
+                <li>Copy the key (starts with <code>AI</code>) and paste below.</li>
+              </ol>
+            </div>
+
+            <p style="margin-top:16px;"><strong>You only need ONE key to run the test.</strong> Start with whichever is easiest (Gemini is free). Add more later for a more complete picture.</p>
+
+            <button type="button" class="tool-submit" id="tooHardBtn" style="margin-top:20px;background:var(--color-white);color:var(--color-dark-text);border:1.5px solid #D5D3CF;">
+              This is too hard — just give me the queries I can run myself
+            </button>
+          </div>
+        </details>
 
         <div class="key-warning">
           <span>🔒</span>
@@ -384,17 +470,31 @@
         }
       } catch (e) { /* ignore */ }
 
-      document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentMode = btn.dataset.mode;
-          document.getElementById('keysCard').style.display = currentMode === 'real' ? 'block' : 'none';
-          document.getElementById('runBtn').textContent = currentMode === 'real' ? 'Run Visibility Test' : 'Generate Queries';
-          document.getElementById('resultsSection').classList.remove('visible');
-          document.getElementById('manualQueriesCard').style.display = 'none';
+      const setMode = (mode) => {
+        currentMode = mode;
+        document.querySelectorAll('.mode-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.mode === mode);
         });
+        document.getElementById('keysCard').style.display = mode === 'real' ? 'block' : 'none';
+        document.getElementById('runBtn').textContent = mode === 'real' ? 'Run Visibility Test' : 'Generate Queries';
+        document.getElementById('resultsSection').classList.remove('visible');
+        document.getElementById('manualQueriesCard').style.display = 'none';
+      };
+
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', () => setMode(btn.dataset.mode));
       });
+
+      // "This is too hard" escape hatch → switch to manual mode
+      const tooHardBtn = document.getElementById('tooHardBtn');
+      if (tooHardBtn) {
+        tooHardBtn.addEventListener('click', () => {
+          setMode('manual');
+          const bizName = document.getElementById('bizName');
+          bizName.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(() => bizName.focus(), 400);
+        });
+      }
     });
 
     function generateQueries(bizName, industry, location) {
