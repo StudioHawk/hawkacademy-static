@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Claude SEO Skills | Hawk Academy</title>
+  <meta name="description" content="17 free Claude SEO skills you can download and add to a Claude Project. Audit your site in 60 seconds, find content gaps, check AI visibility, optimise title tags, and more. Built by StudioHawk.">
+  <link rel="canonical" href="https://hawkacademy.co/claude-seo-skills">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+    .resources-hero { background: var(--color-black); padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .resources-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-yellow); opacity: 0.6; }
+    .resources-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
+    .resources-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
+    .resources-hero h1 { font-family: var(--font-heading); font-size: 48px; font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 700px; margin: 0 auto 16px; }
+    .resources-hero h1 span { color: var(--color-lavender); }
+    .resources-hero p { color: var(--color-light-body); max-width: 620px; margin: 0 auto; font-size: 17px; line-height: 1.7; }
+
+    .intro-section { background: var(--color-off-white); padding: 60px 0 20px; }
+    .intro-content { max-width: 780px; margin: 0 auto; }
+    .intro-content h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 16px; }
+    .intro-content p { color: var(--color-body-text); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+    .intro-content ol { color: var(--color-body-text); font-size: 16px; line-height: 1.7; padding-left: 20px; margin-bottom: 16px; }
+    .intro-content ol li { margin-bottom: 8px; }
+
+    .resources-section { background: var(--color-off-white); padding: 40px 0 100px; }
+    .section-header { margin-bottom: 32px; }
+    .section-header h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; }
+    .section-header p { color: var(--color-body-text); font-size: 16px; line-height: 1.6; max-width: 600px; }
+
+    .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+
+    .resource-card { background: var(--color-white); border-radius: var(--radius-card); padding: 36px 32px 32px; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+    .resource-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .resource-card__tag { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: 20px; width: fit-content; }
+    .tag-claude-skill { background: rgba(173,186,255,0.22); color: #8B9AE8; }
+    .tag-prompt { background: rgba(1,255,255,0.15); color: #00C4C4; }
+    .tag-audit-skill { background: rgba(173,186,255,0.18); color: #7B8BE0; }
+    .resource-card__title { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); line-height: 1.3; margin-bottom: 12px; }
+    .resource-card__desc { color: var(--color-body-text); font-size: 15px; line-height: 1.7; margin-bottom: 24px; flex-grow: 1; }
+    .resource-card__link { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--color-lavender); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.25s ease; }
+    .resource-card__link:hover { gap: 10px; }
+    .resource-card__link svg { width: 16px; height: 16px; }
+
+    .section-divider { border: none; border-top: 1px solid #E5E3DF; margin: 60px 0 40px; }
+
+    .explore-more { background: var(--color-black); padding: 80px 0; text-align: center; }
+    .explore-more h2 { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: var(--color-white); margin-bottom: 32px; }
+    .explore-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 720px; margin: 0 auto; }
+    .explore-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-card); padding: 28px; text-align: left; transition: background 0.25s ease, transform 0.25s ease; }
+    .explore-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+    .explore-card h3 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--color-white); margin-bottom: 8px; }
+    .explore-card p { color: var(--color-light-body); font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+    .explore-card a { color: var(--color-cyan); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+
+    @media (max-width: 1024px) {
+      .resources-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .resources-hero h1 { font-size: 38px; }
+    }
+    @media (max-width: 768px) {
+      .resources-hero { padding: 80px 0 60px; }
+      .resources-hero h1 { font-size: 30px; }
+      .resources-grid { grid-template-columns: 1fr; gap: 20px; }
+      .explore-grid { grid-template-columns: 1fr; }
+      .resource-card { padding: 28px 24px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="header__logo"><img src="assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+      <nav class="header__nav">
+        <a href="index.html">Home</a>
+        <a href="whats-included.html">What's Included</a>
+        <a href="about.html">About Us</a>
+        <div class="header__nav-item">
+          <a href="resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="header__dropdown">
+            <a href="claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="seo-tools.html">SEO Tools</a>
+            <a href="seo-guides.html">SEO Guides</a>
+          </div>
+        </div>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
+        <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="whats-included.html">What's Included</a>
+    <a href="about.html">About Us</a>
+    <a href="resources.html">Resources</a>
+    <a href="claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
+    <a href="seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
+    <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="resources-hero">
+    <div class="container">
+      <p class="hero__label">Free Downloads</p>
+      <h1>Claude SEO <span>Skills</span></h1>
+      <p>17 free Claude skills and prompts that audit your site, find content gaps, and generate action plans. Download the .md file, add it to a Claude Project, and run it on your own website.</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-content">
+        <h2>What are Claude SEO skills?</h2>
+        <p>Claude SEO skills are pre-built system prompts you can drop into a Claude Project. Each one turns Claude into a specialist for a specific SEO task — a trust auditor, a content gap finder, a title tag optimiser, an AI visibility checker — without you needing to write the prompt yourself.</p>
+        <p>They're the same frameworks we use at StudioHawk across 500+ client campaigns, packaged as .md files anyone can use. No API keys, no code, no subscription.</p>
+        <h2 style="margin-top:32px;">How to use them</h2>
+        <ol>
+          <li>Pick a skill below and download the .md file.</li>
+          <li>Create a new Claude Project and paste the skill into the custom instructions.</li>
+          <li>Start a chat in that project and follow the skill's prompts. Most take 60 seconds to 5 minutes to run.</li>
+        </ol>
+        <p>Every skill on this page is free, forever. If you find them useful, <a href="https://learn.hawkacademy.co/register" style="color:var(--color-lavender);font-weight:600;">enrol in Hawk Academy</a> for the full SEO course that teaches you the theory behind them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE CLAUDE SKILLS -->
+  <section class="resources-section" style="padding-top:40px;padding-bottom:40px;">
+    <div class="container">
+      <div class="section-header">
+        <h2>Core Claude Skills</h2>
+        <p>General-purpose audit and analysis skills that work for any business. Start here.</p>
+      </div>
+      <div class="resources-grid">
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Google Trust Check</h3>
+          <p class="resource-card__desc">See what Google actually reads on your website. Get 4 trust scores and 3 fixes you can do this week.</p>
+          <a href="resources/skills/google-trust-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Website Gap Finder</h3>
+          <p class="resource-card__desc">Find every page your website is missing. Get a prioritised 4-week content plan based on what your customers search for.</p>
+          <a href="resources/skills/website-gap-finder.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Competitor Gap Check</h3>
+          <p class="resource-card__desc">See exactly why your competitor outranks you on Google. Side-by-side comparison with a 60-day catch-up plan.</p>
+          <a href="resources/skills/competitor-gap-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">AI Visibility Check</h3>
+          <p class="resource-card__desc">Check if ChatGPT and Claude recommend your business. 8 real queries, score out of 8, with a 30-day action plan.</p>
+          <a href="resources/skills/ai-visibility-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Ad Spend Calculator</h3>
+          <p class="resource-card__desc">See what Google Ads really cost over 3 years vs free organic traffic. Industry CPC data and step-by-step walkthrough.</p>
+          <a href="resources/skills/ad-spend-calculator.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Search Console Quick Start</h3>
+          <p class="resource-card__desc">Set up Google Search Console in 5 minutes. Find striking distance keywords and the free traffic hiding in your data.</p>
+          <a href="resources/skills/gsc-quick-start.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Technical SEO Audit</h3>
+          <p class="resource-card__desc">Full technical audit of your site. Checks crawlability, indexation, Core Web Vitals, schema, and internal linking with prioritised fixes.</p>
+          <a href="resources/skills/technical-seo-audit.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Content Brief &amp; Draft</h3>
+          <p class="resource-card__desc">Turn a target keyword into a full content brief and first draft. Includes outline, word count, semantic terms, and internal linking plan.</p>
+          <a href="resources/skills/content-brief-draft.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Data PR &amp; Outreach</h3>
+          <p class="resource-card__desc">Generate data-driven PR angles from your own data. Creates pitches, outreach emails, and target journalist lists for link building.</p>
+          <a href="resources/skills/data-pr-outreach.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRY AUDIT SKILLS -->
+  <section class="resources-section" style="padding-top:20px;padding-bottom:40px;">
+    <div class="container">
+      <div class="section-header">
+        <h2>Industry-Specific SEO Audits</h2>
+        <p>Full on-page audit skills tailored to your industry. Each one checks the pages and signals that actually matter for your vertical.</p>
+      </div>
+      <div class="resources-grid">
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
+          <h3 class="resource-card__title">Ecommerce SEO Audit</h3>
+          <p class="resource-card__desc">Full on-page audit for online stores. Category pages, product pages, internal linking, and AI search readiness.</p>
+          <a href="resources/skills/ecommerce.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
+          <h3 class="resource-card__title">Local SEO Audit</h3>
+          <p class="resource-card__desc">Audit for local service businesses. Service pages, location pages, trust signals, and Google Business Profile.</p>
+          <a href="resources/skills/local.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
+          <h3 class="resource-card__title">Restaurant SEO Audit</h3>
+          <p class="resource-card__desc">Audit for restaurants and hospitality. Menu content, map embeds, booking flow, and review management.</p>
+          <a href="resources/skills/restaurant.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
+          <h3 class="resource-card__title">B2B SEO Audit</h3>
+          <p class="resource-card__desc">Audit for B2B services. Service pages, thought leadership, case studies, and lead generation paths.</p>
+          <a href="resources/skills/b2b.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
+          <h3 class="resource-card__title">SaaS SEO Audit</h3>
+          <p class="resource-card__desc">Audit for SaaS companies. Feature pages, use-case pages, comparison pages, and product-led content.</p>
+          <a href="resources/skills/saas.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO PROMPTS -->
+  <section class="resources-section" style="padding-top:20px;">
+    <div class="container">
+      <div class="section-header">
+        <h2>SEO Prompts</h2>
+        <p>Single-use prompts for specific tasks. Paste into any LLM — Claude, ChatGPT, or Gemini.</p>
+      </div>
+      <div class="resources-grid">
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-prompt">Prompt</span>
+          <h3 class="resource-card__title">Information Gain Finder</h3>
+          <p class="resource-card__desc">Find where your content just repeats what Google already knows. Add the unique knowledge that only you can provide.</p>
+          <a href="resources/skills/information-gain-prompt.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-prompt">Prompt</span>
+          <h3 class="resource-card__title">Title Tag Optimizer</h3>
+          <p class="resource-card__desc">Get more clicks from the same rankings. Generates optimised title tags using 5 proven formulas.</p>
+          <a href="resources/skills/title-tag-optimizer.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-prompt">Prompt</span>
+          <h3 class="resource-card__title">Website Score Check</h3>
+          <p class="resource-card__desc">Rate your website 0-5 on the 5 features every site winning on Google has. Based on a study of 400 websites.</p>
+          <a href="resources/skills/website-score-prompt.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLORE MORE -->
+  <section class="explore-more">
+    <div class="container">
+      <h2>Explore more resources</h2>
+      <div class="explore-grid">
+        <div class="explore-card">
+          <h3>Free SEO Tools</h3>
+          <p>Interactive browser-based tools. No login, no API keys — enter your details and get instant results.</p>
+          <a href="seo-tools.html">View SEO tools <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+        <div class="explore-card">
+          <h3>SEO Guides</h3>
+          <p>In-depth articles covering SEO fundamentals, technical optimisation, AI search, and content strategy.</p>
+          <a href="seo-guides.html">Read SEO guides <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-gradient-bar"></div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="index.html" class="footer__logo"><img src="assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+          <p class="footer__description">Hawk Academy is created by StudioHawk, a global SEO agency trusted by the world's best-loved brands and fastest-growing startups.</p>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Follow us:</p>
+          <div class="footer__social-links">
+            <a href="https://www.linkedin.com/company/studiohawk/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.instagram.com/studiohawkseo/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.youtube.com/@StudioHawk" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__divider">
+      <div class="footer__nav">
+        <div class="footer__nav-left"><a href="quiz.html">Quiz</a><a href="contact.html">Contact</a></div>
+        <div class="footer__nav-right"><a href="https://www.studiohawk.com.au" target="_blank" rel="noopener">StudioHawk Australia</a><a href="https://www.studiohawk.co.uk" target="_blank" rel="noopener">StudioHawk UK</a><a href="https://www.studiohawk.com" target="_blank" rel="noopener">StudioHawk USA</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>Copyright &copy; 2026 Hawk Academy</span>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

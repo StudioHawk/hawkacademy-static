@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resources - Hawk Academy</title>
-  <meta name="description" content="Free SEO tools, Claude skills, prompts, and guides from Hawk Academy. Download AI-powered audit skills, use free web tools, and read expert SEO guides.">
+  <title>Free SEO Resources - Skills, Tools &amp; Guides | Hawk Academy</title>
+  <meta name="description" content="Free SEO resources from Hawk Academy: 17 Claude SEO skills, 6 interactive SEO tools, and 9 in-depth SEO guides. Everything you need to audit, improve, and scale your search performance.">
+  <link rel="canonical" href="https://hawkacademy.co/resources">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,250 +16,146 @@
     @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
 
-    /* Resources Hero */
-    .resources-hero {
-      background: var(--color-black);
-      padding: 100px 0 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+    .resources-hero { background: var(--color-black); padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .resources-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-yellow); opacity: 0.6; }
+    .resources-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
+    .resources-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
+    .resources-hero h1 { font-family: var(--font-heading); font-size: 48px; font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 700px; margin: 0 auto 16px; }
+    .resources-hero h1 span { color: var(--color-lavender); }
+    .resources-hero p { color: var(--color-light-body); max-width: 620px; margin: 0 auto; font-size: 17px; line-height: 1.7; }
 
-    .resources-hero::before {
-      content: '';
-      position: absolute;
-      top: 30px;
-      right: 8%;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: var(--color-yellow);
-      opacity: 0.6;
-    }
+    /* Hub section cards */
+    .hub-section { background: var(--color-off-white); padding: 80px 0 100px; }
 
-    .resources-hero::after {
-      content: '';
-      position: absolute;
-      bottom: 40px;
-      left: 6%;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--color-lavender);
-      opacity: 0.4;
-    }
-
-    .resources-hero .hero__label {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--color-cyan);
-      margin-bottom: 16px;
-    }
-
-    .resources-hero h1 {
-      font-family: var(--font-heading);
-      font-size: 48px;
-      font-weight: 600;
-      color: var(--color-white);
-      line-height: 1.15;
-      max-width: 600px;
-      margin: 0 auto 16px;
-    }
-
-    .resources-hero h1 span {
-      color: var(--color-lavender);
-    }
-
-    .resources-hero p {
-      color: var(--color-light-body);
-      max-width: 560px;
-      margin: 0 auto;
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
-    /* Section headings */
-    .resources-section {
-      background: var(--color-off-white);
-      padding: 60px 0 20px;
-    }
-
-    .resources-section:first-of-type {
-      padding-top: 80px;
-    }
-
-    .resources-section:last-of-type {
-      padding-bottom: 100px;
-    }
-
-    .section-header {
-      margin-bottom: 32px;
-    }
-
-    .section-header h2 {
-      font-family: var(--font-heading);
-      font-size: 28px;
-      font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 8px;
-    }
-
-    .section-header p {
-      color: var(--color-body-text);
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 600px;
-    }
-
-    .section-divider {
-      border: none;
-      border-top: 1px solid #E5E3DF;
-      margin: 20px 0 0;
-    }
-
-    /* Resources grid */
-    .resources-grid-section {
-      background: var(--color-off-white);
-      padding: 40px 0 100px;
-    }
-
-    .resources-grid {
+    .hub-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
     }
 
-    /* Resource card */
-    .resource-card {
+    .hub-card {
       background: var(--color-white);
       border-radius: var(--radius-card);
-      padding: 36px 32px 32px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 48px 36px;
       display: flex;
       flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .resource-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    .hub-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
     }
 
-    .resource-card__tag {
+    .hub-card__badge {
       display: inline-block;
       font-family: var(--font-body);
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 5px 14px;
+      letter-spacing: 1.5px;
+      padding: 6px 16px;
       border-radius: var(--radius-pill);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       width: fit-content;
     }
 
-    .tag-seo-guides        { background: rgba(173,186,255,0.18); color: #7B8BE0; }
-    .tag-technical-seo     { background: rgba(1,255,255,0.12); color: #00B8B8; }
-    .tag-ai-search         { background: rgba(245,197,66,0.15); color: #C89E2A; }
-    .tag-link-building     { background: rgba(173,186,255,0.18); color: #7B8BE0; }
-    .tag-content-strategy  { background: rgba(1,255,255,0.12); color: #00B8B8; }
-    .tag-analytics         { background: rgba(245,197,66,0.15); color: #C89E2A; }
-    .tag-claude-skill      { background: rgba(173,186,255,0.22); color: #8B9AE8; }
-    .tag-prompt            { background: rgba(1,255,255,0.15); color: #00C4C4; }
-    .tag-audit-skill       { background: rgba(173,186,255,0.18); color: #7B8BE0; }
+    .hub-card.skills .hub-card__badge { background: rgba(173,186,255,0.22); color: #8B9AE8; }
+    .hub-card.tools .hub-card__badge { background: rgba(1,255,255,0.15); color: #00B8B8; }
+    .hub-card.guides .hub-card__badge { background: rgba(245,197,66,0.18); color: #B88A1F; }
 
-    .resource-card__title {
+    .hub-card__count {
       font-family: var(--font-heading);
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 56px;
+      font-weight: 700;
       color: var(--color-dark-text);
-      line-height: 1.3;
-      margin-bottom: 12px;
+      line-height: 1;
+      margin-bottom: 8px;
     }
 
-    .resource-card__desc {
+    .hub-card__count-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-body-text);
+      margin-bottom: 24px;
+    }
+
+    .hub-card__title {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--color-dark-text);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .hub-card__desc {
       color: var(--color-body-text);
       font-size: 15px;
       line-height: 1.7;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       flex-grow: 1;
     }
 
-    .resource-card__link {
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--color-lavender);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap 0.25s ease;
+    .hub-card__examples {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
     }
 
-    .resource-card__link:hover {
+    .hub-card__examples li {
+      font-size: 14px;
+      color: var(--color-body-text);
+      padding: 8px 0;
+      border-bottom: 1px solid #E5E3DF;
+      display: flex;
+      align-items: center;
       gap: 10px;
     }
 
-    .resource-card__link svg {
-      width: 16px;
-      height: 16px;
-      transition: transform 0.25s ease;
+    .hub-card__examples li:last-child { border-bottom: none; }
+
+    .hub-card__examples li::before {
+      content: '→';
+      color: var(--color-lavender);
+      font-weight: 700;
     }
 
-    /* Empty state */
-    .resources-empty {
-      display: none;
-      text-align: center;
-      padding: 60px 0;
-      grid-column: 1 / -1;
+    .hub-card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.25s ease;
+      width: fit-content;
     }
 
-    .resources-empty p {
-      color: var(--color-body-text);
-      font-size: 17px;
-    }
+    .hub-card__cta:hover { opacity: 0.85; }
+    .hub-card__cta svg { width: 14px; height: 14px; }
 
-    /* Responsive */
     @media (max-width: 1024px) {
-      .resources-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-      }
-
-      .resources-hero h1 {
-        font-size: 38px;
-      }
+      .hub-grid { grid-template-columns: 1fr; gap: 24px; }
+      .resources-hero h1 { font-size: 38px; }
     }
 
     @media (max-width: 768px) {
-      .resources-hero {
-        padding: 80px 0 60px;
-      }
-
-      .resources-hero h1 {
-        font-size: 30px;
-      }
-
-      .resources-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .filter-bar {
-        gap: 8px;
-      }
-
-      .filter-btn {
-        font-size: 13px;
-        padding: 8px 16px;
-      }
-
-      .resource-card {
-        padding: 28px 24px 24px;
-      }
+      .resources-hero { padding: 80px 0 60px; }
+      .resources-hero h1 { font-size: 30px; }
+      .hub-card { padding: 36px 28px; }
+      .hub-card__count { font-size: 44px; }
+      .hub-card__title { font-size: 22px; }
     }
   </style>
 </head>
@@ -275,9 +172,9 @@
         <div class="header__nav-item">
           <a href="resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="header__dropdown">
-            <a href="resources.html#skills">Skills &amp; Prompts</a>
-            <a href="resources.html#tools">Free Tools</a>
-            <a href="resources.html#guides">SEO Guides</a>
+            <a href="claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="seo-tools.html">SEO Tools</a>
+            <a href="seo-guides.html">SEO Guides</a>
           </div>
         </div>
         <a href="contact.html">Contact</a>
@@ -294,9 +191,9 @@
     <a href="whats-included.html">What's Included</a>
     <a href="about.html">About Us</a>
     <a href="resources.html">Resources</a>
-    <a href="resources.html#skills" class="mobile-nav__sub">Skills &amp; Prompts</a>
-    <a href="resources.html#tools" class="mobile-nav__sub">Free Tools</a>
-    <a href="resources.html#guides" class="mobile-nav__sub">SEO Guides</a>
+    <a href="claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
+    <a href="seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
     <a href="contact.html">Contact</a>
     <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
     <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
@@ -306,270 +203,62 @@
   <section class="resources-hero">
     <div class="container">
       <p class="hero__label">Resources</p>
-      <h1>Free Tools, Skills <span>& Guides</span></h1>
-      <p>Download free Claude skills that audit your site in 60 seconds, grab AI prompts, and read expert guides. Built from the framework used across 500+ clients.</p>
+      <h1>Free SEO <span>Resources</span></h1>
+      <p>Everything you need to audit, improve, and scale your search performance. Claude SEO skills, interactive tools, and in-depth guides — all free, built from the framework used across 500+ StudioHawk client campaigns.</p>
     </div>
   </section>
 
-  <!-- SKILLS & PROMPTS -->
-  <section class="resources-section" id="skills">
+  <!-- HUB SECTIONS -->
+  <section class="hub-section">
     <div class="container">
-      <div class="section-header">
-        <h2>Skills & Prompts</h2>
-        <p>AI-powered Claude skills and prompts that audit your site, find gaps, and generate action plans in 60 seconds. Download the .md file and add it to a Claude Project.</p>
-      </div>
-      <div class="resources-grid">
+      <div class="hub-grid">
 
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">Google Trust Check</h3>
-          <p class="resource-card__desc">See what Google actually reads on your website. Get 4 trust scores and 3 fixes you can do this week.</p>
-          <a href="resources/skills/google-trust-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <!-- SKILLS -->
+        <div class="hub-card skills">
+          <span class="hub-card__badge">Claude Skills</span>
+          <div class="hub-card__count">17</div>
+          <div class="hub-card__count-label">Free Claude SEO skills</div>
+          <h2 class="hub-card__title">Claude SEO Skills</h2>
+          <p class="hub-card__desc">Pre-built Claude system prompts that audit your site, find content gaps, and generate SEO action plans. Download the .md file and add it to a Claude Project.</p>
+          <ul class="hub-card__examples">
+            <li>Google Trust Check</li>
+            <li>Website Gap Finder</li>
+            <li>Technical SEO Audit</li>
+            <li>Industry-specific audit skills</li>
+          </ul>
+          <a href="claude-seo-skills.html" class="hub-card__cta">View all 17 skills <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">Website Gap Finder</h3>
-          <p class="resource-card__desc">Find every page your website is missing. Get a prioritised 4-week content plan based on what your customers search for.</p>
-          <a href="resources/skills/website-gap-finder.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <!-- TOOLS -->
+        <div class="hub-card tools">
+          <span class="hub-card__badge">Free Tools</span>
+          <div class="hub-card__count">6</div>
+          <div class="hub-card__count-label">Interactive SEO tools</div>
+          <h2 class="hub-card__title">Free SEO Tools</h2>
+          <p class="hub-card__desc">Interactive browser-based tools you can use right now. No login, no API keys. Enter your details, get instant results and a concrete action plan.</p>
+          <ul class="hub-card__examples">
+            <li>AI Visibility Tester</li>
+            <li>Competitor Comparison</li>
+            <li>Content Gap Scanner</li>
+            <li>Google Trust Scanner</li>
+          </ul>
+          <a href="seo-tools.html" class="hub-card__cta">View all 6 tools <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">Competitor Gap Check</h3>
-          <p class="resource-card__desc">See exactly why your competitor outranks you on Google. Side-by-side comparison with a 60-day catch-up plan.</p>
-          <a href="resources/skills/competitor-gap-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">AI Visibility Check</h3>
-          <p class="resource-card__desc">Check if ChatGPT and Claude recommend your business. 8 real queries, score out of 8, with a 30-day action plan.</p>
-          <a href="resources/skills/ai-visibility-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">Ad Spend Calculator</h3>
-          <p class="resource-card__desc">See what Google Ads really cost over 3 years vs free organic traffic. Industry CPC data and step-by-step walkthrough.</p>
-          <a href="resources/skills/ad-spend-calculator.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">Search Console Quick Start</h3>
-          <p class="resource-card__desc">Set up Google Search Console in 5 minutes. Find striking distance keywords and the free traffic hiding in your data.</p>
-          <a href="resources/skills/gsc-quick-start.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">Technical SEO Audit</h3>
-          <p class="resource-card__desc">Feed it your crawl data. Get redirect chains, duplicate titles, indexing issues, and a prioritised fix list.</p>
-          <a href="resources/skills/technical-seo-audit.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">Content Brief + Draft</h3>
-          <p class="resource-card__desc">Topic in, full brief and first draft out — with expertise gaps marked where your real knowledge goes.</p>
-          <a href="resources/skills/content-brief-draft.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
-          <h3 class="resource-card__title">Data PR + Outreach</h3>
-          <p class="resource-card__desc">Upload your data, get newsworthy angles and personalised journalist outreach emails ready to send.</p>
-          <a href="resources/skills/data-pr-outreach.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
-          <h3 class="resource-card__title">Ecommerce SEO Audit</h3>
-          <p class="resource-card__desc">Full on-page audit for online stores. Category pages, product pages, internal linking, and AI search readiness.</p>
-          <a href="resources/skills/ecommerce.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
-          <h3 class="resource-card__title">Local SEO Audit</h3>
-          <p class="resource-card__desc">Audit for local service businesses. Service pages, location pages, trust signals, and Google Business Profile.</p>
-          <a href="resources/skills/local.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
-          <h3 class="resource-card__title">Restaurant SEO Audit</h3>
-          <p class="resource-card__desc">Audit for restaurants and hospitality. Menu content, map embeds, booking flow, and review management.</p>
-          <a href="resources/skills/restaurant.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
-          <h3 class="resource-card__title">B2B SEO Audit</h3>
-          <p class="resource-card__desc">Audit for B2B services. Service pages, thought leadership, case studies, and lead generation paths.</p>
-          <a href="resources/skills/b2b.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
-          <h3 class="resource-card__title">SaaS SEO Audit</h3>
-          <p class="resource-card__desc">Audit for SaaS companies. Feature pages, use-case pages, comparison pages, and product-led content.</p>
-          <a href="resources/skills/saas.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-prompt">Prompt</span>
-          <h3 class="resource-card__title">Information Gain Finder</h3>
-          <p class="resource-card__desc">Find where your content just repeats what Google already knows. Add the unique knowledge that only you can provide.</p>
-          <a href="resources/skills/information-gain-prompt.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-prompt">Prompt</span>
-          <h3 class="resource-card__title">Title Tag Optimizer</h3>
-          <p class="resource-card__desc">Get more clicks from the same rankings. Generates optimised title tags using 5 proven formulas.</p>
-          <a href="resources/skills/title-tag-optimizer.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-prompt">Prompt</span>
-          <h3 class="resource-card__title">Website Score Check</h3>
-          <p class="resource-card__desc">Rate your website 0-5 on the 5 features every site winning on Google has. Based on a study of 400 websites.</p>
-          <a href="resources/skills/website-score-prompt.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-      </div>
-      <hr class="section-divider">
-    </div>
-  </section>
-
-  <!-- FREE TOOLS -->
-  <section class="resources-section" id="tools">
-    <div class="container">
-      <div class="section-header">
-        <h2>Free Tools</h2>
-        <p>Interactive tools you can use right now in your browser. No login, no API keys. Enter your details and get instant results.</p>
-      </div>
-      <div class="resources-grid">
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
-          <h3 class="resource-card__title">Ad Spend Calculator</h3>
-          <p class="resource-card__desc">See what Google Ads really cost you over 3 years vs the organic SEO traffic you could be getting for free.</p>
-          <a href="tools/ad-spend-calculator.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
-          <h3 class="resource-card__title">AI Visibility Tester</h3>
-          <p class="resource-card__desc">Check if AI recommends your business. Tests 8 real customer queries across ChatGPT, Gemini, and other AI tools.</p>
-          <a href="tools/ai-visibility-tester.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
-          <h3 class="resource-card__title">Competitor Comparison</h3>
-          <p class="resource-card__desc">See exactly why your competitor outranks you. Side-by-side comparison with a 60-day catch-up plan.</p>
-          <a href="tools/competitor-comparison.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
-          <h3 class="resource-card__title">Content Gap Scanner</h3>
-          <p class="resource-card__desc">Find every page your website is missing. Shows what your customers search for that you don't have pages for.</p>
-          <a href="tools/content-gap-scanner.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
-          <h3 class="resource-card__title">Google Trust Scanner</h3>
-          <p class="resource-card__desc">See what Google actually reads on your website. Checks topic coverage, content depth, structure, and trust signals.</p>
-          <a href="tools/google-trust-scanner.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
-          <h3 class="resource-card__title">Search Console Quick Wins</h3>
-          <p class="resource-card__desc">Find the free traffic hiding in your Google Search Console data. Identifies striking distance keywords you can action this week.</p>
-          <a href="tools/gsc-quick-wins.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-      </div>
-      <hr class="section-divider">
-    </div>
-  </section>
-
-  <!-- SEO GUIDES -->
-  <section class="resources-section" id="guides">
-    <div class="container">
-      <div class="section-header">
-        <h2>SEO Guides</h2>
-        <p>In-depth articles covering SEO fundamentals, technical optimisation, AI search, and content strategy. Written by the team behind 500+ client campaigns.</p>
-      </div>
-      <div class="resources-grid">
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-seo-guides">SEO Guides</span>
-          <h3 class="resource-card__title">The Complete Beginner's Guide to SEO in 2026</h3>
-          <p class="resource-card__desc">Everything you need to know to start ranking in search engines, from keyword research to on-page optimisation and beyond.</p>
-          <a href="blog/beginners-guide-to-seo-2026.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-technical-seo">Technical SEO</span>
-          <h3 class="resource-card__title">Core Web Vitals: A Practical Optimisation Checklist</h3>
-          <p class="resource-card__desc">Step-by-step instructions to diagnose and fix LCP, CLS, and INP issues that are holding back your search performance.</p>
-          <a href="blog/core-web-vitals-checklist.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-ai-search">AI Search</span>
-          <h3 class="resource-card__title">How AI Overviews Are Changing the SEO Landscape</h3>
-          <p class="resource-card__desc">Understand how Google's AI-generated search results affect organic click-through rates and what you can do to adapt.</p>
-          <a href="blog/how-ai-overviews-changing-seo.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-content-strategy">Content Strategy</span>
-          <h3 class="resource-card__title">Building a Content Hub: Topic Clusters That Rank</h3>
-          <p class="resource-card__desc">How to structure pillar pages and supporting content to build topical authority and dominate search results in your niche.</p>
-          <a href="blog/content-hub-topic-clusters.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-seo-guides">SEO Guides</span>
-          <h3 class="resource-card__title">E-E-A-T Explained: Building Trust and Authority</h3>
-          <p class="resource-card__desc">A deep dive into Google's Experience, Expertise, Authoritativeness, and Trustworthiness framework.</p>
-          <a href="blog/eeat-explained.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-technical-seo">Technical SEO</span>
-          <h3 class="resource-card__title">Site Architecture and Crawl Budget</h3>
-          <p class="resource-card__desc">Why your site's internal structure matters more than ever, and how to ensure search engines can efficiently discover your key pages.</p>
-          <a href="blog/site-architecture-crawl-budget.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-seo-guides">SEO Guides</span>
-          <h3 class="resource-card__title">Digital PR for Link Building: Strategies That Scale</h3>
-          <p class="resource-card__desc">Learn how to earn high-quality editorial backlinks through data-driven digital PR campaigns and newsworthy content.</p>
-          <a href="blog/digital-pr-link-building.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-ai-search">AI Search</span>
-          <h3 class="resource-card__title">Optimising for ChatGPT, Perplexity, and LLM-Powered Search</h3>
-          <p class="resource-card__desc">The emerging playbook for getting your brand cited by AI assistants and large language model search experiences.</p>
-          <a href="blog/optimising-for-chatgpt-perplexity-llm.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-technical-seo">Technical SEO</span>
-          <h3 class="resource-card__title">GA4 for SEO: The Metrics That Actually Matter</h3>
-          <p class="resource-card__desc">Cut through the noise in Google Analytics 4. Learn which reports and metrics give you real insight into your organic search performance.</p>
-          <a href="blog/ga4-seo-metrics.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <!-- GUIDES -->
+        <div class="hub-card guides">
+          <span class="hub-card__badge">SEO Guides</span>
+          <div class="hub-card__count">9</div>
+          <div class="hub-card__count-label">In-depth SEO guides</div>
+          <h2 class="hub-card__title">SEO Guides</h2>
+          <p class="hub-card__desc">In-depth articles covering SEO fundamentals, technical optimisation, AI search, and content strategy. Written by SEOs who run the tactics on real client sites.</p>
+          <ul class="hub-card__examples">
+            <li>Beginner's Guide to SEO in 2026</li>
+            <li>Core Web Vitals Checklist</li>
+            <li>E-E-A-T Explained</li>
+            <li>Optimising for ChatGPT &amp; Perplexity</li>
+          </ul>
+          <a href="seo-guides.html" class="hub-card__cta">Read all 9 guides <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
       </div>
