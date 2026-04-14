@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free AI Visibility Tester | Hawk Academy</title>
-  <meta name="description" content="Check if AI recommends your business. Free tool tests 8 real customer queries and shows whether ChatGPT, Gemini, and other AI tools mention you.">
+  <meta name="description" content="Test if ChatGPT, Gemini, and Claude recommend your business. Bring your own API keys for real results, or generate queries to run manually. Free, private — your keys never leave your browser.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,101 +15,100 @@
     @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
 
-    :root { --gray-400: var(--color-light-body); --gray-300: #ccc; --cyan: var(--color-cyan); --gradient-text: var(--gradient-cta); }
-
-    .tool-hero {
-      background: var(--color-black); padding: 120px 0 80px; text-align: center;
-      position: relative; overflow: hidden;
-    }
+    .tool-hero { background: var(--color-black); padding: 120px 0 60px; text-align: center; position: relative; overflow: hidden; }
     .tool-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-yellow); opacity: 0.6; }
     .tool-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
     .tool-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
-    .tool-hero h1 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 600px; margin: 0 auto 16px; }
+    .tool-hero h1 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 720px; margin: 0 auto 16px; }
     .tool-hero h1 span { color: var(--color-lavender); }
-    .tool-hero p { color: var(--color-light-body); max-width: 560px; margin: 0 auto 40px; font-size: 17px; line-height: 1.7; }
+    .tool-hero p { color: var(--color-light-body); max-width: 620px; margin: 0 auto 24px; font-size: 17px; line-height: 1.7; }
 
-    .tool-form { max-width: 520px; margin: 0 auto 60px; display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 2; }
-    .tool-form label { font-family: var(--font-body); font-size: 14px; color: var(--color-light-body); margin-bottom: -8px; font-weight: 500; }
-    .tool-form select, .tool-form input[type="text"] {
-      width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-      color: #fff; padding: 16px; border-radius: 8px; font-family: var(--font-body); font-size: 16px;
-      outline: none; transition: border-color 0.2s;
+    .tool-body { background: var(--color-off-white); padding: 60px 0 100px; }
+
+    .mode-toggle { max-width: 720px; margin: 0 auto 32px; display: flex; gap: 12px; padding: 6px; background: var(--color-white); border-radius: var(--radius-pill); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .mode-btn { flex: 1; padding: 14px 20px; border: none; background: transparent; border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--color-body-text); cursor: pointer; transition: all 0.2s; }
+    .mode-btn.active { background: var(--gradient-cta); color: var(--color-black); }
+
+    .tool-card { max-width: 720px; margin: 0 auto 24px; background: var(--color-white); border-radius: var(--radius-card); padding: 32px; }
+    .tool-card h3 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; }
+    .tool-card > p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+
+    .key-warning {
+      background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px;
+      padding: 12px 16px; font-size: 13px; color: #059669; line-height: 1.5; margin-bottom: 20px;
+      display: flex; gap: 10px; align-items: flex-start;
     }
-    .tool-form select option { background: #111; color: #fff; }
-    .tool-form select:focus, .tool-form input:focus { border-color: var(--color-cyan); }
+    .key-warning strong { color: #065f46; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 6px; }
+    .form-group .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .form-group .label-row label { margin-bottom: 0; }
+    .form-group .label-row a { font-size: 12px; color: var(--color-lavender); font-weight: 600; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid #D5D3CF;
+      font-family: var(--font-body); font-size: 15px; color: var(--color-dark-text); background: var(--color-white);
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--color-lavender); }
+    .form-group.checkbox { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .form-group.checkbox input { width: auto; }
+    .form-group.checkbox label { margin-bottom: 0; font-weight: 400; color: var(--color-body-text); font-size: 13px; }
+
     .tool-submit {
-      padding: 16px 40px; border-radius: var(--radius-pill); border: none; cursor: pointer;
+      width: 100%; padding: 16px; border-radius: var(--radius-pill); border: none; cursor: pointer;
       background: var(--gradient-cta); color: var(--color-black);
       font-family: var(--font-body); font-size: 15px; font-weight: 600;
-      transition: opacity 0.25s;
+      transition: opacity 0.25s; margin-top: 8px;
     }
     .tool-submit:hover { opacity: 0.85; }
+    .tool-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .scanner-overlay { display: none; max-width: 520px; margin: -40px auto 40px; text-align: center; }
-    .scanner-overlay.visible { display: block; }
-    .scanner-bar-track { width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; margin-bottom: 16px; }
-    .scanner-bar-fill { height: 100%; width: 0%; border-radius: 3px; background: linear-gradient(90deg, #adbaff, #01ffff); transition: width 1.2s linear; }
-    .scanner-status { font-size: 14px; color: var(--color-light-body); min-height: 20px; }
+    .progress-section { display: none; }
+    .progress-section.visible { display: block; }
+    .progress-bar { width: 100%; height: 8px; background: #E5E3DF; border-radius: 4px; overflow: hidden; margin-bottom: 12px; }
+    .progress-fill { height: 100%; background: var(--gradient-cta); width: 0%; transition: width 0.3s; }
+    .progress-log { font-family: var(--font-body); font-size: 13px; color: var(--color-body-text); min-height: 20px; }
 
-    .tool-results { display: none; max-width: 900px; margin: 0 auto; padding: 60px 24px 0; }
-    .tool-results.visible { display: block; }
+    .results-section { display: none; }
+    .results-section.visible { display: block; }
+    .big-score {
+      background: var(--color-black); border-radius: var(--radius-card); padding: 40px; text-align: center; margin-bottom: 24px; color: #fff;
+      max-width: 720px; margin-left: auto; margin-right: auto;
+    }
+    .big-score .score-num { font-family: var(--font-heading); font-size: 64px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .big-score .score-of { font-size: 14px; color: var(--color-light-body); margin-bottom: 16px; }
+    .big-score .score-rating { font-family: var(--font-heading); font-size: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .big-score.invisible .score-rating { color: #ef4444; }
+    .big-score.partial .score-rating { color: #f59e0b; }
+    .big-score.visible .score-rating { color: #10b981; }
 
-    .big-score { text-align: center; margin-bottom: 48px; }
-    .score-circle {
-      width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 16px;
-      border: 4px solid #ef4444; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-    }
-    .score-num { font-family: var(--font-heading); font-size: 48px; font-weight: 700; color: #ef4444; line-height: 1; }
-    .score-of { font-size: 14px; color: var(--color-light-body); }
-    .score-rating {
-      font-family: var(--font-heading); font-size: 24px; font-weight: 700;
-      color: #ef4444; text-transform: uppercase; letter-spacing: 0.08em;
-    }
+    .results-table { width: 100%; border-collapse: collapse; background: var(--color-white); border-radius: 12px; overflow: hidden; }
+    .results-table th, .results-table td { padding: 12px; text-align: left; font-size: 13px; border-bottom: 1px solid #F0EEEA; }
+    .results-table th { background: #FAF9F7; font-weight: 600; color: var(--color-body-text); }
+    .results-table td.provider-cell { text-align: center; font-size: 18px; cursor: help; }
+    .results-table td.query-cell { color: var(--color-body-text); }
+    .results-table tr:last-child td { border-bottom: none; }
 
-    .query-list { margin-bottom: 40px; }
-    .query-row {
-      display: flex; align-items: center; gap: 16px; padding: 16px 20px;
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 8px; margin-bottom: 8px;
+    .query-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .query-item {
+      background: #F7F5F1; border-radius: 8px; padding: 14px 16px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
     }
-    .query-icon { font-size: 20px; flex-shrink: 0; width: 28px; text-align: center; }
-    .query-text { flex: 1; font-size: 14px; color: #ccc; }
-    .query-result { font-size: 13px; color: var(--color-light-body); text-align: right; min-width: 140px; }
-    .query-result.fail { color: #ef4444; }
-    .query-result.pass { color: #10b981; }
+    .query-item .q-text { font-size: 14px; color: var(--color-dark-text); flex: 1; }
+    .query-item .q-actions { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; }
+    .q-btn {
+      padding: 6px 12px; border-radius: 6px; background: var(--color-white); border: 1px solid #D5D3CF;
+      font-size: 11px; font-weight: 600; color: var(--color-dark-text); text-decoration: none;
+      transition: all 0.2s; cursor: pointer;
+    }
+    .q-btn:hover { border-color: var(--color-lavender); color: var(--color-lavender); }
+    .q-btn.copy { background: #F7F5F1; }
 
-    .competitors-section {
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px; padding: 24px; margin-bottom: 40px;
-    }
-    .competitors-section h3 { font-size: 16px; margin-bottom: 16px; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.04em; }
-    .comp-list { display: flex; flex-direction: column; gap: 8px; }
-    .comp-item {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px;
-    }
-    .comp-item:last-child { border-bottom: none; }
-    .comp-name { color: #10b981; font-weight: 500; }
-    .comp-count { color: var(--color-light-body); }
+    .response-detail { display: none; background: #FAF9F7; border-radius: 8px; padding: 16px; margin-top: 12px; font-size: 13px; line-height: 1.6; color: var(--color-body-text); max-height: 300px; overflow-y: auto; white-space: pre-wrap; }
+    .response-detail.visible { display: block; }
 
-    .why-section, .action-section {
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px; padding: 32px; margin-bottom: 40px;
-    }
-    .why-section h3, .action-section h3 { font-size: 18px; margin-bottom: 16px; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.04em; }
-    .why-section p { font-size: 15px; color: #ccc; line-height: 1.7; }
-    .action-item {
-      display: flex; gap: 12px; padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 15px; line-height: 1.6;
-    }
-    .action-item:last-child { border-bottom: none; }
-    .action-num {
-      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
-      background: rgba(173,186,255,0.15); display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--color-lavender);
-    }
-    .action-text { color: #ccc; }
+    .error-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #991b1b; padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-bottom: 16px; line-height: 1.5; }
 
     .tool-cta-bottom { background: var(--color-black); padding: 80px 0; text-align: center; }
     .tool-cta-bottom p { color: var(--color-light-body); font-size: 17px; margin-bottom: 24px; }
@@ -123,8 +122,10 @@
     .tool-cta-btn:hover { opacity: 0.85; }
 
     @media (max-width: 600px) {
-      .query-row { flex-wrap: wrap; gap: 8px; }
-      .query-result { min-width: auto; text-align: left; }
+      .tool-card { padding: 24px 20px; }
+      .results-table { font-size: 12px; }
+      .results-table th, .results-table td { padding: 8px; }
+      .query-item { flex-direction: column; align-items: stretch; }
     }
   </style>
 </head>
@@ -133,9 +134,7 @@
   <!-- HEADER -->
   <header class="header">
     <div class="container">
-      <a href="../index.html" class="header__logo">
-        <img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy">
-      </a>
+      <a href="../index.html" class="header__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
       <nav class="header__nav">
         <a href="../index.html">Home</a>
         <a href="../whats-included.html">What's Included</a>
@@ -154,13 +153,9 @@
         <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
         <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
       </div>
-      <button class="hamburger" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div>
   </header>
-
-  <!-- MOBILE NAV -->
   <div class="mobile-nav">
     <a href="../index.html">Home</a>
     <a href="../whats-included.html">What's Included</a>
@@ -177,75 +172,161 @@
   <!-- HERO -->
   <section class="tool-hero">
     <div class="container">
-      <div class="hero__label">Free Tool</div>
+      <div class="hero__label">Free Tool · Bring Your Own Keys</div>
       <h1>AI Visibility <span>Tester</span></h1>
-      <p>Check if AI recommends your business</p>
-
-      <form class="tool-form" id="aiForm" onsubmit="return false;">
-        <label for="bizName">Business Name</label>
-        <input type="text" id="bizName" placeholder="e.g. Smith's Plumbing" required>
-        <label for="industry">Industry</label>
-        <select id="industry" required>
-          <option value="">Select your industry...</option>
-          <option value="plumber">Plumber</option>
-          <option value="electrician">Electrician</option>
-          <option value="dentist">Dentist</option>
-          <option value="lawyer">Lawyer</option>
-          <option value="accountant">Accountant</option>
-          <option value="realestate">Real Estate Agent</option>
-          <option value="restaurant">Restaurant</option>
-          <option value="ecommerce">Ecommerce Store</option>
-          <option value="saas">SaaS Company</option>
-          <option value="gym">Gym / Fitness</option>
-          <option value="photographer">Photographer</option>
-          <option value="mechanic">Mechanic</option>
-        </select>
-        <label for="location">Location</label>
-        <input type="text" id="location" placeholder="e.g. Melbourne" required>
-        <button type="button" class="tool-submit" id="scanBtn" onclick="startTest()">Test Visibility</button>
-      </form>
-
-      <div class="scanner-overlay" id="scanner">
-        <div class="scanner-bar-track"><div class="scanner-bar-fill" id="scanBar"></div></div>
-        <div class="scanner-status" id="scanStatus"></div>
-      </div>
+      <p>Test if ChatGPT, Gemini, and Claude recommend your business. Use your own API keys for real results — or we'll generate queries for you to run manually.</p>
     </div>
   </section>
 
-  <!-- RESULTS -->
-  <section class="tool-results" id="results">
+  <!-- TOOL BODY -->
+  <section class="tool-body">
     <div class="container">
-      <div class="big-score">
-        <div class="score-circle">
-          <span class="score-num">2</span>
-          <span class="score-of">out of 8</span>
+
+      <!-- MODE TOGGLE -->
+      <div class="mode-toggle" id="modeToggle">
+        <button class="mode-btn active" data-mode="real">Run real queries (my keys)</button>
+        <button class="mode-btn" data-mode="manual">Just show me the queries</button>
+      </div>
+
+      <!-- API KEYS (visible in real mode) -->
+      <div class="tool-card" id="keysCard">
+        <h3>API keys</h3>
+        <p>Enter API keys for the AI tools you want to test. You only need one to run the test, but more coverage = more accurate score. Total cost per test: roughly $0.02–0.05 on your account.</p>
+
+        <div class="key-warning">
+          <span>🔒</span>
+          <span><strong>Your keys never leave your browser.</strong> They're stored locally (if you tick the box below) and used to make direct API calls from your device. We never see them.</span>
         </div>
-        <div class="score-rating">Invisible</div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="anthropicKey">Anthropic API key (for Claude)</label>
+            <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Get key →</a>
+          </div>
+          <input type="password" id="anthropicKey" placeholder="sk-ant-..." autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="openaiKey">OpenAI API key (for ChatGPT)</label>
+            <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">Get key →</a>
+          </div>
+          <input type="password" id="openaiKey" placeholder="sk-proj-..." autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="geminiKey">Google Gemini API key</label>
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Get key →</a>
+          </div>
+          <input type="password" id="geminiKey" placeholder="AI..." autocomplete="off">
+        </div>
+
+        <div class="form-group checkbox">
+          <input type="checkbox" id="saveKeys">
+          <label for="saveKeys">Remember keys on this browser (localStorage only — not sent anywhere)</label>
+        </div>
       </div>
 
-      <div class="query-list" id="queryList"></div>
+      <!-- BUSINESS INFO -->
+      <div class="tool-card">
+        <h3>Your business</h3>
+        <p>Tell us who you are so we can generate customer-style queries for your industry.</p>
 
-      <div class="competitors-section">
-        <h3>Who AI Recommends Instead</h3>
-        <div class="comp-list" id="compList"></div>
+        <div class="form-group">
+          <label for="bizName">Business name</label>
+          <input type="text" id="bizName" placeholder="e.g. Smith's Plumbing" autocomplete="organization">
+        </div>
+
+        <div class="form-group">
+          <label for="industry">Industry</label>
+          <select id="industry">
+            <option value="">Select your industry...</option>
+            <option value="plumber">Plumber / Drain / Hot water</option>
+            <option value="electrician">Electrician</option>
+            <option value="dentist">Dentist</option>
+            <option value="lawyer">Lawyer / Legal services</option>
+            <option value="accountant">Accountant / Bookkeeper</option>
+            <option value="realestate">Real Estate Agent</option>
+            <option value="restaurant">Restaurant / Cafe</option>
+            <option value="ecommerce">Ecommerce / Online store</option>
+            <option value="saas">SaaS / Software</option>
+            <option value="gym">Gym / Fitness / Personal trainer</option>
+            <option value="photographer">Photographer</option>
+            <option value="mechanic">Mechanic / Auto repair</option>
+            <option value="hairdresser">Hairdresser / Salon</option>
+            <option value="cleaner">Cleaner / Cleaning service</option>
+            <option value="medical">Medical / Healthcare</option>
+            <option value="agency">Marketing / Design agency</option>
+            <option value="construction">Construction / Builder</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location (city or region)</label>
+          <input type="text" id="location" placeholder="e.g. Melbourne, Sydney, Brisbane" autocomplete="address-level2">
+        </div>
+
+        <div id="errorBanner" class="error-banner" style="display:none;"></div>
+
+        <button class="tool-submit" id="runBtn" onclick="runTest()">Run Visibility Test</button>
       </div>
 
-      <div class="why-section">
-        <h3>Why You're Invisible</h3>
-        <p id="whyText"></p>
+      <!-- PROGRESS -->
+      <div class="tool-card progress-section" id="progressCard">
+        <h3>Running queries...</h3>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-log" id="progressLog"></div>
       </div>
 
-      <div class="action-section">
-        <h3>5 Actions for the Next 30 Days</h3>
-        <div id="actionList"></div>
+      <!-- RESULTS -->
+      <div class="results-section" id="resultsSection">
+        <div class="big-score" id="bigScore">
+          <div class="score-num" id="scoreNum">0</div>
+          <div class="score-of" id="scoreOf">out of 0 responses mentioned you</div>
+          <div class="score-rating" id="scoreRating">INVISIBLE</div>
+        </div>
+
+        <div class="tool-card">
+          <h3>Per-query breakdown</h3>
+          <p>Click any ✅ or ❌ cell to see the actual AI response.</p>
+          <div style="overflow-x:auto;">
+            <table class="results-table" id="resultsTable">
+              <thead>
+                <tr>
+                  <th>Query</th>
+                  <th style="text-align:center;">Claude</th>
+                  <th style="text-align:center;">ChatGPT</th>
+                  <th style="text-align:center;">Gemini</th>
+                </tr>
+              </thead>
+              <tbody id="resultsBody"></tbody>
+            </table>
+          </div>
+          <div id="responseDetail" class="response-detail"></div>
+        </div>
+
+        <div class="tool-card">
+          <h3>What to do next</h3>
+          <div id="actionsList"></div>
+        </div>
       </div>
+
+      <!-- MANUAL MODE: queries list -->
+      <div class="tool-card" id="manualQueriesCard" style="display:none;">
+        <h3>Your 8 queries</h3>
+        <p>Run each query in each AI tool below. Copy the query or click a tool link to open it (paste into the chat box).</p>
+        <div class="query-list" id="manualQueriesList"></div>
+      </div>
+
     </div>
   </section>
 
   <!-- BOTTOM CTA -->
   <section class="tool-cta-bottom">
     <div class="container">
-      <p>Want the full analysis with real AI query testing?</p>
+      <p>Want a full Claude-powered analysis you can rerun whenever you update your site?</p>
       <a href="../resources/skills/ai-visibility-check.html" class="tool-cta-btn">Download the Free Claude Skill</a>
     </div>
   </section>
@@ -283,145 +364,358 @@
 
   <script src="../js/main.js"></script>
   <script>
-    const INDUSTRY_DATA = {
-      plumber: {
-        queries: (biz, loc) => [
-          { q: `Best plumber in ${loc}`, pass: false, instead: 'Melbourne Plumbing Co' },
-          { q: `Emergency plumber ${loc} open now`, pass: false, instead: 'Splash Plumbing' },
-          { q: `How much does a plumber cost in ${loc}?`, pass: false, instead: 'ServiceSeeking.com.au' },
-          { q: `${loc} blocked drain repair`, pass: true, instead: '' },
-          { q: `Who should I call for a burst pipe in ${loc}?`, pass: false, instead: 'O\'Brien Plumbing' },
-          { q: `Reliable hot water plumber near ${loc}`, pass: false, instead: 'Same Day Hot Water' },
-          { q: `${loc} plumber reviews`, pass: true, instead: '' },
-          { q: `Cheapest plumber in ${loc} area`, pass: false, instead: 'hipages.com.au' }
-        ],
-        competitors: ['Melbourne Plumbing Co', 'O\'Brien Plumbing', 'Splash Plumbing'],
-        compCounts: ['Mentioned in 6/8 queries', 'Mentioned in 4/8 queries', 'Mentioned in 3/8 queries']
-      },
-      dentist: {
-        queries: (biz, loc) => [
-          { q: `Best dentist in ${loc}`, pass: false, instead: `${loc} Dental Group` },
-          { q: `Emergency dentist ${loc} open Saturday`, pass: false, instead: 'National Dental Care' },
-          { q: `How much do dental implants cost in ${loc}?`, pass: false, instead: 'Dental Implant Professionals' },
-          { q: `${loc} teeth whitening reviews`, pass: true, instead: '' },
-          { q: `Who is the best cosmetic dentist in ${loc}?`, pass: false, instead: 'Vogue Dental Studios' },
-          { q: `Family dentist near ${loc} that bulk bills`, pass: false, instead: 'Pacific Smiles' },
-          { q: `${loc} dentist for anxious patients`, pass: true, instead: '' },
-          { q: `Invisalign provider ${loc} area`, pass: false, instead: 'Clear Smiles Dental' }
-        ],
-        competitors: [`${loc || 'City'} Dental Group`, 'National Dental Care', 'Vogue Dental Studios'],
-        compCounts: ['Mentioned in 5/8 queries', 'Mentioned in 4/8 queries', 'Mentioned in 3/8 queries']
-      },
-      generic: {
-        queries: (biz, loc) => [
-          { q: `Best ${biz.toLowerCase().includes(' ') ? 'business' : 'service'} in ${loc}`, pass: false, instead: `Top ${loc} Provider` },
-          { q: `${loc} ${biz.toLowerCase().includes(' ') ? 'services' : biz} reviews`, pass: true, instead: '' },
-          { q: `How much does it cost to hire in ${loc}?`, pass: false, instead: 'ServiceSeeking.com.au' },
-          { q: `Who is the most trusted in ${loc}?`, pass: false, instead: `Premium ${loc} Services` },
-          { q: `Best rated near ${loc}`, pass: false, instead: 'Yellow Pages Australia' },
-          { q: `${loc} recommendations for this week`, pass: true, instead: '' },
-          { q: `Affordable options in ${loc} area`, pass: false, instead: 'hipages.com.au' },
-          { q: `Should I use ${biz} or a competitor?`, pass: false, instead: `Established ${loc} Provider` }
-        ],
-        competitors: [`Premium ${loc || 'City'} Services`, 'hipages.com.au', 'Yellow Pages Australia'],
-        compCounts: ['Mentioned in 5/8 queries', 'Mentioned in 4/8 queries', 'Mentioned in 3/8 queries']
-      }
-    };
+    // ============================================
+    //  AI VISIBILITY TESTER — BYOK EDITION
+    // ============================================
 
-    function getData(industry, bizName, location) {
-      const d = INDUSTRY_DATA[industry] || INDUSTRY_DATA.generic;
-      return {
-        queries: d.queries(bizName, location),
-        competitors: (d.competitors || INDUSTRY_DATA.generic.competitors).map(c => c.replace(/\$\{loc\}/g, location)),
-        compCounts: d.compCounts
+    const STORAGE_KEY = 'ha_ai_visibility_keys_v1';
+    let currentMode = 'real';
+    let lastResults = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const keys = JSON.parse(saved);
+          if (keys.anthropic) document.getElementById('anthropicKey').value = keys.anthropic;
+          if (keys.openai) document.getElementById('openaiKey').value = keys.openai;
+          if (keys.gemini) document.getElementById('geminiKey').value = keys.gemini;
+          document.getElementById('saveKeys').checked = true;
+        }
+      } catch (e) { /* ignore */ }
+
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentMode = btn.dataset.mode;
+          document.getElementById('keysCard').style.display = currentMode === 'real' ? 'block' : 'none';
+          document.getElementById('runBtn').textContent = currentMode === 'real' ? 'Run Visibility Test' : 'Generate Queries';
+          document.getElementById('resultsSection').classList.remove('visible');
+          document.getElementById('manualQueriesCard').style.display = 'none';
+        });
+      });
+    });
+
+    function generateQueries(bizName, industry, location) {
+      const industryLabels = {
+        plumber: 'plumber', electrician: 'electrician', dentist: 'dentist',
+        lawyer: 'lawyer', accountant: 'accountant', realestate: 'real estate agent',
+        restaurant: 'restaurant', ecommerce: 'online store', saas: 'software platform',
+        gym: 'gym', photographer: 'photographer', mechanic: 'mechanic',
+        hairdresser: 'hair salon', cleaner: 'cleaning service', medical: 'medical clinic',
+        agency: 'marketing agency', construction: 'builder', other: 'business'
       };
+      const ind = industryLabels[industry] || 'business';
+      const loc = location || 'your city';
+      return [
+        `Who is the best ${ind} in ${loc}?`,
+        `Can you recommend a ${ind} near ${loc}?`,
+        `I need help finding a reliable ${ind} in ${loc}. Any suggestions?`,
+        `What should I look for when choosing a ${ind} in ${loc}?`,
+        `Best-rated ${ind} in ${loc} for 2026?`,
+        `${ind} in ${loc} with good reviews — who do you recommend?`,
+        `I'm new to ${loc} and need a ${ind}. Where should I start?`,
+        `Top ${ind} options in the ${loc} area?`
+      ];
     }
 
-    function startTest() {
+    // === API CALLS ===
+    async function callAnthropic(apiKey, query) {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-5',
+          max_tokens: 1024,
+          messages: [{ role: 'user', content: query }]
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error?.message || `Claude API error (${res.status})`);
+      }
+      const data = await res.json();
+      return data.content?.[0]?.text || '';
+    }
+
+    async function callOpenAI(apiKey, query) {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [{ role: 'user', content: query }],
+          max_tokens: 1024
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error?.message || `OpenAI API error (${res.status})`);
+      }
+      const data = await res.json();
+      return data.choices?.[0]?.message?.content || '';
+    }
+
+    async function callGemini(apiKey, query) {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: query }] }]
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error?.message || `Gemini API error (${res.status})`);
+      }
+      const data = await res.json();
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    }
+
+    const PROVIDERS = [
+      { id: 'anthropic', label: 'Claude', call: callAnthropic },
+      { id: 'openai', label: 'ChatGPT', call: callOpenAI },
+      { id: 'gemini', label: 'Gemini', call: callGemini }
+    ];
+
+    function wasMentioned(bizName, response) {
+      if (!response) return false;
+      const name = bizName.trim().toLowerCase();
+      const haystack = response.toLowerCase();
+      const firstWord = name.split(/\s+/)[0];
+      return haystack.includes(name) || (firstWord.length >= 5 && haystack.includes(firstWord));
+    }
+
+    function showError(msg) {
+      const banner = document.getElementById('errorBanner');
+      banner.textContent = msg;
+      banner.style.display = 'block';
+      setTimeout(() => { banner.style.display = 'none'; }, 8000);
+    }
+
+    async function runTest() {
       const bizName = document.getElementById('bizName').value.trim();
       const industry = document.getElementById('industry').value;
       const location = document.getElementById('location').value.trim();
-      if (!bizName || !industry || !location) { alert('Please fill in all fields.'); return; }
 
-      document.getElementById('scanBtn').disabled = true;
-      document.getElementById('scanBtn').textContent = 'Testing...';
-      const scanner = document.getElementById('scanner');
-      const bar = document.getElementById('scanBar');
-      const status = document.getElementById('scanStatus');
-      scanner.classList.add('visible');
-      document.getElementById('results').classList.remove('visible');
+      if (!bizName || !industry || !location) {
+        showError('Please fill in your business name, industry, and location.');
+        return;
+      }
 
-      const steps = [
-        'Generating customer queries...',
-        'Testing query 1 of 8...', 'Testing query 2 of 8...',
-        'Testing query 3 of 8...', 'Testing query 4 of 8...',
-        'Testing query 5 of 8...', 'Testing query 6 of 8...',
-        'Testing query 7 of 8...', 'Testing query 8 of 8...',
-        'Compiling results...'
-      ];
+      const queries = generateQueries(bizName, industry, location);
 
-      let step = 0;
-      status.textContent = steps[0];
-      bar.style.width = '0%';
+      const anthropicKey = document.getElementById('anthropicKey').value.trim();
+      const openaiKey = document.getElementById('openaiKey').value.trim();
+      const geminiKey = document.getElementById('geminiKey').value.trim();
+      const saveKeys = document.getElementById('saveKeys').checked;
 
-      const interval = setInterval(() => {
-        step++;
-        if (step < steps.length) {
-          status.textContent = steps[step];
-          bar.style.width = ((step + 1) / steps.length * 100) + '%';
-        } else {
-          clearInterval(interval);
-          bar.style.width = '100%';
-          status.textContent = 'Complete';
-          setTimeout(() => {
-            scanner.classList.remove('visible');
-            showResults(bizName, industry, location);
-            document.getElementById('scanBtn').disabled = false;
-            document.getElementById('scanBtn').textContent = 'Test Visibility';
-          }, 600);
+      if (saveKeys) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          anthropic: anthropicKey, openai: openaiKey, gemini: geminiKey
+        }));
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+
+      if (currentMode === 'manual') {
+        renderManualMode(queries);
+        return;
+      }
+
+      const hasAnyKey = anthropicKey || openaiKey || geminiKey;
+      if (!hasAnyKey) {
+        showError('Please enter at least one API key — or switch to "Just show me the queries" mode.');
+        return;
+      }
+
+      const keys = { anthropic: anthropicKey, openai: openaiKey, gemini: geminiKey };
+      const activeProviders = PROVIDERS.filter(p => keys[p.id]);
+
+      document.getElementById('manualQueriesCard').style.display = 'none';
+      document.getElementById('resultsSection').classList.remove('visible');
+      document.getElementById('progressCard').classList.add('visible');
+      document.getElementById('runBtn').disabled = true;
+
+      const totalCalls = queries.length * activeProviders.length;
+      let done = 0;
+      const log = document.getElementById('progressLog');
+      const fill = document.getElementById('progressFill');
+      log.textContent = `Starting ${totalCalls} queries across ${activeProviders.length} AI tool${activeProviders.length > 1 ? 's' : ''}...`;
+
+      const results = queries.map(() => ({}));
+
+      const tasks = [];
+      for (let qIdx = 0; qIdx < queries.length; qIdx++) {
+        for (const provider of activeProviders) {
+          tasks.push(
+            provider.call(keys[provider.id], queries[qIdx])
+              .then(text => {
+                results[qIdx][provider.id] = { text, mentioned: wasMentioned(bizName, text), error: null };
+              })
+              .catch(err => {
+                results[qIdx][provider.id] = { text: '', mentioned: false, error: err.message };
+              })
+              .finally(() => {
+                done++;
+                const pct = Math.round((done / totalCalls) * 100);
+                fill.style.width = pct + '%';
+                log.textContent = `${done} / ${totalCalls} complete...`;
+              })
+          );
         }
-      }, 1000);
+      }
+
+      await Promise.all(tasks);
+
+      document.getElementById('progressCard').classList.remove('visible');
+      document.getElementById('runBtn').disabled = false;
+      renderResults(bizName, queries, results, activeProviders);
     }
 
-    function showResults(bizName, industry, location) {
-      const data = getData(industry, bizName, location);
+    function renderResults(bizName, queries, results, activeProviders) {
+      lastResults = { bizName, queries, results };
 
-      document.getElementById('queryList').innerHTML = data.queries.map(q =>
-        `<div class="query-row">
-          <span class="query-icon">${q.pass ? '<span style="color:#10b981">&#10003;</span>' : '<span style="color:#ef4444">&#10007;</span>'}</span>
-          <span class="query-text">"${q.q}"</span>
-          <span class="query-result ${q.pass ? 'pass' : 'fail'}">${q.pass ? `${bizName} mentioned` : `AI chose: ${q.instead}`}</span>
-        </div>`
-      ).join('');
+      let mentionedCount = 0;
+      let totalValid = 0;
+      results.forEach(row => {
+        activeProviders.forEach(p => {
+          const r = row[p.id];
+          if (r && !r.error) {
+            totalValid++;
+            if (r.mentioned) mentionedCount++;
+          }
+        });
+      });
 
-      document.getElementById('compList').innerHTML = data.competitors.map((c, i) =>
-        `<div class="comp-item">
-          <span class="comp-name">${c}</span>
-          <span class="comp-count">${data.compCounts[i]}</span>
-        </div>`
-      ).join('');
+      const pct = totalValid > 0 ? Math.round((mentionedCount / totalValid) * 100) : 0;
+      let rating = 'INVISIBLE', ratingClass = 'invisible';
+      if (pct >= 75) { rating = 'VISIBLE'; ratingClass = 'visible'; }
+      else if (pct >= 30) { rating = 'PARTIALLY VISIBLE'; ratingClass = 'partial'; }
 
-      document.getElementById('whyText').textContent =
-        `AI tools like ChatGPT, Gemini, and Perplexity recommend businesses that have the most detailed, trustworthy online presence. ${bizName} appears in only 2 of 8 common customer queries. The businesses that AI recommends instead have more content, more reviews, more pages covering specific services, and a stronger presence across directories and review sites. AI pulls from what it can find online -- and right now, it can't find enough about ${bizName} to recommend you.`;
+      document.getElementById('scoreNum').textContent = mentionedCount;
+      document.getElementById('scoreOf').textContent = `out of ${totalValid} responses mentioned ${bizName}`;
+      document.getElementById('scoreRating').textContent = rating;
+      document.getElementById('bigScore').className = 'big-score ' + ratingClass;
 
-      const actions = [
-        `Create a dedicated page on your website for every service you offer. Right now, AI can't tell what ${bizName} actually does.`,
-        `Get listed on 5+ business directories (Google Business, Yelp, True Local, Yellow Pages, industry-specific). AI pulls from these constantly.`,
-        `Add 10+ genuine customer reviews to your Google Business Profile. Reviews are the #1 signal AI uses for local recommendations.`,
-        `Write a detailed "About" page with real names, qualifications, and your story. AI needs to trust you before it recommends you.`,
-        `Publish 2-3 helpful articles answering common customer questions in your industry. This builds the topical authority AI looks for.`
-      ];
+      const tbody = document.getElementById('resultsBody');
+      tbody.innerHTML = '';
+      queries.forEach((q, qIdx) => {
+        const tr = document.createElement('tr');
+        const truncQ = q.length > 60 ? q.slice(0, 57) + '...' : q;
+        tr.innerHTML = `<td class="query-cell" title="${q.replace(/"/g,'&quot;')}">${truncQ}</td>`;
+        ['anthropic', 'openai', 'gemini'].forEach(pid => {
+          const r = results[qIdx][pid];
+          if (!r) {
+            tr.innerHTML += `<td class="provider-cell" style="color:#ccc;">—</td>`;
+          } else if (r.error) {
+            tr.innerHTML += `<td class="provider-cell" style="color:#ef4444;" title="${r.error.replace(/"/g,'&quot;')}">⚠</td>`;
+          } else {
+            const icon = r.mentioned ? '✅' : '❌';
+            tr.innerHTML += `<td class="provider-cell" onclick="showResponse(${qIdx},'${pid}')" title="Click to view response">${icon}</td>`;
+          }
+        });
+        tbody.appendChild(tr);
+      });
 
-      document.getElementById('actionList').innerHTML = actions.map((a, i) =>
-        `<div class="action-item">
-          <span class="action-num">${i + 1}</span>
-          <span class="action-text">${a}</span>
-        </div>`
-      ).join('');
+      renderActions(bizName, mentionedCount, totalValid);
 
-      const results = document.getElementById('results');
-      results.classList.add('visible');
-      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('resultsSection').classList.add('visible');
+      document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function showResponse(qIdx, providerId) {
+      if (!lastResults) return;
+      const r = lastResults.results[qIdx][providerId];
+      if (!r) return;
+      const detail = document.getElementById('responseDetail');
+      const providerLabel = PROVIDERS.find(p => p.id === providerId).label;
+      const query = lastResults.queries[qIdx];
+      detail.textContent = `${providerLabel} on query: "${query}"\n\n${r.text || '(empty response)'}`;
+      detail.classList.add('visible');
+      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function renderActions(bizName, mentionedCount, totalValid) {
+      const list = document.getElementById('actionsList');
+      const pct = totalValid > 0 ? (mentionedCount / totalValid) : 0;
+
+      let actions = [];
+      if (pct < 0.3) {
+        actions = [
+          `AI search tools don't know <strong>${bizName}</strong> exists in your space. Your first priority is getting listed on 5+ business directories (Google Business, Yelp, True Local, Yellow Pages, industry-specific) so AI crawlers can find you.`,
+          `Create a dedicated page on your site for every service you offer. AI pulls from detailed, structured content — a single homepage isn't enough.`,
+          `Get 10+ genuine customer reviews on your Google Business Profile. Reviews are the #1 signal AI uses for local recommendations.`,
+          `Write a detailed "About" page with real names, qualifications, and your story. AI needs to trust you before it recommends you.`,
+          `Publish 2-3 helpful articles answering common customer questions. This builds the topical authority AI looks for.`
+        ];
+      } else if (pct < 0.75) {
+        actions = [
+          `You're appearing ${mentionedCount} out of ${totalValid} responses — partial visibility. Focus on the AI tools and query types where you're not showing up (see table above).`,
+          `Review the AI responses to see who gets recommended instead. Those are the businesses AI trusts — study their websites, reviews, and directory presence.`,
+          `Double down on reviews. Partial visibility often means you're known but not trusted enough. Aim for 25+ recent reviews on Google Business Profile.`,
+          `Add pages that match the queries where you're losing. If the query is "emergency plumber [city]" and AI doesn't pick you, write an emergency-specific page.`
+        ];
+      } else {
+        actions = [
+          `You're showing up in ${mentionedCount}/${totalValid} responses — strong visibility. Your next move is protecting this position.`,
+          `Re-run this test every 2-4 weeks. AI results shift as training data updates and competitors improve.`,
+          `Expand to new query types. You're visible for the obvious queries — test niche, speciality, and problem-based queries to find gaps.`,
+          `Keep publishing content. Authority compounds — the sites AI recommends tomorrow are the ones writing more today.`
+        ];
+      }
+
+      list.innerHTML = `<ol style="padding-left:20px;margin:0;line-height:1.7;color:var(--color-body-text);font-size:14px;">` +
+        actions.map(a => `<li style="margin-bottom:12px;">${a}</li>`).join('') +
+        `</ol>`;
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function renderManualMode(queries) {
+      const card = document.getElementById('manualQueriesCard');
+      const list = document.getElementById('manualQueriesList');
+      document.getElementById('resultsSection').classList.remove('visible');
+      document.getElementById('progressCard').classList.remove('visible');
+
+      list.innerHTML = queries.map((q, i) => {
+        const encoded = encodeURIComponent(q);
+        const safeQ = escapeHtml(q);
+        return `<div class="query-item">
+          <div class="q-text"><strong>${i+1}.</strong> ${safeQ}</div>
+          <div class="q-actions">
+            <button class="q-btn copy" data-query="${safeQ}" type="button">Copy</button>
+            <a class="q-btn" href="https://chatgpt.com/?q=${encoded}" target="_blank" rel="noopener">ChatGPT →</a>
+            <a class="q-btn" href="https://gemini.google.com/app" target="_blank" rel="noopener">Gemini →</a>
+            <a class="q-btn" href="https://claude.ai/new?q=${encoded}" target="_blank" rel="noopener">Claude →</a>
+          </div>
+        </div>`;
+      }).join('');
+
+      // Bind copy buttons
+      list.querySelectorAll('.q-btn.copy').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const text = btn.getAttribute('data-query');
+          navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+          });
+        });
+      });
+
+      card.style.display = 'block';
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   </script>
 </body>
