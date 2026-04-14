@@ -78,9 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Active nav link highlighting ---
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.header__nav a, .mobile-nav a').forEach(link => {
+  const currentPath = window.location.pathname;
+  const isResourcePage = currentPath.includes('/resources') || currentPath.includes('/tools/') || currentPath.includes('/blog/');
+
+  document.querySelectorAll('.header__nav > a, .header__nav-item > a, .mobile-nav a').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (!href) return;
+    const hrefPage = href.split('#')[0];
+    if (hrefPage === currentPage || (currentPage === '' && hrefPage === 'index.html')) {
+      link.classList.add('active');
+    }
+    // Mark Resources as active when on any resource sub-page
+    if (isResourcePage && (hrefPage === 'resources.html' || hrefPage === '../resources.html')) {
       link.classList.add('active');
     }
   });

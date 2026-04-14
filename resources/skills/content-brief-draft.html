@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Website Gap Finder Skill for Claude - Hawk Academy</title>
-  <meta name="description" content="Download a free AI skill that finds every page your website is missing. Compares your site to what customers actually search for and gives you a 4-week content plan.">
+  <title>Free Content Brief + Draft Skill for Claude - Hawk Academy</title>
+  <meta name="description" content="Download a free AI skill that turns any topic into a complete content brief and first draft with expertise gaps marked. Includes self-interview questions so your content actually ranks.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,206 +15,41 @@
     @font-face { font-family: 'Degular'; src: url('../../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Degular'; src: url('../../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
 
-    .skill-hero {
-      background: var(--color-black);
-      padding: 120px 0 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .skill-hero::before {
-      content: '';
-      position: absolute;
-      top: 30px; right: 8%;
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: var(--color-yellow);
-      opacity: 0.6;
-    }
-    .skill-hero::after {
-      content: '';
-      position: absolute;
-      bottom: 40px; left: 6%;
-      width: 50px; height: 50px;
-      border-radius: 50%;
-      background: var(--color-lavender);
-      opacity: 0.4;
-    }
-    .skill-hero .hero__label {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 13px; font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--color-cyan);
-      margin-bottom: 16px;
-    }
-    .skill-hero h1 {
-      font-family: var(--font-heading);
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 600;
-      color: var(--color-white);
-      line-height: 1.15;
-      max-width: 600px;
-      margin: 0 auto 16px;
-    }
+    .skill-hero { background: var(--color-black); padding: 120px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .skill-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-yellow); opacity: 0.6; }
+    .skill-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
+    .skill-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
+    .skill-hero h1 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 600px; margin: 0 auto 16px; }
     .skill-hero h1 span { color: var(--color-lavender); }
-    .skill-hero p {
-      color: var(--color-light-body);
-      max-width: 560px;
-      margin: 0 auto 40px;
-      font-size: 17px; line-height: 1.7;
-    }
-    .skill-download-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 40px;
-      border-radius: var(--radius-pill);
-      background: var(--gradient-cta);
-      color: var(--color-black);
-      font-family: var(--font-body);
-      font-size: 15px; font-weight: 600;
-      text-decoration: none;
-      transition: opacity 0.25s;
-    }
+    .skill-hero p { color: var(--color-light-body); max-width: 560px; margin: 0 auto 40px; font-size: 17px; line-height: 1.7; }
+    .skill-download-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 40px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; }
     .skill-download-btn:hover { opacity: 0.85; }
     .skill-download-btn svg { width: 18px; height: 18px; }
-
-    .skill-section {
-      background: var(--color-off-white);
-      padding: 80px 0;
-    }
-    .skill-section h2 {
-      font-family: var(--font-heading);
-      font-size: 32px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 40px;
-      text-align: center;
-    }
-
-    .skill-steps {
-      display: grid; gap: 24px;
-      max-width: 640px; margin: 0 auto;
-    }
-    .skill-step {
-      display: flex; gap: 16px; align-items: flex-start;
-      background: var(--color-white);
-      border-radius: var(--radius-card);
-      padding: 24px;
-    }
-    .skill-step-num {
-      flex-shrink: 0; width: 40px; height: 40px;
-      border-radius: 50%;
-      background: var(--gradient-cta);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-heading);
-      font-weight: 700; font-size: 16px;
-      color: var(--color-black);
-    }
-    .skill-step-text h3 {
-      font-family: var(--font-heading);
-      font-size: 18px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 4px;
-    }
-    .skill-step-text p {
-      font-size: 15px; color: var(--color-body-text);
-      line-height: 1.6;
-    }
-    .skill-step-text code {
-      background: var(--color-off-white);
-      padding: 2px 6px; border-radius: 4px;
-      font-size: 13px;
-    }
-
-    .skill-cards-section {
-      background: var(--color-white);
-      padding: 80px 0;
-    }
-    .skill-cards-section h2 {
-      font-family: var(--font-heading);
-      font-size: 32px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 40px;
-      text-align: center;
-    }
-    .skill-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .skill-card {
-      background: var(--color-off-white);
-      border-radius: var(--radius-card);
-      padding: 32px;
-    }
-    .skill-card h3 {
-      font-family: var(--font-heading);
-      font-size: 20px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 8px;
-    }
-    .skill-card p {
-      font-size: 15px;
-      color: var(--color-body-text);
-      line-height: 1.6;
-    }
-
-    .skill-or-divider {
-      display: flex; align-items: center; gap: 16px;
-      max-width: 640px; margin: 32px auto 0;
-    }
-    .skill-or-divider::before, .skill-or-divider::after {
-      content: ''; flex: 1; height: 1px;
-      background: rgba(255,255,255,0.15);
-    }
-    .skill-or-divider span {
-      font-size: 13px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--color-light-body);
-    }
-    .skill-terminal {
-      max-width: 640px; margin: 24px auto 0;
-      background: #111; border-radius: 12px;
-      padding: 20px 24px; position: relative;
-    }
-    .skill-terminal-label {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--color-lavender);
-      margin-bottom: 12px; display: block;
-    }
-    .skill-terminal-cmd {
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 13px; line-height: 1.6;
-      color: var(--color-cyan); word-break: break-all;
-      white-space: pre-wrap;
-    }
-    .skill-terminal-copy {
-      position: absolute; top: 16px; right: 16px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 6px; padding: 6px 12px;
-      font-size: 12px; font-weight: 600;
-      color: var(--color-white); cursor: pointer;
-      transition: background 0.2s;
-    }
+    .skill-section { background: var(--color-off-white); padding: 80px 0; }
+    .skill-section h2 { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 40px; text-align: center; }
+    .skill-steps { display: grid; gap: 24px; max-width: 640px; margin: 0 auto; }
+    .skill-step { display: flex; gap: 16px; align-items: flex-start; background: var(--color-white); border-radius: var(--radius-card); padding: 24px; }
+    .skill-step-num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-cta); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 16px; color: var(--color-black); }
+    .skill-step-text h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 4px; }
+    .skill-step-text p { font-size: 15px; color: var(--color-body-text); line-height: 1.6; }
+    .skill-step-text code { background: var(--color-off-white); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+    .skill-cards-section { background: var(--color-white); padding: 80px 0; }
+    .skill-cards-section h2 { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 40px; text-align: center; }
+    .skill-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    .skill-card { background: var(--color-off-white); border-radius: var(--radius-card); padding: 32px; }
+    .skill-card h3 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; }
+    .skill-card p { font-size: 15px; color: var(--color-body-text); line-height: 1.6; }
+    .skill-or-divider { display: flex; align-items: center; gap: 16px; max-width: 640px; margin: 32px auto 0; }
+    .skill-or-divider::before, .skill-or-divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.15); }
+    .skill-or-divider span { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-light-body); }
+    .skill-terminal { max-width: 640px; margin: 24px auto 0; background: #111; border-radius: 12px; padding: 20px 24px; position: relative; }
+    .skill-terminal-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-lavender); margin-bottom: 12px; display: block; }
+    .skill-terminal-cmd { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.6; color: var(--color-cyan); word-break: break-all; white-space: pre-wrap; }
+    .skill-terminal-copy { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; padding: 6px 12px; font-size: 12px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; }
     .skill-terminal-copy:hover { background: rgba(255,255,255,0.15); }
-    .skill-terminal-note {
-      font-size: 13px; color: var(--color-light-body);
-      margin-top: 12px; line-height: 1.5;
-    }
-
-    .skill-cta-bottom {
-      background: var(--color-black);
-      padding: 80px 0;
-      text-align: center;
-    }
-    .skill-cta-bottom p {
-      color: var(--color-light-body);
-      font-size: 17px;
-      margin-bottom: 24px;
-    }
+    .skill-terminal-note { font-size: 13px; color: var(--color-light-body); margin-top: 12px; line-height: 1.5; }
+    .skill-cta-bottom { background: var(--color-black); padding: 80px 0; text-align: center; }
+    .skill-cta-bottom p { color: var(--color-light-body); font-size: 17px; margin-bottom: 24px; }
   </style>
 </head>
 <body>
@@ -222,9 +57,7 @@
   <!-- HEADER -->
   <header class="header">
     <div class="container">
-      <a href="../../index.html" class="header__logo">
-        <img src="../../assets/images/hawk-academy-logo.png" alt="Hawk Academy">
-      </a>
+      <a href="../../index.html" class="header__logo"><img src="../../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
       <nav class="header__nav">
         <a href="../../index.html">Home</a>
         <a href="../../whats-included.html">What's Included</a>
@@ -243,9 +76,7 @@
         <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
         <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
       </div>
-      <button class="hamburger" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div>
   </header>
 
@@ -267,9 +98,9 @@
   <section class="skill-hero">
     <div class="container">
       <div class="hero__label">Free Claude Skill</div>
-      <h1>Website Gap <span>Finder Skill</span></h1>
-      <p>A free AI skill for Claude that compares what your website covers vs what your customers actually search for. Finds every missing page and gives you a prioritised 4-week content plan.</p>
-      <a href="downloads/website-gap-finder.md" download class="skill-download-btn">
+      <h1>Content Brief + <span>Draft Skill</span></h1>
+      <p>A free AI skill for Claude that turns any topic into a structured content brief and first draft — with expertise gaps marked where your real knowledge goes. Includes self-interview questions so the final piece actually ranks.</p>
+      <a href="downloads/content-brief-draft.md" download class="skill-download-btn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>
@@ -277,7 +108,7 @@
       <div class="skill-terminal">
         <span class="skill-terminal-label">Run this in your terminal</span>
         <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
-        <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/resources/skills/downloads/website-gap-finder.md -o ~/.claude/skills/website-gap-finder.md</code>
+        <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/resources/skills/downloads/content-brief-draft.md -o ~/.claude/skills/content-brief-draft.md</code>
         <p class="skill-terminal-note">This downloads the skill directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
       </div>
     </div>
@@ -292,7 +123,7 @@
           <div class="skill-step-num">A</div>
           <div class="skill-step-text">
             <h3>Option A: One-Click Download</h3>
-            <p>Click <strong>Download Skill</strong> above. You'll get a file called <code>website-gap-finder.md</code>. Move it to your Claude skills folder:</p>
+            <p>Click <strong>Download Skill</strong> above. You'll get a file called <code>content-brief-draft.md</code>. Move it to your Claude skills folder:</p>
             <p style="margin-top:8px;"><strong>Mac:</strong> <code>~/.claude/skills/</code></p>
             <p><strong>Windows:</strong> <code>%USERPROFILE%\.claude\skills\</code></p>
             <p style="margin-top:8px;">If the <code>skills</code> folder doesn't exist, create it. Then restart Claude Desktop.</p>
@@ -303,51 +134,49 @@
           <div class="skill-step-text">
             <h3>Option B: Terminal Install (fastest)</h3>
             <p>Open your terminal and paste this command. It downloads the skill directly into the right folder:</p>
-            <p style="margin-top:8px;"><code style="color:var(--color-lavender);font-size:13px;">curl -fsSL https://hawkacademy.co/resources/skills/downloads/website-gap-finder.md -o ~/.claude/skills/website-gap-finder.md</code></p>
+            <p style="margin-top:8px;"><code style="color:var(--color-lavender);font-size:13px;">curl -fsSL https://hawkacademy.co/resources/skills/downloads/content-brief-draft.md -o ~/.claude/skills/content-brief-draft.md</code></p>
             <p style="margin-top:8px;">Restart Claude Desktop and the skill is ready.</p>
           </div>
         </div>
         <div class="skill-step">
           <div class="skill-step-num">2</div>
           <div class="skill-step-text">
-            <h3>Run Your First Check</h3>
-            <p>Open Claude Desktop, start a new conversation, and type:</p>
-            <p style="margin-top:8px;font-weight:600;font-size:17px;">"Find gaps for https://yourwebsite.com - I run a plumbing business in Melbourne"</p>
-            <p style="margin-top:8px;">The skill maps your current pages, generates 30-50 real customer searches, and shows you every gap with a weekly content plan.</p>
+            <h3>Write Your First Piece</h3>
+            <p>Open Claude Desktop, start a new conversation, and tell it what topic you want to write about, who your audience is, and what your business does. It builds the brief, writes the draft, and shows you exactly where to add your expertise.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT IT CHECKS -->
+  <!-- WHAT IT BUILDS -->
   <section class="skill-cards-section">
     <div class="container">
-      <h2>What It Checks</h2>
+      <h2>What It Builds</h2>
       <div class="skill-cards-grid">
         <div class="skill-card">
-          <h3>Current Coverage Map</h3>
-          <p>Maps every topic and service your website currently covers. Shows you what Google already understands about your business.</p>
+          <h3>Content Brief</h3>
+          <p>Full page structure with H1, H2s, and H3s. Defines search intent and what Google expects to see in each section.</p>
         </div>
         <div class="skill-card">
-          <h3>Customer Search Queries</h3>
-          <p>Generates 30-50 real searches your customers make before buying. Based on your industry, location, and services.</p>
+          <h3>First Draft</h3>
+          <p>A complete draft you can publish as-is — but designed to be even better once you add your real experience and data.</p>
         </div>
         <div class="skill-card">
-          <h3>Missing Pages</h3>
-          <p>Identifies every topic your customers search for that your website doesn't cover. Each gap is a page you should have.</p>
+          <h3>Expertise Gaps</h3>
+          <p>Clearly marked spots in the draft where your unique knowledge, case studies, or data will make it stand out from every other page on Google.</p>
         </div>
         <div class="skill-card">
-          <h3>Priority Ranking</h3>
-          <p>Ranks gaps by impact: high priority (ready-to-buy customers), medium (common questions), and low (niche queries).</p>
+          <h3>Self-Interview Questions</h3>
+          <p>Conversational questions that extract the knowledge only you have. Answer them out loud, paste the transcript back, and the draft gets your real voice.</p>
         </div>
         <div class="skill-card">
-          <h3>4-Week Content Plan</h3>
-          <p>Gives you one page to create per week, starting with the highest-impact gap. Achievable and specific.</p>
+          <h3>Information Gain Checklist</h3>
+          <p>Specific things you can add to make this page say something no other page on the internet says — the secret to actually ranking.</p>
         </div>
         <div class="skill-card">
-          <h3>Bottom Line Score</h3>
-          <p>Shows the gap in one number: your site covers X topics, your customers search for Y. That gap is your opportunity.</p>
+          <h3>Related Topics</h3>
+          <p>Topics your page should reference or link to, building the topical authority Google rewards.</p>
         </div>
       </div>
     </div>
@@ -357,7 +186,7 @@
   <section class="skill-cta-bottom">
     <div class="container">
       <p>Built from the SEO framework used across 500+ clients at StudioHawk.</p>
-      <a href="downloads/website-gap-finder.md" download class="skill-download-btn">
+      <a href="downloads/content-brief-draft.md" download class="skill-download-btn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>

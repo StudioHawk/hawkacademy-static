@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Website Gap Finder Skill for Claude - Hawk Academy</title>
-  <meta name="description" content="Download a free AI skill that finds every page your website is missing. Compares your site to what customers actually search for and gives you a 4-week content plan.">
+  <title>Free Technical SEO Audit Skill for Claude - Hawk Academy</title>
+  <meta name="description" content="Download a free AI skill that analyses your crawl data and finds redirect chains, duplicate titles, indexing issues, and orphan pages. Upload a Screaming Frog export and get a full audit.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -267,9 +267,9 @@
   <section class="skill-hero">
     <div class="container">
       <div class="hero__label">Free Claude Skill</div>
-      <h1>Website Gap <span>Finder Skill</span></h1>
-      <p>A free AI skill for Claude that compares what your website covers vs what your customers actually search for. Finds every missing page and gives you a prioritised 4-week content plan.</p>
-      <a href="downloads/website-gap-finder.md" download class="skill-download-btn">
+      <h1>Technical SEO <span>Audit Skill</span></h1>
+      <p>A free AI skill for Claude that analyses your crawl data and finds redirect chains, duplicate titles, indexing issues, and orphan pages. Upload a Screaming Frog export and get a prioritised list of fixes.</p>
+      <a href="downloads/technical-seo-audit.md" download class="skill-download-btn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>
@@ -277,7 +277,7 @@
       <div class="skill-terminal">
         <span class="skill-terminal-label">Run this in your terminal</span>
         <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
-        <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/resources/skills/downloads/website-gap-finder.md -o ~/.claude/skills/website-gap-finder.md</code>
+        <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/resources/skills/downloads/technical-seo-audit.md -o ~/.claude/skills/technical-seo-audit.md</code>
         <p class="skill-terminal-note">This downloads the skill directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
       </div>
     </div>
@@ -292,7 +292,7 @@
           <div class="skill-step-num">A</div>
           <div class="skill-step-text">
             <h3>Option A: One-Click Download</h3>
-            <p>Click <strong>Download Skill</strong> above. You'll get a file called <code>website-gap-finder.md</code>. Move it to your Claude skills folder:</p>
+            <p>Click <strong>Download Skill</strong> above. You'll get a file called <code>technical-seo-audit.md</code>. Move it to your Claude skills folder:</p>
             <p style="margin-top:8px;"><strong>Mac:</strong> <code>~/.claude/skills/</code></p>
             <p><strong>Windows:</strong> <code>%USERPROFILE%\.claude\skills\</code></p>
             <p style="margin-top:8px;">If the <code>skills</code> folder doesn't exist, create it. Then restart Claude Desktop.</p>
@@ -303,17 +303,15 @@
           <div class="skill-step-text">
             <h3>Option B: Terminal Install (fastest)</h3>
             <p>Open your terminal and paste this command. It downloads the skill directly into the right folder:</p>
-            <p style="margin-top:8px;"><code style="color:var(--color-lavender);font-size:13px;">curl -fsSL https://hawkacademy.co/resources/skills/downloads/website-gap-finder.md -o ~/.claude/skills/website-gap-finder.md</code></p>
+            <p style="margin-top:8px;"><code style="color:var(--color-lavender);font-size:13px;">curl -fsSL https://hawkacademy.co/resources/skills/downloads/technical-seo-audit.md -o ~/.claude/skills/technical-seo-audit.md</code></p>
             <p style="margin-top:8px;">Restart Claude Desktop and the skill is ready.</p>
           </div>
         </div>
         <div class="skill-step">
           <div class="skill-step-num">2</div>
           <div class="skill-step-text">
-            <h3>Run Your First Check</h3>
-            <p>Open Claude Desktop, start a new conversation, and type:</p>
-            <p style="margin-top:8px;font-weight:600;font-size:17px;">"Find gaps for https://yourwebsite.com - I run a plumbing business in Melbourne"</p>
-            <p style="margin-top:8px;">The skill maps your current pages, generates 30-50 real customer searches, and shows you every gap with a weekly content plan.</p>
+            <h3>Run Your First Audit</h3>
+            <p>Open Claude Desktop, start a new conversation, and upload your crawl data (Screaming Frog CSV, Sitebulb export, or any URL list with status codes). The skill analyses every URL and finds the issues buried in the data.</p>
           </div>
         </div>
       </div>
@@ -326,28 +324,28 @@
       <h2>What It Checks</h2>
       <div class="skill-cards-grid">
         <div class="skill-card">
-          <h3>Current Coverage Map</h3>
-          <p>Maps every topic and service your website currently covers. Shows you what Google already understands about your business.</p>
+          <h3>Redirect Chains</h3>
+          <p>Finds every redirect chain and loop on your site. Shows the full path, flags chains ending in errors, and sorts by severity.</p>
         </div>
         <div class="skill-card">
-          <h3>Customer Search Queries</h3>
-          <p>Generates 30-50 real searches your customers make before buying. Based on your industry, location, and services.</p>
+          <h3>Duplicate Titles &amp; Descriptions</h3>
+          <p>Spots pages with identical titles, meta descriptions, and H1s that confuse Google about which page to rank.</p>
         </div>
         <div class="skill-card">
-          <h3>Missing Pages</h3>
-          <p>Identifies every topic your customers search for that your website doesn't cover. Each gap is a page you should have.</p>
+          <h3>Indexing Issues</h3>
+          <p>Finds pages blocked from Google that should be visible, and thin pages that are indexed but shouldn't be.</p>
         </div>
         <div class="skill-card">
-          <h3>Priority Ranking</h3>
-          <p>Ranks gaps by impact: high priority (ready-to-buy customers), medium (common questions), and low (niche queries).</p>
+          <h3>Cannibalisation Risks</h3>
+          <p>Flags pages competing against each other for the same topic, plus canonical tag mismatches that split your ranking signals.</p>
         </div>
         <div class="skill-card">
-          <h3>4-Week Content Plan</h3>
-          <p>Gives you one page to create per week, starting with the highest-impact gap. Achievable and specific.</p>
+          <h3>Orphan Pages</h3>
+          <p>Identifies pages with zero internal links pointing to them — invisible to Google and your visitors.</p>
         </div>
         <div class="skill-card">
-          <h3>Bottom Line Score</h3>
-          <p>Shows the gap in one number: your site covers X topics, your customers search for Y. That gap is your opportunity.</p>
+          <h3>Top 5 Quick Wins</h3>
+          <p>Prioritises the highest-impact fixes ranked by effort level so you know exactly where to start.</p>
         </div>
       </div>
     </div>
@@ -357,7 +355,7 @@
   <section class="skill-cta-bottom">
     <div class="container">
       <p>Built from the SEO framework used across 500+ clients at StudioHawk.</p>
-      <a href="downloads/website-gap-finder.md" download class="skill-download-btn">
+      <a href="downloads/technical-seo-audit.md" download class="skill-download-btn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>

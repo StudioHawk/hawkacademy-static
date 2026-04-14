@@ -81,41 +81,43 @@
       line-height: 1.7;
     }
 
-    /* Filter buttons */
-    .resources-filters {
+    /* Section headings */
+    .resources-section {
       background: var(--color-off-white);
-      padding: 40px 0 0;
+      padding: 60px 0 20px;
     }
 
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
+    .resources-section:first-of-type {
+      padding-top: 80px;
     }
 
-    .filter-btn {
-      font-family: var(--font-body);
-      font-size: 14px;
+    .resources-section:last-of-type {
+      padding-bottom: 100px;
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
       font-weight: 600;
-      padding: 10px 22px;
-      border-radius: var(--radius-pill);
-      border: 1.5px solid #D5D3CF;
-      background: var(--color-white);
-      color: var(--color-body-text);
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .filter-btn:hover {
-      border-color: var(--color-lavender);
       color: var(--color-dark-text);
+      margin-bottom: 8px;
     }
 
-    .filter-btn.active {
-      background: var(--gradient-cta);
-      border-color: var(--color-lavender);
-      color: var(--color-black);
+    .section-header p {
+      color: var(--color-body-text);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid #E5E3DF;
+      margin: 20px 0 0;
     }
 
     /* Resources grid */
@@ -270,7 +272,14 @@
         <a href="index.html">Home</a>
         <a href="whats-included.html">What's Included</a>
         <a href="about.html">About Us</a>
-        <a href="resources.html" class="active">Resources</a>
+        <div class="header__nav-item">
+          <a href="resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="header__dropdown">
+            <a href="resources.html#skills">Skills &amp; Prompts</a>
+            <a href="resources.html#tools">Free Tools</a>
+            <a href="resources.html#guides">SEO Guides</a>
+          </div>
+        </div>
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header__actions">
@@ -284,8 +293,11 @@
     <a href="index.html">Home</a>
     <a href="whats-included.html">What's Included</a>
     <a href="about.html">About Us</a>
-    <a href="contact.html">Contact</a>
     <a href="resources.html">Resources</a>
+    <a href="resources.html#skills" class="mobile-nav__sub">Skills &amp; Prompts</a>
+    <a href="resources.html#tools" class="mobile-nav__sub">Free Tools</a>
+    <a href="resources.html#guides" class="mobile-nav__sub">SEO Guides</a>
+    <a href="contact.html">Contact</a>
     <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
     <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
   </div>
@@ -299,195 +311,265 @@
     </div>
   </section>
 
-  <!-- FILTERS -->
-  <section class="resources-filters">
+  <!-- SKILLS & PROMPTS -->
+  <section class="resources-section" id="skills">
     <div class="container">
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter="all" onclick="filterResources('all')">All</button>
-        <button class="filter-btn" data-filter="claude-skill" onclick="filterResources('claude-skill')">Claude Skills</button>
-        <button class="filter-btn" data-filter="audit-skill" onclick="filterResources('audit-skill')">Audit Skills</button>
-        <button class="filter-btn" data-filter="prompt" onclick="filterResources('prompt')">Prompts</button>
-        <button class="filter-btn" data-filter="seo-guides" onclick="filterResources('seo-guides')">SEO Guides</button>
-        <button class="filter-btn" data-filter="technical-seo" onclick="filterResources('technical-seo')">Technical SEO</button>
-        <button class="filter-btn" data-filter="ai-search" onclick="filterResources('ai-search')">AI Search</button>
-        <button class="filter-btn" data-filter="content-strategy" onclick="filterResources('content-strategy')">Content Strategy</button>
+      <div class="section-header">
+        <h2>Skills & Prompts</h2>
+        <p>AI-powered Claude skills and prompts that audit your site, find gaps, and generate action plans in 60 seconds. Download the .md file and add it to a Claude Project.</p>
       </div>
-    </div>
-  </section>
+      <div class="resources-grid">
 
-  <!-- RESOURCE CARDS -->
-  <section class="resources-grid-section">
-    <div class="container">
-      <div class="resources-grid" id="resourcesGrid">
-
-        <!-- CLAUDE SKILLS -->
-        <div class="resource-card" data-category="claude-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
           <h3 class="resource-card__title">Google Trust Check</h3>
           <p class="resource-card__desc">See what Google actually reads on your website. Get 4 trust scores and 3 fixes you can do this week.</p>
           <a href="resources/skills/google-trust-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="claude-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
           <h3 class="resource-card__title">Website Gap Finder</h3>
           <p class="resource-card__desc">Find every page your website is missing. Get a prioritised 4-week content plan based on what your customers search for.</p>
           <a href="resources/skills/website-gap-finder.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="claude-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
           <h3 class="resource-card__title">Competitor Gap Check</h3>
           <p class="resource-card__desc">See exactly why your competitor outranks you on Google. Side-by-side comparison with a 60-day catch-up plan.</p>
           <a href="resources/skills/competitor-gap-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="claude-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
           <h3 class="resource-card__title">AI Visibility Check</h3>
           <p class="resource-card__desc">Check if ChatGPT and Claude recommend your business. 8 real queries, score out of 8, with a 30-day action plan.</p>
           <a href="resources/skills/ai-visibility-check.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="claude-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
           <h3 class="resource-card__title">Ad Spend Calculator</h3>
           <p class="resource-card__desc">See what Google Ads really cost over 3 years vs free organic traffic. Industry CPC data and step-by-step walkthrough.</p>
           <a href="resources/skills/ad-spend-calculator.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="claude-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
           <h3 class="resource-card__title">Search Console Quick Start</h3>
           <p class="resource-card__desc">Set up Google Search Console in 5 minutes. Find striking distance keywords and the free traffic hiding in your data.</p>
           <a href="resources/skills/gsc-quick-start.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <!-- AUDIT SKILLS (industry-specific) -->
-        <div class="resource-card" data-category="audit-skill">
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Technical SEO Audit</h3>
+          <p class="resource-card__desc">Feed it your crawl data. Get redirect chains, duplicate titles, indexing issues, and a prioritised fix list.</p>
+          <a href="resources/skills/technical-seo-audit.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Content Brief + Draft</h3>
+          <p class="resource-card__desc">Topic in, full brief and first draft out — with expertise gaps marked where your real knowledge goes.</p>
+          <a href="resources/skills/content-brief-draft.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Claude Skill</span>
+          <h3 class="resource-card__title">Data PR + Outreach</h3>
+          <p class="resource-card__desc">Upload your data, get newsworthy angles and personalised journalist outreach emails ready to send.</p>
+          <a href="resources/skills/data-pr-outreach.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
           <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
           <h3 class="resource-card__title">Ecommerce SEO Audit</h3>
           <p class="resource-card__desc">Full on-page audit for online stores. Category pages, product pages, internal linking, and AI search readiness.</p>
           <a href="resources/skills/ecommerce.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="audit-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
           <h3 class="resource-card__title">Local SEO Audit</h3>
           <p class="resource-card__desc">Audit for local service businesses. Service pages, location pages, trust signals, and Google Business Profile.</p>
           <a href="resources/skills/local.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="audit-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
           <h3 class="resource-card__title">Restaurant SEO Audit</h3>
           <p class="resource-card__desc">Audit for restaurants and hospitality. Menu content, map embeds, booking flow, and review management.</p>
           <a href="resources/skills/restaurant.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="audit-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
           <h3 class="resource-card__title">B2B SEO Audit</h3>
           <p class="resource-card__desc">Audit for B2B services. Service pages, thought leadership, case studies, and lead generation paths.</p>
           <a href="resources/skills/b2b.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="audit-skill">
+        <div class="resource-card">
           <span class="resource-card__tag tag-audit-skill">Audit Skill</span>
           <h3 class="resource-card__title">SaaS SEO Audit</h3>
           <p class="resource-card__desc">Audit for SaaS companies. Feature pages, use-case pages, comparison pages, and product-led content.</p>
           <a href="resources/skills/saas.html" class="resource-card__link">Download Skill <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <!-- PROMPTS -->
-        <div class="resource-card" data-category="prompt">
+        <div class="resource-card">
           <span class="resource-card__tag tag-prompt">Prompt</span>
           <h3 class="resource-card__title">Information Gain Finder</h3>
           <p class="resource-card__desc">Find where your content just repeats what Google already knows. Add the unique knowledge that only you can provide.</p>
           <a href="resources/skills/information-gain-prompt.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="prompt">
+        <div class="resource-card">
           <span class="resource-card__tag tag-prompt">Prompt</span>
           <h3 class="resource-card__title">Title Tag Optimizer</h3>
           <p class="resource-card__desc">Get more clicks from the same rankings. Generates optimised title tags using 5 proven formulas.</p>
           <a href="resources/skills/title-tag-optimizer.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="prompt">
+        <div class="resource-card">
           <span class="resource-card__tag tag-prompt">Prompt</span>
           <h3 class="resource-card__title">Website Score Check</h3>
           <p class="resource-card__desc">Rate your website 0-5 on the 5 features every site winning on Google has. Based on a study of 400 websites.</p>
           <a href="resources/skills/website-score-prompt.html" class="resource-card__link">Download Prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <!-- BLOG ARTICLES -->
-        <div class="resource-card" data-category="seo-guides">
+      </div>
+      <hr class="section-divider">
+    </div>
+  </section>
+
+  <!-- FREE TOOLS -->
+  <section class="resources-section" id="tools">
+    <div class="container">
+      <div class="section-header">
+        <h2>Free Tools</h2>
+        <p>Interactive tools you can use right now in your browser. No login, no API keys. Enter your details and get instant results.</p>
+      </div>
+      <div class="resources-grid">
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
+          <h3 class="resource-card__title">Ad Spend Calculator</h3>
+          <p class="resource-card__desc">See what Google Ads really cost you over 3 years vs the organic SEO traffic you could be getting for free.</p>
+          <a href="tools/ad-spend-calculator.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
+          <h3 class="resource-card__title">AI Visibility Tester</h3>
+          <p class="resource-card__desc">Check if AI recommends your business. Tests 8 real customer queries across ChatGPT, Gemini, and other AI tools.</p>
+          <a href="tools/ai-visibility-tester.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
+          <h3 class="resource-card__title">Competitor Comparison</h3>
+          <p class="resource-card__desc">See exactly why your competitor outranks you. Side-by-side comparison with a 60-day catch-up plan.</p>
+          <a href="tools/competitor-comparison.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
+          <h3 class="resource-card__title">Content Gap Scanner</h3>
+          <p class="resource-card__desc">Find every page your website is missing. Shows what your customers search for that you don't have pages for.</p>
+          <a href="tools/content-gap-scanner.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
+          <h3 class="resource-card__title">Google Trust Scanner</h3>
+          <p class="resource-card__desc">See what Google actually reads on your website. Checks topic coverage, content depth, structure, and trust signals.</p>
+          <a href="tools/google-trust-scanner.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="resource-card">
+          <span class="resource-card__tag tag-claude-skill">Free Tool</span>
+          <h3 class="resource-card__title">Search Console Quick Wins</h3>
+          <p class="resource-card__desc">Find the free traffic hiding in your Google Search Console data. Identifies striking distance keywords you can action this week.</p>
+          <a href="tools/gsc-quick-wins.html" class="resource-card__link">Use Tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+      </div>
+      <hr class="section-divider">
+    </div>
+  </section>
+
+  <!-- SEO GUIDES -->
+  <section class="resources-section" id="guides">
+    <div class="container">
+      <div class="section-header">
+        <h2>SEO Guides</h2>
+        <p>In-depth articles covering SEO fundamentals, technical optimisation, AI search, and content strategy. Written by the team behind 500+ client campaigns.</p>
+      </div>
+      <div class="resources-grid">
+
+        <div class="resource-card">
           <span class="resource-card__tag tag-seo-guides">SEO Guides</span>
           <h3 class="resource-card__title">The Complete Beginner's Guide to SEO in 2026</h3>
           <p class="resource-card__desc">Everything you need to know to start ranking in search engines, from keyword research to on-page optimisation and beyond.</p>
-          <a href="blog/beginners-guide-to-seo-2026.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="blog/beginners-guide-to-seo-2026.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="technical-seo">
+        <div class="resource-card">
           <span class="resource-card__tag tag-technical-seo">Technical SEO</span>
           <h3 class="resource-card__title">Core Web Vitals: A Practical Optimisation Checklist</h3>
           <p class="resource-card__desc">Step-by-step instructions to diagnose and fix LCP, CLS, and INP issues that are holding back your search performance.</p>
-          <a href="blog/core-web-vitals-checklist.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="blog/core-web-vitals-checklist.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="ai-search">
+        <div class="resource-card">
           <span class="resource-card__tag tag-ai-search">AI Search</span>
           <h3 class="resource-card__title">How AI Overviews Are Changing the SEO Landscape</h3>
           <p class="resource-card__desc">Understand how Google's AI-generated search results affect organic click-through rates and what you can do to adapt.</p>
-          <a href="blog/how-ai-overviews-changing-seo.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="blog/how-ai-overviews-changing-seo.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="content-strategy">
+        <div class="resource-card">
           <span class="resource-card__tag tag-content-strategy">Content Strategy</span>
           <h3 class="resource-card__title">Building a Content Hub: Topic Clusters That Rank</h3>
           <p class="resource-card__desc">How to structure pillar pages and supporting content to build topical authority and dominate search results in your niche.</p>
-          <a href="blog/content-hub-topic-clusters.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="blog/content-hub-topic-clusters.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="seo-guides">
+        <div class="resource-card">
           <span class="resource-card__tag tag-seo-guides">SEO Guides</span>
           <h3 class="resource-card__title">E-E-A-T Explained: Building Trust and Authority</h3>
           <p class="resource-card__desc">A deep dive into Google's Experience, Expertise, Authoritativeness, and Trustworthiness framework.</p>
-          <a href="blog/eeat-explained.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="blog/eeat-explained.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="technical-seo">
+        <div class="resource-card">
           <span class="resource-card__tag tag-technical-seo">Technical SEO</span>
-          <h3 class="resource-card__title">Site Architecture and Crawl Budget: What You Need to Know</h3>
+          <h3 class="resource-card__title">Site Architecture and Crawl Budget</h3>
           <p class="resource-card__desc">Why your site's internal structure matters more than ever, and how to ensure search engines can efficiently discover your key pages.</p>
-          <a href="blog/site-architecture-crawl-budget.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="blog/site-architecture-crawl-budget.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="seo-guides">
+        <div class="resource-card">
           <span class="resource-card__tag tag-seo-guides">SEO Guides</span>
           <h3 class="resource-card__title">Digital PR for Link Building: Strategies That Scale</h3>
           <p class="resource-card__desc">Learn how to earn high-quality editorial backlinks through data-driven digital PR campaigns and newsworthy content.</p>
-          <a href="blog/digital-pr-link-building.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="blog/digital-pr-link-building.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="ai-search">
+        <div class="resource-card">
           <span class="resource-card__tag tag-ai-search">AI Search</span>
           <h3 class="resource-card__title">Optimising for ChatGPT, Perplexity, and LLM-Powered Search</h3>
           <p class="resource-card__desc">The emerging playbook for getting your brand cited by AI assistants and large language model search experiences.</p>
-          <a href="blog/optimising-for-chatgpt-perplexity-llm.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="blog/optimising-for-chatgpt-perplexity-llm.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
-        <div class="resource-card" data-category="technical-seo">
+        <div class="resource-card">
           <span class="resource-card__tag tag-technical-seo">Technical SEO</span>
           <h3 class="resource-card__title">GA4 for SEO: The Metrics That Actually Matter</h3>
           <p class="resource-card__desc">Cut through the noise in Google Analytics 4. Learn which reports and metrics give you real insight into your organic search performance.</p>
-          <a href="blog/ga4-seo-metrics.html" class="resource-card__link">Read More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <!-- Empty state -->
-        <div class="resources-empty" id="resourcesEmpty">
-          <p>No resources found for this category. Check back soon!</p>
+          <a href="blog/ga4-seo-metrics.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
       </div>
@@ -527,28 +609,5 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script>
-    function filterResources(category) {
-      // Update active button
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.filter === category);
-      });
-
-      const cards = document.querySelectorAll('.resource-card');
-      const emptyState = document.getElementById('resourcesEmpty');
-      let visible = 0;
-
-      cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'flex';
-          visible++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      emptyState.style.display = visible === 0 ? 'block' : 'none';
-    }
-  </script>
 </body>
 </html>
