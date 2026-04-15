@@ -201,13 +201,34 @@
       <p>Find the free traffic hiding in your Google data</p>
 
       <div class="tool-options">
-        <button class="oauth-btn" onclick="connectGoogle()">Connect Google Account</button>
-        <span class="tool-or">or</span>
+        <details class="explainer" style="background:rgba(173,186,255,0.1); border:1px solid rgba(173,186,255,0.3); border-radius:10px; padding:0; max-width:520px; width:100%; text-align:left; margin-bottom:24px;">
+          <summary style="padding:14px 18px; cursor:pointer; font-family:var(--font-heading); font-size:15px; font-weight:600; color:var(--color-white); list-style:none; display:flex; align-items:center; gap:10px;">
+            <span>How to export your data from Google Search Console (2 min)</span>
+          </summary>
+          <div style="padding:0 18px 18px; color:var(--color-light-body); font-size:14px; line-height:1.7;">
+            <ol style="padding-left:20px; margin:8px 0;">
+              <li>Open <a href="https://search.google.com/search-console" target="_blank" rel="noopener" style="color:var(--color-cyan);font-weight:600;">Google Search Console</a> and pick your site.</li>
+              <li>Click <strong>Performance</strong> → <strong>Search results</strong> in the left sidebar.</li>
+              <li>Set the date range to <strong>Last 3 months</strong> (top right).</li>
+              <li>Make sure all 4 metrics are turned on at the top: <strong>Total clicks, Total impressions, Average CTR, Average position</strong>.</li>
+              <li>Scroll down to the table, click the <strong>Queries</strong> tab.</li>
+              <li>Click the <strong>Export ↓</strong> button (top right of the table) → <strong>Download CSV</strong>.</li>
+              <li>Open the downloaded ZIP, find <code>Queries.csv</code> and either upload it below or open it and copy-paste the contents.</li>
+            </ol>
+            <p style="margin:12px 0 0; font-size:13px; opacity:0.85;">Don't have Search Console set up? <a href="../claude-seo-skills/gsc-quick-start.html" style="color:var(--color-cyan);font-weight:600;">Download the free GSC Quick Start skill</a> to get going in 5 minutes.</p>
+          </div>
+        </details>
+
         <form class="tool-form" onsubmit="return false;">
-          <label for="gscData">Paste your Search Console data here</label>
-          <textarea id="gscData" placeholder="Paste CSV data from Search Console export, or just click 'Connect Google Account' above to see sample data..."></textarea>
-          <button type="button" class="tool-submit" onclick="analyseData()">Analyse</button>
+          <label for="gscFile" style="font-family:var(--font-heading); font-size:14px; font-weight:600; color:var(--color-white); margin-bottom:8px;">Upload your Queries.csv file</label>
+          <input type="file" id="gscFile" accept=".csv,.tsv,.txt" style="width:100%; padding:14px; background:rgba(255,255,255,0.05); border:1.5px dashed rgba(255,255,255,0.2); border-radius:8px; color:var(--color-light-body); font-family:var(--font-body); cursor:pointer;">
+          <div style="text-align:center; color:var(--color-light-body); font-size:13px; margin:14px 0; text-transform:uppercase; letter-spacing:0.06em;">— or paste it —</div>
+          <label for="gscData" style="font-family:var(--font-heading); font-size:14px; font-weight:600; color:var(--color-white); margin-bottom:8px;">Paste CSV contents</label>
+          <textarea id="gscData" placeholder="Paste the contents of Queries.csv here. Columns: Top queries, Clicks, Impressions, CTR, Position"></textarea>
+          <button type="button" class="tool-submit" onclick="analyseData()">Find My Quick Wins</button>
         </form>
+
+        <div id="errorBanner" style="display:none; max-width:520px; width:100%; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:14px 16px; border-radius:8px; margin-top:16px; font-size:14px;"></div>
       </div>
 
       <div class="scanner-overlay" id="scanner">
@@ -220,67 +241,34 @@
   <section class="tool-results" id="results">
     <div class="container">
       <div class="health-grid">
-        <div class="health-card">
-          <div class="h-label">Total Keywords</div>
-          <div class="h-value">847</div>
-        </div>
-        <div class="health-card">
-          <div class="h-label">Top Keyword Clicks</div>
-          <div class="h-value">312</div>
-        </div>
-        <div class="health-card">
-          <div class="h-label">Average Position</div>
-          <div class="h-value">18.4</div>
-        </div>
-        <div class="health-card">
-          <div class="h-label">Keywords in Top 10</div>
-          <div class="h-value">89</div>
-        </div>
+        <div class="health-card"><div class="h-label">Total Keywords</div><div class="h-value" id="statTotal">—</div></div>
+        <div class="health-card"><div class="h-label">Total Clicks</div><div class="h-value" id="statClicks">—</div></div>
+        <div class="health-card"><div class="h-label">Average Position</div><div class="h-value" id="statAvgPos">—</div></div>
+        <div class="health-card"><div class="h-label">Keywords in Top 10</div><div class="h-value" id="statTop10">—</div></div>
       </div>
 
       <div class="kw-table-wrap">
         <h3>Your Striking Distance Keywords</h3>
+        <p style="padding:0 24px 16px; font-size:13px; color:var(--color-light-body);">Keywords ranking position 4-20 with at least 50 impressions, sorted by opportunity (highest first).</p>
         <table class="kw-table">
           <thead>
             <tr>
               <th>Keyword</th>
-              <th>Position</th>
-              <th>Impressions</th>
-              <th>Clicks</th>
+              <th style="text-align:right;">Position</th>
+              <th style="text-align:right;">Impressions</th>
+              <th style="text-align:right;">Clicks</th>
               <th>Opportunity</th>
             </tr>
           </thead>
-          <tbody>
-            <tr><td>emergency plumber melbourne</td><td>7.2</td><td>2,400</td><td>89</td><td><span class="opp-badge high">High</span></td></tr>
-            <tr><td>blocked drain repair cost</td><td>5.8</td><td>1,800</td><td>156</td><td><span class="opp-badge high">High</span></td></tr>
-            <tr><td>hot water system replacement</td><td>8.4</td><td>1,200</td><td>42</td><td><span class="opp-badge high">High</span></td></tr>
-            <tr><td>plumber near me reviews</td><td>6.1</td><td>980</td><td>67</td><td><span class="opp-badge high">High</span></td></tr>
-            <tr><td>gas fitting certificate cost</td><td>9.7</td><td>640</td><td>18</td><td><span class="opp-badge medium">Medium</span></td></tr>
-            <tr><td>how to fix a leaking tap</td><td>11.2</td><td>3,200</td><td>24</td><td><span class="opp-badge medium">Medium</span></td></tr>
-            <tr><td>bathroom renovation plumber</td><td>12.8</td><td>520</td><td>8</td><td><span class="opp-badge medium">Medium</span></td></tr>
-            <tr><td>plumber callout fee average</td><td>14.3</td><td>410</td><td>5</td><td><span class="opp-badge low">Low</span></td></tr>
-          </tbody>
+          <tbody id="kwBody"></tbody>
         </table>
       </div>
 
-      <div class="summary-box">
-        <p>You have <strong>12 keywords in striking distance</strong>. Moving these to page 1 could add an estimated <strong>450+ free clicks per month</strong>.</p>
-      </div>
+      <div class="summary-box" id="summaryBox"></div>
 
       <div class="action-section">
         <h3>Your Top 3 Actions</h3>
-        <div class="action-item">
-          <span class="action-num">1</span>
-          <span class="action-text"><strong>"emergency plumber melbourne"</strong> is at position 7.2 with 2,400 impressions. Add this exact phrase to your page title, H1, and first paragraph. You could jump to top 3 with better on-page targeting alone.</span>
-        </div>
-        <div class="action-item">
-          <span class="action-num">2</span>
-          <span class="action-text"><strong>"blocked drain repair cost"</strong> is at position 5.8 but only getting 156 clicks from 1,800 impressions. Your title tag isn't compelling enough. Rewrite it to include pricing and urgency.</span>
-        </div>
-        <div class="action-item">
-          <span class="action-num">3</span>
-          <span class="action-text"><strong>"how to fix a leaking tap"</strong> has 3,200 impressions but you're on page 2 at position 11.2. Create a dedicated how-to guide with step-by-step instructions. This one page could drive 200+ clicks per month.</span>
-        </div>
+        <div id="actionsList"></div>
       </div>
     </div>
   </section>
@@ -324,20 +312,128 @@
 
   <script src="../js/main.js"></script>
   <script>
-    function connectGoogle() {
-      const overlay = document.getElementById('oauthOverlay');
-      overlay.classList.add('visible');
-      setTimeout(() => {
-        overlay.classList.remove('visible');
-        runScanAnimation();
-      }, 2000);
+    // ============================================
+    //  GSC QUICK WINS — REAL CSV PARSER
+    // ============================================
+
+    // File upload reads file → fills textarea
+    document.getElementById('gscFile').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        document.getElementById('gscData').value = ev.target.result;
+      };
+      reader.readAsText(file);
+    });
+
+    function showError(msg) {
+      const banner = document.getElementById('errorBanner');
+      banner.textContent = msg;
+      banner.style.display = 'block';
+      setTimeout(() => { banner.style.display = 'none'; }, 10000);
+    }
+
+    // Parse CSV/TSV text — supports comma OR tab delimiter, quoted strings, GSC export format
+    function parseCSV(text) {
+      const lines = text.trim().split(/\r?\n/);
+      if (lines.length < 2) return null;
+
+      // Detect delimiter: tab, comma, or semicolon
+      const firstLine = lines[0];
+      const delim = firstLine.includes('\t') ? '\t' : firstLine.includes(';') ? ';' : ',';
+
+      const splitLine = (line) => {
+        // Handle quoted fields
+        const result = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') {
+            if (inQuotes && line[i+1] === '"') { cur += '"'; i++; }
+            else inQuotes = !inQuotes;
+          } else if (ch === delim && !inQuotes) {
+            result.push(cur); cur = '';
+          } else { cur += ch; }
+        }
+        result.push(cur);
+        return result;
+      };
+
+      const header = splitLine(lines[0]).map(h => h.trim().toLowerCase());
+      // Find columns by name (GSC uses "Top queries", "Clicks", "Impressions", "CTR", "Position")
+      const findCol = (...names) => {
+        for (const name of names) {
+          const idx = header.findIndex(h => h.includes(name.toLowerCase()));
+          if (idx !== -1) return idx;
+        }
+        return -1;
+      };
+
+      const queryIdx = findCol('top queries', 'query', 'queries', 'keyword');
+      const clicksIdx = findCol('clicks');
+      const impIdx = findCol('impressions');
+      const posIdx = findCol('position');
+
+      if (queryIdx === -1 || posIdx === -1 || impIdx === -1) {
+        return null;
+      }
+
+      const rows = [];
+      for (let i = 1; i < lines.length; i++) {
+        const cells = splitLine(lines[i]);
+        if (cells.length < 2) continue;
+        const query = (cells[queryIdx] || '').trim();
+        if (!query) continue;
+        // Parse numeric values — strip commas, %, etc.
+        const num = (s) => parseFloat(String(s || '').replace(/[,%\s]/g, '')) || 0;
+        rows.push({
+          query,
+          clicks: num(cells[clicksIdx]),
+          impressions: num(cells[impIdx]),
+          position: num(cells[posIdx])
+        });
+      }
+      return rows.length > 0 ? rows : null;
+    }
+
+    // Calculate "opportunity score" — higher position (worse rank) + more impressions = bigger opportunity
+    function opportunityScore(row) {
+      // CTR uplift potential: moving from position 7 to position 3 typically 3-5x clicks
+      // Score = impressions × position-distance-from-top-3
+      const distance = Math.max(0, row.position - 3);
+      return row.impressions * (distance / 10);
+    }
+
+    function opportunityLabel(row) {
+      const score = opportunityScore(row);
+      if (score > 200) return { label: 'High', cls: 'high' };
+      if (score > 50) return { label: 'Medium', cls: 'medium' };
+      return { label: 'Low', cls: 'low' };
+    }
+
+    function formatNumber(n) {
+      return Math.round(n).toLocaleString();
     }
 
     function analyseData() {
-      runScanAnimation();
+      const text = document.getElementById('gscData').value.trim();
+      if (!text) {
+        showError('Please paste your CSV data or upload your Queries.csv file.');
+        return;
+      }
+
+      const rows = parseCSV(text);
+      if (!rows) {
+        showError('Could not find the expected columns. GSC export should have columns: Top queries, Clicks, Impressions, CTR, Position. Make sure you exported the Queries tab from Performance > Search results.');
+        return;
+      }
+
+      runScan(rows);
     }
 
-    function runScanAnimation() {
+    function runScan(rows) {
       const scanner = document.getElementById('scanner');
       const bar = document.getElementById('scanBar');
       const status = document.getElementById('scanStatus');
@@ -345,9 +441,10 @@
       document.getElementById('results').classList.remove('visible');
 
       const steps = [
-        'Loading Search Console data...',
-        'Analysing 847 keywords...',
-        'Finding striking distance opportunities...'
+        `Parsed ${rows.length.toLocaleString()} keywords...`,
+        'Filtering striking distance keywords (positions 4-20)...',
+        'Calculating opportunity scores...',
+        'Building action plan...'
       ];
       let step = 0;
       status.textContent = steps[0];
@@ -361,14 +458,81 @@
         } else {
           clearInterval(interval);
           bar.style.width = '100%';
-          status.textContent = 'Complete';
+          status.textContent = 'Done';
           setTimeout(() => {
             scanner.classList.remove('visible');
+            renderResults(rows);
             document.getElementById('results').classList.add('visible');
             document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 600);
+          }, 400);
         }
-      }, 2000);
+      }, 600);
+    }
+
+    function renderResults(rows) {
+      // Stats
+      const totalClicks = rows.reduce((s, r) => s + r.clicks, 0);
+      const top10 = rows.filter(r => r.position <= 10 && r.position > 0).length;
+      const positionedRows = rows.filter(r => r.position > 0);
+      const avgPos = positionedRows.length > 0
+        ? positionedRows.reduce((s, r) => s + r.position, 0) / positionedRows.length
+        : 0;
+
+      document.getElementById('statTotal').textContent = formatNumber(rows.length);
+      document.getElementById('statClicks').textContent = formatNumber(totalClicks);
+      document.getElementById('statAvgPos').textContent = avgPos.toFixed(1);
+      document.getElementById('statTop10').textContent = formatNumber(top10);
+
+      // Striking distance: positions 4-20 with at least 50 impressions
+      const striking = rows
+        .filter(r => r.position >= 4 && r.position <= 20 && r.impressions >= 50)
+        .map(r => ({ ...r, score: opportunityScore(r) }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 25);
+
+      // Table
+      const tbody = document.getElementById('kwBody');
+      if (striking.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="padding:32px;text-align:center;color:var(--color-light-body);">No striking distance keywords found. This usually means either (a) your site doesn't yet rank for many queries, or (b) all your top keywords are already on page 1.</td></tr>`;
+      } else {
+        tbody.innerHTML = striking.map(r => {
+          const opp = opportunityLabel(r);
+          const safeQuery = String(r.query).replace(/[<>]/g, '');
+          return `<tr>
+            <td>${safeQuery}</td>
+            <td style="text-align:right;">${r.position.toFixed(1)}</td>
+            <td style="text-align:right;">${formatNumber(r.impressions)}</td>
+            <td style="text-align:right;">${formatNumber(r.clicks)}</td>
+            <td><span class="opp-badge ${opp.cls}">${opp.label}</span></td>
+          </tr>`;
+        }).join('');
+      }
+
+      // Summary
+      const totalImpsStriking = striking.reduce((s, r) => s + r.impressions, 0);
+      const estClickGain = Math.round(totalImpsStriking * 0.08); // rough: moving page 2→1 ~8% CTR uplift on impressions
+      document.getElementById('summaryBox').innerHTML = striking.length === 0
+        ? `<p>Keep building. Once you have keywords ranking on page 2 (positions 11-20) with real impressions, this tool will show you the highest-leverage opportunities.</p>`
+        : `<p>You have <strong>${striking.length} keywords in striking distance</strong>. Moving these to page 1 could add an estimated <strong>${formatNumber(estClickGain)}+ free clicks per month</strong>.</p>`;
+
+      // Top 3 actions
+      const actions = striking.slice(0, 3).map((r, i) => {
+        const safeQuery = String(r.query).replace(/[<>]/g, '');
+        let advice;
+        if (r.position <= 8) {
+          advice = `is at position ${r.position.toFixed(1)} with ${formatNumber(r.impressions)} impressions. Add this exact phrase to your page title, H1, and first paragraph. You could jump to top 3 with better on-page targeting alone.`;
+        } else if (r.position <= 13) {
+          advice = `is at position ${r.position.toFixed(1)} with ${formatNumber(r.impressions)} impressions. Bottom of page 1 / top of page 2. Improve content depth on the ranking page (add 300+ more words covering related sub-topics) to push it up.`;
+        } else {
+          advice = `has ${formatNumber(r.impressions)} impressions but you're stuck at position ${r.position.toFixed(1)}. Create a dedicated page targeting this exact query — your current ranking page probably isn't a strong match.`;
+        }
+        return `<div class="action-item">
+          <span class="action-num">${i + 1}</span>
+          <span class="action-text"><strong>"${safeQuery}"</strong> ${advice}</span>
+        </div>`;
+      }).join('');
+
+      document.getElementById('actionsList').innerHTML = actions || '<p style="color:var(--color-light-body);font-size:14px;">Once you have ranking keywords in striking distance, your top 3 actions will appear here.</p>';
     }
   </script>
 </body>

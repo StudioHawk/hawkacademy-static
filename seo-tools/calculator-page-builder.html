@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Calculator Page Builder | Hawk Academy</title>
+  <meta name="description" content="Build an SEO calculator page in 60 seconds. Tell us your niche, get 5 calculator ideas, then download a complete working HTML calculator ready to upload to your website. BYOK — uses your own AI API key.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+    .tool-hero { background: var(--color-black); padding: 120px 0 60px; text-align: center; position: relative; overflow: hidden; }
+    .tool-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-yellow); opacity: 0.6; }
+    .tool-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
+    .tool-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
+    .tool-hero h1 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 720px; margin: 0 auto 16px; }
+    .tool-hero h1 span { color: var(--color-lavender); }
+    .tool-hero p { color: var(--color-light-body); max-width: 620px; margin: 0 auto 24px; font-size: 17px; line-height: 1.7; }
+
+    .tool-body { background: var(--color-off-white); padding: 60px 0 100px; }
+
+    .tool-card { max-width: 720px; margin: 0 auto 24px; background: var(--color-white); border-radius: var(--radius-card); padding: 32px; }
+    .tool-card h3 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; }
+    .tool-card > p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+
+    .key-warning { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #059669; line-height: 1.5; margin-bottom: 20px; display: flex; gap: 10px; align-items: flex-start; }
+    .key-warning strong { color: #065f46; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 6px; }
+    .form-group .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .form-group .label-row label { margin-bottom: 0; }
+    .form-group .label-row a { font-size: 12px; color: var(--color-lavender); font-weight: 600; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid #D5D3CF;
+      font-family: var(--font-body); font-size: 15px; color: var(--color-dark-text); background: var(--color-white);
+      transition: border-color 0.2s;
+    }
+    .form-group textarea { min-height: 80px; resize: vertical; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--color-lavender); }
+    .form-group.checkbox { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .form-group.checkbox input { width: auto; }
+    .form-group.checkbox label { margin-bottom: 0; font-weight: 400; color: var(--color-body-text); font-size: 13px; }
+
+    .tool-submit {
+      width: 100%; padding: 16px; border-radius: var(--radius-pill); border: none; cursor: pointer;
+      background: var(--gradient-cta); color: var(--color-black);
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      transition: opacity 0.25s; margin-top: 8px;
+    }
+    .tool-submit:hover { opacity: 0.85; }
+    .tool-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .progress-section { display: none; }
+    .progress-section.visible { display: block; }
+    .progress-bar { width: 100%; height: 8px; background: #E5E3DF; border-radius: 4px; overflow: hidden; margin-bottom: 12px; }
+    .progress-fill { height: 100%; background: var(--gradient-cta); width: 0%; transition: width 0.3s; }
+    .progress-log { font-family: var(--font-body); font-size: 13px; color: var(--color-body-text); min-height: 20px; }
+
+    .results-section { display: none; }
+    .results-section.visible { display: block; }
+
+    .ideas-table { width: 100%; border-collapse: collapse; }
+    .ideas-table th, .ideas-table td { padding: 12px; text-align: left; font-size: 14px; vertical-align: top; border-bottom: 1px solid #F0EEEA; }
+    .ideas-table th { background: #FAF9F7; font-weight: 600; color: var(--color-body-text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .ideas-table tr:last-child td { border-bottom: none; }
+    .ideas-table .build-btn {
+      padding: 8px 14px; border-radius: 6px; border: 1px solid var(--color-lavender);
+      background: rgba(173,186,255,0.1); color: var(--color-lavender);
+      font-family: var(--font-body); font-size: 12px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .ideas-table .build-btn:hover { background: var(--color-lavender); color: var(--color-white); }
+    .ideas-table .build-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .preview-frame {
+      width: 100%; height: 600px; border: 1px solid #D5D3CF; border-radius: 8px; background: #fff;
+    }
+    .preview-actions { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+    .preview-actions .pa-btn {
+      padding: 10px 18px; border-radius: 6px; border: 1px solid #D5D3CF; background: var(--color-white);
+      font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--color-dark-text);
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .pa-btn.primary { background: var(--gradient-cta); border-color: transparent; }
+    .pa-btn:hover { opacity: 0.85; }
+
+    .code-block {
+      max-height: 400px; overflow: auto; background: #1a1a1a; color: #e5e7eb;
+      padding: 16px; border-radius: 8px; font-family: monospace; font-size: 12px;
+      line-height: 1.5; white-space: pre-wrap; word-break: break-word;
+    }
+
+    .error-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #991b1b; padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-bottom: 16px; line-height: 1.5; }
+
+    .explainer { background: rgba(173,186,255,0.1); border: 1px solid rgba(173,186,255,0.3); border-radius: 10px; padding: 0; margin-bottom: 24px; }
+    .explainer summary { padding: 16px 20px; cursor: pointer; font-family: var(--font-heading); font-size: 15px; font-weight: 600; color: var(--color-dark-text); list-style: none; display: flex; align-items: center; gap: 10px; }
+    .explainer summary::-webkit-details-marker { display: none; }
+    .explainer summary::before { content: '▶'; font-size: 10px; color: var(--color-lavender); transition: transform 0.2s; }
+    .explainer[open] summary::before { transform: rotate(90deg); }
+    .explainer-content { padding: 0 20px 20px; }
+    .explainer-content p { font-size: 14px; line-height: 1.7; color: var(--color-body-text); margin-bottom: 14px; }
+
+    .tool-cta-bottom { background: var(--color-black); padding: 80px 0; text-align: center; }
+    .tool-cta-bottom p { color: var(--color-light-body); font-size: 17px; margin-bottom: 24px; }
+    .tool-cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 40px; border-radius: var(--radius-pill);
+      background: var(--gradient-cta); color: var(--color-black);
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: opacity 0.25s;
+    }
+    .tool-cta-btn:hover { opacity: 0.85; }
+
+    @media (max-width: 600px) {
+      .tool-card { padding: 24px 20px; }
+      .ideas-table th, .ideas-table td { padding: 8px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="header__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+      <nav class="header__nav">
+        <a href="../index.html">Home</a>
+        <a href="../whats-included.html">What's Included</a>
+        <a href="../about.html">About Us</a>
+        <div class="header__nav-item">
+          <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="header__dropdown">
+            <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../seo-tools.html">SEO Tools</a>
+            <a href="../seo-guides.html">SEO Guides</a>
+          </div>
+        </div>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
+        <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav">
+    <a href="../index.html">Home</a>
+    <a href="../whats-included.html">What's Included</a>
+    <a href="../about.html">About Us</a>
+    <a href="../resources.html">Resources</a>
+    <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
+    <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
+    <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="tool-hero">
+    <div class="container">
+      <div class="hero__label">Free Tool · Bring Your Own Keys</div>
+      <h1>Calculator Page <span>Builder</span></h1>
+      <p>Calculator pages are a cheat code for topical authority. Tell us your niche, pick from 5 ideas, and we'll build you a complete working calculator page (HTML + CSS + JS) ready to upload to your site.</p>
+    </div>
+  </section>
+
+  <!-- TOOL BODY -->
+  <section class="tool-body">
+    <div class="container">
+
+      <!-- API KEY -->
+      <div class="tool-card" id="keysCard">
+        <h3>Anthropic API key</h3>
+        <p>This tool uses Claude (via your own API key) to generate the calculator code. Your key never leaves your browser. A full build costs around $0.05–$0.15 on your account.</p>
+
+        <details class="explainer">
+          <summary>New to API keys? Read this first (2 min)</summary>
+          <div class="explainer-content">
+            <p><strong>What's an API key?</strong> Think of it as a personal access code for Claude's "engine." It lets this tool generate code on your behalf using your own Anthropic account — different from the chatgpt.com / claude.ai chat interface.</p>
+            <p><strong>How to get one (5 min):</strong></p>
+            <ol style="padding-left:20px; line-height:1.7; font-size:14px; color:var(--color-body-text);">
+              <li>Go to <a href="https://console.anthropic.com/" target="_blank" rel="noopener" style="color:var(--color-lavender);font-weight:600;">console.anthropic.com</a> and sign up.</li>
+              <li>Add $5 credit (Settings → Billing).</li>
+              <li>Settings → API Keys → Create Key. Copy the key (starts with <code>sk-ant-</code>) and paste below.</li>
+            </ol>
+            <p><strong>Don't want to mess with API keys?</strong> Use the <a href="../claude-seo-skills/calculator-page-builder.html" style="color:var(--color-lavender);font-weight:600;">free downloadable Claude skill</a> instead — paste it into a Claude Project and run there.</p>
+          </div>
+        </details>
+
+        <div class="key-warning">
+          <span>🔒</span>
+          <span><strong>Your key never leaves your browser.</strong> Stored locally only (if you tick the box) and used to call Anthropic directly from your device.</span>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="anthropicKey">Anthropic API key</label>
+            <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Get key →</a>
+          </div>
+          <input type="password" id="anthropicKey" placeholder="sk-ant-..." autocomplete="off">
+        </div>
+
+        <div class="form-group checkbox">
+          <input type="checkbox" id="saveKey">
+          <label for="saveKey">Remember key on this browser (localStorage only)</label>
+        </div>
+      </div>
+
+      <!-- BUSINESS INFO -->
+      <div class="tool-card">
+        <h3>Your business</h3>
+        <p>Tell us about your niche and we'll suggest 5 calculator ideas tailored to your industry.</p>
+
+        <div class="form-group">
+          <label for="niche">Your niche / industry</label>
+          <input type="text" id="niche" placeholder="e.g. mortgage broker, plumber, accountant, fitness coach" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="brand">Brand name <span style="color:var(--color-body-text);font-weight:400;">(optional — used in the calculator's title tag)</span></label>
+          <input type="text" id="brand" placeholder="e.g. Smith's Plumbing" autocomplete="organization">
+        </div>
+
+        <div class="form-group">
+          <label for="extraContext">Anything else? <span style="color:var(--color-body-text);font-weight:400;">(optional — location, specialty, audience)</span></label>
+          <textarea id="extraContext" placeholder="e.g. We serve Melbourne homeowners with renovations under $50k..."></textarea>
+        </div>
+
+        <div id="errorBanner" class="error-banner" style="display:none;"></div>
+
+        <button class="tool-submit" id="suggestBtn" onclick="suggestIdeas()">Suggest 5 Calculator Ideas</button>
+      </div>
+
+      <!-- PROGRESS -->
+      <div class="tool-card progress-section" id="progressCard">
+        <h3 id="progressTitle">Generating ideas...</h3>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-log" id="progressLog"></div>
+      </div>
+
+      <!-- IDEAS -->
+      <div class="results-section" id="ideasSection">
+        <div class="tool-card">
+          <h3>5 calculator ideas for your niche</h3>
+          <p>Click <strong>Build this</strong> next to the one you want — Claude will generate a complete calculator page (HTML + CSS + JS in one file) ready to upload.</p>
+          <div style="overflow-x:auto;">
+            <table class="ideas-table">
+              <thead>
+                <tr>
+                  <th>Calculator</th>
+                  <th>What it does</th>
+                  <th>Why it works</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="ideasBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUILT CALCULATOR -->
+      <div class="results-section" id="builtSection">
+        <div class="tool-card">
+          <h3 id="builtTitle">Your calculator</h3>
+          <p>Preview below. Use the buttons to download the HTML file or copy the code.</p>
+          <iframe id="previewFrame" class="preview-frame" sandbox="allow-scripts"></iframe>
+          <div class="preview-actions">
+            <button class="pa-btn primary" id="downloadBtn">↓ Download HTML</button>
+            <button class="pa-btn" id="copyCodeBtn">Copy Code</button>
+            <button class="pa-btn" id="viewCodeBtn">View Code</button>
+            <button class="pa-btn" onclick="document.getElementById('ideasSection').scrollIntoView({behavior:'smooth'})">← Pick a different idea</button>
+          </div>
+          <div id="codeBlockWrap" style="display:none; margin-top:16px;">
+            <pre class="code-block" id="codeBlock"></pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="tool-cta-bottom">
+    <div class="container">
+      <p>Want to build calculators inside Claude without an API key?</p>
+      <a href="../claude-seo-skills/calculator-page-builder.html" class="tool-cta-btn">Download the Free Claude Skill</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="../index.html" class="footer__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+          <p class="footer__description">Hawk Academy is created by StudioHawk, a global SEO agency trusted by the world's best-loved brands and fastest-growing startups.</p>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Follow us:</p>
+          <div class="footer__social-links">
+            <a href="https://www.linkedin.com/company/studiohawk/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.instagram.com/studiohawkseo/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.youtube.com/@StudioHawk" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__divider">
+      <div class="footer__nav">
+        <div class="footer__nav-left"><a href="../quiz.html">Quiz</a><a href="../contact.html">Contact</a></div>
+        <div class="footer__nav-right"><a href="https://www.studiohawk.com.au" target="_blank" rel="noopener">StudioHawk Australia</a><a href="https://www.studiohawk.co.uk" target="_blank" rel="noopener">StudioHawk UK</a><a href="https://www.studiohawk.com" target="_blank" rel="noopener">StudioHawk USA</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>Copyright &copy; 2026 Hawk Academy</span>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // ============================================
+    //  CALCULATOR PAGE BUILDER — BYOK EDITION
+    // ============================================
+
+    const STORAGE_KEY = 'ha_calc_builder_key_v1';
+    let lastIdeas = null;
+    let lastBuiltCode = null;
+    let lastBuiltSlug = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          document.getElementById('anthropicKey').value = saved;
+          document.getElementById('saveKey').checked = true;
+        }
+      } catch (e) {}
+
+      document.getElementById('downloadBtn').addEventListener('click', downloadHTML);
+      document.getElementById('copyCodeBtn').addEventListener('click', copyCode);
+      document.getElementById('viewCodeBtn').addEventListener('click', toggleCodeView);
+    });
+
+    function showError(msg) {
+      const banner = document.getElementById('errorBanner');
+      banner.textContent = msg;
+      banner.style.display = 'block';
+      setTimeout(() => { banner.style.display = 'none'; }, 10000);
+    }
+
+    function setProgress(title, log, pct) {
+      document.getElementById('progressTitle').textContent = title;
+      document.getElementById('progressLog').textContent = log;
+      document.getElementById('progressFill').style.width = pct + '%';
+    }
+
+    async function callClaude(apiKey, systemPrompt, userMessage, maxTokens) {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-5',
+          max_tokens: maxTokens || 4096,
+          system: systemPrompt,
+          messages: [{ role: 'user', content: userMessage }]
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error?.message || `Claude API error (${res.status})`);
+      }
+      const data = await res.json();
+      return data.content?.[0]?.text || '';
+    }
+
+    function getKey() {
+      return document.getElementById('anthropicKey').value.trim();
+    }
+
+    async function suggestIdeas() {
+      const niche = document.getElementById('niche').value.trim();
+      const brand = document.getElementById('brand').value.trim();
+      const extra = document.getElementById('extraContext').value.trim();
+      const apiKey = getKey();
+
+      if (!niche) { showError('Please enter your niche or industry.'); return; }
+      if (!apiKey) { showError('Please enter your Anthropic API key.'); return; }
+
+      if (document.getElementById('saveKey').checked) {
+        localStorage.setItem(STORAGE_KEY, apiKey);
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+
+      document.getElementById('ideasSection').classList.remove('visible');
+      document.getElementById('builtSection').classList.remove('visible');
+      document.getElementById('progressCard').classList.add('visible');
+      document.getElementById('suggestBtn').disabled = true;
+      setProgress('Generating ideas...', 'Asking Claude for 5 calculator ideas tailored to your niche...', 30);
+
+      const systemPrompt = `You are an SEO strategist suggesting calculator page ideas for a business owner.
+
+The user is in this niche: "${niche}".${brand ? ` Brand: ${brand}.` : ''}${extra ? ` Extra context: ${extra}` : ''}
+
+Suggest exactly 5 calculator ideas tailored to their niche. Each should target a high-intent keyword that real customers search for.
+
+Output STRICTLY as JSON with this shape:
+[
+  {"name": "Calculator name", "what": "One-line description of what it calculates", "why": "Why this works for SEO — the keyword it targets and search intent"},
+  ...4 more...
+]
+
+No prose. No markdown. Just the JSON array.`;
+
+      try {
+        const text = await callClaude(apiKey, systemPrompt, 'Generate the 5 calculator ideas now.', 2048);
+        // Extract JSON from response (Claude might wrap in markdown)
+        const jsonMatch = text.match(/\[[\s\S]*\]/);
+        if (!jsonMatch) throw new Error('Could not parse calculator ideas from Claude response');
+        const ideas = JSON.parse(jsonMatch[0]);
+        if (!Array.isArray(ideas) || ideas.length === 0) throw new Error('No ideas returned');
+        lastIdeas = { ideas, niche, brand, extra };
+        renderIdeas(ideas);
+      } catch (err) {
+        showError('Failed to generate ideas: ' + err.message);
+      } finally {
+        document.getElementById('suggestBtn').disabled = false;
+        document.getElementById('progressCard').classList.remove('visible');
+      }
+    }
+
+    function renderIdeas(ideas) {
+      const tbody = document.getElementById('ideasBody');
+      tbody.innerHTML = ideas.map((idea, i) => `
+        <tr>
+          <td><strong>${escapeHtml(idea.name)}</strong></td>
+          <td>${escapeHtml(idea.what)}</td>
+          <td style="font-size:13px;color:var(--color-body-text);">${escapeHtml(idea.why)}</td>
+          <td><button class="build-btn" data-idx="${i}">Build this →</button></td>
+        </tr>
+      `).join('');
+      tbody.querySelectorAll('.build-btn').forEach(btn => {
+        btn.addEventListener('click', () => buildCalculator(parseInt(btn.dataset.idx)));
+      });
+      document.getElementById('ideasSection').classList.add('visible');
+      document.getElementById('ideasSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function slugify(text) {
+      return String(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50);
+    }
+
+    async function buildCalculator(ideaIdx) {
+      if (!lastIdeas) return;
+      const idea = lastIdeas.ideas[ideaIdx];
+      const apiKey = getKey();
+      if (!apiKey) { showError('API key missing — please re-enter.'); return; }
+
+      // Disable all build buttons during generation
+      document.querySelectorAll('.build-btn').forEach(b => b.disabled = true);
+      document.getElementById('builtSection').classList.remove('visible');
+      document.getElementById('progressCard').classList.add('visible');
+      setProgress(`Building "${idea.name}"...`, 'Claude is generating the HTML, CSS, and JavaScript. This takes 20-40 seconds.', 50);
+
+      const systemPrompt = `You are a senior front-end developer and SEO expert building a calculator page for a business in this niche: "${lastIdeas.niche}".${lastIdeas.brand ? ` The brand is "${lastIdeas.brand}".` : ''}${lastIdeas.extra ? ` Extra context: ${lastIdeas.extra}` : ''}
+
+Build a COMPLETE, WORKING, single-file HTML page with this calculator: "${idea.name}" — ${idea.what}.
+
+CRITICAL REQUIREMENTS:
+- Output ONLY the HTML code, nothing else. No prose, no markdown code fences, no explanation.
+- Single self-contained .html file. CSS in <style> tag in <head>. JS in <script> before </body>.
+- Zero external dependencies. No jQuery, no CDN links, no Google Fonts (use system font stack).
+- Mobile-responsive. Inputs stack vertically on small screens.
+- SEO-optimized: keyword-rich <title>, meta description, H1 with primary keyword.
+- Content section ABOVE calculator: 150-250 words establishing context and including the target keyword naturally.
+- Working interactive calculator: clear input labels, real-time or button-triggered calculation, results displayed with helpful context (not just a number).
+- Input validation (required, no negatives where it doesn't make sense).
+- Content section BELOW calculator: 200-400 words explaining how to use it and how the calculation works. Builds topical depth for SEO.
+- FAQ section with 4-6 Q&As and JSON-LD FAQPage schema in a <script type="application/ld+json"> tag.
+- Clean modern design: neutral grays + one accent color (use #3b82f6 blue), card layout with subtle shadows, max-width 720px content area, proper padding.
+- Print-friendly.
+- Accessible (proper labels, focus states, sufficient contrast).
+
+Generate the complete HTML now. Start with <!DOCTYPE html> and end with </html>. Nothing else.`;
+
+      try {
+        const text = await callClaude(apiKey, systemPrompt, `Build the "${idea.name}" calculator page now.`, 8192);
+        // Extract HTML if wrapped in code fence
+        let html = text.trim();
+        const fenceMatch = html.match(/```(?:html)?\s*\n?([\s\S]*?)\n?```/);
+        if (fenceMatch) html = fenceMatch[1];
+        if (!html.toLowerCase().includes('<!doctype') && !html.toLowerCase().includes('<html')) {
+          throw new Error('Claude did not return valid HTML');
+        }
+        lastBuiltCode = html;
+        lastBuiltSlug = slugify(idea.name);
+        renderBuiltCalculator(idea.name, html);
+      } catch (err) {
+        showError('Failed to build calculator: ' + err.message);
+      } finally {
+        document.querySelectorAll('.build-btn').forEach(b => b.disabled = false);
+        document.getElementById('progressCard').classList.remove('visible');
+      }
+    }
+
+    function renderBuiltCalculator(name, html) {
+      document.getElementById('builtTitle').textContent = `Your ${name}`;
+      const iframe = document.getElementById('previewFrame');
+      iframe.srcdoc = html;
+      document.getElementById('codeBlock').textContent = html;
+      document.getElementById('codeBlockWrap').style.display = 'none';
+      document.getElementById('builtSection').classList.add('visible');
+      document.getElementById('builtSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function downloadHTML() {
+      if (!lastBuiltCode) return;
+      const blob = new Blob([lastBuiltCode], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${lastBuiltSlug || 'calculator'}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function copyCode() {
+      if (!lastBuiltCode) return;
+      navigator.clipboard.writeText(lastBuiltCode).then(() => {
+        const btn = document.getElementById('copyCodeBtn');
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      });
+    }
+
+    function toggleCodeView() {
+      const wrap = document.getElementById('codeBlockWrap');
+      wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>
