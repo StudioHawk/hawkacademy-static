@@ -168,8 +168,8 @@
   <section class="tool-hero">
     <div class="container">
       <div class="hero__label">Free Tool · No Sign-up</div>
-      <h1>Build a <span>Calculator</span> for Your Website</h1>
-      <p>Tell us your niche. We'll give you a ready-to-paste prompt for ChatGPT, Claude, or Gemini — it builds you a working calculator you can drop onto your site.</p>
+      <h1>Get a <span>Calculator</span> for Your Website</h1>
+      <p>Your customers type things like "how much does a plumber cost" into Google every day. A little calculator on your site answers that question — and gets you found on Google. Here's how to add one in 10 minutes. No tech skills needed.</p>
     </div>
   </section>
 
@@ -177,9 +177,55 @@
   <section class="tool-body">
     <div class="container">
 
+      <!-- EDUCATIONAL INTRO: what is it / why / how -->
+      <div class="tool-card" style="text-align:left;">
+        <h3 style="font-size:22px;">First — what's a "calculator page"?</h3>
+        <p style="font-size:15px; line-height:1.7; color:var(--color-body-text); margin-bottom:16px;">It's a little interactive tool on your website. The customer types in a few things (the size of their job, their budget, their zip code) and it gives them an answer — a price estimate, a quote, a timeline, or a comparison.</p>
+        <p style="font-size:15px; line-height:1.7; color:var(--color-body-text); margin-bottom:20px;">Think of a tradie site with an "emergency callout cost calculator," a mortgage broker with a "repayments calculator," a gym with a "personal training cost calculator." Simple. Useful. Takes 2 minutes to use.</p>
+
+        <h3 style="font-size:18px; margin-top:8px;">Why bother putting one on your site?</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-top:16px;">
+          <div style="background:rgba(1,255,255,0.05); border:1px solid rgba(1,255,255,0.15); border-radius:8px; padding:16px;">
+            <div style="font-size:24px; margin-bottom:6px;">📈</div>
+            <strong style="color:var(--color-dark-text); display:block; margin-bottom:4px;">Google traffic</strong>
+            <span style="font-size:13px; color:var(--color-body-text); line-height:1.5;">People search "how much does X cost" every day. Calculator pages rank for those searches and bring you free traffic.</span>
+          </div>
+          <div style="background:rgba(173,186,255,0.08); border:1px solid rgba(173,186,255,0.2); border-radius:8px; padding:16px;">
+            <div style="font-size:24px; margin-bottom:6px;">📞</div>
+            <strong style="color:var(--color-dark-text); display:block; margin-bottom:4px;">More enquiries</strong>
+            <span style="font-size:13px; color:var(--color-body-text); line-height:1.5;">Once someone sees a rough number, they're far more likely to pick up the phone or fill in your form.</span>
+          </div>
+          <div style="background:rgba(254,207,64,0.08); border:1px solid rgba(254,207,64,0.25); border-radius:8px; padding:16px;">
+            <div style="font-size:24px; margin-bottom:6px;">🤝</div>
+            <strong style="color:var(--color-dark-text); display:block; margin-bottom:4px;">Trust &amp; authority</strong>
+            <span style="font-size:13px; color:var(--color-body-text); line-height:1.5;">Showing real numbers makes you look like the expert. Customers pick the business that's clear and upfront.</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:18px; margin-top:32px;">Pick your level — 3 ways to build one</h3>
+        <p style="font-size:14px; color:var(--color-body-text); margin-bottom:16px;">Scroll down and pick whichever feels easiest.</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+          <a href="#option-beginner" style="text-decoration:none; background:var(--color-white); border:2px solid var(--color-cyan); border-radius:10px; padding:16px; display:block;">
+            <div style="font-size:10px; letter-spacing:1.5px; color:var(--color-cyan); font-weight:800; margin-bottom:6px;">BEGINNER · 10 MIN</div>
+            <strong style="color:var(--color-dark-text); display:block; font-size:15px; margin-bottom:4px;">1. Copy a prompt into ChatGPT</strong>
+            <span style="font-size:12px; color:var(--color-body-text); line-height:1.5;">We write the prompt, you paste it, ChatGPT builds the calculator.</span>
+          </a>
+          <a href="#option-intermediate" style="text-decoration:none; background:var(--color-white); border:1px solid #D5D3CF; border-radius:10px; padding:16px; display:block;">
+            <div style="font-size:10px; letter-spacing:1.5px; color:var(--color-lavender); font-weight:800; margin-bottom:6px;">INTERMEDIATE · 15 MIN</div>
+            <strong style="color:var(--color-dark-text); display:block; font-size:15px; margin-bottom:4px;">2. Use a Claude skill</strong>
+            <span style="font-size:12px; color:var(--color-body-text); line-height:1.5;">Free downloadable skill. Drop it into a Claude Project and run.</span>
+          </a>
+          <a href="#option-advanced" style="text-decoration:none; background:var(--color-white); border:1px solid #D5D3CF; border-radius:10px; padding:16px; display:block;">
+            <div style="font-size:10px; letter-spacing:1.5px; color:var(--color-yellow); font-weight:800; margin-bottom:6px;">ADVANCED · 5 MIN</div>
+            <strong style="color:var(--color-dark-text); display:block; font-size:15px; margin-bottom:4px;">3. Auto-build with API key</strong>
+            <span style="font-size:12px; color:var(--color-body-text); line-height:1.5;">We build the calculator for you. Needs an Anthropic API key (~$0.10 per build).</span>
+          </a>
+        </div>
+      </div>
+
       <!-- OPTION 1: PROMPT GENERATOR (the easy path) -->
-      <div class="tool-card" id="promptCard" style="border: 2px solid var(--color-cyan); position: relative;">
-        <span style="position:absolute; top:-12px; left:24px; background: var(--color-cyan); color: var(--color-black); font-size: 11px; font-weight:800; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 4px; text-transform: uppercase;">Start here</span>
+      <div class="tool-card" id="option-beginner" style="border: 2px solid var(--color-cyan); position: relative; scroll-margin-top: 80px;">
+        <span style="position:absolute; top:-12px; left:24px; background: var(--color-cyan); color: var(--color-black); font-size: 11px; font-weight:800; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 4px; text-transform: uppercase;">Beginner · Start Here</span>
         <h3 style="margin-top:4px;">1. Get your ChatGPT prompt</h3>
         <p>Type your niche below. We'll write a prompt you copy-paste into ChatGPT (or Claude). The AI builds you a complete working calculator — code, styling, everything — that you drop onto your website.</p>
 
@@ -222,11 +268,25 @@
 
       <div style="text-align:center; margin: 40px 0 24px; color: var(--color-body-text); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">— or —</div>
 
-      <!-- OPTION 2: AUTOMATED BUILDER (advanced) -->
-      <div class="tool-card" id="keysCard" style="opacity: 0.92;">
+      <!-- OPTION 2: CLAUDE SKILL (intermediate) -->
+      <div class="tool-card" id="option-intermediate" style="scroll-margin-top: 80px;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 4px;">
-          <h3 style="margin:0;">2. Build it automatically (advanced)</h3>
-          <span style="background: rgba(173,186,255,0.15); color: var(--color-lavender); font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">Pro</span>
+          <h3 style="margin:0;">2. Use the Claude skill (intermediate)</h3>
+          <span style="background: rgba(173,186,255,0.15); color: var(--color-lavender); font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">Middle</span>
+        </div>
+        <p>Already use Claude (claude.ai or Claude Desktop)? Download our pre-built "Calculator Page Builder" skill. Drop it into a Claude Project, tell it your niche, and Claude walks you through the whole build — no prompt writing needed. Free. Works with any paid Claude account.</p>
+        <a href="../claude-seo-skills/calculator-page-builder.html" style="display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:var(--radius-pill); background:var(--color-dark-text); color:var(--color-white); font-family: var(--font-body); font-size:14px; font-weight:600; text-decoration:none; transition:all 0.2s; margin-top:8px;">
+          Download the Claude skill →
+        </a>
+      </div>
+
+      <div style="text-align:center; margin: 40px 0 24px; color: var(--color-body-text); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">— or —</div>
+
+      <!-- OPTION 3: AUTOMATED BUILDER (advanced) -->
+      <div class="tool-card" id="option-advanced" style="opacity: 0.92; scroll-margin-top: 80px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 4px;">
+          <h3 style="margin:0;">3. Build it automatically (advanced)</h3>
+          <span style="background: rgba(254,207,64,0.15); color: #c89a0e; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">Pro</span>
         </div>
         <p>Skip the copy-paste. Add your Anthropic API key and this tool builds the calculator for you — generates the file, lets you preview it, and downloads it ready to upload. Your key never leaves your browser. Costs ~$0.05–$0.15 per build on your own account.</p>
 
