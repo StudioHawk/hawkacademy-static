@@ -167,9 +167,9 @@
   <!-- HERO -->
   <section class="tool-hero">
     <div class="container">
-      <div class="hero__label">Free Tool · Bring Your Own Keys</div>
-      <h1>Calculator Page <span>Builder</span></h1>
-      <p>Calculator pages are a cheat code for topical authority. Tell us your niche, pick from 5 ideas, and we'll build you a complete working calculator page (HTML + CSS + JS) ready to upload to your site.</p>
+      <div class="hero__label">Free Tool · No Sign-up</div>
+      <h1>Build a <span>Calculator</span> for Your Website</h1>
+      <p>Tell us your niche. We'll give you a ready-to-paste prompt for ChatGPT, Claude, or Gemini — it builds you a working calculator you can drop onto your site.</p>
     </div>
   </section>
 
@@ -177,10 +177,58 @@
   <section class="tool-body">
     <div class="container">
 
-      <!-- API KEY -->
-      <div class="tool-card" id="keysCard">
-        <h3>Anthropic API key</h3>
-        <p>This tool uses Claude (via your own API key) to generate the calculator code. Your key never leaves your browser. A full build costs around $0.05–$0.15 on your account.</p>
+      <!-- OPTION 1: PROMPT GENERATOR (the easy path) -->
+      <div class="tool-card" id="promptCard" style="border: 2px solid var(--color-cyan); position: relative;">
+        <span style="position:absolute; top:-12px; left:24px; background: var(--color-cyan); color: var(--color-black); font-size: 11px; font-weight:800; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 4px; text-transform: uppercase;">Start here</span>
+        <h3 style="margin-top:4px;">1. Get your ChatGPT prompt</h3>
+        <p>Type your niche below. We'll write a prompt you copy-paste into ChatGPT (or Claude). The AI builds you a complete working calculator — code, styling, everything — that you drop onto your website.</p>
+
+        <div class="form-group">
+          <label for="simpleNiche">Your niche / business type</label>
+          <input type="text" id="simpleNiche" placeholder="e.g. plumber, mortgage broker, accountant, fitness coach" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="simpleBrand">Your business name <span style="color:var(--color-body-text);font-weight:400;">(optional)</span></label>
+          <input type="text" id="simpleBrand" placeholder="e.g. Smith's Plumbing" autocomplete="organization">
+        </div>
+
+        <div class="form-group">
+          <label for="simpleLocation">Location <span style="color:var(--color-body-text);font-weight:400;">(optional)</span></label>
+          <input type="text" id="simpleLocation" placeholder="e.g. Melbourne, Sydney">
+        </div>
+
+        <button class="tool-submit" id="buildPromptBtn" onclick="buildPrompt()">Generate My Prompt</button>
+
+        <div id="promptOutput" style="display:none; margin-top:24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <strong style="color:var(--color-dark-text); font-size:14px;">Your ready-to-use prompt:</strong>
+            <button onclick="copyPrompt()" id="copyPromptBtn" style="background: var(--color-dark-text); color: var(--color-white); border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: var(--font-body);">Copy prompt</button>
+          </div>
+          <textarea id="promptText" readonly style="width:100%; min-height: 280px; padding: 16px; border-radius: 8px; border: 1px solid #D5D3CF; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 13px; line-height: 1.6; color: var(--color-dark-text); background: #FAF9F7; resize: vertical;"></textarea>
+
+          <div style="background: rgba(1,255,255,0.06); border: 1px solid rgba(1,255,255,0.2); border-radius: 8px; padding: 16px 18px; margin-top: 16px; font-size: 14px; line-height: 1.7; color: var(--color-dark-text);">
+            <strong>How to use it:</strong>
+            <ol style="padding-left: 20px; margin-top: 8px;">
+              <li>Copy the prompt above</li>
+              <li>Open <a href="https://chat.openai.com" target="_blank" rel="noopener" style="color: var(--color-lavender); font-weight: 600;">ChatGPT</a> or <a href="https://claude.ai" target="_blank" rel="noopener" style="color: var(--color-lavender); font-weight: 600;">Claude</a></li>
+              <li>Paste and send</li>
+              <li>Copy the HTML file it gives you</li>
+              <li>Save it as <code>calculator.html</code> and upload to your site (or paste the code into a page builder like WordPress or Webflow)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin: 40px 0 24px; color: var(--color-body-text); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">— or —</div>
+
+      <!-- OPTION 2: AUTOMATED BUILDER (advanced) -->
+      <div class="tool-card" id="keysCard" style="opacity: 0.92;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 4px;">
+          <h3 style="margin:0;">2. Build it automatically (advanced)</h3>
+          <span style="background: rgba(173,186,255,0.15); color: var(--color-lavender); font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">Pro</span>
+        </div>
+        <p>Skip the copy-paste. Add your Anthropic API key and this tool builds the calculator for you — generates the file, lets you preview it, and downloads it ready to upload. Your key never leaves your browser. Costs ~$0.05–$0.15 per build on your own account.</p>
 
         <details class="explainer">
           <summary>New to API keys? Read this first (2 min)</summary>
@@ -337,6 +385,75 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+    // ============================================================
+    //  OPTION 1 — SIMPLE PROMPT GENERATOR (copy-paste into ChatGPT)
+    // ============================================================
+    function buildPrompt() {
+      const niche = document.getElementById('simpleNiche').value.trim();
+      const brand = document.getElementById('simpleBrand').value.trim();
+      const location = document.getElementById('simpleLocation').value.trim();
+      if (!niche) { alert('Please enter your niche or business type.'); return; }
+
+      const brandLine = brand ? `Business name: ${brand}` : '';
+      const locationLine = location ? `Location: ${location}` : '';
+      const contextBlock = [brandLine, locationLine].filter(Boolean).join('\n');
+
+      const prompt = `You are a senior web developer. Build me a working calculator page I can put on my website.
+
+My business: ${niche}
+${contextBlock}
+
+Step 1 — Pick the right calculator for my niche
+Suggest ONE calculator that would genuinely help my customers and drive them to contact me. It should solve a real buying question they have before they pick a business like mine (for example: pricing estimate, cost comparison, quantity needed, timeline, ROI, budget planner). Tell me which one you chose and why in one sentence.
+
+Step 2 — Build the page
+Output ONE complete self-contained HTML file that contains everything needed to run:
+- CSS inside a <style> tag in <head>
+- JavaScript inside a <script> tag before </body>
+- No external libraries, no CDNs, no fonts that need downloading — use system fonts
+- Mobile-first responsive design, works on phones and desktops
+- Clean modern design: plenty of whitespace, rounded corners, one accent color, readable body text
+
+The calculator must:
+- Have clear input labels and sensible defaults
+- Show the result the instant an input changes (no "calculate" button needed — live update)
+- Display the result prominently in a results card with a short plain-English explanation
+- Include a "What this means" paragraph under the result explaining the number in context
+- Include a soft CTA at the bottom: "Want help with your [niche] project? Get a quote →" linking to "#contact" (I'll wire it up later)
+
+SEO basics:
+- <title> tag optimised for the calculator topic + my location if provided
+- <meta name="description"> one sentence describing what the calculator does
+- <h1> using the calculator name + my location (if provided)
+- Include 3-4 short paragraphs ABOVE the calculator explaining what it does, who it's for, and what inputs the user will provide
+- Include an FAQ section BELOW the calculator with 4-5 questions relevant to my niche
+
+Step 3 — Deliver
+Give me the full HTML file in one code block I can copy. Then in 3 bullet points tell me:
+1) How to upload it (save as calculator.html, drop into my site, or paste into WordPress/Webflow page builder)
+2) Which keyword this page targets
+3) One internal link I should add on my homepage pointing to this calculator
+
+Go.`;
+
+      document.getElementById('promptText').value = prompt;
+      document.getElementById('promptOutput').style.display = 'block';
+      document.getElementById('promptOutput').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function copyPrompt() {
+      const ta = document.getElementById('promptText');
+      ta.select();
+      navigator.clipboard.writeText(ta.value).then(() => {
+        const btn = document.getElementById('copyPromptBtn');
+        const original = btn.textContent;
+        btn.textContent = '✓ Copied';
+        btn.style.background = '#10b981';
+        setTimeout(() => { btn.textContent = original; btn.style.background = ''; }, 2000);
+      });
+    }
+  </script>
   <script>
     // ============================================
     //  CALCULATOR PAGE BUILDER — BYOK EDITION
