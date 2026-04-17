@@ -124,15 +124,15 @@
     }
     .chart-section h3 {
       font-family: var(--font-heading); font-size: 20px; font-weight: 600;
-      margin-bottom: 24px; text-align: center; color: var(--color-dark-text);
+      margin-bottom: 44px; text-align: center; color: var(--color-dark-text);
     }
     .bar-chart {
-      display: flex; gap: 32px; align-items: flex-end; justify-content: center;
-      height: 240px; max-width: 400px; margin: 0 auto;
+      display: flex; gap: 56px; align-items: flex-end; justify-content: center;
+      height: 240px; max-width: 440px; margin: 0 auto;
     }
-    .bar-col { display: flex; flex-direction: column; align-items: center; gap: 12px; flex: 1; }
+    .bar-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
     .bar {
-      width: 100%; max-width: 130px; border-radius: var(--radius-card) var(--radius-card) 0 0;
+      width: 120px; border-radius: var(--radius-card) var(--radius-card) 0 0;
       transition: height 0.8s ease; position: relative;
     }
     .bar.ad { background: #ef4444; }
@@ -183,8 +183,8 @@
     .tool-cta-btn:hover { opacity: 0.85; }
 
     @media (max-width: 600px) {
-      .bar-chart { gap: 20px; max-width: 320px; }
-      .bar { max-width: 100px; }
+      .bar-chart { gap: 32px; max-width: 320px; }
+      .bar { width: 90px; }
       .result-cards { grid-template-columns: 1fr; }
     }
   </style>
