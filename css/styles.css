@@ -331,6 +331,53 @@ h5 {
   color: var(--color-lavender) !important;
 }
 
+/* Mobile nav - collapsible group (Resources) */
+.mobile-nav__group {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav__toggle {
+  background: transparent;
+  border: 0;
+  color: var(--color-white);
+  font: inherit;
+  font-size: 18px;
+  padding: 16px 0;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mobile-nav__toggle-caret {
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.mobile-nav__group[aria-expanded="true"] .mobile-nav__toggle-caret {
+  transform: rotate(180deg);
+}
+
+.mobile-nav__submenu {
+  display: none;
+  flex-direction: column;
+  padding-bottom: 8px;
+}
+
+.mobile-nav__group[aria-expanded="true"] .mobile-nav__submenu {
+  display: flex;
+}
+
+.mobile-nav__group .mobile-nav__sub {
+  border-bottom: 0 !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
 /* Hamburger */
 .hamburger {
   display: none;
@@ -658,6 +705,47 @@ h5 {
   z-index: 10;
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+/* =============================================
+   AWARDS GRID (About page)
+   ============================================= */
+.awards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px 48px;
+  row-gap: 32px;
+}
+
+.awards-grid img {
+  height: 80px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 768px) {
+  .awards-grid {
+    gap: 24px 28px;
+  }
+  .awards-grid img {
+    height: 56px;
+  }
+  .awards-grid__hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .awards-grid {
+    gap: 20px 20px;
+  }
+  .awards-grid img {
+    height: 50px;
+  }
 }
 
 /* =============================================

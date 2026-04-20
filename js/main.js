@@ -8,6 +8,53 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('.hamburger');
   const mobileNav = document.querySelector('.mobile-nav');
 
+  // Wrap Resources + its sub-links into a collapsible group.
+  // Works from the existing flat markup so every page gets the new behavior
+  // without editing 46 HTML files.
+  if (mobileNav) {
+    const subs = mobileNav.querySelectorAll('.mobile-nav__sub');
+    if (subs.length) {
+      const firstSub = subs[0];
+      let resourcesLink = firstSub.previousElementSibling;
+      while (resourcesLink && !/resources\.html/i.test(resourcesLink.getAttribute('href') || '')) {
+        resourcesLink = resourcesLink.previousElementSibling;
+      }
+      if (resourcesLink) {
+        const group = document.createElement('div');
+        group.className = 'mobile-nav__group';
+        group.setAttribute('aria-expanded', 'false');
+
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'mobile-nav__toggle';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.innerHTML = 'Resources<svg class="mobile-nav__toggle-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+
+        const submenu = document.createElement('div');
+        submenu.className = 'mobile-nav__submenu';
+
+        const allLink = document.createElement('a');
+        allLink.href = resourcesLink.getAttribute('href');
+        allLink.className = 'mobile-nav__sub';
+        allLink.textContent = 'All Resources';
+        submenu.appendChild(allLink);
+        subs.forEach(sub => submenu.appendChild(sub));
+
+        resourcesLink.parentNode.insertBefore(group, resourcesLink);
+        group.appendChild(toggle);
+        group.appendChild(submenu);
+        resourcesLink.remove();
+
+        toggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = group.getAttribute('aria-expanded') === 'true';
+          group.setAttribute('aria-expanded', open ? 'false' : 'true');
+          toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        });
+      }
+    }
+  }
+
   if (hamburger && mobileNav) {
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
