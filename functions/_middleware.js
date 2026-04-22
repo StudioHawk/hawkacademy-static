@@ -1,12 +1,13 @@
 // ============================================================
-// hawkacademy.co — Workshop page A/B testing middleware
+// hawkacademy.co — /workshop A/B/C/D testing middleware
 // Runs on Cloudflare Pages Functions at the edge.
 //
-// Splits /workshop traffic between workshop.html (A) and
-// workshop-b.html (B). Assignment is sticky via cookie.
+// Splits /workshop traffic between multiple variants via weighted
+// sampling. Assignment is sticky via cookie.
 //
-// To adjust traffic: change CONFIG.SPLIT (0 = all A, 1 = all B)
-// To force a variant for testing: append ?ab=a or ?ab=b
+// To adjust traffic: change WEIGHTS (any non-negative numbers,
+//   they're normalised). Set a variant's weight to 0 to exclude it.
+// To force a variant for testing: append ?ab=a (or b/c/d).
 // ============================================================
 
 const CONFIG = {
@@ -14,8 +15,13 @@ const CONFIG = {
   VARIANTS: {
     a: '/workshop.html',
     b: '/workshop-b.html',
+    c: '/workshop-c.html',
+    d: '/workshop-d.html',
   },
-  SPLIT: 0,          // probability of being assigned variant B (0 = all A, 1 = all B)
+  // Relative traffic weights. All traffic currently goes to A.
+  // To split evenly across 4: { a: 1, b: 1, c: 1, d: 1 }
+  // To split 50/50 A vs C:    { a: 1, b: 0, c: 1, d: 0 }
+  WEIGHTS: { a: 1, b: 0, c: 0, d: 0 },
   COOKIE_DAYS: 30,
 };
 
@@ -33,6 +39,31 @@ function buildSetCookie(name, value, days) {
   return `${name}=${value}; Path=/; Expires=${expires}; SameSite=Lax`;
 }
 
+/**
+ * Pick a variant key based on the weights map. Returns null if all
+ * weights are zero (caller should fall back to 'a').
+ */
+function pickWeightedVariant(weights) {
+  const entries = Object.entries(weights).filter(([, w]) => w > 0);
+  const total = entries.reduce((sum, [, w]) => sum + w, 0);
+  if (total <= 0) return null;
+  let r = Math.random() * total;
+  for (const [key, w] of entries) {
+    r -= w;
+    if (r <= 0) return key;
+  }
+  return entries[entries.length - 1][0];
+}
+
+/**
+ * Count how many variants have non-zero weight. If only one, we can
+ * safely ignore stale cookies (treat this as a "force single variant"
+ * mode, same as the old SPLIT=0 behaviour).
+ */
+function activeVariantCount(weights) {
+  return Object.values(weights).filter((w) => w > 0).length;
+}
+
 async function workshopAbMiddleware(context) {
   const url = new URL(context.request.url);
 
@@ -40,24 +71,25 @@ async function workshopAbMiddleware(context) {
     return context.next();
   }
 
-  // Allow ?ab=a or ?ab=b override for manual testing
+  // Allow ?ab=a|b|c|d override for manual testing
   const forced = url.searchParams.get('ab');
+  const cookieVariant = getCookie(context.request, CONFIG.COOKIE_NAME);
+  const activeCount = activeVariantCount(CONFIG.WEIGHTS);
+
   let variant;
   let isNewAssignment = false;
 
   if (forced && CONFIG.VARIANTS[forced]) {
     variant = forced;
-  } else if (CONFIG.SPLIT === 0) {
-    // All traffic forced to A, ignore any stale cookie
-    variant = 'a';
-  } else if (CONFIG.SPLIT === 1) {
-    variant = 'b';
+  } else if (activeCount <= 1) {
+    // Only one variant is live — force everyone to it, ignore stale cookies
+    variant = pickWeightedVariant(CONFIG.WEIGHTS) || 'a';
+  } else if (cookieVariant && CONFIG.VARIANTS[cookieVariant] && CONFIG.WEIGHTS[cookieVariant] > 0) {
+    // Honour existing assignment if it's still in the active pool
+    variant = cookieVariant;
   } else {
-    variant = getCookie(context.request, CONFIG.COOKIE_NAME);
-    if (!variant || !CONFIG.VARIANTS[variant]) {
-      variant = Math.random() < CONFIG.SPLIT ? 'b' : 'a';
-      isNewAssignment = true;
-    }
+    variant = pickWeightedVariant(CONFIG.WEIGHTS) || 'a';
+    isNewAssignment = true;
   }
 
   const variantPath = CONFIG.VARIANTS[variant];
