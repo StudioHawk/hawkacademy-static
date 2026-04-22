@@ -15,7 +15,7 @@ const CONFIG = {
     a: '/workshop.html',
     b: '/workshop-b.html',
   },
-  SPLIT: 0.5,        // probability of being assigned variant B
+  SPLIT: 0,          // probability of being assigned variant B (0 = all A, 1 = all B)
   COOKIE_DAYS: 30,
 };
 
@@ -42,12 +42,22 @@ async function workshopAbMiddleware(context) {
 
   // Allow ?ab=a or ?ab=b override for manual testing
   const forced = url.searchParams.get('ab');
-  let variant = forced && CONFIG.VARIANTS[forced] ? forced : getCookie(context.request, CONFIG.COOKIE_NAME);
+  let variant;
   let isNewAssignment = false;
 
-  if (!variant || !CONFIG.VARIANTS[variant]) {
-    variant = Math.random() < CONFIG.SPLIT ? 'b' : 'a';
-    isNewAssignment = true;
+  if (forced && CONFIG.VARIANTS[forced]) {
+    variant = forced;
+  } else if (CONFIG.SPLIT === 0) {
+    // All traffic forced to A, ignore any stale cookie
+    variant = 'a';
+  } else if (CONFIG.SPLIT === 1) {
+    variant = 'b';
+  } else {
+    variant = getCookie(context.request, CONFIG.COOKIE_NAME);
+    if (!variant || !CONFIG.VARIANTS[variant]) {
+      variant = Math.random() < CONFIG.SPLIT ? 'b' : 'a';
+      isNewAssignment = true;
+    }
   }
 
   const variantPath = CONFIG.VARIANTS[variant];
