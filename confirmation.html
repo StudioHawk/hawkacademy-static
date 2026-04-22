@@ -463,12 +463,13 @@
                     }
 
                     overlay.addEventListener('click', function () {
-                        player.setMuted(false).then(function () {
-                            player.play().catch(function () { /* already playing */ });
-                            hideOverlay();
-                        }).catch(function () {
-                            hideOverlay();
-                        });
+                        // Restart from the beginning, unmute, and play
+                        Promise.resolve()
+                            .then(function () { return player.setCurrentTime(0); })
+                            .then(function () { return player.setMuted(false); })
+                            .then(function () { return player.play(); })
+                            .catch(function () { /* autoplay might be blocked; still hide overlay */ })
+                            .then(hideOverlay);
                     });
 
                     // If the user unmutes directly from the Vimeo controls, hide the overlay too
