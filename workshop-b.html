@@ -914,11 +914,11 @@
 
         /* ===== MOBILE NAV BAR ===== */
         @media (max-width: 600px) {
-            .nav { padding: 8px 12px; }
-            .nav-bar { padding: 10px 16px; border-radius: 40px; }
-            .nav-logo img { height: 26px; }
-            .nav-center { display: none; }
-            .nav-bar .btn { font-size: 12px !important; padding: 8px 20px !important; }
+            /* Hide the floating nav on mobile so the hero/video is visible immediately */
+            .nav { display: none; }
+            /* Pull hero up: drop the 100vh centering and shrink top padding so the
+               video enters the viewport without a big empty space at the top */
+            .hero { min-height: auto; padding: 32px 0 56px; align-items: flex-start; }
         }
         @media (min-width: 601px) and (max-width: 991px) {
             .nav-center span { font-size: 12px; }
