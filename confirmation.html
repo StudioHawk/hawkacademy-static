@@ -10,6 +10,22 @@
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "wcvlezlqhm");
     </script>
+        <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '882137468214985');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=882137468214985&ev=PageView&noscript=1"/></noscript>
+    <!-- End Facebook Pixel Code -->
     <title>Application Received | Hawk Academy Workshop</title>
     <meta name="description" content="Thanks for applying to the Hawk Academy Workshop. We'll review your application within 48 hours.">
     <meta name="robots" content="noindex, nofollow">
@@ -726,23 +742,30 @@
         });
 
         // ============================================================
-        // RETARGETING / CONVERSION EVENTS
-        // Fires ApplicationSubmitted on page load.
-        // Meta Pixel (fbq) and GA4 (gtag) calls no-op if not loaded yet.
-        // Safe to add the actual pixel scripts later.
+        // CONVERSION EVENTS
+        // Reads ?value=X&event_id=Y from URL (set by Typeform redirect).
+        // Fires Meta Lead + GA4 application_submitted with the value-based
+        // signal. event_id is passed as Meta eventID for server-side
+        // (Conversions API) deduplication. Skips firing if no value param,
+        // so direct hits to /confirmation don't spawn ghost conversions.
         // ============================================================
         (function fireEvents() {
             var params = new URLSearchParams(window.location.search);
             var city = (params.get('city') || 'unknown').toLowerCase();
+            var leadValue = parseFloat(params.get('value'));
+            var eventId = params.get('event_id');
 
-            // Meta Pixel
+            if (isNaN(leadValue)) return;
+
+            // Meta Pixel — eventID enables dedup with server-side CAPI
             if (typeof fbq !== 'undefined') {
+                var eventOpts = eventId ? { eventID: eventId } : {};
                 fbq('track', 'Lead', {
                     content_name: 'Workshop Application',
                     content_category: city,
-                    value: 3500,
+                    value: leadValue,
                     currency: 'AUD'
-                });
+                }, eventOpts);
             }
 
             // GA4 via gtag
@@ -750,7 +773,7 @@
                 gtag('event', 'application_submitted', {
                     event_category: 'application',
                     workshop_city: city,
-                    value: 3500,
+                    value: leadValue,
                     currency: 'AUD'
                 });
             }
@@ -760,7 +783,7 @@
                 window.dataLayer.push({
                     event: 'application_submitted',
                     workshop_city: city,
-                    value: 3500,
+                    value: leadValue,
                     currency: 'AUD'
                 });
             }
