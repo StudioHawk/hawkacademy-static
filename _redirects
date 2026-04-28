@@ -39,5 +39,10 @@
 /resources/skills/downloads/*  /claude-seo-skills/downloads/:splat  301
 /resources/skills/*  /claude-seo-skills/:splat  301
 
-# Blog → SEO Guides
+# Short URLs for video QR codes / lead magnets
+/skills/topical-authority-map  /claude-seo-skills/topical-authority-map  301
+/skills/topical-authority-map.html  /claude-seo-skills/topical-authority-map  301
+/skills/topical-authority-map.zip  /claude-seo-skills/downloads/topical-authority-map.zip  301
+
+# Blog -> SEO Guides
 /blog/*  /seo-guides/:splat  301

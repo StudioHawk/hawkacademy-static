@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Use the Topical Authority Map Skill | Hawk Academy</title>
+  <meta name="description" content="Step-by-step guide to running the free Topical Authority Map skill on your own niche. Install, run, and turn the output into a 12-week publishing plan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=20260428">
+  <link rel="stylesheet" href="../css/animations.css?v=20260428">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
+    .blog-hero {
+      background: var(--color-black);
+      padding: 120px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; top: 30px; right: 8%;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--color-yellow); opacity: 0.5;
+    }
+    .blog-hero::after {
+      content: ''; position: absolute; bottom: 30px; left: 5%;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--color-lavender); opacity: 0.3;
+    }
+    .blog-hero__tag {
+      display: inline-block; font-family: var(--font-body);
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(173,186,255,0.18); color: #7B8BE0;
+      margin-bottom: 20px;
+    }
+    .blog-hero h1 {
+      font-family: var(--font-heading); font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 600; color: var(--color-white);
+      line-height: 1.15; max-width: 720px; margin-bottom: 24px;
+    }
+    .blog-hero__meta {
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap; font-size: 14px; color: var(--color-light-body);
+    }
+    .blog-hero__author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .blog-hero__avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gradient-cta);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 14px; color: var(--color-black);
+    }
+    .blog-hero__author-name { font-weight: 600; color: var(--color-white); }
+    .blog-hero__dot { color: var(--color-light-body); }
+
+    .blog-layout {
+      background: var(--color-off-white);
+      padding: 60px 0 100px;
+    }
+    .blog-layout .container {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .blog-toc {
+      position: sticky; top: 100px;
+      padding: 24px 0;
+    }
+    .blog-toc__label {
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--color-light-body);
+      margin-bottom: 16px;
+    }
+    .blog-toc__list {
+      list-style: none;
+    }
+    .blog-toc__list li {
+      margin-bottom: 10px;
+    }
+    .blog-toc__list a {
+      font-size: 13px; color: var(--color-body-text);
+      line-height: 1.5; display: block;
+      padding-left: 12px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .blog-toc__list a:hover,
+    .blog-toc__list a.active {
+      color: var(--color-dark-text);
+      border-left-color: var(--color-lavender);
+    }
+
+    .blog-article {
+      background: var(--color-white);
+      border-radius: var(--radius-card);
+      padding: 48px 56px;
+      max-width: 760px;
+    }
+
+    .blog-tldr {
+      background: rgba(173,186,255,0.08);
+      border: 1px solid rgba(173,186,255,0.2);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .blog-tldr__label {
+      font-family: var(--font-heading);
+      font-size: 14px; font-weight: 700;
+      color: var(--color-lavender);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .blog-tldr ul { list-style: none; padding: 0; }
+    .blog-tldr li {
+      font-size: 15px; color: var(--color-body-text);
+      line-height: 1.7; padding-left: 20px;
+      position: relative; margin-bottom: 8px;
+    }
+    .blog-tldr li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-lavender);
+    }
+
+    .blog-article h2 {
+      font-family: var(--font-heading);
+      font-size: 26px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 48px 0 16px;
+      line-height: 1.2;
+    }
+    .blog-article h2:first-of-type { margin-top: 0; }
+    .blog-article h3 {
+      font-family: var(--font-heading);
+      font-size: 20px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 32px 0 12px;
+      line-height: 1.3;
+    }
+    .blog-article p {
+      font-size: 17px; line-height: 1.8;
+      color: var(--color-body-text);
+      margin-bottom: 20px;
+    }
+    .blog-article a {
+      color: var(--color-lavender);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .blog-article a:hover { color: var(--color-dark-text); }
+    .blog-article ul, .blog-article ol {
+      padding-left: 20px; margin-bottom: 20px;
+    }
+    .blog-article li {
+      font-size: 16px; line-height: 1.8;
+      color: var(--color-body-text);
+      margin-bottom: 8px;
+    }
+    .blog-article strong { color: var(--color-dark-text); }
+    .blog-article code {
+      background: var(--color-off-white);
+      padding: 2px 6px; border-radius: 4px;
+      font-size: 14px;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    }
+    .blog-article pre {
+      background: #111;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+    .blog-article pre code {
+      background: transparent;
+      color: var(--color-cyan);
+      padding: 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .blog-callout {
+      background: rgba(1,255,255,0.04);
+      border-left: 3px solid var(--color-cyan);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 24px 0 32px;
+    }
+    .blog-callout strong { color: var(--color-dark-text); }
+    .blog-callout p {
+      font-size: 15px; margin-bottom: 8px;
+    }
+
+    .blog-newsletter {
+      background: var(--color-black);
+      border-radius: var(--radius-card);
+      padding: 48px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .blog-newsletter h3 {
+      font-family: var(--font-heading);
+      font-size: 24px; font-weight: 600;
+      color: var(--color-white);
+      margin-bottom: 8px;
+    }
+    .blog-newsletter p {
+      color: var(--color-light-body);
+      font-size: 15px; margin-bottom: 24px;
+    }
+    .blog-newsletter a {
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: var(--radius-pill);
+      background: var(--gradient-cta);
+      color: var(--color-black);
+      font-family: var(--font-body);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+    }
+
+    @media (max-width: 1024px) {
+      .blog-layout .container { grid-template-columns: 1fr; }
+      .blog-toc { display: none; }
+      .blog-article { padding: 36px 28px; }
+    }
+    @media (max-width: 768px) {
+      .blog-hero { padding: 100px 0 48px; }
+      .blog-hero h1 { font-size: 28px; }
+      .blog-article { padding: 28px 20px; }
+      .blog-article h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="header__logo">
+        <img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy">
+      </a>
+      <nav class="header__nav">
+        <a href="../index.html">Home</a>
+        <a href="../whats-included.html">What's Included</a>
+        <a href="../about.html">About Us</a>
+        <div class="header__nav-item">
+          <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="header__dropdown">
+            <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../seo-tools.html">SEO Tools</a>
+            <a href="../seo-guides.html">SEO Guides</a>
+          </div>
+        </div>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
+        <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav">
+    <a href="../index.html">Home</a>
+    <a href="../whats-included.html">What's Included</a>
+    <a href="../about.html">About Us</a>
+    <a href="../resources.html">Resources</a>
+    <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
+    <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
+    <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
+  </div>
+
+  <!-- BLOG HERO -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-hero__tag">Claude Skill Guide</div>
+      <h1>How to use the Topical Authority Map skill</h1>
+      <div class="blog-hero__meta">
+        <div class="blog-hero__author">
+          <div class="blog-hero__avatar">HS</div>
+          <span class="blog-hero__author-name">Harry Sanders</span>
+        </div>
+        <span class="blog-hero__dot">28 April 2026</span>
+        <span class="blog-hero__dot">4 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG LAYOUT -->
+  <section class="blog-layout">
+    <div class="container">
+
+      <!-- TOC SIDEBAR -->
+      <aside class="blog-toc">
+        <div class="blog-toc__label">Contents</div>
+        <ul class="blog-toc__list">
+          <li><a href="#why">Why this skill exists</a></li>
+          <li><a href="#install">Install in 60 seconds</a></li>
+          <li><a href="#step1">Step 1: Pick your one lane</a></li>
+          <li><a href="#step2">Step 2: Run the skill</a></li>
+          <li><a href="#step3">Step 3: Read in the right order</a></li>
+          <li><a href="#step4">Step 4: Hand it to a writer</a></li>
+          <li><a href="#pitfalls">Common pitfalls</a></li>
+          <li><a href="#video">Watch the full walkthrough</a></li>
+        </ul>
+      </aside>
+
+      <!-- ARTICLE -->
+      <article class="blog-article">
+
+        <!-- TL;DR -->
+        <div class="blog-tldr">
+          <div class="blog-tldr__label">TL;DR</div>
+          <ul>
+            <li>The Topical Authority Map skill builds a 4-cluster site architecture (Core, AOR, Linking, Buyer Journey) plus a 12-week publishing order from any seed keyword.</li>
+            <li>Install once, run on every client. Free, no email gate, no API keys needed beyond your Claude account.</li>
+            <li>Read the output in this order: Core, AOR, Linking, Buyer Journey, Publishing Order. Hand the first 30 content briefs to a writer and start shipping by Monday.</li>
+          </ul>
+        </div>
+
+        <h2 id="why">Why this skill exists</h2>
+        <p>Most SEO tools sell you a topical map. The map they sell you is a keyword cluster. That is one quarter of what you actually need. The other three layers (linking, buyer journey, publishing order) are where the compounding actually happens, and they are the parts the tool was never going to do for you because they require strategy, not lists. The <a href="/claude-seo-skills/topical-authority-map">Topical Authority Map skill</a> does all four in one Claude run.</p>
+
+        <h2 id="install">Install in 60 seconds</h2>
+        <p>If you use Claude Code, drop the unzipped folder into your skills directory and Claude auto-loads it on the next prompt:</p>
+        <pre><code>mkdir -p ~/.claude/skills
+mv ~/Downloads/topical-authority-map ~/.claude/skills/</code></pre>
+        <p>If you use Claude Desktop or claude.ai, create a new Project called "Topical Authority Map", paste the body of <code>SKILL.md</code> into the Project's custom instructions, and upload the three files in the <code>references/</code> folder as Project Knowledge. Full instructions for both paths are in <code>INSTALL.md</code> inside the bundle.</p>
+
+        <h2 id="step1">Step 1: Pick your one lane</h2>
+        <p>Before you run the skill, write down one sentence. "Our website exists to be the authority on _____." If you cannot fill that in confidently, no tool is going to give you a topical authority strategy. The strategy starts with the lane.</p>
+        <p>For the furniture brand we used to test this skill, the lane was "premium Australian-made hardwood furniture for the modern home". Not "furniture". Not "Australian furniture". Premium, hardwood, Australian-made, for the modern home. That sentence excludes about 95 percent of competitors and lets the rest of the workflow get specific.</p>
+        <p>Write your sentence first. Bring it to the skill in Step 2.</p>
+
+        <h2 id="step2">Step 2: Run the skill</h2>
+        <p>Open Claude Code or your Claude Desktop Project. Type:</p>
+        <pre><code>Build a topical authority map for [your seed keyword]</code></pre>
+        <p>Claude will pause at five checkpoints. Each one is where the strategy gets calibrated to your business. Do not skip them.</p>
+        <ol>
+          <li><strong>Central entity confirmation.</strong> Claude proposes the one thing your site is allowed to be known for. You confirm or refine. (Bring the sentence from Step 1.)</li>
+          <li><strong>Source context plus persona.</strong> Five questions: business type, location and market, unique angle, customer language, and the "Knowledge Panel test" two-sentence description. Claude also proposes a credible writer persona based on competitor research.</li>
+          <li><strong>Attribute list and client situations.</strong> Claude does deep research (Knowledge Graph, top Google results, People Also Ask, Wikipedia, autocomplete) and presents the full list of every sub-topic, service, and adjacent entity that should appear on your site. You add anything missing.</li>
+          <li><strong>Merge and split decisions.</strong> Claude tells you which attributes get their own page (search volume above 100, or a core service you actively sell) and which get merged as H2 sections on bigger pages. You confirm or override.</li>
+          <li><strong>Buyer journey gaps.</strong> Claude tags every page TOFU (researching), MOFU (comparing), or BOFU (buying) and flags gaps. The most common gap is MOFU. That is where most conversions hide.</li>
+        </ol>
+        <p>A focused run takes 30 to 45 minutes. A thorough run with three to five competitors analysed in depth takes around 90 minutes. The output is the same shape either way.</p>
+
+        <h2 id="step3">Step 3: Read the output in the right order</h2>
+        <p>Claude produces two files: a spreadsheet with five tabs, and a strategy document. The spreadsheet is what you hand to your team. The strategy document is what you read first.</p>
+        <p>Read the spreadsheet in this order:</p>
+        <ol>
+          <li><strong>Core Pages.</strong> Confirm your money pages. These are the 12 to 20 pages a customer lands on when they are ready to buy. Most websites already have most of these. The skill flags gaps.</li>
+          <li><strong>AOR Pages.</strong> Read your authority gaps. These are the 60 to 80 supporting articles that route signals into your Core pages. Most websites are missing 80 percent of these.</li>
+          <li><strong>Linking Map.</strong> See where you should be routing signals. Every AOR article links into one or two Core pages. The skill specifies the anchor text for each link.</li>
+          <li><strong>Buyer Journey.</strong> Check which stages of your customer's decision are missing content. The MOFU layer is where most websites have the biggest gap, and where most conversions live.</li>
+          <li><strong>Publishing Order.</strong> 90 articles sequenced across 12 weeks. Start at row 1.</li>
+        </ol>
+
+        <h2 id="step4">Step 4: Hand it to a writer</h2>
+        <p>The Publishing Order tab has full content briefs for the first 30 articles (the AOR wave that publishes in weeks 1 to 6). Each brief includes target keyword, H2 sections, internal links out, entities to mention, information gain angles, word count, and CTA. Hand them to your writer or your agency on Monday morning.</p>
+        <p>Articles 31 to 90 use a lighter brief format: title, target keyword, URL slug, buyer stage, one-line scope, and which Core page each routes authority into. You can ask Claude to expand any of them into full briefs in a follow-up pass once the first wave is shipping.</p>
+        <p>Two to three articles per week is ideal during the AOR wave. The skill bundles 5 per week into the publishing order, but you can stretch that across two writers or pull it back to two per week if your capacity is tighter. The order matters more than the speed.</p>
+
+        <h2 id="pitfalls">Common pitfalls</h2>
+        <p><strong>Do not publish all 90 articles at once.</strong> Google cannot process user data fast enough, and the publishing pattern looks unnatural. Five to ten per week is the ceiling.</p>
+        <p><strong>Do not skip the AOR wave.</strong> If you go straight to optimising your Core pages without first shipping the supporting articles, the Core pages will not have the authority signals they need to climb. The compounding effect kicks in around week 6, and only because the AOR wave was live by then.</p>
+        <p><strong>Do not link from Core pages back to AOR articles.</strong> Authority should flow into the money pages, not out. Core pages link only to other Core pages or to a sidebar buying guide at most.</p>
+        <p><strong>Do not treat the map as static.</strong> Google's indexes change. Review and update the map quarterly. New People Also Ask questions appear, sub-topics merge or split, and the Buyer Journey shifts as AI search picks up more of the MOFU layer.</p>
+
+        <h2 id="video">Watch the full walkthrough</h2>
+        <p>If you want to see the four clusters explained in detail with the furniture brand case study and the 12-week publishing order broken down on screen, watch <a href="https://www.youtube.com/@HarrySanders">Topical Authority with Claude (Build the 4-Cluster Map for Free)</a> on the Harry Sanders channel. Then come back here and run the skill on your own niche tonight.</p>
+
+        <!-- Newsletter CTA -->
+        <div class="blog-newsletter">
+          <h3>Download the free skill</h3>
+          <p>The full Topical Authority Map skill, ready to install in Claude.</p>
+          <a href="/claude-seo-skills/topical-authority-map">Get the skill</a>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="../index.html" class="footer__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+          <p class="footer__description">Hawk Academy is created by StudioHawk, a global SEO agency trusted by the world's best-loved brands and fastest-growing startups.</p>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Follow us:</p>
+          <div class="footer__social-links">
+            <a href="https://www.linkedin.com/company/studiohawk/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.instagram.com/studiohawkseo/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.youtube.com/@StudioHawk" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__divider">
+      <div class="footer__nav">
+        <div class="footer__nav-left"><a href="../quiz.html">Quiz</a><a href="../contact.html">Contact</a></div>
+        <div class="footer__nav-right"><a href="https://www.studiohawk.com.au" target="_blank" rel="noopener">StudioHawk Australia</a><a href="https://www.studiohawk.co.uk" target="_blank" rel="noopener">StudioHawk UK</a><a href="https://www.studiohawk.com" target="_blank" rel="noopener">StudioHawk USA</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>Copyright &copy; 2026 Hawk Academy</span>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
