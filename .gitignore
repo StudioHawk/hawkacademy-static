@@ -1,2 +1,6 @@
 .claude/
 .wrangler/
+
+# Windows shell metadata — Google Drive sync drags these into the repo
+desktop.ini
+**/desktop.ini
