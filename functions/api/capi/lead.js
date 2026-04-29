@@ -65,6 +65,8 @@ export async function onRequestPost(context) {
 
     const eventId = formResponse.token;
     const answers = formResponse.answers || [];
+    const hiddenFields = formResponse.hidden || {};
+    const variant = hiddenFields.variant || null; // a / b / c / d / a-a / a-b
 
     // 3. Determine value from monthly revenue answer
     const revenueLabel = findChoiceLabelInMap(answers, REVENUE_VALUE_MAP);
@@ -108,6 +110,7 @@ export async function onRequestPost(context) {
           currency: "AUD",
           value,
           content_name: "Workshop Application",
+          ...(variant ? { variant } : {}),
         },
       }],
     };

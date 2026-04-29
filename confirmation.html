@@ -754,18 +754,21 @@
             var city = (params.get('city') || 'unknown').toLowerCase();
             var leadValue = parseFloat(params.get('value'));
             var eventId = params.get('event_id');
+            var variant = params.get('variant') || null;
 
             if (isNaN(leadValue)) return;
 
             // Meta Pixel — eventID enables dedup with server-side CAPI
             if (typeof fbq !== 'undefined') {
                 var eventOpts = eventId ? { eventID: eventId } : {};
-                fbq('track', 'Lead', {
+                var leadPayload = {
                     content_name: 'Workshop Application',
                     content_category: city,
                     value: leadValue,
                     currency: 'AUD'
-                }, eventOpts);
+                };
+                if (variant) leadPayload.variant = variant;
+                fbq('track', 'Lead', leadPayload, eventOpts);
             }
 
             // GA4 via gtag
@@ -773,6 +776,7 @@
                 gtag('event', 'application_submitted', {
                     event_category: 'application',
                     workshop_city: city,
+                    workshop_variant: variant,
                     value: leadValue,
                     currency: 'AUD'
                 });
@@ -783,6 +787,7 @@
                 window.dataLayer.push({
                     event: 'application_submitted',
                     workshop_city: city,
+                    workshop_variant: variant,
                     value: leadValue,
                     currency: 'AUD'
                 });
