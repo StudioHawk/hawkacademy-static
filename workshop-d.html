@@ -1172,24 +1172,29 @@
                             </div>
                         </div>
                     </div>
-                                    <script>
+                                    <script data-cfasync="false" src="https://player.vimeo.com/api/player.js"></script>
+                    <script data-cfasync="false">
                     (function () {
                         var iframe = document.getElementById('hero-video');
                         var overlay = document.getElementById('hero-unmute-overlay');
-                        if (!iframe || !overlay || typeof Vimeo === 'undefined') return;
-                        var player = new Vimeo.Player(iframe);
-                        function hideOverlay() { overlay.classList.add('hidden'); }
-                        overlay.addEventListener('click', function () {
-                            Promise.resolve()
-                                .then(function () { return player.setCurrentTime(0); })
-                                .then(function () { return player.setMuted(false); })
-                                .then(function () { return player.play(); })
-                                .catch(function () { /* autoplay might be blocked */ })
-                                .then(hideOverlay);
-                        });
-                        player.on('volumechange', function (data) {
-                            if (data && data.volume > 0) hideOverlay();
-                        });
+                        if (!iframe || !overlay) return;
+                        function setup() {
+                            if (typeof Vimeo === 'undefined' || !Vimeo.Player) {
+                                return setTimeout(setup, 100);
+                            }
+                            var player = new Vimeo.Player(iframe);
+                            function hideOverlay() { overlay.classList.add('hidden'); }
+                            overlay.addEventListener('click', function () {
+                                player.setMuted(false)
+                                    .then(function () { return player.play(); })
+                                    .catch(function () { /* autoplay might be blocked */ })
+                                    .then(hideOverlay);
+                            });
+                            player.on('volumechange', function (data) {
+                                if (data && data.volume > 0) hideOverlay();
+                            });
+                        }
+                        setup();
                     })();
                     </script>
                 </div>
@@ -2044,6 +2049,5 @@
             }
         });
     </script>
-    <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
