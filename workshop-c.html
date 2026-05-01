@@ -1151,7 +1151,7 @@
                             Workshop Introduction Video - Watch This First
                         </div>
                     </div>
-                    <div class="hero-video-wrap" style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;background:#111;box-shadow:0 12px 48px rgba(0,0,0,0.4), 0 0 60px rgba(173,186,255,0.18); border:1px solid rgba(255,255,255,0.06);">
+                    <div class="hero-video-wrap video-pulse-container" id="hero-video-wrap" style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;background:#111;">
                         <iframe
                             id="hero-video"
                             src="https://player.vimeo.com/video/1187962086?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;playsinline=1&amp;controls=1&amp;loop=0"
@@ -1183,7 +1183,9 @@
                                 return setTimeout(setup, 100);
                             }
                             var player = new Vimeo.Player(iframe);
-                            function hideOverlay() { overlay.classList.add('hidden'); }
+                            var wrap = document.getElementById('hero-video-wrap');
+                            function stopGlow() { if (wrap) wrap.classList.remove('video-pulse-container'); }
+                            function hideOverlay() { overlay.classList.add('hidden'); stopGlow(); }
                             overlay.addEventListener('click', function () {
                                 player.setMuted(false)
                                     .then(function () { return player.play(); })
