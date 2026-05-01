@@ -928,12 +928,9 @@
             position: absolute; inset: 0;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.35) 100%);
             transition: opacity 0.35s ease;
             z-index: 2;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            pointer-events: auto;
         }
         .unmute-overlay.hidden { opacity: 0; pointer-events: none; }
         .unmute-pill {
@@ -1125,13 +1122,13 @@
                     <div class="hero-video-wrap video-pulse-container" id="hero-video-wrap" style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;background:#111;">
                         <iframe
                             id="hero-video"
-                            src="https://player.vimeo.com/video/1187962086?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;playsinline=1&amp;controls=0&amp;loop=0"
+                            src="https://player.vimeo.com/video/1187962086?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;playsinline=1&amp;controls=1&amp;loop=0"
                             frameborder="0"
                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                             referrerpolicy="strict-origin-when-cross-origin"
                             style="position:absolute;top:0;left:0;width:100%;height:100%;"
                             title="Workshop Introduction Video"></iframe>
-                        <div class="unmute-overlay" id="hero-unmute-overlay" role="button" tabindex="0" aria-label="Play workshop introduction video">
+                        <div class="unmute-overlay" id="hero-unmute-overlay" role="button" aria-label="Tap to unmute video">
                             <div class="play-btn-pulse" style="width:88px;height:88px;border-radius:50%;background:var(--gradient-brand);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 36px rgba(0,0,0,0.5), 0 0 0 8px rgba(173,186,255,0.12);">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                             </div>
@@ -1147,54 +1144,19 @@
                             if (typeof Vimeo === 'undefined' || !Vimeo.Player) {
                                 return setTimeout(setup, 100);
                             }
-                            // Detect mobile: any of the standard UA tokens, or viewport <=768px
-                            var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
-                            console.log('[hero-video] Vimeo player initialising, mobile=' + isMobile);
-
-                            // On mobile, drop autoplay+muted from the iframe src so the video
-                            // loads paused and unmuted. Click handler is a simple play() that
-                            // every mobile browser allows under user gesture.
-                            if (isMobile) {
-                                iframe.src = iframe.src.replace(/[&?]autoplay=1/g, '').replace(/[&?]muted=1/g, '');
-                            }
-
                             var player = new Vimeo.Player(iframe);
                             var wrap = document.getElementById('hero-video-wrap');
-                            var triggered = false;
                             function stopGlow() { if (wrap) wrap.classList.remove('video-pulse-container'); }
                             function hideOverlay() { overlay.classList.add('hidden'); stopGlow(); }
-
-                            function handleEngagement(e) {
-                                if (triggered) return;
-                                triggered = true;
-                                console.log('[hero-video] engagement, eventType=' + (e && e.type) + ', mobile=' + isMobile);
-                                if (isMobile) {
-                                    // Simple path - video is paused and unmuted, user gesture
-                                    // available, just press play.
-                                    player.play()
-                                        .catch(function (err) {
-                                            console.warn('[hero-video] mobile play() failed:', err);
-                                        })
-                                        .then(hideOverlay);
-                                } else {
-                                    // Desktop: video is autoplaying muted. Restart, unmute, ensure playing.
-                                    player.setCurrentTime(0)
-                                        .then(function () { return player.setMuted(false); })
-                                        .then(function () { return player.play(); })
-                                        .catch(function (err) {
-                                            console.warn('[hero-video] desktop chain failed:', err);
-                                        })
-                                        .then(hideOverlay);
-                                }
-                            }
-                            overlay.addEventListener('click', handleEngagement);
-                            overlay.addEventListener('touchend', handleEngagement);
-
+                            overlay.addEventListener('click', function () {
+                                player.setCurrentTime(0)
+                                    .then(function () { return player.setMuted(false); })
+                                    .then(function () { return player.play(); })
+                                    .catch(function () { /* autoplay might be blocked */ })
+                                    .then(hideOverlay);
+                            });
                             player.on('volumechange', function (data) {
-                                if (!data || data.volume <= 0) return;
-                                player.getMuted().then(function (isMuted) {
-                                    if (!isMuted) hideOverlay();
-                                });
+                                if (data && data.volume > 0) hideOverlay();
                             });
                         }
                         setup();
