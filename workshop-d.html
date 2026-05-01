@@ -1189,18 +1189,14 @@
                                 if (triggered) return;
                                 triggered = true;
                                 console.log('[hero-video] User engagement, eventType=' + (e && e.type));
-                                // Call play() FIRST while user gesture is fresh (Vimeo bug #793)
-                                player.play().catch(function (err) {
-                                    console.warn('[hero-video] play() rejected:', err);
-                                });
-                                // Then unmute and restart (can be deferred)
-                                player.setMuted(false).catch(function (err) {
-                                    console.warn('[hero-video] setMuted(false) rejected:', err);
-                                });
-                                player.setCurrentTime(0).catch(function (err) {
-                                    console.warn('[hero-video] setCurrentTime(0) rejected:', err);
-                                });
-                                hideOverlay();
+                                // Sequential chain - Vimeo API ops depend on each other
+                                player.setCurrentTime(0)
+                                    .then(function () { return player.setMuted(false); })
+                                    .then(function () { return player.play(); })
+                                    .catch(function (err) {
+                                        console.warn('[hero-video] engagement chain failed:', err);
+                                    })
+                                    .then(hideOverlay);
                             }
                             overlay.addEventListener('click', handleEngagement);
                             overlay.addEventListener('touchend', handleEngagement);
