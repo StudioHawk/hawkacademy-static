@@ -931,6 +931,9 @@
             background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.35) 100%);
             transition: opacity 0.35s ease;
             z-index: 2;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            pointer-events: auto;
         }
         .unmute-overlay.hidden { opacity: 0; pointer-events: none; }
         .unmute-pill {
@@ -1156,7 +1159,10 @@
                                     .then(hideOverlay);
                             });
                             player.on('volumechange', function (data) {
-                                if (data && data.volume > 0) hideOverlay();
+                                if (!data || data.volume <= 0) return;
+                                player.getMuted().then(function (isMuted) {
+                                    if (!isMuted) hideOverlay();
+                                });
                             });
                         }
                         setup();
