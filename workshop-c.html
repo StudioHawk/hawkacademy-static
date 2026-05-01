@@ -1179,27 +1179,49 @@
                             if (typeof Vimeo === 'undefined' || !Vimeo.Player) {
                                 return setTimeout(setup, 100);
                             }
-                            console.log('[hero-video] Vimeo player initialised');
+                            // Detect mobile: any of the standard UA tokens, or viewport <=768px
+                            var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
+                            console.log('[hero-video] Vimeo player initialising, mobile=' + isMobile);
+
+                            // On mobile, drop autoplay+muted from the iframe src so the video
+                            // loads paused and unmuted. Click handler is a simple play() that
+                            // every mobile browser allows under user gesture.
+                            if (isMobile) {
+                                iframe.src = iframe.src.replace(/[&?]autoplay=1/g, '').replace(/[&?]muted=1/g, '');
+                            }
+
                             var player = new Vimeo.Player(iframe);
                             var wrap = document.getElementById('hero-video-wrap');
                             var triggered = false;
                             function stopGlow() { if (wrap) wrap.classList.remove('video-pulse-container'); }
                             function hideOverlay() { overlay.classList.add('hidden'); stopGlow(); }
+
                             function handleEngagement(e) {
                                 if (triggered) return;
                                 triggered = true;
-                                console.log('[hero-video] User engagement, eventType=' + (e && e.type));
-                                // Sequential chain - Vimeo API ops depend on each other
-                                player.setCurrentTime(0)
-                                    .then(function () { return player.setMuted(false); })
-                                    .then(function () { return player.play(); })
-                                    .catch(function (err) {
-                                        console.warn('[hero-video] engagement chain failed:', err);
-                                    })
-                                    .then(hideOverlay);
+                                console.log('[hero-video] engagement, eventType=' + (e && e.type) + ', mobile=' + isMobile);
+                                if (isMobile) {
+                                    // Simple path - video is paused and unmuted, user gesture
+                                    // available, just press play.
+                                    player.play()
+                                        .catch(function (err) {
+                                            console.warn('[hero-video] mobile play() failed:', err);
+                                        })
+                                        .then(hideOverlay);
+                                } else {
+                                    // Desktop: video is autoplaying muted. Restart, unmute, ensure playing.
+                                    player.setCurrentTime(0)
+                                        .then(function () { return player.setMuted(false); })
+                                        .then(function () { return player.play(); })
+                                        .catch(function (err) {
+                                            console.warn('[hero-video] desktop chain failed:', err);
+                                        })
+                                        .then(hideOverlay);
+                                }
                             }
                             overlay.addEventListener('click', handleEngagement);
                             overlay.addEventListener('touchend', handleEngagement);
+
                             player.on('volumechange', function (data) {
                                 if (!data || data.volume <= 0) return;
                                 player.getMuted().then(function (isMuted) {
