@@ -1155,7 +1155,8 @@
                             function stopGlow() { if (wrap) wrap.classList.remove('video-pulse-container'); }
                             function hideOverlay() { overlay.classList.add('hidden'); stopGlow(); }
                             overlay.addEventListener('click', function () {
-                                player.setMuted(false)
+                                player.setCurrentTime(0)
+                                    .then(function () { return player.setMuted(false); })
                                     .then(function () { return player.play(); })
                                     .catch(function () { /* autoplay might be blocked */ })
                                     .then(hideOverlay);
