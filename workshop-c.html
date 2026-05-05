@@ -1109,7 +1109,7 @@
             </a>
             <div class="nav-center">
                 <div class="nav-center-dot"></div>
-                <span>Spots available for next cohort, 31 left</span>
+                <span>Spots available for next cohort, 19 left</span>
             </div>
             <a href="#apply" class="btn btn-outline" style="padding:10px 28px;font-size:13px;">Apply Now</a>
         </div>
@@ -1761,12 +1761,12 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS (Google reviews) -->
+    <!-- TESTIMONIALS (Google reviews + workshop videos) -->
     <section class="section section--dark">
         <div class="container">
             <div class="section-header center fade-up">
                 <span class="section-label">What People Say</span>
-                <h2 class="section-title">Real Google Reviews From Real Clients</h2>
+                <h2 class="section-title">Hear From People At The Workshop</h2>
             </div>
             <div class="fade-up reviews-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;align-items:start;">
                 <img src="assets/images/reviews/emma-collard.png" alt="Google review by Emma Collard" style="width:100%;height:auto;display:block;" loading="lazy">
@@ -1776,13 +1776,118 @@
                 <img src="assets/images/reviews/simon-armson.png" alt="Google review by Simon ARMSON" style="width:100%;height:auto;display:block;" loading="lazy">
                 <img src="assets/images/reviews/michael-budarick.png" alt="Google review by Michael Budarick" style="width:100%;height:auto;display:block;" loading="lazy">
             </div>
+
+            <!-- Workshop video testimonials (lazy-loaded facade -> click to play) -->
+            <div class="fade-up video-testimonials-grid">
+                <div class="video-card" data-vimeo-id="1189260236" data-vimeo-title="Workshop testimonial - Anth (Results Focused)" style="aspect-ratio: 9 / 16;">
+                    <button class="video-play-btn" type="button" aria-label="Play workshop testimonial: Anth, results focused">
+                        <img src="https://vumbnail.com/1189260236.jpg" alt="Workshop testimonial - Anth" loading="lazy" decoding="async">
+                        <span class="video-play-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="88" height="88" viewBox="0 0 24 24" fill="rgba(255,255,255,0.95)"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="video-card" data-vimeo-id="1189260481" data-vimeo-title="Workshop testimonial - Justin (Experience Focused)" style="aspect-ratio: 4 / 3;">
+                    <button class="video-play-btn" type="button" aria-label="Play workshop testimonial: Justin, experience focused">
+                        <img src="https://vumbnail.com/1189260481.jpg" alt="Workshop testimonial - Justin" loading="lazy" decoding="async">
+                        <span class="video-play-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="88" height="88" viewBox="0 0 24 24" fill="rgba(255,255,255,0.95)"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
     <style>
+    .video-testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+        margin-top: 56px;
+        align-items: start;
+        max-width: 1080px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .video-card {
+        position: relative;
+        width: 100%;
+        background: #0a0a0a;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+    .video-card iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    .video-play-btn {
+        appearance: none;
+        background: none;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        position: relative;
+        display: block;
+        color: inherit;
+    }
+    .video-play-btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .video-play-icon {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.18);
+        transition: background 0.2s ease;
+    }
+    .video-play-btn:hover .video-play-icon,
+    .video-play-btn:focus-visible .video-play-icon {
+        background: rgba(0,0,0,0.35);
+    }
+    .video-play-btn:hover .video-play-icon svg,
+    .video-play-btn:focus-visible .video-play-icon svg {
+        transform: scale(1.06);
+    }
+    .video-play-icon svg {
+        transition: transform 0.2s ease;
+        filter: drop-shadow(0 6px 24px rgba(0,0,0,0.6));
+    }
     @media (max-width: 768px) {
         .reviews-grid { grid-template-columns: 1fr !important; }
+        .video-testimonials-grid { grid-template-columns: 1fr !important; }
     }
     </style>
+    <script>
+    (function () {
+        document.querySelectorAll('.video-card').forEach(function (card) {
+            var btn = card.querySelector('.video-play-btn');
+            if (!btn) return;
+            btn.addEventListener('click', function () {
+                var id = card.dataset.vimeoId;
+                if (!id) return;
+                var iframe = document.createElement('iframe');
+                iframe.src = 'https://player.vimeo.com/video/' + id + '?autoplay=1&playsinline=1&badge=0&autopause=0&app_id=58479';
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+                iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                iframe.title = card.dataset.vimeoTitle || 'Workshop testimonial';
+                card.replaceChildren(iframe);
+            }, { once: true });
+        });
+    })();
+    </script>
     <!-- NOT READY? FREE COURSE -->
     <section class="section section--darker" style="padding:48px 0;">
         <div class="container" style="max-width:680px;">
