@@ -2024,23 +2024,65 @@
             return match ? match[1] : 'a';
         }
 
+        // Match-key helpers for Meta CAPI / pixel — equivalent to ParamBuilder
+        // https://developers.facebook.com/documentation/ads-commerce/conversions-api/parameter-builder-library
+        function getFbp() {
+            var match = document.cookie.match(/(?:^|;\s*)_fbp=([^;]+)/);
+            return match ? match[1] : null;
+        }
+        function getFbc() {
+            var match = document.cookie.match(/(?:^|;\s*)_fbc=([^;]+)/);
+            if (match) return match[1];
+            var fbclid = new URLSearchParams(window.location.search).get('fbclid');
+            if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
+            return null;
+        }
+
         // Listen for Typeform submit via postMessage
         window.addEventListener('message', function(event) {
             if (event.data && event.data.type === 'form-submit') {
                 var variant = getABVariant();
-                console.log('[Hawk Academy] Form submitted | variant:', variant, '| response:', event.data.responseId);
+                var responseId = event.data.responseId;
+                var fbc = getFbc();
+                var fbp = getFbp();
+                console.log('[Hawk Academy] Form submitted | variant:', variant, '| response:', responseId);
+
+                // Browser pixel — eventID makes Meta dedupe with the CAPI Lead
                 if (typeof fbq !== 'undefined') {
                     fbq('track', 'Lead', {
                         content_name: 'workshop_application',
                         content_category: 'application',
                         content_id: variant
+                    }, {
+                        eventID: responseId
                     });
                 }
+
+                // GA4 Lead event
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'generate_lead', {
                         event_category: 'application',
                         event_label: 'workshop_application',
                         ab_variant: variant
+                    });
+                }
+
+                // Server-side CAPI enrichment — same event_id as the Typeform webhook
+                // handler, so Meta merges IP / UA / FBC / FBP match keys into one Lead.
+                if (responseId) {
+                    fetch('/api/capi/lead-enrich', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            event_id: responseId,
+                            variant: variant,
+                            fbc: fbc,
+                            fbp: fbp,
+                            source_url: window.location.href
+                        }),
+                        keepalive: true
+                    }).catch(function(err) {
+                        console.warn('[Hawk Academy] CAPI enrich failed:', err);
                     });
                 }
             }
