@@ -2177,7 +2177,7 @@
         });
     </script>
     <!-- Scroll-aware sticky mobile CTA bar -->
-    <div class="mobile-cta-bar" id="mobile-cta-bar" role="region" aria-label="Quick navigation">
+    <div class="mobile-cta-bar is-hidden" id="mobile-cta-bar" role="region" aria-label="Quick navigation">
         <a href="#dates" class="mobile-cta-bar__btn mobile-cta-bar__btn--secondary">See Dates</a>
         <a href="#apply" class="mobile-cta-bar__btn mobile-cta-bar__btn--primary">Apply Now &rarr;</a>
     </div>
@@ -2242,9 +2242,6 @@
         var canShow = false;
         var DELTA_HIDE = 30;
         var DELTA_SHOW = 5;
-
-        // Start hidden until the user scrolls past the hero CTA
-        bar.classList.add('is-hidden');
 
         function setHidden(state) {
             if (state === hidden) return;
