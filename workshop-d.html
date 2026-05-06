@@ -2232,9 +2232,9 @@
     (function () {
         var bar = document.getElementById('mobile-cta-bar');
         if (!bar) return;
-        // Anchor: first Apply CTA inside the hero - the bar is gated on this
-        var heroCta = document.querySelector('.hero [href="#apply"]');
-        if (!heroCta) return;
+        // Anchor: hero workshop intro video - bar stays hidden while video in view
+        var heroAnchor = document.getElementById('hero-video-wrap');
+        if (!heroAnchor) return;
 
         var lastY = window.scrollY || window.pageYOffset || 0;
         var ticking = false;
@@ -2283,7 +2283,7 @@
                     setHidden(!canShow);
                 });
             }, { threshold: 0 });
-            io.observe(heroCta);
+            io.observe(heroAnchor);
         } else {
             // Fallback: enable bar after 600px of scroll
             window.addEventListener('scroll', function () {
