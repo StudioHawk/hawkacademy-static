@@ -1664,7 +1664,7 @@
     </section>
 
     <!-- DATES -->
-    <section class="section section--dark">
+    <section class="section section--dark" id="dates">
         <div class="container" style="max-width:720px;">
             <h2 class="dates-title fade-up">2026 Workshop Dates</h2>
             <div class="fade-up">
@@ -2175,6 +2175,97 @@
                 }
             }
         });
+    </script>
+    <!-- Scroll-aware sticky mobile CTA bar -->
+    <div class="mobile-cta-bar" id="mobile-cta-bar" role="region" aria-label="Quick navigation">
+        <a href="#dates" class="mobile-cta-bar__btn mobile-cta-bar__btn--secondary">See Dates</a>
+        <a href="#apply" class="mobile-cta-bar__btn mobile-cta-bar__btn--primary">Apply Now &rarr;</a>
+    </div>
+    <style>
+    .mobile-cta-bar {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        background: rgba(10,10,10,0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(173,186,255,0.25);
+        padding: 12px 16px calc(12px + env(safe-area-inset-bottom)) 16px;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        transform: translateY(0);
+        transition: transform 0.25s ease;
+        box-shadow: 0 -8px 32px rgba(0,0,0,0.45);
+    }
+    .mobile-cta-bar.is-hidden {
+        transform: translateY(110%);
+    }
+    .mobile-cta-bar__btn {
+        text-align: center;
+        padding: 13px 8px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        line-height: 1;
+        font-family: var(--font-heading, 'Archivo', system-ui, sans-serif);
+        letter-spacing: 0.01em;
+    }
+    .mobile-cta-bar__btn--secondary {
+        background: rgba(173,186,255,0.1);
+        color: #adbaff;
+        border: 1px solid rgba(173,186,255,0.3);
+    }
+    .mobile-cta-bar__btn--primary {
+        background: linear-gradient(140deg,#adbaff 4%,#01ffff 100%);
+        color: #000;
+    }
+    @media (max-width: 768px) {
+        .mobile-cta-bar { display: grid; }
+        body { padding-bottom: 88px; }
+    }
+    </style>
+    <script>
+    (function () {
+        var bar = document.getElementById('mobile-cta-bar');
+        if (!bar) return;
+        var lastY = window.scrollY || window.pageYOffset || 0;
+        var ticking = false;
+        var hidden = false;
+        var TOP_THRESHOLD = 200;
+        var DELTA_HIDE = 30;
+        var DELTA_SHOW = 5;
+        function setHidden(state) {
+            if (state === hidden) return;
+            hidden = state;
+            bar.classList.toggle('is-hidden', state);
+        }
+        function onFrame() {
+            var y = window.scrollY || window.pageYOffset || 0;
+            var dy = y - lastY;
+            if (y < TOP_THRESHOLD) {
+                setHidden(false);
+                lastY = y;
+            } else if (dy > DELTA_HIDE) {
+                setHidden(true);
+                lastY = y;
+            } else if (dy < -DELTA_SHOW) {
+                setHidden(false);
+                lastY = y;
+            }
+            ticking = false;
+        }
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(onFrame);
+                ticking = true;
+            }
+        }, { passive: true });
+        bar.addEventListener('click', function () { setHidden(false); });
+    })();
     </script>
 </body>
 </html>
