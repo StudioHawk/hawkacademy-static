@@ -2232,39 +2232,70 @@
     (function () {
         var bar = document.getElementById('mobile-cta-bar');
         if (!bar) return;
+        // Anchor: first Apply CTA inside the hero - the bar is gated on this
+        var heroCta = document.querySelector('.hero [href="#apply"]');
+        if (!heroCta) return;
+
         var lastY = window.scrollY || window.pageYOffset || 0;
         var ticking = false;
-        var hidden = false;
-        var TOP_THRESHOLD = 200;
+        var hidden = true;
+        var canShow = false;
         var DELTA_HIDE = 30;
         var DELTA_SHOW = 5;
+
+        // Start hidden until the user scrolls past the hero CTA
+        bar.classList.add('is-hidden');
+
         function setHidden(state) {
             if (state === hidden) return;
             hidden = state;
             bar.classList.toggle('is-hidden', state);
         }
+
         function onFrame() {
             var y = window.scrollY || window.pageYOffset || 0;
             var dy = y - lastY;
-            if (y < TOP_THRESHOLD) {
-                setHidden(false);
-                lastY = y;
-            } else if (dy > DELTA_HIDE) {
+            lastY = y;
+            if (!canShow) {
                 setHidden(true);
-                lastY = y;
+                ticking = false;
+                return;
+            }
+            if (dy > DELTA_HIDE) {
+                setHidden(true);
             } else if (dy < -DELTA_SHOW) {
                 setHidden(false);
-                lastY = y;
             }
             ticking = false;
         }
+
         window.addEventListener('scroll', function () {
             if (!ticking) {
                 window.requestAnimationFrame(onFrame);
                 ticking = true;
             }
         }, { passive: true });
+
         bar.addEventListener('click', function () { setHidden(false); });
+
+        // Toggle canShow based on hero CTA visibility
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    canShow = !e.isIntersecting;
+                    setHidden(!canShow);
+                });
+            }, { threshold: 0 });
+            io.observe(heroCta);
+        } else {
+            // Fallback: enable bar after 600px of scroll
+            window.addEventListener('scroll', function () {
+                if (!canShow && (window.scrollY || window.pageYOffset || 0) > 600) {
+                    canShow = true;
+                    setHidden(false);
+                }
+            }, { passive: true, once: true });
+        }
     })();
     </script>
 </body>
