@@ -1108,6 +1108,34 @@
     </style>
 </head>
 <body>
+    <!-- Instagram in-app browser escape hatch (hidden unless UA matches) -->
+    <div id="ig-webview-banner" hidden role="region" aria-label="Open in browser" style="position:relative;background:linear-gradient(140deg,#0a0a0a 0%,#15151f 100%);color:#fff;padding:12px 44px 12px 16px;text-align:center;font-size:13px;line-height:1.5;border-bottom:1px solid rgba(173,186,255,0.25);font-family:'Archivo',system-ui,sans-serif;">
+        <span><strong style="color:#adbaff;">Tip:</strong> for best experience, tap <strong>&#8942;</strong> (top right) and choose <strong>&ldquo;Open in browser&rdquo;</strong>. <a id="ig-open-browser-link" href="https://hawkacademy.co/workshop" rel="noopener" style="color:#01ffff;text-decoration:underline;font-weight:600;white-space:nowrap;">Open now</a></span>
+        <button id="ig-banner-dismiss" type="button" aria-label="Dismiss" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:0;color:rgba(255,255,255,0.7);font-size:22px;cursor:pointer;line-height:1;padding:4px 10px;">&times;</button>
+    </div>
+    <script>
+    (function () {
+        var ua = navigator.userAgent || '';
+        // Instagram, FBAV (Facebook), and FBAN are the main in-app webviews
+        // on social platforms that share the same WebView quirks.
+        if (!/Instagram|FBAN|FBAV/i.test(ua)) return;
+        var banner = document.getElementById('ig-webview-banner');
+        if (!banner) return;
+        banner.hidden = false;
+
+        // Best-effort Android intent URL — no reliable equivalent on iOS,
+        // so iOS users have to use the in-app menu (instructions in copy).
+        var link = document.getElementById('ig-open-browser-link');
+        if (link && /Android/i.test(ua)) {
+            link.href = 'intent://' + window.location.host + window.location.pathname + window.location.search + '#Intent;scheme=https;package=com.android.chrome;end';
+        }
+
+        var dismiss = document.getElementById('ig-banner-dismiss');
+        if (dismiss) {
+            dismiss.addEventListener('click', function () { banner.hidden = true; });
+        }
+    })();
+    </script>
 
     <!-- NAV -->
     <nav class="nav" id="nav">
