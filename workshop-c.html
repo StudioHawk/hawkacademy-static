@@ -1268,9 +1268,13 @@
                             function stopGlow() { if (wrap) wrap.classList.remove('video-pulse-container'); }
                             function hideOverlay() { overlay.classList.add('hidden'); stopGlow(); }
                             overlay.addEventListener('click', function () {
-                                player.setCurrentTime(0)
-                                    .then(function () { return player.setMuted(false); })
-                                    .then(function () { return player.play(); })
+                                // Initiate all three calls synchronously in the same tick
+                                // as the click - preserves user-gesture context across the
+                                // chain (Instagram WebView consumes it after one async hop).
+                                var unmute = player.setMuted(false);
+                                var seek = player.setCurrentTime(0);
+                                var play = player.play();
+                                Promise.all([unmute, seek, play])
                                     .catch(function () { /* autoplay might be blocked */ })
                                     .then(hideOverlay);
                             });
