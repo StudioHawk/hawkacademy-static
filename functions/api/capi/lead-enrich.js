@@ -68,6 +68,12 @@ export async function onRequestPost(context) {
         custom_data: {
           content_name: "Workshop Application",
           ...(body.variant ? { variant: String(body.variant) } : {}),
+          ...(body.engagement && typeof body.engagement === "object" ? {
+            time_on_page_sec: Number(body.engagement.time_on_page_sec) || 0,
+            video_watch_max_pct: Number(body.engagement.video_watch_max_pct) || 0,
+            scroll_max_pct: Number(body.engagement.scroll_max_pct) || 0,
+            video_completed: !!body.engagement.video_completed,
+          } : {}),
         },
       }],
     };

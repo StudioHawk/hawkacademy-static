@@ -1304,13 +1304,14 @@
                 <p class="section-subtitle" style="margin:0 auto;">9 quick questions. Takes about 60 seconds. We'll get back to you within 24 hours.</p>
             </div>
             <div class="typeform-container fade-up" style="margin-top:32px;">
-                <iframe
-                    id="typeform-quick"
-                    src="https://ciyxjpsevw3.typeform.com/to/ekjmSVgb?typeform-medium=embed-snippet&variant=i"
-                    allow="camera; microphone; autoplay; encrypted-media;"
-                    style="width:100%;height:550px;border:0;border-radius:16px;"
-                    loading="eager"
-                ></iframe>
+                <div
+                    data-tf-widget="ekjmSVgb"
+                    data-tf-medium="embed-snippet"
+                    data-tf-hidden="variant=i"
+                    data-tf-iframe-props="title=Hawk Academy Workshop Application"
+                    data-tf-inline-on-mobile="true"
+                    style="width:100%;min-height:550px;border-radius:16px;overflow:hidden;"
+                ></div>
             </div>
         </div>
     </section>
@@ -1729,13 +1730,14 @@
                 </div>
             </div>
             <div class="typeform-container fade-up">
-                <iframe
-                    id="typeform-embed"
-                    src="https://ciyxjpsevw3.typeform.com/to/ekjmSVgb?typeform-medium=embed-snippet&variant=i"
-                    allow="camera; microphone; autoplay; encrypted-media;"
-                    style="width:100%;height:680px;border:0;border-radius:16px;"
-                    loading="eager"
-                ></iframe>
+                <div
+                    data-tf-widget="ekjmSVgb"
+                    data-tf-medium="embed-snippet"
+                    data-tf-hidden="variant=i"
+                    data-tf-iframe-props="title=Hawk Academy Workshop Application"
+                    data-tf-inline-on-mobile="true"
+                    style="width:100%;min-height:680px;border-radius:16px;overflow:hidden;"
+                ></div>
             </div>
             <div style="text-align:center;margin-top:16px;padding:16px 20px;background:rgba(173,186,255,0.04);border-radius:12px;border:1px solid rgba(173,186,255,0.08);">
                 <p style="font-size:13px;color:var(--gray-mid);line-height:1.7;margin:0;">
@@ -2079,53 +2081,123 @@
             return null;
         }
 
-        // Listen for Typeform submit via postMessage
-        window.addEventListener('message', function(event) {
-            if (event.data && event.data.type === 'form-submit') {
-                var variant = getABVariant();
-                var responseId = event.data.responseId;
-                var fbc = getFbc();
-                var fbp = getFbp();
-                console.log('[Hawk Academy] Form submitted | variant:', variant, '| response:', responseId);
+        // ======================================================================
+        // ENGAGEMENT TRACKING
+        // Captures time on page, max scroll %, max video watch % across the
+        // session. Read at form-submit time and shipped via GA4 + CAPI so we
+        // can correlate engagement with conversions per A/B variant.
+        // ======================================================================
+        var __pageLoadTime = Date.now();
+        var __maxScrollPct = 0;
+        var __heroVideoMaxPct = 0;
 
-                // Browser pixel — eventID makes Meta dedupe with the CAPI Lead
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'Lead', {
-                        content_name: 'workshop_application',
-                        content_category: 'application',
-                        content_id: variant
-                    }, {
-                        eventID: responseId
-                    });
+        // Scroll depth (passive, throttled via rAF)
+        (function () {
+            var ticking = false;
+            function update() {
+                var y = window.scrollY || window.pageYOffset || 0;
+                var max = document.documentElement.scrollHeight - window.innerHeight;
+                if (max > 0) {
+                    var pct = Math.min(100, Math.round(y / max * 100));
+                    if (pct > __maxScrollPct) __maxScrollPct = pct;
                 }
+                ticking = false;
+            }
+            window.addEventListener('scroll', function () {
+                if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+            }, { passive: true });
+        })();
 
-                // GA4 Lead event
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'generate_lead', {
-                        event_category: 'application',
-                        event_label: 'workshop_application',
-                        ab_variant: variant
-                    });
-                }
+        // Hero video watch % via Vimeo Player API (existing Vimeo.Player loaded
+        // for the unmute overlay — we just attach another timeupdate listener).
+        (function trackHeroVideo() {
+            var iframe = document.getElementById('hero-video');
+            if (!iframe) return;
+            if (typeof Vimeo === 'undefined' || !Vimeo.Player) {
+                return setTimeout(trackHeroVideo, 250);
+            }
+            try {
+                var player = new Vimeo.Player(iframe);
+                player.on('timeupdate', function (data) {
+                    if (data && typeof data.percent === 'number') {
+                        var pct = Math.min(100, Math.round(data.percent * 100));
+                        if (pct > __heroVideoMaxPct) __heroVideoMaxPct = pct;
+                    }
+                });
+            } catch (e) { /* hero video may not be present on every variant */ }
+        })();
 
-                // Server-side CAPI enrichment — same event_id as the Typeform webhook
-                // handler, so Meta merges IP / UA / FBC / FBP match keys into one Lead.
-                if (responseId) {
-                    fetch('/api/capi/lead-enrich', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            event_id: responseId,
-                            variant: variant,
-                            fbc: fbc,
-                            fbp: fbp,
-                            source_url: window.location.href
-                        }),
-                        keepalive: true
-                    }).catch(function(err) {
-                        console.warn('[Hawk Academy] CAPI enrich failed:', err);
-                    });
-                }
+        function getEngagement() {
+            return {
+                time_on_page_sec: Math.round((Date.now() - __pageLoadTime) / 1000),
+                video_watch_max_pct: __heroVideoMaxPct,
+                scroll_max_pct: __maxScrollPct,
+                video_completed: __heroVideoMaxPct >= 95
+            };
+        }
+
+        // ======================================================================
+        // FORM SUBMIT HANDLER
+        // Listens for the Typeform Embed SDK's submit message, then fires the
+        // browser pixel, GA4 Lead event with engagement metrics, and the CAPI
+        // enrich request. eventID/event_id is the same Typeform response token
+        // used by the server-side webhook handler so Meta dedupes match keys
+        // into one Lead.
+        // ======================================================================
+        window.addEventListener('message', function (event) {
+            if (!event.data || event.data.type !== 'form-submit') return;
+
+            var variant = getABVariant();
+            var responseId = event.data.responseId;
+            var fbc = getFbc();
+            var fbp = getFbp();
+            var eng = getEngagement();
+
+            console.log('[Hawk Academy] Form submit | variant:', variant,
+                '| response:', responseId, '| engagement:', eng);
+
+            // Browser pixel — eventID dedupes with CAPI
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead', {
+                    content_name: 'workshop_application',
+                    content_category: 'application',
+                    content_id: variant
+                }, {
+                    eventID: responseId
+                });
+            }
+
+            // GA4 Lead event with engagement metrics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'generate_lead', {
+                    event_category: 'application',
+                    event_label: 'workshop_application',
+                    ab_variant: variant,
+                    response_id: responseId,
+                    time_on_page_sec: eng.time_on_page_sec,
+                    video_watch_max_pct: eng.video_watch_max_pct,
+                    scroll_max_pct: eng.scroll_max_pct,
+                    video_completed: eng.video_completed
+                });
+            }
+
+            // Server-side CAPI enrichment (IP, UA, FBC, FBP, engagement)
+            if (responseId) {
+                fetch('/api/capi/lead-enrich', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        event_id: responseId,
+                        variant: variant,
+                        fbc: fbc,
+                        fbp: fbp,
+                        source_url: window.location.href,
+                        engagement: eng
+                    }),
+                    keepalive: true
+                }).catch(function (err) {
+                    console.warn('[Hawk Academy] CAPI enrich failed:', err);
+                });
             }
         });
     </script>
