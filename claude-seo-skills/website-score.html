@@ -27,8 +27,9 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=882137468214985&ev=PageView&noscript=1"/></noscript>
     <!-- End Facebook Pixel Code -->
-    <title>Free Website Score Check Prompt for Claude - Hawk Academy</title>
-  <meta name="description" content="Download a free AI prompt that rates your website 0-5 on the features winning Google sites all have. Based on a study of 400 websites.">
+    <title>Winning Google Score Card | Free AI Prompt for Claude, ChatGPT &amp; Gemini | Hawk Academy</title>
+  <meta name="description" content="Free AI prompt that scores your website 1-5 on the 5 things every site winning Google in 2026 has in common. Based on a study of 400+ sites by Cyrus Shepard at Zyppy. Works in Claude, ChatGPT, or Gemini.">
+  <link rel="canonical" href="https://hawkacademy.co/claude-seo-skills/website-score">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -75,23 +76,26 @@
     }
     .skill-hero h1 {
       font-family: var(--font-heading);
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(32px, 5vw, 52px);
       font-weight: 600;
       color: var(--color-white);
       line-height: 1.15;
-      max-width: 600px;
+      max-width: 720px;
       margin: 0 auto 16px;
     }
     .skill-hero h1 span { color: var(--color-lavender); }
     .skill-hero p {
       color: var(--color-light-body);
-      max-width: 560px;
-      margin: 0 auto 40px;
+      max-width: 620px;
+      margin: 0 auto 36px;
       font-size: 17px; line-height: 1.7;
     }
-    .skill-download-btn {
+    .skill-hero-ctas {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .skill-cta-primary {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 40px;
+      padding: 14px 36px;
       border-radius: var(--radius-pill);
       background: var(--gradient-cta);
       color: var(--color-black);
@@ -99,56 +103,186 @@
       font-size: 15px; font-weight: 600;
       text-decoration: none;
       transition: opacity 0.25s;
+      cursor: pointer; border: none;
     }
-    .skill-download-btn:hover { opacity: 0.85; }
-    .skill-download-btn svg { width: 18px; height: 18px; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+    .skill-cta-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      transition: background 0.25s;
+    }
+    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
+    .skill-cta-secondary svg { width: 16px; height: 16px; }
 
-    .skill-section {
+    .intro-section {
       background: var(--color-off-white);
-      padding: 80px 0;
+      padding: 80px 0 40px;
     }
-    .skill-section h2 {
+    .intro-content {
+      max-width: 780px; margin: 0 auto;
+    }
+    .intro-content h2 {
       font-family: var(--font-heading);
-      font-size: 32px; font-weight: 600;
+      font-size: 28px; font-weight: 600;
       color: var(--color-dark-text);
-      margin-bottom: 40px;
+      margin-bottom: 20px;
+    }
+    .intro-content p {
+      color: var(--color-body-text);
+      font-size: 16px; line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .intro-content ol {
+      color: var(--color-body-text);
+      font-size: 16px; line-height: 1.7;
+      padding-left: 20px;
+      margin: 12px 0 16px;
+    }
+    .intro-content ol li {
+      margin-bottom: 6px;
+    }
+    .intro-content ol li strong {
+      color: var(--color-dark-text);
+    }
+    .intro-content .source-line {
+      font-size: 14px;
+      color: var(--color-body-text);
+      opacity: 0.75;
+      font-style: italic;
+      margin-top: 24px;
+    }
+
+    .platforms-section {
+      background: var(--color-off-white);
+      padding: 20px 0 60px;
+    }
+    .platforms-section h2 {
+      font-family: var(--font-heading);
+      font-size: 28px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin-bottom: 8px;
       text-align: center;
     }
-
-    .skill-steps {
-      display: grid; gap: 24px;
-      max-width: 640px; margin: 0 auto;
+    .platforms-section .section-sub {
+      text-align: center;
+      color: var(--color-body-text);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto 36px;
     }
-    .skill-step {
-      display: flex; gap: 16px; align-items: flex-start;
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .platform-card {
       background: var(--color-white);
       border-radius: var(--radius-card);
-      padding: 24px;
+      padding: 28px 26px;
     }
-    .skill-step-num {
-      flex-shrink: 0; width: 40px; height: 40px;
-      border-radius: 50%;
-      background: var(--gradient-cta);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-heading);
-      font-weight: 700; font-size: 16px;
-      color: var(--color-black);
+    .platform-card__name {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
     }
-    .skill-step-text h3 {
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 {
       font-family: var(--font-heading);
       font-size: 18px; font-weight: 600;
       color: var(--color-dark-text);
-      margin-bottom: 4px;
+      margin-bottom: 10px;
     }
-    .skill-step-text p {
-      font-size: 15px; color: var(--color-body-text);
+    .platform-card p {
+      color: var(--color-body-text);
+      font-size: 14px;
       line-height: 1.6;
     }
-    .skill-step-text code {
+
+    .prompt-section {
       background: var(--color-off-white);
-      padding: 2px 6px; border-radius: 4px;
-      font-size: 13px;
+      padding: 20px 0 100px;
     }
+    .prompt-block-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .prompt-block-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+      padding: 0 4px;
+    }
+    .prompt-block-header h2 {
+      font-family: var(--font-heading);
+      font-size: 22px; font-weight: 600;
+      color: var(--color-dark-text);
+      margin: 0;
+    }
+    .prompt-block {
+      background: #111;
+      border-radius: 16px;
+      padding: 24px 28px;
+      position: relative;
+      max-height: 520px;
+      overflow-y: auto;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .prompt-block-copy {
+      position: sticky;
+      top: 0;
+      float: right;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px; font-weight: 600;
+      color: var(--color-white);
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-bottom: 12px;
+      margin-left: 12px;
+      z-index: 2;
+    }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre {
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #E8EAF6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0;
+    }
+    .prompt-tip {
+      max-width: 920px;
+      margin: 16px auto 0;
+      font-size: 14px;
+      color: var(--color-body-text);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .prompt-tip a {
+      color: var(--color-lavender);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .prompt-tip a:hover { text-decoration: underline; }
 
     .skill-cards-section {
       background: var(--color-white);
@@ -158,12 +292,19 @@
       font-family: var(--font-heading);
       font-size: 32px; font-weight: 600;
       color: var(--color-dark-text);
-      margin-bottom: 40px;
+      margin-bottom: 12px;
       text-align: center;
+    }
+    .skill-cards-section .section-sub {
+      text-align: center;
+      color: var(--color-body-text);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto 40px;
     }
     .skill-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
       max-width: var(--max-width);
       margin: 0 auto;
@@ -172,11 +313,19 @@
     .skill-card {
       background: var(--color-off-white);
       border-radius: var(--radius-card);
-      padding: 32px;
+      padding: 28px 26px;
+    }
+    .skill-card__corr {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--color-lavender);
+      margin-bottom: 8px;
     }
     .skill-card h3 {
       font-family: var(--font-heading);
-      font-size: 20px; font-weight: 600;
+      font-size: 19px; font-weight: 600;
       color: var(--color-dark-text);
       margin-bottom: 8px;
     }
@@ -186,58 +335,33 @@
       line-height: 1.6;
     }
 
-    .skill-or-divider {
-      display: flex; align-items: center; gap: 16px;
-      max-width: 640px; margin: 32px auto 0;
-    }
-    .skill-or-divider::before, .skill-or-divider::after {
-      content: ''; flex: 1; height: 1px;
-      background: rgba(255,255,255,0.15);
-    }
-    .skill-or-divider span {
-      font-size: 13px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--color-light-body);
-    }
-    .skill-terminal {
-      max-width: 640px; margin: 24px auto 0;
-      background: #111; border-radius: 12px;
-      padding: 20px 24px; position: relative;
-    }
-    .skill-terminal-label {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--color-lavender);
-      margin-bottom: 12px; display: block;
-    }
-    .skill-terminal-cmd {
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 13px; line-height: 1.6;
-      color: var(--color-cyan); word-break: break-all;
-      white-space: pre-wrap;
-    }
-    .skill-terminal-copy {
-      position: absolute; top: 16px; right: 16px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 6px; padding: 6px 12px;
-      font-size: 12px; font-weight: 600;
-      color: var(--color-white); cursor: pointer;
-      transition: background 0.2s;
-    }
-    .skill-terminal-copy:hover { background: rgba(255,255,255,0.15); }
-    .skill-terminal-note {
-      font-size: 13px; color: var(--color-light-body);
-      margin-top: 12px; line-height: 1.5;
-    }
-
     .skill-cta-bottom {
       background: var(--color-black);
       padding: 80px 0;
       text-align: center;
     }
+    .skill-cta-bottom h2 {
+      font-family: var(--font-heading);
+      font-size: 28px; font-weight: 600;
+      color: var(--color-white);
+      margin-bottom: 12px;
+    }
     .skill-cta-bottom p {
       color: var(--color-light-body);
-      font-size: 17px;
-      margin-bottom: 24px;
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .skill-hero { padding: 90px 0 60px; }
+      .skill-hero h1 { font-size: 30px; }
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+      .skill-hero-ctas { flex-direction: column; align-items: center; }
+      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -290,88 +414,239 @@
   <!-- HERO -->
   <section class="skill-hero">
     <div class="container">
-      <div class="hero__label">Free Prompt</div>
-      <h1>Website Score <span>Check</span></h1>
-      <p>A free prompt for Claude that rates your website 0-5 on the 5 features every site winning on Google has in common. Based on a study of 400 websites. Be brutally honest with yourself.</p>
-      <a href="downloads/website-score-prompt.md" download class="skill-download-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Prompt
-      </a>
-      <div class="skill-or-divider"><span>or install via terminal</span></div>
-      <div class="skill-terminal">
-        <span class="skill-terminal-label">Run this in your terminal</span>
-        <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
-        <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/claude-seo-skills/downloads/website-score-prompt.md -o ~/.claude/skills/website-score-prompt.md</code>
-        <p class="skill-terminal-note">This downloads the prompt directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
+      <div class="hero__label">Free AI Prompt</div>
+      <h1>Winning Google <span>Score Card</span></h1>
+      <p>Score your site 1 to 5 on the 5 things every site winning Google in 2026 has in common. Brutal grading. Specific fixes. Works in Claude, ChatGPT, or Gemini. Free.</p>
+      <div class="skill-hero-ctas">
+        <a href="#the-prompt" class="skill-cta-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy the Prompt
+        </a>
+        <a href="downloads/website-score-prompt.md" download class="skill-cta-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download as .md
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- HOW TO USE -->
-  <section class="skill-section">
+  <!-- INTRO -->
+  <section class="intro-section">
     <div class="container">
-      <h2>How to Install</h2>
-      <div class="skill-steps">
-        <div class="skill-step">
-          <div class="skill-step-num">A</div>
-          <div class="skill-step-text">
-            <h3>Option A: One-Click Download</h3>
-            <p>Click <strong>Download Prompt</strong> above. You'll get a file called <code>website-score-prompt.md</code>. Move it to your Claude skills folder:</p>
-            <p style="margin-top:8px;"><strong>Mac:</strong> <code>~/.claude/skills/</code></p>
-            <p><strong>Windows:</strong> <code>%USERPROFILE%\.claude\skills\</code></p>
-            <p style="margin-top:8px;">If the <code>skills</code> folder doesn't exist, create it. Then restart Claude Desktop.</p>
-          </div>
+      <div class="intro-content">
+        <h2>Why this matters now</h2>
+        <p>Google has moved past ranking "good content." It now rewards the things AI can't replicate: a real product, a real audience, a real brand. Cyrus Shepard analysed 400+ websites that survived Google's recent algorithm updates and found 5 features that separated the winners from the losers.</p>
+        <p>Sites with 4 or 5 of these features won 68% of the time. Sites with 0 or 1 won 13%. The features stack. You don't need to be perfect on any one of them, you need to be present on most of them.</p>
+        <p><strong>The 5 factors this prompt scores you on:</strong></p>
+        <ol>
+          <li><strong>Offers a Product or Service</strong> (the strongest signal)</li>
+          <li><strong>Allows Task Completion On-Site</strong> (calculators, tools, anything interactive)</li>
+          <li><strong>Proprietary Assets</strong> (data, research, content AI can't fake)</li>
+          <li><strong>Tight Topical Focus</strong> (one subject, treated like an obsession)</li>
+          <li><strong>Strong Brand</strong> (people search for you by name)</li>
+        </ol>
+        <p class="source-line">Source: Cyrus Shepard, "5 Data-Backed Features of Websites Winning Google in 2026", Zyppy Signal, April 2026.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Works in Claude, ChatGPT, or Gemini</h2>
+      <p class="section-sub">Same prompt, three pastes. Pick the tool you already use.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL.</p>
         </div>
-        <div class="skill-step">
-          <div class="skill-step-num">B</div>
-          <div class="skill-step-text">
-            <h3>Option B: Terminal Install (fastest)</h3>
-            <p>Open your terminal and paste this command. It downloads the prompt directly into the right folder:</p>
-            <p style="margin-top:8px;"><code style="color:var(--color-lavender);font-size:13px;">curl -fsSL https://hawkacademy.co/claude-seo-skills/downloads/website-score-prompt.md -o ~/.claude/skills/website-score-prompt.md</code></p>
-            <p style="margin-top:8px;">Restart Claude Desktop and the prompt is ready.</p>
-          </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL, send.</p>
         </div>
-        <div class="skill-step">
-          <div class="skill-step-num">2</div>
-          <div class="skill-step-text">
-            <h3>Run Your First Check</h3>
-            <p>Open Claude Desktop, start a new conversation, and type:</p>
-            <p style="margin-top:8px;font-weight:600;font-size:17px;">"Score https://yourwebsite.com"</p>
-            <p style="margin-top:8px;">Claude reads your site and scores each of the 5 winning features with a brutally honest assessment and your #1 fix.</p>
-          </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL, send. Gemini Pro gives the deepest analysis.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT IT CHECKS -->
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>You are a website competitiveness analyst. The user will give you a website URL. Your job is to score that site 1-5 on each of the 5 factors that separate sites winning Google in 2026 from sites losing traffic. Be brutal.
+
+This rubric is based on Cyrus Shepard's analysis of 400+ winning vs losing websites (Zyppy Signal, April 2026). Spearman correlation values from his study are noted next to each factor so you can weight your judgement.
+
+## Step 1: Read the site
+
+Visit the URL. Read:
+
+1. The homepage
+2. The product, service, or pricing page (whichever exists)
+3. The about page
+4. Any tools, calculators, quizzes, configurators, or interactive elements
+5. 2 or 3 pieces of their content (blog, articles, guides, resources)
+
+If you can't fetch the URL, ask the user to paste:
+
+- The homepage copy
+- A list of their main service or product pages
+- A few content URLs or titles
+- A short description of what they sell
+
+## Step 2: Score each factor 1-5
+
+Use this scale strictly:
+
+1 = Absent or actively hurting
+2 = Weak signal, barely there
+3 = Mediocre, partial implementation
+4 = Strong, clearly present
+5 = Elite, defensible moat
+
+A score of 5 needs overwhelming evidence. Most real sites land at 2 or 3 on most factors. If you find yourself giving 4s and 5s across the board, you're not being honest.
+
+### Factor 1: Offers a Product or Service (correlation 0.391)
+Does this site exist to serve a real business with a real offering, or is it content for content's sake?
+- 5: Clear primary offering, pricing visible, transaction or inquiry path obvious
+- 3: Has an offering but buried, or only loosely tied to what the content is about
+- 1: Pure content, affiliate links, or display-ad-only revenue. No real product behind the site.
+
+### Factor 2: Allows Task Completion On-Site (correlation 0.381)
+Can a visitor finish what they came to do, on the site? Or do they have to leave?
+- 5: Calculators, configurators, booking flows, search filters, interactive databases, downloadable tools, or original research the visitor can apply on the spot
+- 3: One basic interactive element, or content that walks through a task but doesn't let the user complete it
+- 1: Read-only. User has to leave the site to take any meaningful next step.
+
+### Factor 3: Proprietary Assets (correlation 0.357)
+Does this site have content, data, or tools that AI cannot replicate from public sources?
+- 5: Original research, first-party data, user-generated content, exclusive interviews, proprietary databases, real client case studies with named outcomes
+- 3: Some original perspective layered onto otherwise public information
+- 1: Generic explainers. Anything an LLM could write from training data alone.
+
+### Factor 4: Tight Topical Focus (correlation 0.250)
+Does the site go deep on one subject, or spread thin across many?
+- 5: One subject, treated like an obsession. The site is the obvious authority on that one thing.
+- 3: A core topic plus 2 or 3 tangents
+- 1: Five or more unrelated subjects. No clear specialty.
+
+### Factor 5: Strong Brand (correlation 0.206)
+Do people search for this business by name?
+Look for: branded language and naming conventions, social proof, named press mentions, founder visibility, original research that other people cite, a branded community, branded merchandise.
+- 5: Recognised name in its niche, founder or company has visible presence, branded search traffic likely high
+- 3: Some brand awareness, but interchangeable with competitors
+- 1: No one is searching for this site by name. It only exists because of generic SEO traffic.
+
+## Step 3: Output the score card
+
+Use this exact structure. No deviations.
+
+WINNING GOOGLE SCORE CARD
+Site: [URL]
+Date: [today's date]
+
+OVERALL SCORE: XX / 25
+Bracket: [At Risk 0-10 / Vulnerable 11-15 / Competitive 16-20 / Winning 21-25]
+
+FACTOR-BY-FACTOR
+
+1. Product/Service: X/5
+   Verdict: [one sentence]
+   Evidence: [2 or 3 specific things you saw on the site]
+
+2. Task Completion: X/5
+   Verdict: [one sentence]
+   Evidence: [2 or 3 specific things you saw or didn't see]
+
+3. Proprietary Assets: X/5
+   Verdict: [one sentence]
+   Evidence: [2 or 3 specific examples]
+
+4. Tight Topical Focus: X/5
+   Verdict: [one sentence]
+   Evidence: [topics covered, depth on each]
+
+5. Strong Brand: X/5
+   Verdict: [one sentence]
+   Evidence: [branded signals you found or didn't find]
+
+WHERE YOU'RE LOSING
+
+For every factor scoring 3 or below, write one specific 30-day fix. No vague advice. Each fix should reference this exact business and the exact thing they could build.
+
+- Low Product/Service: [The offering they could productise from what they already do]
+- Low Task Completion: [Name the specific calculator, quiz, configurator, or tool they should build, given THIS business]
+- Low Proprietary Assets: [The exact original research, survey, dataset, or case study series they could publish using their own first-party data]
+- Low Topical Focus: [Which 2 or 3 subjects to drop. Which single subject to triple down on. Be specific.]
+- Low Brand: [One concrete move that would drive branded search. Founder LinkedIn? Quarterly original report? A free tool with their name on it? Pick one.]
+
+YOUR TOP 3 ACTIONS THIS WEEK
+1. [Highest-leverage fix, written as a specific task they could start today]
+2. [Second]
+3. [Third]
+
+THE BOTTOM LINE
+[One brutal sentence: can this site win Google as it stands today? What single change would move it the most?]
+
+## Voice rules
+- Be brutal. Scores of 4 or 5 should be the exception, not the default.
+- No em dashes. Use periods or rewrite into two sentences.
+- Talk to a business owner, not an SEO consultant. Plain English. If you have to use jargon, define it on the spot.
+- Every fix is concrete. "Add a calculator" is wrong. "Add a water-usage calculator that estimates monthly bills for Melbourne households based on dwelling size and number of occupants" is right.
+- Cite the source on the first run: "Based on Cyrus Shepard's analysis of 400+ sites, Zyppy Signal April 2026."
+- Cut anything that doesn't serve the score or the fix.</pre>
+        </div>
+        <p class="prompt-tip">Prefer a file? <a href="downloads/website-score-prompt.md" download>Download the prompt as Markdown</a> and drop it into a Claude Project, ChatGPT custom GPT, or Gemini Gem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT SCORES -->
   <section class="skill-cards-section">
     <div class="container">
-      <h2>What It Checks</h2>
+      <h2>What you get scored on</h2>
+      <p class="section-sub">Each factor scored 1 to 5. Total out of 25. Winners stack 4 or more of these.</p>
       <div class="skill-cards-grid">
         <div class="skill-card">
-          <h3>Sells a Product/Service</h3>
-          <p>Does your site exist to serve a real business? Pure content sites with no real product are getting crushed.</p>
+          <span class="skill-card__corr">CORRELATION 0.391</span>
+          <h3>1. Sells a Product or Service</h3>
+          <p>Does your site exist to serve a real business? Pure content sites with no real offering are getting flattened. Score 1 if you sell nothing. Score 5 if your offer is front and centre.</p>
         </div>
         <div class="skill-card">
-          <h3>Task Completion</h3>
-          <p>Can visitors DO something on your site? Calculators, quizzes, booking forms. Not just read articles.</p>
+          <span class="skill-card__corr">CORRELATION 0.381</span>
+          <h3>2. Task Completion On-Site</h3>
+          <p>Can visitors actually do something on your site? Calculators, quizzes, booking flows, configurators. Score 1 if you're read-only. Score 5 if visitors can finish what they came for without leaving.</p>
         </div>
         <div class="skill-card">
-          <h3>Proprietary Assets</h3>
-          <p>Do you have content that can't be found anywhere else? Original data, case studies, unique frameworks.</p>
+          <span class="skill-card__corr">CORRELATION 0.357</span>
+          <h3>3. Proprietary Assets</h3>
+          <p>Do you have data, research, or content that AI cannot replicate? Original case studies, first-party data, exclusive interviews. Score 1 if everything you have is on 100 other sites. Score 5 if you own the data.</p>
         </div>
         <div class="skill-card">
-          <h3>Topical Focus</h3>
-          <p>Do you talk about one topic like an expert, or spread thin across many? Google rewards depth over breadth.</p>
+          <span class="skill-card__corr">CORRELATION 0.250</span>
+          <h3>4. Tight Topical Focus</h3>
+          <p>Do you cover one topic like an expert, or spread across many? Google rewards depth. Score 1 if you publish on 5+ unrelated subjects. Score 5 if your site is the obvious authority on one thing.</p>
         </div>
         <div class="skill-card">
-          <h3>Strong Brand</h3>
-          <p>Do people search for your business by name? Brand recognition is the compound interest of marketing.</p>
+          <span class="skill-card__corr">CORRELATION 0.206</span>
+          <h3>5. Strong Brand</h3>
+          <p>Do people search for your business by name? Branded search is the compound interest of marketing. Score 1 if no one Googles your brand. Score 5 if you're a recognised name in your niche.</p>
         </div>
         <div class="skill-card">
-          <h3>Your #1 Fix</h3>
-          <p>Based on your weakest score, tells you exactly what to build first to close the biggest gap.</p>
+          <span class="skill-card__corr">YOUR PLAYBOOK</span>
+          <h3>Plus your top 3 actions</h3>
+          <p>For every weak score, you get a specific 30-day fix tied to your exact business. Then the prompt picks the 3 highest-leverage moves to start this week.</p>
         </div>
       </div>
     </div>
@@ -380,11 +655,18 @@
   <!-- BOTTOM CTA -->
   <section class="skill-cta-bottom">
     <div class="container">
-      <p>Based on a study of 400 websites that survived Google's latest algorithm updates.</p>
-      <a href="downloads/website-score-prompt.md" download class="skill-download-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Prompt
-      </a>
+      <h2>Ready for the brutal version?</h2>
+      <p>Built on Cyrus Shepard's analysis of 400+ winning vs losing sites (Zyppy Signal, April 2026). Free. No email gate. Works in any AI tool you already use.</p>
+      <div class="skill-hero-ctas">
+        <a href="#the-prompt" class="skill-cta-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy the Prompt
+        </a>
+        <a href="downloads/website-score-prompt.md" download class="skill-cta-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download as .md
+        </a>
+      </div>
     </div>
   </section>
 
