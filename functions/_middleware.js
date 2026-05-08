@@ -22,6 +22,7 @@ const CONFIG = {
     f: '/workshop-f.html',           // bar-less control for sticky mobile CTA test
     g: '/workshop-g.html',           // social-proof-higher: testimonials moved up to after Problem section
     h: '/workshop-h.html',           // desktop sticky bar: same as A but the sticky CTA bar also shows on desktop
+    i: '/workshop-i.html',           // 'For Business Owners' pill + testimonials moved directly under hero (above Quick Apply)
   },
   // Relative traffic weights. All traffic currently goes to A.
   // Price-test variants (a-a $3k, a-b $2.5k) parked at 0 — flip on later
@@ -29,7 +30,7 @@ const CONFIG = {
   // To split evenly across 4 content variants: { a: 1, b: 1, c: 1, d: 1 }
   // To split 50/50 A vs C:    { a: 1, b: 0, c: 1, d: 0 }
   // Force any variant for QA via ?ab=a-a etc. — works regardless of weights.
-  WEIGHTS: { a: 1, b: 1, c: 1, d: 1, 'a-a': 0, 'a-b': 0, f: 0, g: 1, h: 1 },
+  WEIGHTS: { a: 1, b: 1, c: 1, d: 1, 'a-a': 0, 'a-b': 0, f: 0, g: 1, h: 1, i: 0 },
   COOKIE_DAYS: 30,
 };
 
