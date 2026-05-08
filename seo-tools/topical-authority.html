@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Topical Authority Finder | Hawk Academy</title>
+  <meta name="description" content="Find where your site already has topical authority and what to publish next. Paste your GSC export and an optional keyword list, get a branded dashboard back. Free, browser-based, no login.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=20260420">
+  <link rel="stylesheet" href="../css/animations.css?v=20260420">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+    .tool-hero { background: var(--color-black); padding: 120px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .tool-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-yellow); opacity: 0.6; }
+    .tool-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
+    .tool-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
+    .tool-hero h1 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 48px); font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 720px; margin: 0 auto 16px; }
+    .tool-hero h1 span { color: var(--color-lavender); }
+    .tool-hero p { color: var(--color-light-body); max-width: 620px; margin: 0 auto 40px; font-size: 17px; line-height: 1.7; }
+
+    .tool-options { max-width: 720px; margin: 0 auto 60px; padding: 0 16px; position: relative; z-index: 2; }
+    .tool-form { display: flex; flex-direction: column; gap: 16px; }
+    .tool-form label { font-family: var(--font-heading); font-size: 14px; font-weight: 600; color: var(--color-white); margin-bottom: 8px; display: block; }
+    .tool-form textarea, .tool-form input[type=file] { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 14px; border-radius: 8px; font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.2s; }
+    .tool-form textarea { min-height: 110px; resize: vertical; }
+    .tool-form textarea:focus, .tool-form input[type=file]:focus { border-color: var(--color-cyan); }
+    .tool-form input[type=file] { border-style: dashed; border-width: 1.5px; cursor: pointer; color: var(--color-light-body); }
+    .input-block { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; }
+    .input-block + .input-block { margin-top: 18px; }
+    .input-block .opt-label { font-family: var(--font-heading); font-size: 12px; font-weight: 700; color: var(--color-cyan); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .input-block .block-desc { font-size: 13px; color: var(--color-light-body); margin: 0 0 16px; line-height: 1.6; }
+    .or-divider { text-align: center; color: var(--color-light-body); font-size: 12px; margin: 14px 0; text-transform: uppercase; letter-spacing: 0.08em; }
+    .tool-submit { padding: 16px 40px; border-radius: var(--radius-pill); border: none; cursor: pointer; background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; transition: opacity 0.25s; width: 100%; margin-top: 18px; }
+    .tool-submit:hover { opacity: 0.85; }
+
+    .explainer { background: rgba(173,186,255,0.1); border: 1px solid rgba(173,186,255,0.3); border-radius: 10px; max-width: 720px; margin: 0 auto 24px; text-align: left; padding: 0; }
+    .explainer summary { padding: 14px 18px; cursor: pointer; font-family: var(--font-heading); font-size: 15px; font-weight: 600; color: var(--color-white); list-style: none; }
+    .explainer[open] summary { padding-bottom: 8px; }
+    .explainer-content { padding: 0 18px 18px; color: var(--color-light-body); font-size: 14px; line-height: 1.7; }
+    .explainer-content ol { padding-left: 20px; margin: 8px 0; }
+    .explainer-content code { background: rgba(255,255,255,0.08); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+    .explainer-content a { color: var(--color-cyan); font-weight: 600; }
+
+    .scanner-overlay { display: none; max-width: 720px; margin: -20px auto 40px; text-align: center; padding: 0 16px; }
+    .scanner-overlay.visible { display: block; }
+    .scanner-bar-track { width: 100%; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; margin-bottom: 16px; }
+    .scanner-bar-fill { height: 100%; width: 0%; border-radius: 3px; background: linear-gradient(90deg, #adbaff, #01ffff); transition: width 1.2s linear; }
+    .scanner-status { font-size: 14px; color: var(--color-light-body); min-height: 20px; }
+
+    .tool-results { display: none; max-width: 1100px; margin: 0 auto; padding: 60px 24px 80px; }
+    .tool-results.visible { display: block; }
+    .tool-results h2 { font-family: var(--font-heading); font-weight: 600; color: var(--color-dark-text); margin: 0 0 8px; font-size: 26px; padding-bottom: 8px; border-bottom: 2px solid var(--color-lavender); display: inline-block; }
+    .tool-results .section-sub { color: var(--color-body-text); font-size: 14px; margin: 0 0 24px; line-height: 1.6; }
+
+    .results-section { margin-bottom: 48px; }
+    .results-section:last-child { margin-bottom: 0; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 16px 0 32px; }
+    .kpi-card { background: var(--color-white); border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 18px 20px; }
+    .kpi-card .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-body-text); font-weight: 700; }
+    .kpi-card .kpi-value { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: var(--color-lavender); margin-top: 4px; }
+
+    .cluster-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .cluster-card { background: var(--color-white); border: 1px solid rgba(0,0,0,0.06); border-left: 4px solid var(--color-lavender); border-radius: 12px; padding: 22px; }
+    .cluster-card.emerging { border-left-color: var(--color-yellow); }
+    .cluster-card .cc-name { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--color-dark-text); margin-bottom: 10px; }
+    .cluster-card .cc-score { font-family: var(--font-heading); font-size: 36px; font-weight: 700; color: var(--color-lavender); line-height: 1; }
+    .cluster-card.emerging .cc-score { color: #d4a800; }
+    .cluster-card .cc-score-max { font-size: 16px; color: var(--color-body-text); font-weight: 400; margin-left: 4px; }
+    .cluster-card .cc-meta { font-size: 12px; color: var(--color-body-text); margin-top: 10px; line-height: 1.5; }
+
+    .map-table { width: 100%; border-collapse: collapse; background: var(--color-white); border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; overflow: hidden; margin-top: 16px; }
+    .map-table th { background: rgba(0,0,0,0.02); text-align: left; padding: 12px 14px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-body-text); font-weight: 700; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .map-table td { padding: 13px 14px; border-bottom: 1px solid rgba(0,0,0,0.04); vertical-align: middle; font-size: 14px; }
+    .map-table tr:last-child td { border-bottom: none; }
+    .map-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .map-table td.bar-cell { display: flex; align-items: center; gap: 10px; padding-top: 17px; }
+    .bar-track { flex: 1; max-width: 160px; height: 7px; background: rgba(0,0,0,0.06); border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; background: linear-gradient(90deg, #adbaff, #01ffff); border-radius: 999px; }
+    .score-num { font-weight: 700; color: var(--color-dark-text); font-variant-numeric: tabular-nums; min-width: 42px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 6px; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.04em; }
+    .badge.strong { background: var(--color-lavender); color: var(--color-black); }
+    .badge.emerging { background: #fef3c7; color: #92400e; }
+
+    .striking-block { background: var(--color-white); border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 22px 24px; margin-top: 16px; }
+    .striking-cluster { padding: 14px 0; border-bottom: 1px dashed rgba(0,0,0,0.08); }
+    .striking-cluster:last-child { border-bottom: none; }
+    .striking-cluster h4 { font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--color-dark-text); margin: 0 0 10px; }
+    .striking-cluster ul { list-style: none; padding: 0; margin: 0; }
+    .striking-cluster li { padding: 5px 0; font-size: 13px; display: flex; justify-content: space-between; gap: 12px; color: var(--color-body-text); }
+    .striking-cluster li .sk-q { color: var(--color-dark-text); }
+    .striking-cluster li .sk-pos { color: var(--color-body-text); font-variant-numeric: tabular-nums; font-size: 12px; }
+
+    .gap-block { background: var(--color-white); border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 22px 24px; margin-top: 16px; }
+    .gap-block h3 { font-family: var(--font-heading); font-size: 17px; font-weight: 700; color: var(--color-dark-text); margin: 0 0 16px; }
+    .stage-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+    .stage-col .stage-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+    .stage-col.tofu .stage-label { background: #dbeafe; color: #1e40af; }
+    .stage-col.mofu .stage-label { background: #d1fae5; color: #065f46; }
+    .stage-col.bofu .stage-label { background: #fde68a; color: #92400e; }
+    .stage-col.most .stage-label { background: #fce7f3; color: #9d174d; }
+    .stage-col ul { list-style: none; padding: 0; margin: 0; }
+    .stage-col li { padding: 5px 0; border-bottom: 1px dashed rgba(0,0,0,0.06); font-size: 13px; display: flex; justify-content: space-between; gap: 8px; }
+    .stage-col li:last-child { border: none; }
+    .stage-col .kw { color: var(--color-dark-text); }
+    .stage-col .vol { color: var(--color-body-text); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+    .actions-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); }
+    .action-btn { padding: 12px 24px; border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; border: none; }
+    .action-btn.primary { background: var(--gradient-cta); color: var(--color-black); }
+    .action-btn.secondary { background: transparent; color: var(--color-dark-text); border: 1px solid rgba(0,0,0,0.15); }
+
+    .lead-cta { margin-top: 40px; padding: 32px; background: var(--color-black); border-radius: 16px; text-align: center; color: var(--color-white); }
+    .lead-cta h3 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; margin: 0 0 8px; color: var(--color-white); }
+    .lead-cta p { font-size: 14px; color: var(--color-light-body); margin: 0 0 18px; }
+    .lead-cta a.cta { display: inline-block; padding: 12px 28px; border-radius: var(--radius-pill); background: var(--color-cyan); color: var(--color-black); font-weight: 700; text-decoration: none; font-size: 14px; }
+
+    .error-box { background: rgba(220,38,38,0.08); border: 1px solid rgba(220,38,38,0.4); color: #fca5a5; padding: 14px 18px; border-radius: 8px; margin: 14px 0; font-size: 14px; line-height: 1.5; display: none; }
+    .error-box.visible { display: block; }
+  </style>
+</head>
+<body>
+
+  <section class="tool-hero">
+    <div class="container">
+      <div class="hero__label">Free Tool</div>
+      <h1>Topical Authority <span>Finder</span></h1>
+      <p>Find where your site already has authority. See what to publish next, in priority order. Paste your Search Console export and any keyword list, get a clean dashboard back.</p>
+
+      <details class="explainer">
+        <summary>How to export your data (2 min)</summary>
+        <div class="explainer-content">
+          <p style="margin-top:8px;font-weight:600;color:var(--color-white);">Search Console (required)</p>
+          <ol>
+            <li>Open <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a> and pick your site.</li>
+            <li><strong>Performance</strong> → <strong>Search results</strong>.</li>
+            <li>Date range: <strong>Last 3 months</strong>.</li>
+            <li>Make sure all 4 metrics are on: Clicks, Impressions, CTR, Position.</li>
+            <li>Click the <strong>Queries</strong> tab → <strong>Export ↓</strong> → <strong>CSV</strong>.</li>
+            <li>Open the ZIP, find <code>Queries.csv</code>, upload below.</li>
+          </ol>
+          <p style="margin-top:14px;font-weight:600;color:var(--color-white);">Keyword list (optional)</p>
+          <ol>
+            <li>Any of: Semrush, Ahrefs, Mangools, Ubersuggest, Keywords Everywhere, or your own list.</li>
+            <li>We read columns named anything close to <code>keyword</code> + <code>volume</code>. Difficulty is optional.</li>
+            <li>Or just paste one keyword per line (no volume needed).</li>
+          </ol>
+          <p style="margin-top:14px;font-size:13px;opacity:0.85;">No data leaves your browser. All processing happens locally.</p>
+        </div>
+      </details>
+
+      <div class="tool-options">
+        <form class="tool-form" id="toolForm" onsubmit="return false;">
+
+          <div class="input-block">
+            <div class="opt-label">Step 1: Search Console (required)</div>
+            <p class="block-desc">Upload your <code>Queries.csv</code> from GSC, or paste the table contents.</p>
+            <input type="file" id="gscFile" accept=".csv,.tsv,.txt">
+            <div class="or-divider">or paste</div>
+            <textarea id="gscData" placeholder="Top queries	Clicks	Impressions	CTR	Position&#10;ugc creator	5	480	1.04%	8.2&#10;..."></textarea>
+          </div>
+
+          <div class="input-block">
+            <div class="opt-label">Step 2: Keyword list (optional)</div>
+            <p class="block-desc">Any keyword research export, or one keyword per line. Skip this and you still get the topical authority map.</p>
+            <input type="file" id="kwFile" accept=".csv,.tsv,.txt">
+            <div class="or-divider">or paste</div>
+            <textarea id="kwData" placeholder="Keyword,Volume,KD&#10;ugc creator,3600,42&#10;influee review,1000,18&#10;..."></textarea>
+          </div>
+
+          <div class="input-block">
+            <div class="opt-label">Step 3: Branded terms (optional but recommended)</div>
+            <p class="block-desc">Comma-separated terms to exclude from clustering, e.g. your brand name and common typos. Stops branded searches inflating your authority score.</p>
+            <input type="text" id="brandTerms" placeholder="acme, acme co, acmeco" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;padding:12px;border-radius:8px;font-family:var(--font-body);font-size:14px;width:100%;">
+          </div>
+
+          <div id="errorBox" class="error-box"></div>
+          <button type="button" class="tool-submit" onclick="analyseData()">Find My Topical Authority</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="scanner-overlay" id="scanner">
+    <div class="scanner-bar-track"><div class="scanner-bar-fill" id="scanBar"></div></div>
+    <div class="scanner-status" id="scanStatus">Parsing your data...</div>
+  </div>
+
+  <section class="tool-results" id="results">
+
+    <div class="results-section">
+      <h2>Your Topical Authority Snapshot</h2>
+      <p class="section-sub" id="snapshotSubtitle">Built from your Search Console export. No data left your browser.</p>
+      <div class="kpi-grid" id="kpiGrid"></div>
+    </div>
+
+    <div class="results-section">
+      <h2>Strongest topics, double down here</h2>
+      <p class="section-sub">These are the clusters where Google already trusts you. Every new article in these topics compounds.</p>
+      <div class="cluster-cards" id="strongCards"></div>
+    </div>
+
+    <div class="results-section" id="emergingSection" style="display:none;">
+      <h2>Emerging topics, opportunity zone</h2>
+      <p class="section-sub">Real impressions, weak rankings. A handful of well-placed articles flips these into wins.</p>
+      <div class="cluster-cards" id="emergingCards"></div>
+    </div>
+
+    <div class="results-section">
+      <h2>Topical authority map</h2>
+      <p class="section-sub">All clusters built from your top queries, ranked by an authority score combining clicks, impressions, ranking pages and position.</p>
+      <table class="map-table">
+        <thead><tr><th>Topic Cluster</th><th class="num">Queries</th><th class="num">Clicks</th><th class="num">Impressions</th><th class="num">Avg Pos</th><th>Score</th></tr></thead>
+        <tbody id="mapBody"></tbody>
+      </table>
+    </div>
+
+    <div class="results-section" id="strikingSection" style="display:none;">
+      <h2>Near-wins by cluster</h2>
+      <p class="section-sub">Queries already at positions 5-15 inside your strong clusters. These are one push away from the SERP. Faster than new content.</p>
+      <div class="striking-block" id="strikingBlock"></div>
+    </div>
+
+    <div class="results-section" id="gapSection" style="display:none;">
+      <h2>Content gaps, keywords you haven't claimed yet</h2>
+      <p class="section-sub">Pulled from your keyword list, with everything you already rank for subtracted out. Sorted by funnel stage.</p>
+      <div id="gapBlocks"></div>
+    </div>
+
+    <div class="actions-row">
+      <button class="action-btn primary" onclick="downloadDashboard()">Download dashboard (HTML)</button>
+      <button class="action-btn secondary" onclick="resetTool()">Run again</button>
+    </div>
+
+    <div class="lead-cta">
+      <h3>Want a senior SEO to walk through this with you?</h3>
+      <p>Hawk Academy runs free SEO training drawn from StudioHawk's playbook. Same framework Lawrence used to map this dashboard.</p>
+      <a class="cta" href="../whats-included.html">See what's included →</a>
+    </div>
+
+  </section>
+
+<script>
+  // ---------------- CSV Parsing ----------------
+
+  function parseCSV(text) {
+    const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+    if (lines.length < 2) return null;
+
+    const firstLine = lines[0];
+    const delim = firstLine.includes('\t') ? '\t' : firstLine.includes(';') ? ';' : ',';
+
+    const splitLine = (line) => {
+      const result = [];
+      let cur = '';
+      let inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          if (inQuotes && line[i+1] === '"') { cur += '"'; i++; }
+          else inQuotes = !inQuotes;
+        } else if (ch === delim && !inQuotes) {
+          result.push(cur); cur = '';
+        } else { cur += ch; }
+      }
+      result.push(cur);
+      return result;
+    };
+
+    return { lines, splitLine };
+  }
+
+  function parseGSC(text) {
+    const parsed = parseCSV(text);
+    if (!parsed) return null;
+    const { lines, splitLine } = parsed;
+    const header = splitLine(lines[0]).map(h => h.trim().toLowerCase());
+
+    const findCol = (...names) => {
+      for (const name of names) {
+        const idx = header.findIndex(h => h.includes(name.toLowerCase()));
+        if (idx !== -1) return idx;
+      }
+      return -1;
+    };
+
+    const queryIdx = findCol('top queries', 'query', 'queries', 'keyword');
+    const clicksIdx = findCol('clicks');
+    const impIdx = findCol('impressions');
+    const posIdx = findCol('position');
+
+    if (queryIdx === -1 || posIdx === -1 || impIdx === -1) return null;
+
+    const num = (s) => parseFloat(String(s || '').replace(/[,%\s]/g, '')) || 0;
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+      const cells = splitLine(lines[i]);
+      if (cells.length < 2) continue;
+      const query = (cells[queryIdx] || '').trim();
+      if (!query) continue;
+      rows.push({
+        query,
+        clicks: num(cells[clicksIdx]),
+        impressions: num(cells[impIdx]),
+        position: num(cells[posIdx])
+      });
+    }
+    return rows.length > 0 ? rows : null;
+  }
+
+  function parseKeywords(text) {
+    if (!text || !text.trim()) return [];
+    const parsed = parseCSV(text);
+    if (!parsed) {
+      // Fall back to one-keyword-per-line
+      return text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0).map(kw => ({ keyword: kw, volume: 0, kd: null }));
+    }
+    const { lines, splitLine } = parsed;
+    const header = splitLine(lines[0]).map(h => h.trim().toLowerCase());
+
+    const findCol = (...names) => {
+      for (const name of names) {
+        const idx = header.findIndex(h => h.includes(name.toLowerCase()));
+        if (idx !== -1) return idx;
+      }
+      return -1;
+    };
+
+    const kwIdx = findCol('keyword', 'query', 'queries');
+    const volIdx = findCol('volume', 'search volume', 'avg monthly searches', 'searches');
+    const kdIdx = findCol('kd', 'keyword difficulty', 'difficulty');
+
+    // If no header detected, treat as plain list
+    if (kwIdx === -1) {
+      return lines.map(l => ({ keyword: l.trim(), volume: 0, kd: null })).filter(r => r.keyword);
+    }
+
+    const num = (s) => parseFloat(String(s || '').replace(/[,%\s]/g, '')) || 0;
+    const rows = [];
+    for (let i = 1; i < lines.length; i++) {
+      const cells = splitLine(lines[i]);
+      if (cells.length < 1) continue;
+      const keyword = (cells[kwIdx] || '').trim();
+      if (!keyword) continue;
+      rows.push({
+        keyword,
+        volume: volIdx !== -1 ? num(cells[volIdx]) : 0,
+        kd: kdIdx !== -1 ? num(cells[kdIdx]) : null
+      });
+    }
+    return rows;
+  }
+
+  // ---------------- Branded Filtering ----------------
+
+  function isBranded(query, brandPatterns) {
+    const q = query.toLowerCase();
+    for (const p of brandPatterns) {
+      if (q.includes(p)) return true;
+    }
+    return false;
+  }
+
+  function buildBrandPatterns(brandInput) {
+    if (!brandInput) return [];
+    return brandInput.split(',').map(s => s.trim().toLowerCase()).filter(s => s.length >= 2);
+  }
+
+  // ---------------- Clustering ----------------
+
+  const STOP_WORDS = new Set([
+    'the','a','an','is','are','was','were','be','been','being','to','of','for','on','in','at','by','with','from','as','it','its','this','that','these','those','and','or','but','if','then','so','do','does','did','done','have','has','had','will','can','could','should','would','what','why','when','where','how','who','my','your','our','their','his','her','best','top'
+  ]);
+
+  function tokenize(query) {
+    return query.toLowerCase()
+      .replace(/[^a-z0-9 ]+/g, ' ')
+      .split(/\s+/)
+      .filter(t => t.length >= 3 && !STOP_WORDS.has(t));
+  }
+
+  function clusterQueries(rows) {
+    // Tokenize once
+    const items = rows.map(r => ({
+      ...r,
+      tokens: new Set(tokenize(r.query))
+    })).filter(r => r.tokens.size > 0);
+
+    // Sort by impressions desc, biggest queries seed clusters
+    const sorted = [...items].sort((a, b) => b.impressions - a.impressions);
+    const assigned = new Set();
+    const clusters = [];
+
+    for (const seed of sorted) {
+      if (assigned.has(seed.query)) continue;
+      const seedTokens = new Set(seed.tokens);
+      const cluster = { queries: [seed], tokens: new Set(seedTokens) };
+      assigned.add(seed.query);
+
+      for (const q of items) {
+        if (assigned.has(q.query)) continue;
+
+        // Jaccard similarity between cluster vocab and query tokens
+        const intersection = [...q.tokens].filter(t => cluster.tokens.has(t)).length;
+        const union = cluster.tokens.size + q.tokens.size - intersection;
+        if (union === 0) continue;
+        const jaccard = intersection / union;
+
+        // Or: query shares >= 2 tokens with the cluster vocab AND those tokens are content words
+        const shareCount = intersection;
+        const shareRatio = q.tokens.size > 0 ? intersection / q.tokens.size : 0;
+
+        if (jaccard >= 0.25 || (shareCount >= 2 && shareRatio >= 0.5)) {
+          cluster.queries.push(q);
+          q.tokens.forEach(t => cluster.tokens.add(t));
+          assigned.add(q.query);
+        }
+      }
+      clusters.push(cluster);
+    }
+
+    return clusters;
+  }
+
+  function labelCluster(cluster) {
+    // Top-impression query as label seed
+    const top = cluster.queries.reduce((a, b) => a.impressions > b.impressions ? a : b);
+    let label = top.query.toLowerCase();
+
+    // Strip leading articles
+    label = label.replace(/^(the|a|an|how to|what is|why is) /, '');
+    // Title case
+    label = label.split(' ').map(w => {
+      if (w.length <= 2) return w;
+      return w[0].toUpperCase() + w.slice(1);
+    }).join(' ');
+    return label;
+  }
+
+  function aggregateCluster(cluster) {
+    const clicks = cluster.queries.reduce((s, q) => s + q.clicks, 0);
+    const impressions = cluster.queries.reduce((s, q) => s + q.impressions, 0);
+    const queryCount = cluster.queries.length;
+    const weightedPos = impressions > 0
+      ? cluster.queries.reduce((s, q) => s + q.position * q.impressions, 0) / impressions
+      : cluster.queries.reduce((s, q) => s + q.position, 0) / queryCount;
+    return {
+      label: labelCluster(cluster),
+      clicks,
+      impressions,
+      queryCount,
+      avgPosition: weightedPos,
+      queries: cluster.queries,
+      tokens: [...cluster.tokens]
+    };
+  }
+
+  // ---------------- Authority scoring ----------------
+
+  function scoreClusters(aggregates, totalClicks) {
+    if (aggregates.length === 0) return [];
+
+    const norm = (vals) => {
+      const min = Math.min(...vals);
+      const max = Math.max(...vals);
+      if (max - min === 0) return vals.map(_ => 0.5);
+      return vals.map(v => (v - min) / (max - min));
+    };
+
+    const clicks = aggregates.map(a => a.clicks);
+    const impressions = aggregates.map(a => a.impressions);
+    const queries = aggregates.map(a => a.queryCount);
+    const positions = aggregates.map(a => Math.min(a.avgPosition, 100));
+
+    const cN = norm(clicks);
+    const iN = norm(impressions);
+    const qN = norm(queries);
+    const pN = norm(positions);
+
+    // For tiny sites (<50 clicks total) drop click weight, lean on impressions + queries
+    const tinySite = totalClicks < 50;
+
+    return aggregates.map((a, i) => {
+      let score;
+      if (tinySite) {
+        score = 100 * (0.5 * iN[i] + 0.3 * qN[i] + 0.2 * (1 - pN[i]));
+      } else {
+        score = 100 * (0.4 * cN[i] + 0.3 * iN[i] + 0.2 * qN[i] + 0.1 * (1 - pN[i]));
+      }
+      return { ...a, score: Math.round(score * 10) / 10, tinySite };
+    });
+  }
+
+  function tierClusters(scored) {
+    const sorted = [...scored].sort((a, b) => b.score - a.score);
+    const strongCount = Math.min(5, Math.max(1, Math.floor(sorted.length / 3)));
+    const strong = sorted.slice(0, strongCount).map(c => ({ ...c, tier: 'strong' }));
+
+    // Emerging: rest, with score 20-40 and impressions >= median
+    const remaining = sorted.slice(strongCount);
+    if (remaining.length === 0) return { strong, emerging: [], rest: [] };
+    const remImpr = remaining.map(r => r.impressions).sort((a, b) => a - b);
+    const median = remImpr[Math.floor(remImpr.length / 2)] || 0;
+    const emerging = remaining
+      .filter(r => r.impressions >= median && r.score >= 15 && r.score < 50)
+      .slice(0, 5)
+      .map(c => ({ ...c, tier: 'emerging' }));
+    const emergingSet = new Set(emerging.map(e => e.label));
+    const rest = remaining.filter(r => !emergingSet.has(r.label)).map(c => ({ ...c, tier: '' }));
+    return { strong, emerging, rest };
+  }
+
+  // ---------------- Stage classifier ----------------
+
+  function classifyStage(kw) {
+    const k = kw.toLowerCase().trim();
+    if (/\b(review|reviews|vs|alternative|alternatives|comparison|compared to)\b/.test(k)) return 'most';
+    if (/\b(best|top|cheapest|most)\b/.test(k)) return 'bofu';
+    if (/(software|tools|platform|agency|service|services|company|companies)$/.test(k)) return 'bofu';
+    if (/\b(price|pricing|cost|costs|how much)\b/.test(k)) return 'bofu';
+    if (/^how (to|do|can)/.test(k)) return 'mofu';
+    if (/\b(guide|tutorial|template|checklist|framework|step by step)\b/.test(k)) return 'mofu';
+    if (/^(what|why|when|where) (is|are|does|do)/.test(k)) return 'tofu';
+    if (/(meaning|definition|definitions|explained|examples)$/.test(k)) return 'tofu';
+    if (/\b(for beginners|basics|introduction)\b/.test(k)) return 'tofu';
+    return 'mofu';
+  }
+
+  // ---------------- Gap analysis ----------------
+
+  function alreadyRanking(keyword, gscQueries) {
+    const k = keyword.toLowerCase().trim();
+    if (gscQueries.has(k)) return true;
+    // Lightweight fuzzy: check if any GSC query contains every word of the keyword
+    const kWords = k.split(/\s+/);
+    for (const q of gscQueries) {
+      let allMatch = true;
+      for (const w of kWords) {
+        if (w.length < 3) continue;
+        if (!q.includes(w)) { allMatch = false; break; }
+      }
+      if (allMatch && kWords.length >= 1) return true;
+    }
+    return false;
+  }
+
+  function buildGapsByCluster(clusters, keywords, gscRows) {
+    if (keywords.length === 0) return [];
+    const gscSet = new Set(gscRows.map(r => r.query.toLowerCase().trim()));
+
+    return clusters.map(cluster => {
+      const clusterTokens = new Set(cluster.tokens);
+      // Match keywords whose tokens overlap with this cluster's vocab
+      const candidates = keywords.filter(kw => {
+        const tokens = tokenize(kw.keyword);
+        if (tokens.length === 0) return false;
+        const overlap = tokens.filter(t => clusterTokens.has(t)).length;
+        return overlap >= 1;
+      });
+
+      const gaps = candidates
+        .filter(kw => !alreadyRanking(kw.keyword, gscSet))
+        .map(kw => ({ ...kw, stage: classifyStage(kw.keyword) }));
+
+      return { cluster, gaps };
+    });
+  }
+
+  // ---------------- Render ----------------
+
+  function formatNumber(n) {
+    return Math.round(n).toLocaleString();
+  }
+
+  function escHTML(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  }
+
+  function renderResults(state) {
+    const { gscRows, brandPatterns, clusters, scored, tiered, gapsByCluster, totalClicks, totalImpressions, brandedSharePct } = state;
+
+    // KPIs
+    const kpiHtml = `
+      <div class="kpi-card"><div class="kpi-label">Clicks</div><div class="kpi-value">${formatNumber(totalClicks)}</div></div>
+      <div class="kpi-card"><div class="kpi-label">Impressions</div><div class="kpi-value">${formatNumber(totalImpressions)}</div></div>
+      <div class="kpi-card"><div class="kpi-label">Queries</div><div class="kpi-value">${formatNumber(gscRows.length)}</div></div>
+      <div class="kpi-card"><div class="kpi-label">Clusters</div><div class="kpi-value">${formatNumber(clusters.length)}</div></div>
+    `;
+    document.getElementById('kpiGrid').innerHTML = kpiHtml;
+
+    let subtitle = `Built from your Search Console export. ${formatNumber(gscRows.length)} queries clustered into ${clusters.length} topics.`;
+    if (brandedSharePct > 0) {
+      subtitle += ` ${(100 - brandedSharePct).toFixed(0)}% of impressions are non-branded${brandedSharePct >= 30 ? ' (heavy brand-dependence flagged)' : ''}.`;
+    }
+    document.getElementById('snapshotSubtitle').textContent = subtitle;
+
+    // Strong cards
+    const strongHtml = tiered.strong.map(c => `
+      <div class="cluster-card">
+        <div class="cc-name">${escHTML(c.label)}</div>
+        <div><span class="cc-score">${c.score}</span><span class="cc-score-max">/100</span></div>
+        <div class="cc-meta">${c.queryCount} queries · ${formatNumber(c.impressions)} impressions · pos ${c.avgPosition.toFixed(1)}</div>
+      </div>
+    `).join('');
+    document.getElementById('strongCards').innerHTML = strongHtml || '<p style="color:var(--color-body-text);">No strong clusters detected. You probably need more ranking queries before this view is useful.</p>';
+
+    // Emerging cards
+    if (tiered.emerging.length > 0) {
+      document.getElementById('emergingSection').style.display = '';
+      const eHtml = tiered.emerging.map(c => `
+        <div class="cluster-card emerging">
+          <div class="cc-name">${escHTML(c.label)}</div>
+          <div><span class="cc-score">${c.score}</span><span class="cc-score-max">/100</span></div>
+          <div class="cc-meta">${c.queryCount} queries · ${formatNumber(c.impressions)} impressions · pos ${c.avgPosition.toFixed(1)}</div>
+        </div>
+      `).join('');
+      document.getElementById('emergingCards').innerHTML = eHtml;
+    }
+
+    // Map table
+    const allClusters = [...tiered.strong, ...tiered.emerging, ...tiered.rest];
+    const maxScore = Math.max(...allClusters.map(c => c.score), 1);
+    const mapHtml = allClusters.map(c => {
+      const badge = c.tier === 'strong'
+        ? '<span class="badge strong">Strong</span>'
+        : c.tier === 'emerging'
+          ? '<span class="badge emerging">Emerging</span>'
+          : '';
+      const widthPct = (c.score / maxScore * 100).toFixed(1);
+      return `<tr>
+        <td><strong>${escHTML(c.label)}</strong>${badge}</td>
+        <td class="num">${c.queryCount}</td>
+        <td class="num">${formatNumber(c.clicks)}</td>
+        <td class="num">${formatNumber(c.impressions)}</td>
+        <td class="num">${c.avgPosition.toFixed(1)}</td>
+        <td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:${widthPct}%"></div></div><span class="score-num">${c.score}</span></td>
+      </tr>`;
+    }).join('');
+    document.getElementById('mapBody').innerHTML = mapHtml;
+
+    // Striking distance (positions 5-15) inside strong clusters
+    const strongLabels = new Set(tiered.strong.map(c => c.label));
+    const strikingByCluster = tiered.strong.map(c => {
+      const queries = c.queries
+        .filter(q => q.position >= 5 && q.position <= 15)
+        .sort((a, b) => b.impressions - a.impressions)
+        .slice(0, 5);
+      return { cluster: c, queries };
+    }).filter(x => x.queries.length > 0);
+
+    if (strikingByCluster.length > 0) {
+      document.getElementById('strikingSection').style.display = '';
+      document.getElementById('strikingBlock').innerHTML = strikingByCluster.map(x => `
+        <div class="striking-cluster">
+          <h4>${escHTML(x.cluster.label)}</h4>
+          <ul>
+            ${x.queries.map(q => `<li><span class="sk-q">${escHTML(q.query)}</span><span class="sk-pos">pos ${q.position.toFixed(1)} · ${formatNumber(q.impressions)} impr</span></li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    // Gaps
+    if (gapsByCluster.some(g => g.gaps.length > 0)) {
+      document.getElementById('gapSection').style.display = '';
+      const gapsHtml = gapsByCluster
+        .filter(g => g.gaps.length > 0 && strongLabels.has(g.cluster.label))
+        .map(g => {
+          const stages = ['most', 'bofu', 'mofu', 'tofu'];
+          const labelMap = { most: 'Most-aware', bofu: 'BOFU', mofu: 'MOFU', tofu: 'TOFU' };
+          const cols = stages.map(s => {
+            const items = g.gaps.filter(k => k.stage === s).sort((a, b) => b.volume - a.volume).slice(0, 8);
+            if (items.length === 0) return '';
+            return `<div class="stage-col ${s}">
+              <div class="stage-label">${labelMap[s]}</div>
+              <ul>${items.map(k => `<li><span class="kw">${escHTML(k.keyword)}</span><span class="vol">${k.volume > 0 ? formatNumber(k.volume) + '/mo' : '–'}</span></li>`).join('')}</ul>
+            </div>`;
+          }).filter(s => s).join('');
+          if (!cols) return '';
+          return `<div class="gap-block">
+            <h3>${escHTML(g.cluster.label)}</h3>
+            <div class="stage-row">${cols}</div>
+          </div>`;
+        }).join('');
+      document.getElementById('gapBlocks').innerHTML = gapsHtml || '<p style="color:var(--color-body-text);">No gap keywords matched your strong clusters. Either you already rank for everything, or your keyword list doesn\'t overlap with where you have authority.</p>';
+    }
+  }
+
+  // ---------------- Scanner ----------------
+
+  function runScan(callback) {
+    const scanner = document.getElementById('scanner');
+    const bar = document.getElementById('scanBar');
+    const status = document.getElementById('scanStatus');
+    scanner.classList.add('visible');
+    document.getElementById('results').classList.remove('visible');
+
+    const steps = [
+      'Parsing your data...',
+      'Filtering branded queries...',
+      'Clustering queries into topics...',
+      'Scoring authority per cluster...',
+      'Mapping keyword gaps...'
+    ];
+    let step = 0;
+    status.textContent = steps[0];
+    bar.style.width = '0%';
+
+    const interval = setInterval(() => {
+      step++;
+      if (step < steps.length) {
+        status.textContent = steps[step];
+        bar.style.width = ((step + 1) / steps.length * 100) + '%';
+      } else {
+        clearInterval(interval);
+        bar.style.width = '100%';
+        status.textContent = 'Done';
+        setTimeout(() => {
+          scanner.classList.remove('visible');
+          callback();
+          document.getElementById('results').classList.add('visible');
+          document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 400);
+      }
+    }, 550);
+  }
+
+  // ---------------- Main ----------------
+
+  let lastResults = null;
+
+  function showError(msg) {
+    const box = document.getElementById('errorBox');
+    box.textContent = msg;
+    box.classList.add('visible');
+    setTimeout(() => box.classList.remove('visible'), 8000);
+  }
+
+  function getInputText(textareaId, fileId, callback) {
+    const file = document.getElementById(fileId).files[0];
+    const text = document.getElementById(textareaId).value;
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = e => callback(e.target.result);
+      reader.readAsText(file);
+    } else {
+      callback(text);
+    }
+  }
+
+  function analyseData() {
+    document.getElementById('errorBox').classList.remove('visible');
+
+    getInputText('gscData', 'gscFile', gscText => {
+      if (!gscText || !gscText.trim()) {
+        showError('Please paste your Search Console export or upload your Queries.csv.');
+        return;
+      }
+
+      const gscRows = parseGSC(gscText);
+      if (!gscRows) {
+        showError('Could not detect Search Console columns. Expected: Query, Clicks, Impressions, Position. Make sure you exported the Queries tab from Performance > Search results.');
+        return;
+      }
+
+      getInputText('kwData', 'kwFile', kwText => {
+        const keywords = parseKeywords(kwText);
+        const brandInput = document.getElementById('brandTerms').value;
+        const brandPatterns = buildBrandPatterns(brandInput);
+
+        // Filter branded
+        const totalImpAll = gscRows.reduce((s, r) => s + r.impressions, 0);
+        const branded = gscRows.filter(r => isBranded(r.query, brandPatterns));
+        const nonBranded = gscRows.filter(r => !isBranded(r.query, brandPatterns));
+        const brandedImp = branded.reduce((s, r) => s + r.impressions, 0);
+        const brandedSharePct = totalImpAll > 0 ? (brandedImp / totalImpAll * 100) : 0;
+
+        const workingRows = nonBranded.length > 5 ? nonBranded : gscRows;
+
+        // Cluster
+        const rawClusters = clusterQueries(workingRows);
+        // Drop singleton clusters with <5 impressions (probably noise)
+        const filtered = rawClusters.filter(c => c.queries.length >= 2 || c.queries[0].impressions >= 50);
+
+        if (filtered.length < 2) {
+          showError('Could not build at least 2 clusters from your data. Either the export is too small or queries are too varied. Try a longer date range (12 months) or more queries.');
+          return;
+        }
+
+        const aggregates = filtered.map(aggregateCluster);
+        const totalClicks = workingRows.reduce((s, r) => s + r.clicks, 0);
+        const totalImpressions = workingRows.reduce((s, r) => s + r.impressions, 0);
+        const scored = scoreClusters(aggregates, totalClicks);
+        const tiered = tierClusters(scored);
+        const gapsByCluster = buildGapsByCluster(scored, keywords, gscRows);
+
+        const state = {
+          gscRows: workingRows,
+          brandPatterns,
+          clusters: filtered,
+          scored,
+          tiered,
+          gapsByCluster,
+          totalClicks,
+          totalImpressions,
+          brandedSharePct
+        };
+        lastResults = state;
+
+        runScan(() => renderResults(state));
+      });
+    });
+  }
+
+  function downloadDashboard() {
+    if (!lastResults) return;
+    const html = document.getElementById('results').outerHTML;
+    const styles = Array.from(document.styleSheets)
+      .map(ss => { try { return Array.from(ss.cssRules).map(r => r.cssText).join('\n'); } catch (e) { return ''; } })
+      .join('\n');
+    const out = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Topical Authority Dashboard</title><style>body{margin:0;background:#fafafa;font-family:Inter,system-ui,sans-serif;}${styles}</style></head><body>${html}</body></html>`;
+    const blob = new Blob([out], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'topical-authority-dashboard.html';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function resetTool() {
+    document.getElementById('gscData').value = '';
+    document.getElementById('kwData').value = '';
+    document.getElementById('brandTerms').value = '';
+    document.getElementById('gscFile').value = '';
+    document.getElementById('kwFile').value = '';
+    document.getElementById('results').classList.remove('visible');
+    lastResults = null;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
