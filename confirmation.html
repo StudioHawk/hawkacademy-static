@@ -726,12 +726,18 @@
             var firstName = (params.get('first_name') || '').trim();
             var city = (params.get('city') || '').trim();
 
-            if (firstName) {
-                // Title-case the first word
+            // Defensive: detect broken Typeform substitutions (literal @first_name,
+            // @city, {{field:...}}, etc.) and treat them as missing so the page falls
+            // back to the default copy rather than rendering placeholder noise.
+            function looksUnsubstituted(v) {
+                return !v || v.startsWith('@') || /\{\{|field:|{field|\{\{field/.test(v);
+            }
+
+            if (firstName && !looksUnsubstituted(firstName)) {
                 firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
                 document.getElementById('first-name').textContent = firstName;
             }
-            if (city) {
+            if (city && !looksUnsubstituted(city)) {
                 city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
                 document.getElementById('workshop-city').textContent = city + ' workshop';
             }
