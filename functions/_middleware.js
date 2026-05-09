@@ -14,14 +14,13 @@ const CONFIG = {
   COOKIE_NAME: 'hawk-workshop-ab',
   VARIANTS: {
     a: '/workshop.html',
-    c: '/workshop-c.html',
-    d: '/workshop-d.html',
-    'a-a': '/workshop-a-a.html', // price variant: $3,000
-    'a-b': '/workshop-a-b.html', // price variant: $2,500
-    f: '/workshop-f.html',           // bar-less control for sticky mobile CTA test
-    g: '/workshop-g.html',           // social-proof-higher: testimonials moved up to after Problem section
-    i: '/workshop-i.html',           // 'For Business Owners' pill + testimonials moved directly under hero (above Quick Apply)
-    j: '/workshop-j.html',           // 'Business Owners:' prefix on hero H1
+    b: '/workshop-b.html',           // was J: 'Business Owners:' prefix on hero H1
+    c: '/workshop-c.html',           // was I: 'For Business Owners Done Guessing at SEO' pill + 272 reviews under video
+    d: '/workshop-d.html',           // was G: testimonials moved up to right after Problem section
+    e: '/workshop-e.html',           // was C: 'Stop Renting Customers From Google' angle + bullets + Three things
+    f: '/workshop-f.html',           // was D: 'Same SEO Playbook 120 Specialists' angle + bullets + Three things + mid-page CTA
+    'a-a': '/workshop-a-a.html',     // price variant: $3,000
+    'a-b': '/workshop-a-b.html',     // price variant: $2,500
   },
   // Relative traffic weights. All traffic currently goes to A.
   // Price-test variants (a-a $3k, a-b $2.5k) parked at 0 — flip on later
@@ -29,7 +28,7 @@ const CONFIG = {
   // To split evenly across 4 content variants: { a: 1, b: 1, c: 1, d: 1 }
   // To split 50/50 A vs C:    { a: 1, b: 0, c: 1, d: 0 }
   // Force any variant for QA via ?ab=a-a etc. — works regardless of weights.
-  WEIGHTS: { a: 1, c: 1, d: 1, 'a-a': 0, 'a-b': 0, f: 0, g: 1, i: 1, j: 1 },
+  WEIGHTS: { a: 1, b: 1, c: 1, d: 1, e: 1, f: 1, 'a-a': 0, 'a-b': 0 },
   COOKIE_DAYS: 30,
 };
 
