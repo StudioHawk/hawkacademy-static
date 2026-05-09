@@ -44,5 +44,26 @@
 /skills/topical-authority-map.html  /claude-seo-skills/topical-authority-map  301
 /skills/topical-authority-map.zip  /claude-seo-skills/downloads/topical-authority-map.zip  301
 
+# AI SEO Prompts URL aliases (memorable slugs for the Winning Google Score Card)
+/ai-seo-prompts/winning-google  /ai-seo-prompts/website-score  301
+/ai-seo-prompts/winning-google.html  /ai-seo-prompts/website-score  301
+/ai-seo-prompts/winning-google-score  /ai-seo-prompts/website-score  301
+/ai-seo-prompts/winning-google-score.html  /ai-seo-prompts/website-score  301
+/ai-seo-prompts/winning-google-score-card  /ai-seo-prompts/website-score  301
+/ai-seo-prompts/winning-google-score-card.html  /ai-seo-prompts/website-score  301
+/ai-seo-prompts/score-card  /ai-seo-prompts/website-score  301
+/ai-seo-prompts/score  /ai-seo-prompts/website-score  301
+
+# AI SEO Prompts catchall aliases (short URLs people might guess or share)
+/prompts/winning-google  /ai-seo-prompts/website-score  301
+/prompts/score  /ai-seo-prompts/website-score  301
+/prompts/website-score  /ai-seo-prompts/website-score  301
+/prompts/information-gain  /ai-seo-prompts/information-gain  301
+/prompts/title-tag-optimizer  /ai-seo-prompts/title-tag-optimizer  301
+/prompts/*  /ai-seo-prompts/:splat  301
+/ai-prompts/*  /ai-seo-prompts/:splat  301
+/resources/prompts/*  /ai-seo-prompts/:splat  301
+/seo-prompts/*  /ai-seo-prompts/:splat  301
+
 # Blog -> SEO Guides
 /blog/*  /seo-guides/:splat  301
