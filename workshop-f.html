@@ -1260,9 +1260,25 @@
                             function stopGlow() { if (wrap) wrap.classList.remove('video-pulse-container'); }
                             function hideOverlay() { overlay.classList.add('hidden'); stopGlow(); }
                             overlay.addEventListener('click', function () {
-                                // Initiate all three calls synchronously in the same tick
-                                // as the click - preserves user-gesture context across the
-                                // chain (Instagram WebView consumes it after one async hop).
+                                // Instagram / Facebook in-app WebView blocks the Vimeo Player
+                                // postMessage path - user-gesture context doesn't survive the
+                                // postMessage hop, so setMuted(false) is silently rejected.
+                                // Fix: reload the iframe directly with muted=0&autoplay=1.
+                                // Browser treats iframe.src reassignment as user-initiated, so
+                                // audio is allowed on the fresh load.
+                                var ua = navigator.userAgent || '';
+                                if (/Instagram|FBAN|FBAV/i.test(ua)) {
+                                    if (iframe.src.indexOf('muted=1') !== -1) {
+                                        iframe.src = iframe.src.replace('muted=1', 'muted=0');
+                                    } else if (iframe.src.indexOf('muted=0') === -1) {
+                                        iframe.src += (iframe.src.indexOf('?') === -1 ? '?' : '&') + 'muted=0&autoplay=1';
+                                    }
+                                    hideOverlay();
+                                    return;
+                                }
+                                // Standard browsers: use Vimeo Player API. Initiate all three
+                                // calls synchronously in the same tick as the click so the
+                                // user-gesture context is preserved across the chain.
                                 var unmute = player.setMuted(false);
                                 var seek = player.setCurrentTime(0);
                                 var play = player.play();
