@@ -373,6 +373,44 @@
       .skill-secondary-btn { margin-left: 0; margin-top: 12px; }
       .install-grid { grid-template-columns: 1fr; }
     }
+  
+    /* Multi-LLM retrofit additions */
+    .skill-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+    .skill-cta-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: var(--color-white); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: background 0.25s; }
+    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
+    .skill-cta-secondary svg { width: 16px; height: 16px; }
+
+    .platforms-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
+
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 80px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+    @media (max-width: 768px) {
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+      .skill-hero-ctas { flex-direction: column; align-items: center; }
+      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; max-width: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -391,6 +429,7 @@
           <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="header__dropdown">
             <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../ai-seo-prompts.html">AI SEO Prompts</a>
             <a href="../seo-tools.html">SEO Tools</a>
             <a href="../seo-guides.html">SEO Guides</a>
           </div>
@@ -414,6 +453,7 @@
     <a href="../about.html">About Us</a>
     <a href="../resources.html">Resources</a>
     <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../ai-seo-prompts.html" class="mobile-nav__sub">AI SEO Prompts</a>
     <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
     <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
     <a href="../contact.html">Contact</a>
@@ -438,6 +478,74 @@
   </section>
 
   <!-- THE 4 CLUSTERS -->
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Or paste into any LLM</h2>
+      <p class="section-sub">Skip the install. The prompt below works in Claude, ChatGPT, or Gemini.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL or input.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL or input, send.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL or input, send. Gemini Pro gives the deepest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>## Execution order
+
+Load reference files as you progress through each phase. Complete every checkpoint before moving on.
+
+**Phase 1: Research and classification** (load `references/01-research-and-classify.md`)
+- Step 1: Define the central entity (Checkpoint 1)
+- Step 2: Source context plus persona (Checkpoint 2)
+- Step 3: Deep research on Knowledge Graph, competitors, client situations, attributes (Checkpoint 3)
+- Step 4: Classify each attribute as Core or AOR
+- Step 5: Merge and split decisions plus depth calibration (Checkpoint 4)
+
+**Phase 2: Architecture and keywords** (load `references/02-architecture-and-keywords.md`)
+- Step 6: Define folder structure
+- Step 7: Map every page to TOFU, MOFU, or BOFU (Checkpoint 5)
+- Step 8: Query expansion plus cost of retrieval scoring
+- Step 9: Keyword selection for page titles
+- Step 10: Define the linking architecture
+
+**Phase 3: Execution and output** (load `references/03-execution-and-output.md`)
+- Step 11: Central entity sitewide presence
+- Step 12: NLP category alignment check
+- Step 13: Content briefs for the first 30 articles
+- Step 14: Publishing order across 12 weeks
+- Generate the .xlsx with five tabs
+- Generate the strategy .md document
+
+When you finish, present both deliverables to the user with a one-paragraph summary of what to read first (Core, then AOR, then Linking, then Buyer Journey, then Publishing Order) and where to start writing this week.
+
+**The map is dynamic, not static.** Google's indexes change. Review and update the map quarterly.</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="skill-section">
     <div class="container">
       <h2>What you get: 4 clusters, 1 publishing order</h2>

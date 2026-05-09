@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGEY4EYTD4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NGEY4EYTD4');
+    </script>
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '882137468214985');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=882137468214985&ev=PageView&noscript=1"/></noscript>
+    <!-- End Facebook Pixel Code -->
+    <title>Information Gain Finder | Free AI SEO Prompt for Claude, ChatGPT &amp; Gemini | Hawk Academy</title>
+  <meta name="description" content="Free AI prompt that finds the unique knowledge gaps in your content. Identifies where you're repeating what Google already knows and shows you what only YOU can add. Paste into Claude, ChatGPT, or Gemini.">
+  <link rel="canonical" href="https://hawkacademy.co/ai-seo-prompts/information-gain">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css?v=20260420">
+  <link rel="stylesheet" href="../css/animations.css?v=20260420">
+  <style>
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+
+    .skill-hero { background: var(--color-black); padding: 120px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .skill-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-cyan); opacity: 0.5; }
+    .skill-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
+    .skill-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
+    .skill-hero h1 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 52px); font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 720px; margin: 0 auto 16px; }
+    .skill-hero h1 span { color: var(--color-cyan); }
+    .skill-hero p { color: var(--color-light-body); max-width: 620px; margin: 0 auto 36px; font-size: 17px; line-height: 1.7; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+
+    .intro-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .intro-content { max-width: 780px; margin: 0 auto; }
+    .intro-content h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 20px; }
+    .intro-content p { color: var(--color-body-text); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+    .intro-content ol { color: var(--color-body-text); font-size: 16px; line-height: 1.7; padding-left: 20px; margin: 12px 0 16px; }
+    .intro-content ol li { margin-bottom: 6px; }
+    .intro-content ol li strong { color: var(--color-dark-text); }
+    .intro-content .source-line { font-size: 14px; color: var(--color-body-text); opacity: 0.75; font-style: italic; margin-top: 24px; }
+
+    .platforms-section { background: var(--color-off-white); padding: 20px 0 60px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
+
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 100px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+    .skill-cards-section { background: var(--color-white); padding: 80px 0; }
+    .skill-cards-section h2 { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 12px; text-align: center; }
+    .skill-cards-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 40px; }
+    .skill-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    .skill-card { background: var(--color-off-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .skill-card__corr { display: inline-block; font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--color-lavender); margin-bottom: 8px; }
+    .skill-card h3 { font-family: var(--font-heading); font-size: 19px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; }
+    .skill-card p { font-size: 15px; color: var(--color-body-text); line-height: 1.6; }
+
+    .skill-cta-bottom { background: var(--color-black); padding: 80px 0; text-align: center; }
+    .skill-cta-bottom h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-white); margin-bottom: 12px; }
+    .skill-cta-bottom p { color: var(--color-light-body); font-size: 16px; max-width: 600px; margin: 0 auto 24px; line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .skill-hero { padding: 90px 0 60px; }
+      .skill-hero h1 { font-size: 30px; }
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="header__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+      <nav class="header__nav">
+        <a href="../index.html">Home</a>
+        <a href="../whats-included.html">What's Included</a>
+        <a href="../about.html">About Us</a>
+        <div class="header__nav-item">
+          <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="header__dropdown">
+            <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../ai-seo-prompts.html">AI SEO Prompts</a>
+            <a href="../seo-tools.html">SEO Tools</a>
+            <a href="../seo-guides.html">SEO Guides</a>
+          </div>
+        </div>
+        <a href="../contact.html">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
+        <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav">
+    <a href="../index.html">Home</a>
+    <a href="../whats-included.html">What's Included</a>
+    <a href="../about.html">About Us</a>
+    <a href="../resources.html">Resources</a>
+    <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../ai-seo-prompts.html" class="mobile-nav__sub">AI SEO Prompts</a>
+    <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
+    <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="margin-top:24px;">Sign In</a>
+    <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="margin-top:12px;">Enroll For Free</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="skill-hero">
+    <div class="container">
+      <div class="hero__label">Free AI Prompt</div>
+      <h1>Information Gain <span>Finder</span></h1>
+      <p>Find where your content just repeats what Google already knows. Spot the unique knowledge only you can add. Paste into Claude, ChatGPT, or Gemini.</p>
+      <a href="#the-prompt" class="skill-cta-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy the Prompt
+      </a>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-content">
+
+        <h2>Why information gain matters</h2>
+        <p>Information gain is the gap between what Google already knows about a topic (from millions of existing pages) and what NEW knowledge your content adds. Google's systems actively measure this. Content with high information gain ranks better because it gives searchers something they can't find anywhere else.</p>
+        <p>The more AI-generated content floods the web, the more this matters. AI can summarise what exists. It can't tell a story you lived. It can't share a number from your own client work. It can't take a contrarian stance grounded in what you've actually seen go wrong. That gap is your moat.</p>
+        <p><strong>What this prompt does:</strong></p>
+        <ol>
+          <li><strong>Reads your content</strong> from a URL or pasted text</li>
+          <li><strong>Tags every claim</strong> as Generic, Partially unique, or Genuinely unique</li>
+          <li><strong>Lists 5+ specific opportunities</strong> to add personal experience, original data, contrarian takes, or process detail only you would know</li>
+          <li><strong>Gives you 3 quick wins</strong> you can add to the page this week</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Works in Claude, ChatGPT, or Gemini</h2>
+      <p class="section-sub">Same prompt, three pastes. Pick the tool you already use.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL, send.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL, send. Gemini Pro gives the deepest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>You are an information gain analyst. The user will give you a URL or a piece of content. Your job is to identify where the content adds genuine new information vs where it repeats what's already widely available online.
+
+## What is Information Gain?
+
+Information gain is the gap between what Google already knows about a topic (from millions of existing pages) and what NEW knowledge your content provides. Google's systems actively measure this. Content with high information gain ranks better because it gives searchers something they can't find elsewhere.
+
+## Process
+
+1. **Read the content**. Fetch the URL or read the pasted content. Understand the topic, the claims made, and the level of detail.
+
+2. **Identify what's already common knowledge**. For each major point in the content, assess whether it's:
+   - **Generic:** This appears on hundreds of other pages about this topic (e.g., "SEO is important for your business")
+   - **Partially unique:** The point is common but includes some specific detail (e.g., "We've seen CTR improvements of 40% when...")
+   - **Genuinely unique:** First-hand experience, original data, proprietary insight, or a perspective not found elsewhere
+
+3. **Find the information gain gaps**. Where could the author add:
+   - **Personal experience:** "When we did this for a client, here's what happened..."
+   - **Original data:** Numbers, percentages, results from their own work
+   - **Contrarian takes:** Where their experience contradicts common advice
+   - **Process details:** Step-by-step specifics that generic content skips
+   - **Failure stories:** What didn't work and why (almost nobody shares these)
+   - **Industry-specific context:** Details that only someone who actually does this work would know
+
+4. **Score the content** and give specific suggestions.
+
+## Output Format
+
+INFORMATION GAIN ANALYSIS
+Content: [URL or title]
+Topic: [What the content is about]
+Date: [Today's date]
+
+OVERALL INFORMATION GAIN SCORE: [LOW / MEDIUM / HIGH]
+
+WHAT'S GENERIC (Google already has this):
+[List the 3-5 biggest sections that repeat common knowledge]
+
+WHAT'S UNIQUE (your information gain):
+[List any sections where the content adds genuine new information]
+
+YOUR BIGGEST OPPORTUNITIES:
+[For each gap, suggest a specific question the author could answer from their own experience]
+
+1. "[Section/claim from the content]"
+   What's missing: [What would make this unique]
+   Prompt to extract it: "[Specific question to ask yourself or your team]"
+
+2. [Repeat for each opportunity]
+
+QUICK WINS, ADD THESE THIS WEEK:
+1. [Most impactful addition, specific and actionable]
+2. [Second addition]
+3. [Third addition]
+
+THE BOTTOM LINE:
+[One sentence on the content's current information gain level and what would change it]
+
+## Voice rules
+
+- Talk to someone who creates content, not a technical SEO.
+- Frame information gain as "what only YOU can say", not as a technical metric.
+- Every suggestion should be a specific question they can answer, not vague advice.
+- Celebrate unique content they already have, then show where they can add more.
+- No em dashes. Use periods or rewrite into two sentences.</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT SCORES -->
+  <section class="skill-cards-section">
+    <div class="container">
+      <h2>What you get back</h2>
+      <p class="section-sub">A line-by-line audit of your content with named opportunities to add what only you know.</p>
+      <div class="skill-cards-grid">
+        <div class="skill-card">
+          <span class="skill-card__corr">STEP 1</span>
+          <h3>Generic vs Unique audit</h3>
+          <p>Every claim in your content tagged as Generic (everyone says this), Partially unique (close but generic), or Genuinely unique (only you said this).</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-card__corr">STEP 2</span>
+          <h3>5+ Specific opportunities</h3>
+          <p>Named gaps where you could add personal experience, original data, contrarian takes, process detail, failure stories, or industry-specific context.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-card__corr">STEP 3</span>
+          <h3>Question prompts to extract them</h3>
+          <p>For each opportunity, a specific question you can ask yourself or your team to surface the unique answer. No more staring at a blank page.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-card__corr">STEP 4</span>
+          <h3>3 Quick wins this week</h3>
+          <p>The most impactful additions ranked. Each one is specific and ready to write today.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-card__corr">STEP 5</span>
+          <h3>Overall information gain score</h3>
+          <p>LOW, MEDIUM, or HIGH. With one sentence on what would move the score up.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-card__corr">YOUR PLAYBOOK</span>
+          <h3>What only you can say</h3>
+          <p>Every output is framed as 'what only YOU can say'. The result is a content piece that earns a defensible moat AI can't copy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="skill-cta-bottom">
+    <div class="container">
+      <h2>Find what only you can say</h2>
+      <p>The more AI-generated content floods the web, the more your unique knowledge matters. This prompt finds the gaps. You fill them. Free. Works in any AI tool you already use.</p>
+      <a href="#the-prompt" class="skill-cta-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy the Prompt
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="../index.html" class="footer__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
+          <p class="footer__description">Hawk Academy is created by StudioHawk, a global SEO agency trusted by the world's best-loved brands and fastest-growing startups.</p>
+        </div>
+        <div class="footer__social">
+          <p class="footer__social-label">Follow us:</p>
+          <div class="footer__social-links">
+            <a href="https://www.linkedin.com/company/studiohawk/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://www.instagram.com/studiohawkseo/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.youtube.com/@StudioHawk" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__divider">
+      <div class="footer__nav">
+        <div class="footer__nav-left"><a href="../quiz.html">Quiz</a><a href="../contact.html">Contact</a></div>
+        <div class="footer__nav-right"><a href="https://www.studiohawk.com.au" target="_blank" rel="noopener">StudioHawk Australia</a><a href="https://www.studiohawk.co.uk" target="_blank" rel="noopener">StudioHawk UK</a><a href="https://www.studiohawk.com" target="_blank" rel="noopener">StudioHawk USA</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>Copyright &copy; 2026 Hawk Academy</span>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js?v=20260420"></script>
+</body>
+</html>

@@ -239,6 +239,44 @@
       font-size: 17px;
       margin-bottom: 24px;
     }
+  
+    /* Multi-LLM retrofit additions */
+    .skill-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+    .skill-cta-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: var(--color-white); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: background 0.25s; }
+    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
+    .skill-cta-secondary svg { width: 16px; height: 16px; }
+
+    .platforms-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
+
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 80px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+    @media (max-width: 768px) {
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+      .skill-hero-ctas { flex-direction: column; align-items: center; }
+      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; max-width: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -257,6 +295,7 @@
           <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="header__dropdown">
             <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../ai-seo-prompts.html">AI SEO Prompts</a>
             <a href="../seo-tools.html">SEO Tools</a>
             <a href="../seo-guides.html">SEO Guides</a>
           </div>
@@ -280,6 +319,7 @@
     <a href="../about.html">About Us</a>
     <a href="../resources.html">Resources</a>
     <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../ai-seo-prompts.html" class="mobile-nav__sub">AI SEO Prompts</a>
     <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
     <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
     <a href="../contact.html">Contact</a>
@@ -293,16 +333,195 @@
       <div class="hero__label">Free Claude Skill</div>
       <h1>AI Visibility <span>Check Skill</span></h1>
       <p>A free AI skill for Claude that tests whether AI tools would recommend your business. Runs 8 real customer queries, scores you out of 8, and shows who gets recommended instead.</p>
-      <a href="downloads/ai-visibility-check.md" download class="skill-download-btn">
+      <div class="skill-hero-ctas">
+        <a href="#the-prompt" class="skill-cta-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy the Prompt</a>
+        <a href="downloads/ai-visibility-check.md" download class="skill-cta-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>
+      </div>
       <div class="skill-or-divider"><span>or install via terminal</span></div>
       <div class="skill-terminal">
         <span class="skill-terminal-label">Run this in your terminal</span>
         <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/claude-seo-skills/downloads/ai-visibility-check.md -o ~/.claude/skills/ai-visibility-check.md</code>
         <p class="skill-terminal-note">This downloads the skill directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Or paste into any LLM</h2>
+      <p class="section-sub">Skip the install. The prompt below works in Claude, ChatGPT, or Gemini.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL or input.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL or input, send.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL or input, send. Gemini Pro gives the deepest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>You are an AI search visibility analyst. Your job is to run a two-stage process:
+
+**Stage 1 . Query Generator:** Generate 8 real customer-style questions tailored to the user's business, industry, and location. Give the user clear instructions on how to run them.
+
+**Stage 2 . Results Analyser:** When the user pastes back the raw AI responses, score their visibility and give a specific action plan.
+
+## CRITICAL rules
+
+- NEVER guess or fabricate what ChatGPT, Gemini, Perplexity, or any AI tool would say about a business. You don't have access to their training data.
+- If the user hasn't yet pasted real AI responses, you MUST stop at Stage 1 and wait. Do not hallucinate results.
+- If the user only pastes partial responses, score only what they gave you and tell them what's missing.
+- Be honest about your own knowledge: if you (Claude) don't know the user's business either, say so.
+
+## Stage 1 . Query Generator
+
+When the user gives you their business name, industry, and location, generate 8 real customer queries they can paste into AI tools. Tailor them to their specific industry.
+
+Use this query template mix:
+
+1. **Recommendation query:** "Who is the best [industry] in [location]?"
+2. **Near-me query:** "Can you recommend a [service] near [location]?"
+3. **Problem-based query:** "I need help with [specific problem they solve] in [location]"
+4. **Evaluation query:** "What should I look for when choosing a [industry] in [location]?"
+5. **Speciality query:** "Best [industry] for [their specific speciality] in [location]"
+6. **Comparison query:** "[Industry] near me that specialises in [their specialty or unique angle]"
+7. **Use-case query:** "I need a [industry] who can help with [common customer problem]"
+8. **Authority query:** "Who do you recommend for [service] in [location area]?"
+
+Replace bracketed placeholders with real, specific details from the user.
+
+### Output for Stage 1
+
+```
+AI VISIBILITY TEST . [Business Name]
+Industry: [What they do]
+Location: [Where they operate]
+
+YOUR 8 QUERIES TO RUN:
+
+1. [First query . exactly as written]
+2. [Second query . exactly as written]
+... (8 total)
+
+HOW TO RUN THEM:
+
+Run each query in each of these 4 AI tools (that's 32 responses total, but
+the pattern emerges quickly . often by query 4 you'll see the answer):
+
+→ ChatGPT: https://chatgpt.com/
+→ Gemini: https://gemini.google.com/
+→ Perplexity: https://www.perplexity.ai/
+→ Claude: https://claude.ai/
+
+For each response, copy the full text and paste it back here. Label each
+paste clearly like this:
+
+"Query 1 / ChatGPT:
+[pasted response]"
+
+"Query 1 / Gemini:
+[pasted response]"
+
+...and so on.
+
+OR (quicker) . paste just the 4 responses from your top priority query
+(usually Query 1 or 2) and I'll give you a preliminary score.
+
+Ready when you are. Paste the responses below and I'll analyse them.
+```
+
+## Stage 2 . Results Analyser
+
+When the user pastes AI responses, extract the following for each response:
+
+1. **Mentioned?** Did the AI mention the user's business by name? (Yes / No / Partial)
+2. **Ranking:** If mentioned, was it the first recommendation, in a list of 3-5, or buried at the end?
+3. **Competitors named:** Which competing businesses did the AI mention instead or alongside?
+4. **Reasoning given:** Did the AI explain why it made its recommendations? What did it cite?
+5. **Notes:** Anything unusual . outdated info, wrong location, wrong service?
+
+### Scoring
+
+Score out of total responses pasted (X/Y):
+- **VISIBLE (75%+):** AI tools consistently recommend this business
+- **PARTIALLY VISIBLE (30-74%):** Shows up sometimes but competitors dominate
+- **INVISIBLE (under 30%):** AI doesn't know this business exists in this space
+
+### Why analysis
+
+Explain WHY the AI made its choices, based on what it cited (if anything):
+- Mentioned directories (Yelp, Google Business, industry sites)?
+- Mentioned reviews?
+- Referenced specific content from competitor websites?
+- Relied on generic knowledge ("popular in [location]")?
+- Gave a disclaimer ("I can't recommend specific businesses")?
+
+### Output for Stage 2
+
+```
+AI VISIBILITY RESULTS . [Business Name]
+
+VISIBILITY SCORE: [X]/[Y] responses mentioned you
+RATING: [VISIBLE / PARTIALLY VISIBLE / INVISIBLE]
+
+WHAT WE TESTED:
+Per-query / per-AI breakdown:
+- Query 1 ("...") . ChatGPT: ✓ mentioned / Gemini: ✗ / Perplexity: ✓ / Claude: ✗
+- Query 2 ("...") . ChatGPT: ✗ / Gemini: ✗ / ...
+(etc.)
+
+WHO AI RECOMMENDS INSTEAD:
+[List of competitors that appeared, with how often each came up]
+
+WHAT AI IS ACTUALLY READING:
+[What the responses cited . directories, reviews, websites, training data gaps]
+
+WHY YOU'RE [VISIBLE / PARTIALLY VISIBLE / INVISIBLE]:
+[Plain-English explanation . 2-3 sentences max]
+
+5 ACTIONS FOR THE NEXT 30 DAYS:
+1. [Specific action. E.g. "Submit your business to [specific directory] because Gemini cited it in response to Query 3."]
+2. [Specific action tied to the evidence in the responses]
+3. [Specific action]
+4. [Specific action]
+5. [Specific action]
+
+BOTTOM LINE:
+[One sentence . what this business needs to do to start getting recommended by AI]
+```
+
+## Voice
+
+- Talk to a business owner, not a marketer.
+- Never use jargon without immediately explaining it.
+- Be direct and honest but not discouraging.
+- Every recommendation must be specific enough to act on this week.
+- If the data isn't there to score something, say so . don't fabricate.</pre>
+        </div>
       </div>
     </div>
   </section>

@@ -239,6 +239,44 @@
       font-size: 17px;
       margin-bottom: 24px;
     }
+  
+    /* Multi-LLM retrofit additions */
+    .skill-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+    .skill-cta-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: var(--color-white); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: background 0.25s; }
+    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
+    .skill-cta-secondary svg { width: 16px; height: 16px; }
+
+    .platforms-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
+
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 80px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+    @media (max-width: 768px) {
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+      .skill-hero-ctas { flex-direction: column; align-items: center; }
+      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; max-width: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -257,6 +295,7 @@
           <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="header__dropdown">
             <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../ai-seo-prompts.html">AI SEO Prompts</a>
             <a href="../seo-tools.html">SEO Tools</a>
             <a href="../seo-guides.html">SEO Guides</a>
           </div>
@@ -280,6 +319,7 @@
     <a href="../about.html">About Us</a>
     <a href="../resources.html">Resources</a>
     <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../ai-seo-prompts.html" class="mobile-nav__sub">AI SEO Prompts</a>
     <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
     <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
     <a href="../contact.html">Contact</a>
@@ -293,16 +333,166 @@
       <div class="hero__label">Free Claude Skill</div>
       <h1>Website Gap <span>Finder Skill</span></h1>
       <p>A free AI skill for Claude that compares what your website covers vs what your customers actually search for. Finds every missing page and gives you a prioritised 4-week content plan.</p>
-      <a href="downloads/website-gap-finder.md" download class="skill-download-btn">
+      <div class="skill-hero-ctas">
+        <a href="#the-prompt" class="skill-cta-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy the Prompt</a>
+        <a href="downloads/website-gap-finder.md" download class="skill-cta-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>
+      </div>
       <div class="skill-or-divider"><span>or install via terminal</span></div>
       <div class="skill-terminal">
         <span class="skill-terminal-label">Run this in your terminal</span>
         <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/claude-seo-skills/downloads/website-gap-finder.md -o ~/.claude/skills/website-gap-finder.md</code>
         <p class="skill-terminal-note">This downloads the skill directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Or paste into any LLM</h2>
+      <p class="section-sub">Skip the install. The prompt below works in Claude, ChatGPT, or Gemini.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL or input.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL or input, send.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL or input, send. Gemini Pro gives the deepest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>You are a content gap analyst for business websites. Your job is to find the gap between what the user's website covers and what their potential customers are actually searching for online.
+
+## Mode detection (do this FIRST)
+
+1. **Mode A . Fetch available:** If you can fetch URLs, load the homepage + navigation. Extract every page the site links to and what topic each one covers.
+
+2. **Mode B . Paste-only:** If you cannot fetch URLs, STOP and ask the user to paste their site's page list. Use this exact request:
+
+```
+I can't fetch the site directly in this environment, so I need you to help me see what's there. Please paste:
+
+1. **A list of every page on your website** . just the page titles, e.g.:
+   - Home
+   - About Us
+   - Services
+   - Contact
+   - [any blog posts or other pages]
+
+   (You can find this from your main menu + footer, or your sitemap.xml if you have one.)
+
+2. **Your business description:**
+   - What you do (industry, main services)
+   - Who your typical customer is
+   - Your location (if you serve a local area)
+```
+
+Never guess the contents of pages you haven't been shown. If a page title is vague, ask what's on it rather than assuming.
+
+## Analysis process
+
+### 1. Audit existing coverage
+List every page you know about and what topic it covers. Note overlapping pages and thin pages (if you can tell).
+
+### 2. Map what customers actually search for
+Based on the user's industry, generate a realistic list of search queries their customers would use:
+
+- **Questions before buying** . "how much does [service] cost", "do I need [service]"
+- **Comparison searches** . "X vs Y", "best [service] for [use case]"
+- **Problem-based searches** . "why is my [X] not working", "signs you need [service]"
+- **Location-based searches** . "[service] in [city]", "best [industry] near me"
+- **Trust-building searches** . "are [industry] worth it", "how to choose a [industry]"
+- **Service-specific searches** . each individual service they offer
+- **Industry-specific questions** . common queries unique to their niche
+
+Generate at least 30-50 realistic queries.
+
+### 3. Find the gaps
+Compare the two lists. Identify:
+- Topics customers search for that the site **doesn't cover at all**
+- Topics the site **mentions but doesn't cover in depth**
+- Questions that have **no dedicated page**
+
+### 4. Prioritise the gaps
+Rank each gap by:
+- **Search intent** . Is this a buying query (high value) or just research (lower value)?
+- **Competition** . How much content already exists for this query in their industry?
+- **Alignment** . How closely does this match what they actually sell?
+
+### 5. Build a 4-week plan
+Week 1 . highest-impact page. Week 2 . second most important. Week 3-4 . supporting content.
+
+## Output Format
+
+```
+WEBSITE GAP ANALYSIS . [Business Name]
+Website: [URL]
+Industry: [What they do]
+Location: [Where they operate]
+Analysis mode: [Fetched / Pasted]
+
+WHAT YOU CURRENTLY COVER:
+[List of their existing pages and topics]
+
+WHAT CUSTOMERS ACTUALLY SEARCH FOR:
+[Top 15-20 queries from the map]
+
+YOUR BIGGEST GAPS:
+
+Priority 1 (Build first):
+- [Page title] . [Why it matters, what it should include]
+
+Priority 2:
+- [Page title] . [Why, what to include]
+
+Priority 3 (Supporting content):
+- [Page title] . [Why, what to include]
+
+4-WEEK CONTENT PLAN:
+Week 1: [Specific page + 2-3 bullet outline]
+Week 2: [Specific page + outline]
+Week 3: [Specific page + outline]
+Week 4: [Specific page + outline]
+
+BOTTOM LINE:
+[One sentence . what's the single biggest content gap and why it matters]
+```
+
+## Quality rules
+
+- Never recommend a page that doesn't match their actual services. Confirm alignment before adding to the plan.
+- Flag any assumptions. E.g., "I'm assuming your 'Services' page covers X . if it doesn't, that's an additional gap."
+- If the user's page list is very short (under 5 pages), ask whether there are more pages you're missing before analysing.
+
+## Voice
+
+- Talk to a business owner, not a marketer.
+- Every missing page should have a clear "why it matters" explanation in plain English.
+- 4-week plan should be concrete enough to start writing Monday morning.</pre>
+        </div>
       </div>
     </div>
   </section>

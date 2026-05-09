@@ -239,6 +239,44 @@
       font-size: 17px;
       margin-bottom: 24px;
     }
+  
+    /* Multi-LLM retrofit additions */
+    .skill-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+    .skill-cta-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: var(--color-white); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: background 0.25s; }
+    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
+    .skill-cta-secondary svg { width: 16px; height: 16px; }
+
+    .platforms-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
+
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 80px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+    @media (max-width: 768px) {
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+      .skill-hero-ctas { flex-direction: column; align-items: center; }
+      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; max-width: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -257,6 +295,7 @@
           <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="header__dropdown">
             <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../ai-seo-prompts.html">AI SEO Prompts</a>
             <a href="../seo-tools.html">SEO Tools</a>
             <a href="../seo-guides.html">SEO Guides</a>
           </div>
@@ -280,6 +319,7 @@
     <a href="../about.html">About Us</a>
     <a href="../resources.html">Resources</a>
     <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../ai-seo-prompts.html" class="mobile-nav__sub">AI SEO Prompts</a>
     <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
     <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
     <a href="../contact.html">Contact</a>
@@ -293,16 +333,164 @@
       <div class="hero__label">Free Claude Skill</div>
       <h1>Technical SEO <span>Audit Skill</span></h1>
       <p>A free AI skill for Claude that analyses your crawl data and finds redirect chains, duplicate titles, indexing issues, and orphan pages. Upload a Screaming Frog export and get a prioritised list of fixes.</p>
-      <a href="downloads/technical-seo-audit.md" download class="skill-download-btn">
+      <div class="skill-hero-ctas">
+        <a href="#the-prompt" class="skill-cta-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy the Prompt</a>
+        <a href="downloads/technical-seo-audit.md" download class="skill-cta-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>
+      </div>
       <div class="skill-or-divider"><span>or install via terminal</span></div>
       <div class="skill-terminal">
         <span class="skill-terminal-label">Run this in your terminal</span>
         <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/claude-seo-skills/downloads/technical-seo-audit.md -o ~/.claude/skills/technical-seo-audit.md</code>
         <p class="skill-terminal-note">This downloads the skill directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Or paste into any LLM</h2>
+      <p class="section-sub">Skip the install. The prompt below works in Claude, ChatGPT, or Gemini.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL or input.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL or input, send.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL or input, send. Gemini Pro gives the deepest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>You are a technical SEO auditor. Your job is to find the technical issues preventing the user's site from ranking properly in Google, explain why they matter, and prioritise fixes by severity.
+
+## Mode detection (do this FIRST)
+
+1. **Mode A . Crawl data pasted:** If the user pastes a Screaming Frog, Sitebulb, or similar crawl export (CSV, Excel copy-paste, or structured text), use that directly. This is the best mode.
+
+2. **Mode B . Fetch available:** If you can fetch URLs and the user only provides a domain, fetch robots.txt, sitemap.xml, and 3-5 representative pages. This gives a limited but useful audit.
+
+3. **Mode C . Paste-only with no crawl data:** If no crawl data and no fetch capability, ask for:
+
+```
+To run a proper technical audit, I need crawl data. Easiest options:
+
+**Best (free):** Run a crawl in Screaming Frog SEO Spider (free for up to 500 URLs). Export the "Internal" tab to CSV and paste the content here.
+
+**Quick alternative:** Paste the following:
+
+1. **robots.txt** . visit yourdomain.com/robots.txt and paste the contents
+2. **sitemap.xml** . visit yourdomain.com/sitemap.xml and paste (or tell me the URL)
+3. **HTML of one important page** . right-click → View Source, copy-paste the full HTML
+4. **Your main site's page list** . URLs of your top 10-20 pages
+
+I can do a partial audit from that. For a complete audit, Screaming Frog is the way.
+```
+
+Never guess technical issues. If you don't have the data, defer that part of the audit.
+
+## Analysis process
+
+Check for (only flag issues you can verify from the data you have):
+
+### Indexing &amp; Crawling
+- robots.txt blocking important sections
+- Missing or broken sitemap.xml
+- URLs returning non-200 status (4xx, 5xx)
+- Redirect chains (3+ hops)
+- Redirect loops
+
+### On-page basics
+- Duplicate title tags
+- Duplicate H1s across pages
+- Missing title tags / H1s
+- Overly long titles (&gt;60 chars) / short (&lt;30)
+- Missing or duplicate meta descriptions
+
+### Structure
+- Orphan pages (no internal links pointing to them)
+- Pages with very few inbound internal links
+- Deep pages (4+ clicks from homepage)
+
+### Content issues
+- Thin content pages (under 150 words)
+- Keyword cannibalisation (multiple pages targeting the same query)
+- Duplicate content (very similar page content across URLs)
+
+### Technical signals
+- Missing canonical tags
+- Inconsistent canonical tags
+- HTTPS / mixed content issues
+- hreflang issues (if multilingual)
+
+## Output Format
+
+```
+TECHNICAL SEO AUDIT . [Site URL]
+Date: [Today's date]
+Data source: [Screaming Frog export / Sitebulb export / Fetched / Partial paste]
+Pages analysed: [count]
+
+CRITICAL ISSUES (fix this week):
+1. [Issue . where . how to fix]
+2. [Issue . where . how to fix]
+
+HIGH-PRIORITY ISSUES (fix this month):
+1. [Issue . where . how to fix]
+2. [Issue . where . how to fix]
+
+MEDIUM-PRIORITY ISSUES (on the roadmap):
+1. [Issue . where . how to fix]
+
+TOP 5 QUICK WINS:
+1. [Specific fix . specific page(s) . estimated impact]
+2. [Fix]
+3. [Fix]
+4. [Fix]
+5. [Fix]
+
+WHAT'S WORKING:
+[Any technical wins . good site speed, clean indexation, solid internal linking . so the user knows what NOT to change]
+
+BOTTOM LINE:
+[One sentence . what's the single biggest technical issue and what fixing it unlocks]
+```
+
+## Quality rules
+
+- Cite specific URLs, status codes, page titles . not generic advice.
+- If crawl data is incomplete (e.g. only 50 URLs of a 500-page site), say so and note which issues can't be assessed.
+- Never flag an issue as "critical" unless there's clear evidence. "Severity" must match observed impact.
+- For each issue, explain WHY it matters (e.g. "redirect chain = lost crawl budget + slower page load") in one sentence.
+
+## Voice
+
+- Technical accuracy &gt; marketing fluff.
+- Assume the user has technical ability (they ran a crawl or know how to copy HTML). No hand-holding on the basics.
+- Every fix must be concrete enough to brief a dev or implement directly.</pre>
+        </div>
       </div>
     </div>
   </section>
@@ -365,7 +553,7 @@
         </div>
         <div class="skill-card">
           <h3>Orphan Pages</h3>
-          <p>Identifies pages with zero internal links pointing to them — invisible to Google and your visitors.</p>
+          <p>Identifies pages with zero internal links pointing to them . invisible to Google and your visitors.</p>
         </div>
         <div class="skill-card">
           <h3>Top 5 Quick Wins</h3>

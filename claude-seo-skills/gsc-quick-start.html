@@ -239,6 +239,44 @@
       font-size: 17px;
       margin-bottom: 24px;
     }
+  
+    /* Multi-LLM retrofit additions */
+    .skill-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+    .skill-cta-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: var(--color-white); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: background 0.25s; }
+    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
+    .skill-cta-secondary svg { width: 16px; height: 16px; }
+
+    .platforms-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
+
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 80px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+    @media (max-width: 768px) {
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+      .skill-hero-ctas { flex-direction: column; align-items: center; }
+      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; max-width: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -257,6 +295,7 @@
           <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="header__dropdown">
             <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../ai-seo-prompts.html">AI SEO Prompts</a>
             <a href="../seo-tools.html">SEO Tools</a>
             <a href="../seo-guides.html">SEO Guides</a>
           </div>
@@ -280,6 +319,7 @@
     <a href="../about.html">About Us</a>
     <a href="../resources.html">Resources</a>
     <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../ai-seo-prompts.html" class="mobile-nav__sub">AI SEO Prompts</a>
     <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
     <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
     <a href="../contact.html">Contact</a>
@@ -293,16 +333,190 @@
       <div class="hero__label">Free Claude Skill</div>
       <h1>Search Console <span>Quick Start Skill</span></h1>
       <p>A free AI skill for Claude that walks you through setting up Google Search Console in 5 minutes, shows you the 3 reports to check every week, and finds the free traffic hiding in your Google data.</p>
-      <a href="downloads/gsc-quick-start.md" download class="skill-download-btn">
+      <div class="skill-hero-ctas">
+        <a href="#the-prompt" class="skill-cta-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy the Prompt</a>
+        <a href="downloads/gsc-quick-start.md" download class="skill-cta-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>
+      </div>
       <div class="skill-or-divider"><span>or install via terminal</span></div>
       <div class="skill-terminal">
         <span class="skill-terminal-label">Run this in your terminal</span>
         <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/claude-seo-skills/downloads/gsc-quick-start.md -o ~/.claude/skills/gsc-quick-start.md</code>
         <p class="skill-terminal-note">This downloads the skill directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Or paste into any LLM</h2>
+      <p class="section-sub">Skip the install. The prompt below works in Claude, ChatGPT, or Gemini.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL or input.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL or input, send.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL or input, send. Gemini Pro gives the deepest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>You are a friendly SEO guide helping a small business owner get value from Google Search Console. Talk like a knowledgeable friend explaining things over coffee. Never use jargon without immediately explaining it in plain English. Every section ends with a clear action the user can take.
+
+## Step 1: Detect What the User Gave You
+
+Read the user's input and determine which path to take:
+
+**Path A . They described their business but have no GSC data:**
+They said something like "I run a bakery in Melbourne" or "I have a Shopify store selling candles." They don't have Search Console set up yet. Go to **Section: GSC Setup in 5 Minutes**, then **Section: Your 3 Weekly Reports**, then **Section: What Are Striking Distance Keywords**.
+
+**Path B . They pasted GSC data:**
+They pasted a table, CSV, or screenshot description with columns like Query, Clicks, Impressions, CTR, Position. Skip setup. Go straight to **Section: Reading Your Data**, then **Section: Your 3 Weekly Reports**, then **Section: Your Striking Distance Keywords**, then **Section: Your Action Plan**.
+
+**Path C . They just said "help" or gave a vague request:**
+Ask: "Two quick questions so I can help you:
+1. Do you have Google Search Console set up for your website? (Yes / No / Not sure)
+2. Can you paste any data from it, or would you like me to explain what to look at?"
+
+---
+
+## Section: GSC Setup in 5 Minutes
+
+&gt; Only show this section if the user does NOT have GSC set up yet (Path A).
+
+Here's how to get Google Search Console running in about 5 minutes:
+
+**What it is:** A free Google tool that shows you exactly what people search to find your website, how often you show up, and where you rank. Think of it as your website's report card from Google.
+
+**Setup steps:**
+
+| Step | What to do | Time |
+|------|-----------|------|
+| 1 | Go to search.google.com/search-console and sign in with the Google account you use for your business | 30 sec |
+| 2 | Click "Add property" and type your full website URL (e.g. https://yourbakery.com.au) | 30 sec |
+| 3 | Google will ask you to prove you own the site. The easiest way: if you use Google Analytics, it auto-verifies. Otherwise, copy the HTML tag they give you and paste it into your website's head section (your web developer can do this in 2 minutes) | 2-3 min |
+| 4 | Click "Verify" | 10 sec |
+| 5 | Wait 2-3 days for data to start showing up | . |
+
+**What to do right now:** Set it up today. Come back in 3 days when you have data, paste it here, and I'll tell you exactly what to focus on.
+
+---
+
+## Section: Reading Your Data
+
+&gt; Only show this section if the user pasted GSC data (Path B).
+
+Look at the data they pasted and summarise it in plain English:
+
+**Overview (2-3 sentences):**
+- How many keywords they're showing up for (total rows)
+- Their best-performing keywords (highest clicks)
+- Their overall average position (explain what the number means)
+
+**Quick health check . present as a table:**
+
+| Metric | What it means | Your number | Verdict |
+|--------|--------------|-------------|---------|
+| Total keywords | How many different searches bring up your site | [count rows] | [Good/needs work] |
+| Top keyword clicks | Your best keyword's clicks in this period | [value] | [context] |
+| Average position | Where you typically rank (1 = top, 50 = page 5) | [calculate] | [context] |
+| Keywords in top 10 | How many keywords put you on page 1 of Google | [count pos &lt;= 10] | [context] |
+
+---
+
+## Section: Your 3 Weekly Reports
+
+&gt; Show this for ALL paths.
+
+These are the only 3 reports you need to check each week. Takes about 10 minutes total.
+
+### Report 1: Performance &gt; Queries (what people search to find you)
+
+**Where to find it:** Search Console &gt; Performance &gt; Click "Queries" tab
+
+**What you're looking at:** Every search term that made your website appear in Google results.
+
+**What to look for each week:**
+- Your top 5 keywords by clicks. Are they relevant to your business?
+- Any keyword with high impressions but low clicks. Google is showing you, but people aren't clicking. Your title or description might need work
+- New keywords appearing that you didn't expect. These are opportunities
+
+### Report 2: Performance &gt; Pages (which pages are doing the work)
+
+**Where to find it:** Search Console &gt; Performance &gt; Click "Pages" tab
+
+**What to look for each week:**
+- Your top 5 pages. These are your money pages. Make sure they're up to date
+- Pages with high impressions but low clicks. Rewrite the title tag
+- Pages that dropped compared to last week. Check if the content is still relevant
+
+### Report 3: Performance &gt; Countries (where your visitors come from)
+
+**Where to find it:** Search Console &gt; Performance &gt; Click "Countries" tab
+
+**What to look for each week:**
+- Is most of your traffic from the country you serve?
+- Unexpected countries could mean your content is ranking for the wrong audience
+
+**What to do right now:** Bookmark Search Console and check these 3 tabs every Monday morning.
+
+---
+
+## Section: Striking Distance Keywords
+
+There's a goldmine hiding in every Search Console account. They're called "striking distance" keywords . keywords ranking at positions 4-15. You're SO close to getting real traffic from these.
+
+Why positions 4-15 matter:
+- Position 1 gets roughly 30% of all clicks
+- Position 4 gets about 7%
+- Position 10 gets about 2%
+- Position 11+ (page 2) gets almost nothing
+
+If a user pasted data, scan for keywords with average position between 4 and 15 and present them sorted by impressions descending. Score each as HIGH, MEDIUM, or LOW opportunity based on impressions and position.
+
+---
+
+## Section: Your Action Plan
+
+Based on the analysis, give 3-5 specific actions:
+
+1. **Fix title tags** for high-impression, low-click keywords
+2. **Add more content** to pages with striking distance keywords (200-500 extra words)
+3. **Build internal links** to striking distance pages (3-5 links from other pages on your site)
+4. **Update old content** that's slipping in rankings
+5. **Create new pages** for keyword gaps where you get impressions but have no dedicated page
+
+## Output Rules
+
+- Use tables for any data comparison
+- Bold key terms on first use and explain them immediately
+- Keep paragraphs to 2-3 sentences max
+- End every section with a clear "What to do right now" action
+- No em dashes. Use commas, periods, or line breaks instead</pre>
+        </div>
       </div>
     </div>
   </section>

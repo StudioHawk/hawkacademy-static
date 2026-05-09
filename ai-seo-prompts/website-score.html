@@ -28,7 +28,7 @@
     src="https://www.facebook.com/tr?id=882137468214985&ev=PageView&noscript=1"/></noscript>
     <!-- End Facebook Pixel Code -->
     <title>Winning Google Score Card | Free AI Prompt for Claude, ChatGPT &amp; Gemini | Hawk Academy</title>
-  <meta name="description" content="Free AI prompt that scores your website 1-5 on the 5 things every site winning Google in 2026 has in common. Based on a study of 400+ sites by Cyrus Shepard at Zyppy. Works in Claude, ChatGPT, or Gemini.">
+  <meta name="description" content="Free AI prompt that scores your website 1-5 on the 5 things every site winning Google in 2026 has in common. Based on a study of 400+ sites by Cyrus Shepard at Zyppy. Paste into Claude, ChatGPT, or Gemini.">
   <link rel="canonical" href="https://hawkacademy.co/ai-seo-prompts/website-score">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,319 +40,59 @@
     @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Semibold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Degular'; src: url('../assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
 
-    .skill-hero {
-      background: var(--color-black);
-      padding: 120px 0 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .skill-hero::before {
-      content: '';
-      position: absolute;
-      top: 30px; right: 8%;
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: var(--color-yellow);
-      opacity: 0.6;
-    }
-    .skill-hero::after {
-      content: '';
-      position: absolute;
-      bottom: 40px; left: 6%;
-      width: 50px; height: 50px;
-      border-radius: 50%;
-      background: var(--color-lavender);
-      opacity: 0.4;
-    }
-    .skill-hero .hero__label {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 13px; font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--color-cyan);
-      margin-bottom: 16px;
-    }
-    .skill-hero h1 {
-      font-family: var(--font-heading);
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 600;
-      color: var(--color-white);
-      line-height: 1.15;
-      max-width: 720px;
-      margin: 0 auto 16px;
-    }
-    .skill-hero h1 span { color: var(--color-lavender); }
-    .skill-hero p {
-      color: var(--color-light-body);
-      max-width: 620px;
-      margin: 0 auto 36px;
-      font-size: 17px; line-height: 1.7;
-    }
-    .skill-hero-ctas {
-      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-    }
-    .skill-cta-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 36px;
-      border-radius: var(--radius-pill);
-      background: var(--gradient-cta);
-      color: var(--color-black);
-      font-family: var(--font-body);
-      font-size: 15px; font-weight: 600;
-      text-decoration: none;
-      transition: opacity 0.25s;
-      cursor: pointer; border: none;
-    }
+    .skill-hero { background: var(--color-black); padding: 120px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .skill-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-cyan); opacity: 0.5; }
+    .skill-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
+    .skill-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
+    .skill-hero h1 { font-family: var(--font-heading); font-size: clamp(32px, 5vw, 52px); font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 720px; margin: 0 auto 16px; }
+    .skill-hero h1 span { color: var(--color-cyan); }
+    .skill-hero p { color: var(--color-light-body); max-width: 620px; margin: 0 auto 36px; font-size: 17px; line-height: 1.7; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
     .skill-cta-primary:hover { opacity: 0.85; }
     .skill-cta-primary svg { width: 18px; height: 18px; }
-    .skill-cta-secondary {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 32px;
-      border-radius: var(--radius-pill);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: var(--color-white);
-      font-family: var(--font-body);
-      font-size: 15px; font-weight: 600;
-      text-decoration: none;
-      transition: background 0.25s;
-    }
-    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
-    .skill-cta-secondary svg { width: 16px; height: 16px; }
 
-    .intro-section {
-      background: var(--color-off-white);
-      padding: 80px 0 40px;
-    }
-    .intro-content {
-      max-width: 780px; margin: 0 auto;
-    }
-    .intro-content h2 {
-      font-family: var(--font-heading);
-      font-size: 28px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 20px;
-    }
-    .intro-content p {
-      color: var(--color-body-text);
-      font-size: 16px; line-height: 1.7;
-      margin-bottom: 16px;
-    }
-    .intro-content ol {
-      color: var(--color-body-text);
-      font-size: 16px; line-height: 1.7;
-      padding-left: 20px;
-      margin: 12px 0 16px;
-    }
-    .intro-content ol li {
-      margin-bottom: 6px;
-    }
-    .intro-content ol li strong {
-      color: var(--color-dark-text);
-    }
-    .intro-content .source-line {
-      font-size: 14px;
-      color: var(--color-body-text);
-      opacity: 0.75;
-      font-style: italic;
-      margin-top: 24px;
-    }
+    .intro-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .intro-content { max-width: 780px; margin: 0 auto; }
+    .intro-content h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 20px; }
+    .intro-content p { color: var(--color-body-text); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+    .intro-content ol { color: var(--color-body-text); font-size: 16px; line-height: 1.7; padding-left: 20px; margin: 12px 0 16px; }
+    .intro-content ol li { margin-bottom: 6px; }
+    .intro-content ol li strong { color: var(--color-dark-text); }
+    .intro-content .source-line { font-size: 14px; color: var(--color-body-text); opacity: 0.75; font-style: italic; margin-top: 24px; }
 
-    .platforms-section {
-      background: var(--color-off-white);
-      padding: 20px 0 60px;
-    }
-    .platforms-section h2 {
-      font-family: var(--font-heading);
-      font-size: 28px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    .platforms-section .section-sub {
-      text-align: center;
-      color: var(--color-body-text);
-      font-size: 16px;
-      max-width: 600px;
-      margin: 0 auto 36px;
-    }
-    .platforms-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 920px;
-      margin: 0 auto;
-    }
-    .platform-card {
-      background: var(--color-white);
-      border-radius: var(--radius-card);
-      padding: 28px 26px;
-    }
-    .platform-card__name {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 12px; font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
-      margin-bottom: 14px;
-    }
+    .platforms-section { background: var(--color-off-white); padding: 20px 0 60px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
     .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
     .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
     .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
-    .platform-card h3 {
-      font-family: var(--font-heading);
-      font-size: 18px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 10px;
-    }
-    .platform-card p {
-      color: var(--color-body-text);
-      font-size: 14px;
-      line-height: 1.6;
-    }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
 
-    .prompt-section {
-      background: var(--color-off-white);
-      padding: 20px 0 100px;
-    }
-    .prompt-block-wrap {
-      max-width: 920px;
-      margin: 0 auto;
-    }
-    .prompt-block-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px;
-      padding: 0 4px;
-    }
-    .prompt-block-header h2 {
-      font-family: var(--font-heading);
-      font-size: 22px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin: 0;
-    }
-    .prompt-block {
-      background: #111;
-      border-radius: 16px;
-      padding: 24px 28px;
-      position: relative;
-      max-height: 520px;
-      overflow-y: auto;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .prompt-block-copy {
-      position: sticky;
-      top: 0;
-      float: right;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 13px; font-weight: 600;
-      color: var(--color-white);
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-bottom: 12px;
-      margin-left: 12px;
-      z-index: 2;
-    }
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 100px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
     .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
-    .prompt-block pre {
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 13px;
-      line-height: 1.65;
-      color: #E8EAF6;
-      white-space: pre-wrap;
-      word-break: break-word;
-      margin: 0;
-    }
-    .prompt-tip {
-      max-width: 920px;
-      margin: 16px auto 0;
-      font-size: 14px;
-      color: var(--color-body-text);
-      text-align: center;
-      line-height: 1.6;
-    }
-    .prompt-tip a {
-      color: var(--color-lavender);
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .prompt-tip a:hover { text-decoration: underline; }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
 
-    .skill-cards-section {
-      background: var(--color-white);
-      padding: 80px 0;
-    }
-    .skill-cards-section h2 {
-      font-family: var(--font-heading);
-      font-size: 32px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 12px;
-      text-align: center;
-    }
-    .skill-cards-section .section-sub {
-      text-align: center;
-      color: var(--color-body-text);
-      font-size: 16px;
-      max-width: 600px;
-      margin: 0 auto 40px;
-    }
-    .skill-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .skill-card {
-      background: var(--color-off-white);
-      border-radius: var(--radius-card);
-      padding: 28px 26px;
-    }
-    .skill-card__corr {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--color-lavender);
-      margin-bottom: 8px;
-    }
-    .skill-card h3 {
-      font-family: var(--font-heading);
-      font-size: 19px; font-weight: 600;
-      color: var(--color-dark-text);
-      margin-bottom: 8px;
-    }
-    .skill-card p {
-      font-size: 15px;
-      color: var(--color-body-text);
-      line-height: 1.6;
-    }
+    .skill-cards-section { background: var(--color-white); padding: 80px 0; }
+    .skill-cards-section h2 { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 12px; text-align: center; }
+    .skill-cards-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 40px; }
+    .skill-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    .skill-card { background: var(--color-off-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .skill-card__corr { display: inline-block; font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--color-lavender); margin-bottom: 8px; }
+    .skill-card h3 { font-family: var(--font-heading); font-size: 19px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; }
+    .skill-card p { font-size: 15px; color: var(--color-body-text); line-height: 1.6; }
 
-    .skill-cta-bottom {
-      background: var(--color-black);
-      padding: 80px 0;
-      text-align: center;
-    }
-    .skill-cta-bottom h2 {
-      font-family: var(--font-heading);
-      font-size: 28px; font-weight: 600;
-      color: var(--color-white);
-      margin-bottom: 12px;
-    }
-    .skill-cta-bottom p {
-      color: var(--color-light-body);
-      font-size: 16px;
-      max-width: 600px;
-      margin: 0 auto 24px;
-      line-height: 1.6;
-    }
+    .skill-cta-bottom { background: var(--color-black); padding: 80px 0; text-align: center; }
+    .skill-cta-bottom h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-white); margin-bottom: 12px; }
+    .skill-cta-bottom p { color: var(--color-light-body); font-size: 16px; max-width: 600px; margin: 0 auto 24px; line-height: 1.6; }
 
     @media (max-width: 768px) {
       .skill-hero { padding: 90px 0 60px; }
@@ -360,8 +100,6 @@
       .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
       .prompt-block { padding: 20px 18px; max-height: 460px; }
       .prompt-block pre { font-size: 12.5px; }
-      .skill-hero-ctas { flex-direction: column; align-items: center; }
-      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -370,9 +108,7 @@
   <!-- HEADER -->
   <header class="header">
     <div class="container">
-      <a href="../index.html" class="header__logo">
-        <img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy">
-      </a>
+      <a href="../index.html" class="header__logo"><img src="../assets/images/hawk-academy-logo.png" alt="Hawk Academy"></a>
       <nav class="header__nav">
         <a href="../index.html">Home</a>
         <a href="../whats-included.html">What's Included</a>
@@ -392,13 +128,9 @@
         <a href="https://learn.hawkacademy.co/wp-login.php" class="btn btn-ghost" style="font-weight:400;">Sign In</a>
         <a href="https://learn.hawkacademy.co/register" class="btn btn-primary" style="font-weight:400;padding:10px 45px;">Enroll For Free</a>
       </div>
-      <button class="hamburger" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div>
   </header>
-
-  <!-- MOBILE NAV -->
   <div class="mobile-nav">
     <a href="../index.html">Home</a>
     <a href="../whats-included.html">What's Included</a>
@@ -418,17 +150,11 @@
     <div class="container">
       <div class="hero__label">Free AI Prompt</div>
       <h1>Winning Google <span>Score Card</span></h1>
-      <p>Score your site 1 to 5 on the 5 things every site winning Google in 2026 has in common. Brutal grading. Specific fixes. Works in Claude, ChatGPT, or Gemini. Free.</p>
-      <div class="skill-hero-ctas">
-        <a href="#the-prompt" class="skill-cta-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy the Prompt
-        </a>
-        <a href="downloads/website-score-prompt.md" download class="skill-cta-secondary">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download as .md
-        </a>
-      </div>
+      <p>Score your site 1 to 5 on the 5 things every site winning Google in 2026 has in common. Brutal grading. Specific fixes. Paste into Claude, ChatGPT, or Gemini.</p>
+      <a href="#the-prompt" class="skill-cta-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy the Prompt
+      </a>
     </div>
   </section>
 
@@ -609,7 +335,6 @@ THE BOTTOM LINE
 - Cite the source on the first run: "Based on Cyrus Shepard's analysis of 400+ sites, Zyppy Signal April 2026."
 - Cut anything that doesn't serve the score or the fix.</pre>
         </div>
-        <p class="prompt-tip">Prefer a file? <a href="downloads/website-score-prompt.md" download>Download the prompt as Markdown</a> and drop it into a Claude Project, ChatGPT custom GPT, or Gemini Gem.</p>
       </div>
     </div>
   </section>
@@ -659,16 +384,10 @@ THE BOTTOM LINE
     <div class="container">
       <h2>Ready for the brutal version?</h2>
       <p>Built on Cyrus Shepard's analysis of 400+ winning vs losing sites (Zyppy Signal, April 2026). Free. No email gate. Works in any AI tool you already use.</p>
-      <div class="skill-hero-ctas">
-        <a href="#the-prompt" class="skill-cta-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy the Prompt
-        </a>
-        <a href="downloads/website-score-prompt.md" download class="skill-cta-secondary">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download as .md
-        </a>
-      </div>
+      <a href="#the-prompt" class="skill-cta-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy the Prompt
+      </a>
     </div>
   </section>
 

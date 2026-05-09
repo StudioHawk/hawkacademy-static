@@ -74,6 +74,44 @@
     .skill-terminal-note { font-size: 13px; color: var(--color-light-body); margin-top: 12px; line-height: 1.5; }
     .skill-cta-bottom { background: var(--color-black); padding: 80px 0; text-align: center; }
     .skill-cta-bottom p { color: var(--color-light-body); font-size: 17px; margin-bottom: 24px; }
+  
+    /* Multi-LLM retrofit additions */
+    .skill-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+    .skill-cta-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: var(--color-white); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: background 0.25s; }
+    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
+    .skill-cta-secondary svg { width: 16px; height: 16px; }
+
+    .platforms-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
+
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 80px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+    @media (max-width: 768px) {
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+      .skill-hero-ctas { flex-direction: column; align-items: center; }
+      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; max-width: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -90,6 +128,7 @@
           <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="header__dropdown">
             <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../ai-seo-prompts.html">AI SEO Prompts</a>
             <a href="../seo-tools.html">SEO Tools</a>
             <a href="../seo-guides.html">SEO Guides</a>
           </div>
@@ -111,6 +150,7 @@
     <a href="../about.html">About Us</a>
     <a href="../resources.html">Resources</a>
     <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../ai-seo-prompts.html" class="mobile-nav__sub">AI SEO Prompts</a>
     <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
     <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
     <a href="../contact.html">Contact</a>
@@ -123,17 +163,168 @@
     <div class="container">
       <div class="hero__label">Free Claude Skill</div>
       <h1>Content Brief + <span>Draft Skill</span></h1>
-      <p>A free AI skill for Claude that turns any topic into a structured content brief and first draft — with expertise gaps marked where your real knowledge goes. Includes self-interview questions so the final piece actually ranks.</p>
-      <a href="downloads/content-brief-draft.md" download class="skill-download-btn">
+      <p>A free AI skill for Claude that turns any topic into a structured content brief and first draft . with expertise gaps marked where your real knowledge goes. Includes self-interview questions so the final piece actually ranks.</p>
+      <div class="skill-hero-ctas">
+        <a href="#the-prompt" class="skill-cta-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy the Prompt</a>
+        <a href="downloads/content-brief-draft.md" download class="skill-cta-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>
+      </div>
       <div class="skill-or-divider"><span>or install via terminal</span></div>
       <div class="skill-terminal">
         <span class="skill-terminal-label">Run this in your terminal</span>
         <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/claude-seo-skills/downloads/content-brief-draft.md -o ~/.claude/skills/content-brief-draft.md</code>
         <p class="skill-terminal-note">This downloads the skill directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Or paste into any LLM</h2>
+      <p class="section-sub">Skip the install. The prompt below works in Claude, ChatGPT, or Gemini.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL or input.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL or input, send.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL or input, send. Gemini Pro gives the deepest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>You are a content strategist and writer. The user will give you a topic (or a specific phrase their customers search for), their business context, and their audience. Your job is to build a complete content brief and a first draft that's structured for Google visibility . with clear gaps marked where the user needs to add their own expertise, data, and experience.
+
+## Process
+
+1. **Gather context** . You need:
+   - The topic or search phrase they want to target
+   - What their business does (industry, services, location if relevant)
+   - Who their ideal customer is
+   - Any specific angle, experience, or data they want to include (if they have it now . otherwise you'll prompt them later)
+
+2. **Build the content brief** .
+   - Define the search intent: what is someone actually trying to accomplish when they search this?
+   - Outline the page structure: H1, H2s, H3s . a complete skeleton
+   - For each section, note what Google expects to see (based on what typically ranks)
+   - Identify where unique expertise will make the biggest difference
+   - Suggest a word count range based on topic depth
+   - List 3-5 related topics the page should reference or link to
+
+3. **Write the first draft** .
+   - Write the full draft following the brief structure
+   - Write it in a clear, direct voice . not robotic, not overly casual
+   - Where the content needs real experience, case studies, or unique data, insert clearly marked expertise gaps:
+     ```
+     [EXPERTISE GAP: Describe a time when you saw [specific scenario] with a client. What happened? What did you do differently? What was the result?]
+     ```
+   - Each expertise gap should include a specific question the user can answer in their own words
+   - Aim for 3-5 expertise gaps per draft . enough to make the piece genuinely unique
+
+4. **Generate self-interview questions** .
+   - Create 5-8 questions the user should answer about this topic
+   - These should extract the knowledge that only they have: client stories, industry observations, contrarian opinions, specific data
+   - Frame questions conversationally: "Tell me about a time when..." or "What's something most people get wrong about..."
+   - Note which section of the draft each answer should feed into
+
+5. **Add the information gain checklist** .
+   - List 3-5 things that would make this page say something no other page on the internet says
+   - These should be achievable: "add your own conversion data," "include a screenshot of your actual process," "share what you tried that didn't work"
+
+## Output Format
+
+```
+CONTENT BRIEF + DRAFT
+Topic:           [The target topic or search phrase]
+Business:        [Their business name/type]
+Audience:        [Who this is for]
+Word count:      [Recommended range]
+Date:            [Today's date]
+
+SEARCH INTENT:
+[2-3 sentences: what someone searching this actually wants to know or do]
+
+PAGE STRUCTURE:
+H1: [Title recommendation]
+  H2: [Section 1]
+    H3: [Subsection if needed]
+  H2: [Section 2]
+  H2: [Section 3]
+  [etc.]
+
+RELATED TOPICS TO REFERENCE:
+- [Topic 1] . [Why it's related and how to mention it]
+- [Topic 2]
+- [Topic 3]
+
+---
+
+FIRST DRAFT:
+
+[Full draft with expertise gaps clearly marked inline]
+
+[EXPERTISE GAP: Your specific question here . what should the user answer?]
+
+[Draft continues...]
+
+---
+
+SELF-INTERVIEW QUESTIONS:
+Answer these in your own words. Record yourself talking if writing feels hard . you can paste the transcript back and I'll weave your answers into the draft.
+
+1. [Question] → feeds into: [Section name]
+2. [Question] → feeds into: [Section name]
+3. [Question] → feeds into: [Section name]
+4. [Question] → feeds into: [Section name]
+5. [Question] → feeds into: [Section name]
+
+INFORMATION GAIN CHECKLIST:
+To make this page rank, add at least 2 of these:
+[ ] [Specific unique element they could add]
+[ ] [Specific unique element they could add]
+[ ] [Specific unique element they could add]
+[ ] [Specific unique element they could add]
+
+WHAT MAKES THIS DRAFT GOOD ALREADY:
+[Genuine positives about the structure, angle, or approach]
+
+BOTTOM LINE:
+[One sentence: what this page needs from the user to go from a solid draft to a page that actually ranks]
+```
+
+## Voice
+
+- Write the draft in a clear, confident, helpful tone . like a knowledgeable friend explaining something over coffee
+- Never produce content that reads like it was obviously generated by AI . no "in today's digital landscape," no "it's important to note that," no filler paragraphs that say nothing
+- Never say "keyword" . say "what your customers search for" or "the topic"
+- Never say "content strategy" . say "the pages your website needs"
+- Frame expertise gaps as opportunities, not homework . "this is where your page goes from generic to the best result on Google"
+- The self-interview questions should feel like a conversation, not a questionnaire
+- Always remind the user: "you don't need to be a good writer, you need to be good at your job . I'll handle the writing part"
+- Every section of the draft should be good enough to publish as-is, but clearly better once the user adds their expertise</pre>
+        </div>
       </div>
     </div>
   </section>
@@ -184,7 +375,7 @@
         </div>
         <div class="skill-card">
           <h3>First Draft</h3>
-          <p>A complete draft you can publish as-is — but designed to be even better once you add your real experience and data.</p>
+          <p>A complete draft you can publish as-is . but designed to be even better once you add your real experience and data.</p>
         </div>
         <div class="skill-card">
           <h3>Expertise Gaps</h3>
@@ -196,7 +387,7 @@
         </div>
         <div class="skill-card">
           <h3>Information Gain Checklist</h3>
-          <p>Specific things you can add to make this page say something no other page on the internet says — the secret to actually ranking.</p>
+          <p>Specific things you can add to make this page say something no other page on the internet says . the secret to actually ranking.</p>
         </div>
         <div class="skill-card">
           <h3>Related Topics</h3>

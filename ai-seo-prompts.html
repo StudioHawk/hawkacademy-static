@@ -27,9 +27,9 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=882137468214985&ev=PageView&noscript=1"/></noscript>
     <!-- End Facebook Pixel Code -->
-    <title>SEO Guides | Hawk Academy</title>
-  <meta name="description" content="In-depth SEO guides covering SEO fundamentals, technical SEO, AI search, content strategy, and link building. Written by the team behind 500+ client campaigns at StudioHawk.">
-  <link rel="canonical" href="https://hawkacademy.co/seo-guides">
+    <title>Free AI SEO Prompts for Claude, ChatGPT &amp; Gemini | Hawk Academy</title>
+  <meta name="description" content="Free AI SEO prompts you can paste into Claude, ChatGPT, or Gemini. Score your website 1-5, find information gain gaps, optimise title tags. No download. No login. Just copy, paste, and go.">
+  <link rel="canonical" href="https://hawkacademy.co/ai-seo-prompts">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -41,19 +41,21 @@
     @font-face { font-family: 'Degular'; src: url('assets/fonts/Degular-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
 
     .resources-hero { background: var(--color-black); padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
-    .resources-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-yellow); opacity: 0.6; }
+    .resources-hero::before { content: ''; position: absolute; top: 30px; right: 8%; width: 100px; height: 100px; border-radius: 50%; background: var(--color-cyan); opacity: 0.5; }
     .resources-hero::after { content: ''; position: absolute; bottom: 40px; left: 6%; width: 50px; height: 50px; border-radius: 50%; background: var(--color-lavender); opacity: 0.4; }
     .resources-hero .hero__label { display: inline-block; font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--color-cyan); margin-bottom: 16px; }
     .resources-hero h1 { font-family: var(--font-heading); font-size: 48px; font-weight: 600; color: var(--color-white); line-height: 1.15; max-width: 700px; margin: 0 auto 16px; }
-    .resources-hero h1 span { color: var(--color-lavender); }
+    .resources-hero h1 span { color: var(--color-cyan); }
     .resources-hero p { color: var(--color-light-body); max-width: 620px; margin: 0 auto; font-size: 17px; line-height: 1.7; }
 
     .intro-section { background: var(--color-off-white); padding: 60px 0 20px; }
     .intro-content { max-width: 780px; margin: 0 auto; }
     .intro-content h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 16px; }
     .intro-content p { color: var(--color-body-text); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+    .intro-content ol { color: var(--color-body-text); font-size: 16px; line-height: 1.7; padding-left: 20px; margin-bottom: 16px; }
+    .intro-content ol li { margin-bottom: 8px; }
 
-    .resources-section { background: var(--color-off-white); padding: 40px 0 60px; }
+    .resources-section { background: var(--color-off-white); padding: 40px 0 100px; }
     .section-header { margin-bottom: 32px; }
     .section-header h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; }
     .section-header p { color: var(--color-body-text); font-size: 16px; line-height: 1.6; max-width: 600px; }
@@ -63,10 +65,7 @@
     .resource-card { background: var(--color-white); border-radius: var(--radius-card); padding: 36px 32px 32px; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
     .resource-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
     .resource-card__tag { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: 20px; width: fit-content; }
-    .tag-seo-guides { background: rgba(173,186,255,0.18); color: #7B8BE0; }
-    .tag-technical-seo { background: rgba(1,255,255,0.12); color: #00B8B8; }
-    .tag-ai-search { background: rgba(245,197,66,0.15); color: #C89E2A; }
-    .tag-content-strategy { background: rgba(1,255,255,0.12); color: #00B8B8; }
+    .tag-prompt { background: rgba(1,255,255,0.15); color: #00C4C4; }
     .resource-card__title { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); line-height: 1.3; margin-bottom: 12px; }
     .resource-card__desc { color: var(--color-body-text); font-size: 15px; line-height: 1.7; margin-bottom: 24px; flex-grow: 1; }
     .resource-card__link { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--color-lavender); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.25s ease; }
@@ -75,7 +74,7 @@
 
     .explore-more { background: var(--color-black); padding: 80px 0; text-align: center; }
     .explore-more h2 { font-family: var(--font-heading); font-size: 32px; font-weight: 600; color: var(--color-white); margin-bottom: 32px; }
-    .explore-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 720px; margin: 0 auto; }
+    .explore-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 980px; margin: 0 auto; }
     .explore-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-card); padding: 28px; text-align: left; transition: background 0.25s ease, transform 0.25s ease; }
     .explore-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-2px); }
     .explore-card h3 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--color-white); margin-bottom: 8px; }
@@ -84,14 +83,13 @@
 
     @media (max-width: 1024px) {
       .resources-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .explore-grid { grid-template-columns: 1fr; }
       .resources-hero h1 { font-size: 38px; }
     }
     @media (max-width: 768px) {
       .resources-hero { padding: 80px 0 60px; }
       .resources-hero h1 { font-size: 30px; }
       .resources-grid { grid-template-columns: 1fr; gap: 20px; }
-      .explore-grid { grid-template-columns: 1fr; }
-      .resource-card { padding: 28px 24px 24px; }
     }
   </style>
 </head>
@@ -140,9 +138,9 @@
   <!-- HERO -->
   <section class="resources-hero">
     <div class="container">
-      <p class="hero__label">Free Guides</p>
-      <h1><span>SEO Guides</span></h1>
-      <p>In-depth SEO guides covering fundamentals, technical SEO, AI search, and content strategy. Written by the team behind 500+ client campaigns at StudioHawk.</p>
+      <p class="hero__label">Free Prompts</p>
+      <h1>AI SEO <span>Prompts</span></h1>
+      <p>Free SEO prompts you can paste into Claude, ChatGPT, or Gemini. Each one solves a specific problem in under 5 minutes. Copy. Paste. Done. No download, no login, no Claude Project setup.</p>
     </div>
   </section>
 
@@ -150,90 +148,49 @@
   <section class="intro-section">
     <div class="container">
       <div class="intro-content">
-        <h2>SEO guides that teach the why, not just the what</h2>
-        <p>Most SEO articles tell you what to do. Ours explain why it works — and when it doesn't. Every guide below is written by an SEO who has run the tactic on a real client site and watched what happened. No recycled advice, no link-building fluff, no "10 tips" listicles.</p>
-        <p>If you want to deeply understand how Google and AI search actually rank websites in 2026, start with the guides below. When you're ready to go deeper, <a href="https://learn.hawkacademy.co/register" style="color:var(--color-lavender);font-weight:600;">enrol in Hawk Academy</a> for the full course — it's free, forever.</p>
+        <h2>What's an AI SEO prompt?</h2>
+        <p>A pre-built system prompt that turns any AI into an SEO specialist. Each prompt below solves one specific problem: scoring your site against the things Google rewards in 2026, finding the unique knowledge gaps in your content, or rewriting your title tags to win more clicks from the same rankings.</p>
+        <p>You don't need a Claude Project or a special install. Open whatever AI tool you already use, paste the prompt as your first message, paste your URL or content as the second, and read the output.</p>
+        <h2 style="margin-top:32px;">How to use these</h2>
+        <ol>
+          <li>Pick a prompt below.</li>
+          <li>Open Claude, ChatGPT, or Gemini in a new chat.</li>
+          <li>Click "Copy the Prompt" on the page, paste it into the chat, then paste your URL or content on the next line.</li>
+          <li>Read the output. Most run in under 60 seconds.</li>
+        </ol>
+        <p>Want the same prompts as installable Claude Skills with the persistent install flow? Head to <a href="claude-seo-skills.html" style="color:var(--color-lavender);font-weight:600;">Claude SEO Skills</a>.</p>
       </div>
     </div>
   </section>
 
-  <!-- GUIDES GRID -->
-  <section class="resources-section" style="padding-top:40px;padding-bottom:100px;">
+  <!-- PROMPTS -->
+  <section class="resources-section">
     <div class="container">
       <div class="section-header">
-        <h2>All SEO Guides</h2>
-        <p>Browse the full library of in-depth SEO guides. New guides added regularly.</p>
+        <h2>The prompts</h2>
+        <p>Three free AI prompts. More coming soon.</p>
       </div>
       <div class="resources-grid">
 
         <div class="resource-card">
-          <span class="resource-card__tag tag-seo-guides">SEO Fundamentals</span>
-          <h3 class="resource-card__title">The Complete Beginner's Guide to SEO in 2026</h3>
-          <p class="resource-card__desc">Everything you need to know to start ranking in search engines, from keyword research to on-page optimisation and beyond.</p>
-          <a href="seo-guides/beginners-guide-to-seo-2026.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <span class="resource-card__tag tag-prompt">Prompt</span>
+          <h3 class="resource-card__title">Winning Google Score Card</h3>
+          <p class="resource-card__desc">Score your site 1-5 on the 5 things every site winning Google in 2026 has in common. Brutal grading. Specific fixes. Based on Cyrus Shepard's analysis of 400+ sites.</p>
+          <a href="ai-seo-prompts/website-score.html" class="resource-card__link">Get the prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
         <div class="resource-card">
-          <span class="resource-card__tag tag-technical-seo">Technical SEO</span>
-          <h3 class="resource-card__title">Core Web Vitals: A Practical Optimisation Checklist</h3>
-          <p class="resource-card__desc">Step-by-step instructions to diagnose and fix LCP, CLS, and INP issues that are holding back your search performance.</p>
-          <a href="seo-guides/core-web-vitals-checklist.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <span class="resource-card__tag tag-prompt">Prompt</span>
+          <h3 class="resource-card__title">Information Gain Finder</h3>
+          <p class="resource-card__desc">Find where your content just repeats what Google already knows. Identifies the unique knowledge only you can add. The #1 thing that separates content that ranks from content that gets ignored.</p>
+          <a href="ai-seo-prompts/information-gain.html" class="resource-card__link">Get the prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
         <div class="resource-card">
-          <span class="resource-card__tag tag-ai-search">AI Search</span>
-          <h3 class="resource-card__title">How AI Overviews Are Changing the SEO Landscape</h3>
-          <p class="resource-card__desc">Understand how Google's AI-generated search results affect organic click-through rates and what you can do to adapt.</p>
-          <a href="seo-guides/how-ai-overviews-changing-seo.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-content-strategy">Content Strategy</span>
-          <h3 class="resource-card__title">Building a Content Hub: Topic Clusters That Rank</h3>
-          <p class="resource-card__desc">How to structure pillar pages and supporting content to build topical authority and dominate search results in your niche.</p>
-          <a href="seo-guides/content-hub-topic-clusters.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-content-strategy">Claude Skill Guide</span>
-          <h3 class="resource-card__title">How to Use the Topical Authority Map Skill</h3>
-          <p class="resource-card__desc">Step-by-step guide to running the free Topical Authority Map Claude skill on your own niche. Install, run, and turn the output into a 12-week publishing plan.</p>
-          <a href="seo-guides/topical-authority-map-guide.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-seo-guides">SEO Fundamentals</span>
-          <h3 class="resource-card__title">E-E-A-T Explained: Building Trust and Authority</h3>
-          <p class="resource-card__desc">A deep dive into Google's Experience, Expertise, Authoritativeness, and Trustworthiness framework.</p>
-          <a href="seo-guides/eeat-explained.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-technical-seo">Technical SEO</span>
-          <h3 class="resource-card__title">Site Architecture and Crawl Budget</h3>
-          <p class="resource-card__desc">Why your site's internal structure matters more than ever, and how to ensure search engines can efficiently discover your key pages.</p>
-          <a href="seo-guides/site-architecture-crawl-budget.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-seo-guides">Link Building</span>
-          <h3 class="resource-card__title">Digital PR for Link Building: Strategies That Scale</h3>
-          <p class="resource-card__desc">Learn how to earn high-quality editorial backlinks through data-driven digital PR campaigns and newsworthy content.</p>
-          <a href="seo-guides/digital-pr-link-building.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-ai-search">AI Search</span>
-          <h3 class="resource-card__title">Optimising for ChatGPT, Perplexity, and LLM-Powered Search</h3>
-          <p class="resource-card__desc">The emerging playbook for getting your brand cited by AI assistants and large language model search experiences.</p>
-          <a href="seo-guides/optimising-for-chatgpt-perplexity-llm.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-
-        <div class="resource-card">
-          <span class="resource-card__tag tag-technical-seo">Analytics</span>
-          <h3 class="resource-card__title">GA4 for SEO: The Metrics That Actually Matter</h3>
-          <p class="resource-card__desc">Cut through the noise in Google Analytics 4. Learn which reports and metrics give you real insight into your organic search performance.</p>
-          <a href="seo-guides/ga4-seo-metrics.html" class="resource-card__link">Read Guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <span class="resource-card__tag tag-prompt">Prompt</span>
+          <h3 class="resource-card__title">Title Tag Optimizer</h3>
+          <p class="resource-card__desc">Get more clicks from the same rankings. Generates 3-5 optimised title tag options per page using 5 proven formulas. Paste your Search Console data or a single URL.</p>
+          <a href="ai-seo-prompts/title-tag-optimizer.html" class="resource-card__link">Get the prompt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
 
       </div>
@@ -247,13 +204,18 @@
       <div class="explore-grid">
         <div class="explore-card">
           <h3>Claude SEO Skills</h3>
-          <p>17 free Claude skills you can add to a Claude Project. Audit your site, find gaps, and generate action plans in 60 seconds.</p>
-          <a href="claude-seo-skills.html">View Claude skills <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <p>The same prompts as installable Claude Skills, plus 16 more for Claude Desktop power users. Drop into a Claude Project and run with one command.</p>
+          <a href="claude-seo-skills.html">View Claude Skills <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
         <div class="explore-card">
           <h3>Free SEO Tools</h3>
-          <p>6 interactive browser-based SEO tools. No login, no API keys — enter your details and get instant results.</p>
+          <p>Interactive browser-based tools. Calculate ad spend vs SEO, test AI visibility, find Search Console quick wins, build calculator pages.</p>
           <a href="seo-tools.html">View SEO tools <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+        <div class="explore-card">
+          <h3>SEO Guides</h3>
+          <p>In-depth articles covering SEO fundamentals, technical optimisation, AI search, and content strategy.</p>
+          <a href="seo-guides.html">Read SEO guides <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>

@@ -239,6 +239,44 @@
       font-size: 17px;
       margin-bottom: 24px;
     }
+  
+    /* Multi-LLM retrofit additions */
+    .skill-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .skill-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px; border-radius: var(--radius-pill); background: var(--gradient-cta); color: var(--color-black); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity 0.25s; cursor: pointer; border: none; }
+    .skill-cta-primary:hover { opacity: 0.85; }
+    .skill-cta-primary svg { width: 18px; height: 18px; }
+    .skill-cta-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: var(--radius-pill); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: var(--color-white); font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: background 0.25s; }
+    .skill-cta-secondary:hover { background: rgba(255,255,255,0.12); }
+    .skill-cta-secondary svg { width: 16px; height: 16px; }
+
+    .platforms-section { background: var(--color-off-white); padding: 80px 0 40px; }
+    .platforms-section h2 { font-family: var(--font-heading); font-size: 28px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 8px; text-align: center; }
+    .platforms-section .section-sub { text-align: center; color: var(--color-body-text); font-size: 16px; max-width: 600px; margin: 0 auto 36px; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 920px; margin: 0 auto; }
+    .platform-card { background: var(--color-white); border-radius: var(--radius-card); padding: 28px 26px; }
+    .platform-card__name { display: inline-block; font-family: var(--font-body); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 12px; border-radius: var(--radius-pill); margin-bottom: 14px; }
+    .platform-card__name.claude { background: rgba(173,186,255,0.22); color: #6E7DDB; }
+    .platform-card__name.chatgpt { background: rgba(16,163,127,0.14); color: #0F9C77; }
+    .platform-card__name.gemini { background: rgba(255,196,0,0.18); color: #B58A00; }
+    .platform-card h3 { font-family: var(--font-heading); font-size: 18px; font-weight: 600; color: var(--color-dark-text); margin-bottom: 10px; }
+    .platform-card p { color: var(--color-body-text); font-size: 14px; line-height: 1.6; }
+
+    .prompt-section { background: var(--color-off-white); padding: 20px 0 80px; }
+    .prompt-block-wrap { max-width: 920px; margin: 0 auto; }
+    .prompt-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 0 4px; }
+    .prompt-block-header h2 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--color-dark-text); margin: 0; }
+    .prompt-block { background: #111; border-radius: 16px; padding: 24px 28px; position: relative; max-height: 520px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.06); }
+    .prompt-block-copy { position: sticky; top: 0; float: right; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--color-white); cursor: pointer; transition: background 0.2s; margin-bottom: 12px; margin-left: 12px; z-index: 2; }
+    .prompt-block-copy:hover { background: rgba(255,255,255,0.18); }
+    .prompt-block pre { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.65; color: #E8EAF6; white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+    @media (max-width: 768px) {
+      .platforms-grid { grid-template-columns: 1fr; gap: 14px; }
+      .prompt-block { padding: 20px 18px; max-height: 460px; }
+      .prompt-block pre { font-size: 12.5px; }
+      .skill-hero-ctas { flex-direction: column; align-items: center; }
+      .skill-cta-primary, .skill-cta-secondary { width: 100%; justify-content: center; max-width: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -257,6 +295,7 @@
           <a href="../resources.html">Resources <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
           <div class="header__dropdown">
             <a href="../claude-seo-skills.html">Claude SEO Skills</a>
+            <a href="../ai-seo-prompts.html">AI SEO Prompts</a>
             <a href="../seo-tools.html">SEO Tools</a>
             <a href="../seo-guides.html">SEO Guides</a>
           </div>
@@ -280,6 +319,7 @@
     <a href="../about.html">About Us</a>
     <a href="../resources.html">Resources</a>
     <a href="../claude-seo-skills.html" class="mobile-nav__sub">Claude SEO Skills</a>
+    <a href="../ai-seo-prompts.html" class="mobile-nav__sub">AI SEO Prompts</a>
     <a href="../seo-tools.html" class="mobile-nav__sub">SEO Tools</a>
     <a href="../seo-guides.html" class="mobile-nav__sub">SEO Guides</a>
     <a href="../contact.html">Contact</a>
@@ -293,16 +333,235 @@
       <div class="hero__label">Free Skill</div>
       <h1>Calculator Page <span>Builder</span></h1>
       <p>A free Claude skill that suggests 5 calculator ideas for your niche, then builds a complete working calculator page (HTML + CSS + JS in one file) ready to upload to your website. Calculator pages are one of the highest-ROI ways to drive organic traffic and earn natural backlinks.</p>
-      <a href="downloads/calculator-page-builder.md" download class="skill-download-btn">
+      <div class="skill-hero-ctas">
+        <a href="#the-prompt" class="skill-cta-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy the Prompt</a>
+        <a href="downloads/calculator-page-builder.md" download class="skill-cta-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Skill
       </a>
+      </div>
       <div class="skill-or-divider"><span>or install via terminal</span></div>
       <div class="skill-terminal">
         <span class="skill-terminal-label">Run this in your terminal</span>
         <button class="skill-terminal-copy" onclick="navigator.clipboard.writeText(this.parentElement.querySelector('.skill-terminal-cmd').textContent.trim());this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)">Copy</button>
         <code class="skill-terminal-cmd">curl -fsSL https://hawkacademy.co/claude-seo-skills/downloads/calculator-page-builder.md -o ~/.claude/skills/calculator-page-builder.md</code>
         <p class="skill-terminal-note">This downloads the prompt directly into your Claude skills folder. Restart Claude Desktop and you're ready to go.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms-section">
+    <div class="container">
+      <h2>Or paste into any LLM</h2>
+      <p class="section-sub">Skip the install. The prompt below works in Claude, ChatGPT, or Gemini.</p>
+      <div class="platforms-grid">
+        <div class="platform-card">
+          <span class="platform-card__name claude">Claude</span>
+          <h3>Best for depth</h3>
+          <p>Open Claude, start a New Project, paste the prompt as the System Prompt, start a chat in that project, then paste your URL or input.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name chatgpt">ChatGPT</span>
+          <h3>Fastest setup</h3>
+          <p>Open ChatGPT, start a new chat, paste the full prompt, hit return, paste your URL or input, send.</p>
+        </div>
+        <div class="platform-card">
+          <span class="platform-card__name gemini">Gemini</span>
+          <h3>Live web reads</h3>
+          <p>Open Gemini, start a new chat, paste the full prompt, hit return, paste your URL or input, send. Gemini Pro gives the deepest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROMPT -->
+  <section class="prompt-section" id="the-prompt">
+    <div class="container">
+      <div class="prompt-block-wrap">
+        <div class="prompt-block-header">
+          <h2>The prompt</h2>
+        </div>
+        <div class="prompt-block">
+          <button class="prompt-block-copy" onclick="(function(btn){var pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent.trim());btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy prompt'},2000)})(this)">Copy prompt</button>
+<pre>You are a practical SEO strategist helping a business owner build a calculator page for their website. Calculator pages are one of the easiest ways to build topical authority and drive organic traffic. They tell Google you're a credible source in your niche, and they attract links naturally because people share useful tools.
+
+Talk like a knowledgeable friend. Plain English. No jargon without explanation.
+
+## What You Need From the User
+
+1. **Their niche/industry** (e.g. accounting, mortgage broker, fitness, plumbing, real estate)
+2. **Which calculator they want** (or ask you to suggest options)
+
+If they only give their niche, suggest 5 calculator ideas first and let them pick.
+
+If they give neither, ask:
+"What industry or niche is your business in? I'll suggest calculator ideas that drive traffic and build your authority with Google."
+
+## Step 1: Suggest Calculator Ideas
+
+When the user gives their niche, suggest exactly 5 calculator ideas tailored to their industry. Use this format:
+
+**5 calculator ideas for [niche] businesses:**
+
+| # | Calculator | What it does | Why it works for SEO |
+|---|-----------|-------------|---------------------|
+| 1 | [name] | [one-line description] | [keyword it targets + why people search for it] |
+| 2 | [name] | [one-line description] | [keyword + search intent] |
+| 3 | [name] | [one-line description] | [keyword + search intent] |
+| 4 | [name] | [one-line description] | [keyword + search intent] |
+| 5 | [name] | [one-line description] | [keyword + search intent] |
+
+**Which one do you want me to build? Pick a number, or describe something custom.**
+
+### Calculator Idea Bank (use these as starting points, adapt to the user's niche)
+
+**Accounting / Finance:**
+- Tax bracket calculator, GST/VAT calculator, salary sacrifice calculator, depreciation calculator, business expense estimator, profit margin calculator, break-even calculator, invoice late fee calculator
+
+**Mortgage / Real Estate:**
+- Mortgage repayment calculator, stamp duty calculator, rental yield calculator, borrowing power calculator, property investment return calculator, LVR calculator, first home buyer savings calculator
+
+**Trades / Home Services:**
+- Job cost estimator, hourly rate calculator, material cost calculator, energy savings calculator, hot water system cost calculator, renovation budget calculator, solar panel savings calculator
+
+**Health / Fitness:**
+- BMI calculator, calorie calculator, macro calculator, body fat percentage calculator, ideal weight calculator, protein intake calculator, workout calorie burn calculator
+
+**Legal:**
+- Legal fee estimator, settlement calculator, child support estimator, compensation calculator, probate fee calculator
+
+**Ecommerce:**
+- Shipping cost calculator, discount/sale price calculator, ROI calculator, inventory turnover calculator, product pricing calculator
+
+**Marketing / SaaS:**
+- ROI calculator, CPC/CPM calculator, email list value calculator, customer lifetime value calculator, ad spend calculator, conversion rate calculator
+
+**Education:**
+- GPA calculator, ATAR estimator, student loan repayment calculator, scholarship eligibility checker
+
+**General (works for any niche):**
+- Cost comparison calculator, savings calculator, ROI calculator, "how much does X cost" estimator
+
+## Step 2: Build the Calculator
+
+Once the user picks a calculator, generate a **complete, working HTML page** with:
+
+### Page Structure
+
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;!-- Meta tags, title, description optimised for the target keyword --&gt;
+  &lt;!-- Self-contained CSS --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- SEO content section ABOVE the calculator --&gt;
+  &lt;!-- The interactive calculator --&gt;
+  &lt;!-- SEO content section BELOW the calculator --&gt;
+  &lt;!-- FAQ section with schema markup --&gt;
+  &lt;!-- Self-contained JavaScript --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
+
+### Required Components
+
+**1. SEO-optimised head:**
+- Title tag: "[Calculator Name] | Free [Niche] Calculator | [Brand if provided]"
+- Meta description: action-oriented, includes the keyword, under 155 characters
+- Viewport meta tag for mobile
+
+**2. Content section ABOVE the calculator (150-250 words):**
+- H1 with primary keyword
+- Brief intro explaining what the calculator does and who it's for
+- 2-3 sentences establishing credibility/context
+- Natural keyword usage without stuffing
+
+**3. The interactive calculator:**
+- Clean, professional design (use a neutral colour scheme they can customise)
+- Clear input labels with helper text
+- Real-time calculation (no page reload needed)
+- Mobile responsive
+- Results displayed clearly with context (not just a number, explain what it means)
+- Input validation (no negative numbers, required fields)
+
+**4. Content section BELOW the calculator (200-400 words):**
+- H2: "How to use this calculator" (brief walkthrough)
+- H2: "How [calculation topic] works" (educational content)
+- Natural internal linking opportunities (mention related services/pages)
+- This section builds the topical depth Google wants to see
+
+**5. FAQ section (4-6 questions) with JSON-LD schema:**
+- Common questions people ask about this calculation topic
+- Concise, helpful answers
+- Valid FAQPage schema markup in a script tag
+
+**6. Calculator JavaScript:**
+- Self-contained, no external dependencies
+- Clear variable names
+- Input validation
+- Results update on button click (not on every keystroke)
+- Format numbers with commas and appropriate currency symbols
+- Show helpful context with results (e.g. "This is above/below average for...")
+
+### Design Guidelines
+
+Use this base CSS approach (the user can customise colours):
+
+- Clean, modern look with good whitespace
+- System font stack (no external font dependencies)
+- Card-based layout for the calculator
+- Subtle borders and shadows
+- Green/positive for good results, red/caution for concerning results
+- Mobile-first: inputs stack vertically on small screens
+- Accessible: proper labels, focus states, sufficient contrast
+- Max width 720px for the content area
+- Colour scheme: neutral grays with one accent colour (blue by default, easy to swap)
+
+### Code Quality Rules
+
+- Single HTML file, zero external dependencies
+- All CSS in a `&lt;style&gt;` tag in the head
+- All JS in a `&lt;script&gt;` tag before `&lt;/body&gt;`
+- No jQuery, no frameworks, no CDN links
+- Works offline once downloaded
+- Valid HTML5
+- Semantic markup (header, main, section, footer)
+- Print-friendly (results should print cleanly)
+
+## Step 3: Upload Instructions
+
+After generating the calculator, give these instructions:
+
+**How to add this to your website:**
+
+1. **Save the code** as a `.html` file (e.g., `mortgage-calculator.html`)
+2. **Upload it** to your website. Most website builders let you add a custom HTML page:
+   - **WordPress:** Create a new page, switch to "Custom HTML" block, paste the code
+   - **Shopify:** Create a new page, use the HTML editor
+   - **Squarespace:** Add a "Code Block" to a new page
+   - **Static site:** Just upload the HTML file to your hosting
+3. **Add it to your navigation** so Google can find it (link it from your homepage or services page)
+4. **Submit the URL** to Google Search Console so it gets indexed faster (Search Console &gt; URL Inspection &gt; paste URL &gt; Request Indexing)
+
+**Pro tips:**
+- Link to the calculator from your most popular pages (this passes authority to it)
+- Share the calculator on social media (calculators get shared because they're useful)
+- Add a call-to-action below the results (e.g., "Need help with your [service]? Contact us")
+
+## Formatting Rules
+
+- Use tables for calculator suggestions
+- Bold key terms on first use
+- Use "you" and "your" throughout
+- Keep paragraphs to 2-3 sentences max
+- No em dashes, use commas or line breaks
+- When generating code, use clean formatting with proper indentation
+- Always explain WHY calculator pages work for SEO, not just how to build one
+- If the user's niche is unusual, get creative with calculator ideas but always tie back to what people actually search for</pre>
+        </div>
       </div>
     </div>
   </section>
