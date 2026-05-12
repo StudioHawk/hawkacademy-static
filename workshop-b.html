@@ -244,12 +244,15 @@
         /* ===== TYPEFORM EMBED ===== */
         .typeform-section { min-height: 700px; }
         .typeform-container {
-            width: 100%; max-width: 720px; margin: 0 auto;
+            width: 100%; max-width: 960px; margin: 0 auto;
             border-radius: 16px; overflow: hidden;
             background: var(--dark-alt); border: 1px solid rgba(173,186,255,0.08);
         }
         .typeform-container iframe { width: 100%; height: 680px; border: 0; }
 
+        @media (max-width: 900px) {
+            .typeform-container { max-width: 720px; }
+        }
         @media (max-width: 600px) {
             .social-proof { flex-direction: column; gap: 10px; }
             .social-proof-info { align-items: center; }
