@@ -19,6 +19,8 @@ const CONFIG = {
     d: '/workshop-d.html',           // was G: testimonials moved up to right after Problem section
     e: '/workshop-e.html',           // was C: 'Stop Renting Customers From Google' angle + bullets + Three things
     f: '/workshop-f.html',           // was D: 'Same SEO Playbook 120 Specialists' angle + bullets + Three things + mid-page CTA
+
+    g: '/workshop-g.html',           // light theme A/B test against dark default
     'a-a': '/workshop-a-a.html',     // price variant: $3,000
     'a-b': '/workshop-a-b.html',     // price variant: $2,500
   },
@@ -28,7 +30,7 @@ const CONFIG = {
   // To split evenly across 4 content variants: { a: 1, b: 1, c: 1, d: 1 }
   // To split 50/50 A vs C:    { a: 1, b: 0, c: 1, d: 0 }
   // Force any variant for QA via ?ab=a-a etc. — works regardless of weights.
-  WEIGHTS: { a: 1, b: 1, c: 1, d: 1, e: 1, f: 1, 'a-a': 0, 'a-b': 0 },
+  WEIGHTS: { a: 1, b: 1, c: 1, d: 1, e: 1, f: 1, g: 1, 'a-a': 0, 'a-b': 0 },
   COOKIE_DAYS: 30,
 };
 
