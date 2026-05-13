@@ -1260,6 +1260,72 @@
         /* Cite reference superscript */
         .cite-ref { color: #5a6dd6 !important; }
 
+        /* ============================================================
+           VARIANT G - WHITE-TEXT SWEEP
+           Many elements use color:var(--white) (both via class and via
+           inline style) which becomes invisible on white background.
+           These rules force them dark while leaving truly-dark UI
+           (black pills, dark buttons) untouched.
+           ============================================================ */
+
+        /* Headings */
+        h1, h2, h3, h4, h5, h6 { color: #1a1a1a !important; }
+
+        /* strong tags inside text */
+        p strong, li strong, div > strong, span > strong,
+        .date-spots strong, .faq-a strong, .hero-text strong {
+            color: #1a1a1a !important;
+        }
+
+        /* FAQ question button */
+        .faq-q, .faq-q span { color: #1a1a1a !important; }
+        .faq-q svg { stroke: #1a1a1a !important; }
+
+        /* Form inputs */
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            color: #1a1a1a !important;
+            background: #ffffff !important;
+            border-color: rgba(0,0,0,0.12) !important;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: #999 !important; }
+
+        /* Inline style="color:var(--white)" but NOT on a dark pill.
+           Catches every <p style="color:var(--white)..."> and similar. */
+        [style*="color:var(--white)"]:not([style*="background:var(--black)"]):not([style*="background: var(--black)"]),
+        [style*="color: var(--white)"]:not([style*="background:var(--black)"]):not([style*="background: var(--black)"]) {
+            color: #1a1a1a !important;
+        }
+
+        /* Footer link hover (was white, make it readable lavender) */
+        .footer-links a:hover,
+        .footer-social a:hover svg { color: #5a6dd6 !important; }
+
+        /* Inline backgrounds that were a light-on-light combo
+           (e.g. cards with rgba(173,186,255,0.05) bg + var(--white)
+           text). Already handled by the inline-style-color override
+           above; this just guarantees readability for any leftover
+           inline text colors using rgba(255,255,255,X). */
+        [style*="color:rgba(255,255,255,"]:not([style*="background:var(--black)"]):not([style*="background:#000"]) {
+            color: #1a1a1a !important;
+        }
+
+        /* Testimonial card text inside .section--light (white) - card
+           already has var(--gray-dark) text so it works, but inline
+           values should also resolve cleanly */
+        .testimonial-card *,
+        .testimonial-card { color: #1a1a1a !important; }
+        .testimonial-card .testimonial-text { color: #555 !important; }
+
+        /* Why-grid cards (inline bg rgba(173,186,255,0.05))
+           ensure all <p> text inside reads dark */
+        .why-grid p, .why-grid h3, .why-grid div { color: #1a1a1a !important; }
+
+        /* The 'What it IS / IS NOT' cards in How It Works */
+        section .fade-up p, section .fade-up h3 { color: inherit; }
+
 </style>
 </head>
 <body>
