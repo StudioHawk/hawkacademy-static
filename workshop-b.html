@@ -565,6 +565,7 @@
         .dates-note { text-align: center; font-size: 13px; color: var(--gray-mid); margin-top: 20px; }
         .date-spots { font-size: 13px; color: var(--gray-mid); margin-left: auto; padding-right: 12px; }
         .date-spots strong { color: var(--white); }
+        .date-subtext { font-size: 13px; font-weight: 400; color: var(--gray-mid); line-height: 1.4; }
 
         /* ===== PRICING BANNER ===== */
         .pricing-banner {
@@ -1634,8 +1635,10 @@
                     <span class="date-badge date-badge--open apply-trigger" data-city="Melbourne" style="cursor:pointer;">Accepting Applications</span>
                 </div>
                 <div class="date-item">
-                    <span class="date-text">17th &amp; 18th June, Sydney</span>
-                    <span class="date-spots">Taking expressions of interest for next session: 6th &amp; 7th August</span>
+                    <div style="display:flex;flex-direction:column;gap:4px;">
+                        <span class="date-text">17th &amp; 18th June, Sydney</span>
+                        <span class="date-subtext">Taking EOI for next session: 6 &amp; 7 August</span>
+                    </div>
                     <span class="date-badge date-badge--sold apply-trigger" data-city="Sydney" style="cursor:pointer;">Sold Out</span>
                 </div>
                 <div class="date-item">
