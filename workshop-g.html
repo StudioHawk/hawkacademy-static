@@ -1260,6 +1260,21 @@
         /* Cite reference superscript */
         .cite-ref { color: #5a6dd6 !important; }
 
+        /* Mobile sticky CTA bar (actual class is .mobile-cta-bar, not
+           .mobile-sticky-cta as my first cut wrote). On light theme it
+           should be a light glass pill, not a dark bar. */
+        .mobile-cta-bar {
+            background: rgba(255,255,255,0.96) !important;
+            border-top: 1px solid rgba(0,0,0,0.08) !important;
+            box-shadow: 0 -8px 32px rgba(0,0,0,0.08) !important;
+        }
+        .mobile-cta-bar__btn--secondary {
+            background: rgba(173,186,255,0.12) !important;
+            color: #5a6dd6 !important;
+            border-color: rgba(90,109,214,0.3) !important;
+        }
+        /* primary stays as the brand gradient with black text - works on both */
+
         /* ============================================================
            VARIANT G - WHITE-TEXT SWEEP
            Many elements use color:var(--white) (both via class and via
