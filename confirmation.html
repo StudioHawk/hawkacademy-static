@@ -134,6 +134,19 @@
             border: 1px solid rgba(255,255,255,0.06);
             position: relative;
         }
+        /* Directive H2 inside the hero - sits above the video so it's
+           visible above the fold on most desktops. Tighter top margin
+           than a normal section so it hugs the lead paragraph. */
+        .hero-directive {
+            font-size: clamp(24px, 3vw, 34px);
+            color: var(--white);
+            margin: 8px auto 28px;
+            max-width: 820px;
+            line-height: 1.25;
+        }
+        @media (max-width: 600px) {
+            .hero-directive { margin: 4px auto 20px; }
+        }
         .video-placeholder {
             position: absolute; inset: 0;
             display: flex; flex-direction: column;
@@ -610,6 +623,8 @@
             <h1>You're <span class="gradient" id="locked-in">locked in</span>, <span class="accent" id="first-name">friend</span>.</h1>
             <p class="lead">Your call is booked. Watch for an email from me in the next few minutes.</p>
 
+            <h2 class="section-title hero-directive">Watch this video or read this page please.</h2>
+
             <div class="video-wrap">
                 <iframe
                     id="confirmation-video"
@@ -661,12 +676,9 @@
         </div>
     </section>
 
-    <!-- WHY I BUILT THIS WORKSHOP (heading rewritten as directive) -->
-    <section class="section">
+    <!-- WHY I BUILT THIS WORKSHOP (heading moved into hero as directive) -->
+    <section class="section" style="padding-top:32px;">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Watch this video or read this page please.</h2>
-            </div>
             <div class="story-block">
                 <p>A few months ago I was at an Alex Hormozi workshop in Las Vegas when it hit me.</p>
                 <p>I built <strong>StudioHawk</strong>, my elite team of AI SEO specialists across Melbourne, Sydney, London and Atlanta. 500+ clients. We turn away 40% of inbound business because they're not ready yet. &ldquo;You're better off learning the basics yourself instead of paying us. Go run paid ads, rebuild your website, sharpen your offer. Come back in 6 to 12 months.&rdquo;</p>
