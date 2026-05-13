@@ -429,6 +429,155 @@
         .footer-abn { margin-top: 12px; font-size: 12px; color: var(--gray-mid); opacity: 0.6; }
 
         /* RESPONSIVE */
+        /* ============================================================
+           VSL POST-BOOKING SECTIONS
+           ============================================================ */
+
+        .complete-pill {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, rgba(173,186,255,0.15), rgba(1,255,255,0.15));
+            border: 1px solid rgba(173,186,255,0.4);
+            border-radius: 100px;
+            padding: 10px 22px;
+            margin-bottom: 28px;
+            font-size: 12px; font-weight: 700;
+            color: var(--lavender);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+        .complete-pill .check-dot {
+            width: 18px; height: 18px; border-radius: 50%;
+            background: linear-gradient(135deg, #adbaff, #01ffff);
+            display: inline-flex; align-items: center; justify-content: center;
+            color: #000;
+        }
+        .complete-pill .check-dot svg { width: 11px; height: 11px; }
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, #adbaff 0%, #01ffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* CALL IS / ISN'T cards */
+        .call-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .call-card {
+            background: rgba(173,186,255,0.04);
+            border: 1px solid rgba(173,186,255,0.14);
+            border-radius: 18px;
+            padding: 32px 28px;
+        }
+        .call-card.is { border-color: rgba(97,206,112,0.3); background: rgba(97,206,112,0.04); }
+        .call-card.isnt { border-color: rgba(245,183,49,0.25); background: rgba(245,183,49,0.04); }
+        .call-card .card-label {
+            display: inline-block;
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom: 14px;
+        }
+        .call-card.is .card-label { color: var(--green); }
+        .call-card.isnt .card-label { color: var(--gold); }
+        .call-card h3 { font-size: 22px; margin-bottom: 12px; color: var(--white); }
+        .call-card p { color: var(--gray-body); font-size: 15px; line-height: 1.7; }
+        .call-card p + p { margin-top: 10px; }
+
+        /* STORY BLOCK */
+        .story-block {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 17px;
+            line-height: 1.85;
+            color: var(--gray-body);
+        }
+        .story-block p { margin-bottom: 20px; }
+        .story-block p:last-child { margin-bottom: 0; }
+        .story-block strong { color: var(--white); font-weight: 600; }
+
+        /* FIXES GRID */
+        .fixes-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex; flex-direction: column;
+            gap: 2px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(173,186,255,0.1);
+        }
+        .fix-row {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 24px;
+            padding: 22px 26px;
+            background: rgba(15,15,20,0.95);
+            align-items: center;
+        }
+        .fix-row:nth-child(even) { background: rgba(20,20,28,0.95); }
+        .fix-pain { font-size: 15px; font-weight: 600; color: var(--white); line-height: 1.5; }
+        .fix-solution { font-size: 14px; color: var(--gray-body); line-height: 1.65; }
+        .fix-solution strong { color: var(--lavender); font-weight: 600; }
+
+        /* GUARANTEE CARD */
+        .guarantee-card {
+            max-width: 760px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(173,186,255,0.08), rgba(1,255,255,0.05));
+            border: 1px solid rgba(173,186,255,0.3);
+            border-radius: 20px;
+            padding: 44px 36px;
+            text-align: center;
+        }
+        .guarantee-card h3 { font-size: 28px; margin-bottom: 16px; color: var(--white); }
+        .guarantee-card .promise {
+            font-size: 18px;
+            color: var(--white);
+            line-height: 1.6;
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+        .guarantee-card .promise .gradient {
+            background: linear-gradient(135deg, #adbaff, #01ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        .guarantee-card .tagline { font-size: 14px; color: var(--gray-body); font-style: italic; }
+
+        /* BEFORE-CALL action card */
+        .before-call-card {
+            max-width: 720px;
+            margin: 0 auto;
+            background: rgba(173,186,255,0.05);
+            border: 1px solid rgba(173,186,255,0.18);
+            border-radius: 18px;
+            padding: 36px 32px;
+            text-align: center;
+        }
+        .before-call-card h3 { font-size: 22px; margin-bottom: 14px; color: var(--white); }
+        .before-call-card p {
+            font-size: 16px;
+            color: var(--gray-body);
+            line-height: 1.7;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .signoff {
+            max-width: 720px;
+            margin: 40px auto 0;
+            font-size: 17px;
+            color: var(--gray-body);
+            font-style: italic;
+            text-align: center;
+        }
+        .signoff strong { color: var(--white); font-style: normal; font-weight: 600; }
+
         @media (max-width: 768px) {
             .steps { grid-template-columns: 1fr; }
             .badge-strip { grid-template-columns: repeat(2, 1fr); }
@@ -437,20 +586,29 @@
             .testimonial-tiers { grid-template-columns: 1fr; }
             .section { padding: 48px 0; }
             .hero { padding: 48px 0 40px; }
+            .call-cards { grid-template-columns: 1fr; }
+            .fix-row { grid-template-columns: 1fr; gap: 6px; padding: 18px 20px; }
+            .fix-pain { font-size: 14px; }
+            .fix-solution { font-size: 13px; }
+            .guarantee-card { padding: 32px 22px; }
+            .guarantee-card h3 { font-size: 22px; }
+            .guarantee-card .promise { font-size: 16px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO  -  personalized greeting + confirmation video -->
+    <!-- HERO  -  call booked celebratory greeting + video -->
     <section class="hero">
         <div class="container">
-            <div class="applied-pill">
-                <span class="dot"></span>
-                Application Received
+            <div class="complete-pill">
+                <span class="check-dot">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                Application Complete &middot; Call Booked
             </div>
-            <h1>Thanks <span class="accent" id="first-name">for applying</span>, your application for the <span class="accent" id="workshop-city">workshop</span> is in.</h1>
-            <p class="lead">Harry is reviewing it personally. You'll hear back within 48 hours.</p>
+            <h1>You're <span class="gradient" id="locked-in">locked in</span>, <span class="accent" id="first-name">friend</span>.</h1>
+            <p class="lead">Your call is booked. Watch for an email from me in the next few minutes.</p>
 
             <div class="video-wrap">
                 <iframe
@@ -487,7 +645,6 @@
                     }
 
                     overlay.addEventListener('click', function () {
-                        // Restart from the beginning, unmute, and play
                         Promise.resolve()
                             .then(function () { return player.setCurrentTime(0); })
                             .then(function () { return player.setMuted(false); })
@@ -496,7 +653,6 @@
                             .then(hideOverlay);
                     });
 
-                    // If the user unmutes directly from the Vimeo controls, hide the overlay too
                     player.on('volumechange', function (data) {
                         if (data && data.volume > 0) hideOverlay();
                     });
@@ -505,63 +661,125 @@
         </div>
     </section>
 
-    <!-- WHAT HAPPENS NEXT -->
+    <!-- WHAT THIS CALL IS / ISN'T -->
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">What Happens Next</span>
-                <h2 class="section-title">Here's the 4-step process from here</h2>
+                <span class="section-label">Set Expectations</span>
+                <h2 class="section-title">What this call is &mdash; and isn't</h2>
             </div>
-            <div class="steps">
-                <div class="step-card">
-                    <div class="step-num">Step 1 &middot; 48 hours</div>
-                    <h3>We review your application</h3>
-                    <p>Harry personally reads every application. We're looking for founders who are ready to do the work, not just tire-kickers.</p>
+            <div class="call-cards">
+                <div class="call-card is">
+                    <span class="card-label">What it is</span>
+                    <h3>A 15-minute conversation with me</h3>
+                    <p>I'll have already looked at your site before we talk.</p>
+                    <p>If the workshop is the right move for you, we'll lock in your seat. If it's not, I'll tell you and point you somewhere better.</p>
                 </div>
-                <div class="step-card">
-                    <div class="step-num">Step 2 &middot; within 48 hrs</div>
-                    <h3>You'll get a confirmation email</h3>
-                    <p>If you're a fit, we'll send workshop details, dates, venue, and what to bring. If not, we'll tell you why and point you to the free course.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">Step 3 &middot; workshop day</div>
-                    <h3>Show up and build</h3>
-                    <p>Two days, in-person, laptop open. You leave with pages live on Google and in AI Search.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">Step 4 &middot; next 6 months</div>
-                    <h3>Support while it compounds</h3>
-                    <p>Weekly advisory calls, a Skool community of founders building alongside you, and direct support from the Hawk team while your pages climb and start pulling leads.</p>
+                <div class="call-card isnt">
+                    <span class="card-label">What it isn't</span>
+                    <h3>A pitch</h3>
+                    <p>The workshop is $3,500 and that's the price whether you find out on the call or on the website.</p>
+                    <p>There's no &ldquo;special offer&rdquo; coming.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CREDENTIAL BADGES -->
+    <!-- WHY I BUILT THIS WORKSHOP -->
     <section class="section section--darker">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">You're In Good Hands</span>
-                <h2 class="section-title">Built on 10+ Years of SEO That Actually Works</h2>
+                <span class="section-label">The Backstory</span>
+                <h2 class="section-title">Why I built this workshop</h2>
             </div>
-            <div class="badge-strip">
-                <div class="badge-card">
-                    <div class="badge-num">7&times;</div>
-                    <div class="badge-label">Best Large SEO Agency</div>
+            <div class="story-block">
+                <p>A few months ago I was at an Alex Hormozi workshop in Las Vegas when it hit me.</p>
+                <p>I built <strong>StudioHawk</strong> &mdash; my elite team of AI SEO specialists across Melbourne, Sydney, London and Atlanta. 500+ clients. We turn away 40% of inbound business because they're not ready yet. &ldquo;You're better off learning the basics yourself instead of paying us. Go run paid ads, rebuild your website, sharpen your offer. Come back in 6 to 12 months.&rdquo;</p>
+                <p>That advice was honest. But I was leaving those people without direction.</p>
+                <p>So I made the <strong>Hawk Academy course completely free</strong>. 6,000 people inside. Mission: educate 100,000 business owners on AI search.</p>
+                <p>But there's still an audience that needs more than a course &mdash; <strong>the messy middle</strong>. Owners who need community, accountability, and someone sitting beside them showing them what to do. That's the workshop.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT THE WORKSHOP FIXES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">10 Things</span>
+                <h2 class="section-title">What the workshop fixes</h2>
+            </div>
+            <div class="fixes-grid">
+                <div class="fix-row">
+                    <div class="fix-pain">You're spending more on Google Ads every month and getting fewer leads back.</div>
+                    <div class="fix-solution">Cost per lead is up 57% in 3 years. AI Overviews killed paid CTR by 68%. <strong>The ad model is breaking.</strong></div>
                 </div>
-                <div class="badge-card">
-                    <div class="badge-num">45</div>
-                    <div class="badge-label">Industry Awards</div>
+                <div class="fix-row">
+                    <div class="fix-pain">Agencies want $3-10k/month and you can't tell what they're actually doing.</div>
+                    <div class="fix-solution">The workshop teaches you to <strong>do the work yourself</strong> &mdash; or hold an agency genuinely accountable.</div>
                 </div>
-                <div class="badge-card">
-                    <div class="badge-num">500+</div>
-                    <div class="badge-label">Clients Served</div>
+                <div class="fix-row">
+                    <div class="fix-pain">You're invisible in AI Overviews while your competitors aren't.</div>
+                    <div class="fix-solution">The biggest deals at StudioHawk now come through AI Search. <strong>They convert higher than referrals and close faster.</strong></div>
                 </div>
-                <div class="badge-card">
-                    <div class="badge-num">3,400+</div>
-                    <div class="badge-label">Hawk Academy Members</div>
+                <div class="fix-row">
+                    <div class="fix-pain">You're stitching together ChatGPT prompts with no system.</div>
+                    <div class="fix-solution">You'll get <strong>HawkOS Lite</strong> &mdash; the AI workflows my elite team uses every day, pressure-tested across 500+ websites.</div>
+                </div>
+                <div class="fix-row">
+                    <div class="fix-pain">You start something then life gets in the way.</div>
+                    <div class="fix-solution"><strong>6 months</strong> of community access, weekly advisory calls, and accountability after the workshop.</div>
+                </div>
+                <div class="fix-row">
+                    <div class="fix-pain">You don't know how to use AI to actually move the needle.</div>
+                    <div class="fix-solution">2 days hands-on with my team on <strong>YOUR site</strong>, building real pages, learning real workflows.</div>
+                </div>
+                <div class="fix-row">
+                    <div class="fix-pain">SEO feels like a black box.</div>
+                    <div class="fix-solution">You'll <strong>never have to read a report you don't understand</strong> again.</div>
+                </div>
+                <div class="fix-row">
+                    <div class="fix-pain">Your competitors are already showing up where you're not.</div>
+                    <div class="fix-solution">The window for AI Search is open right now. <strong>Whoever moves first owns the category.</strong></div>
+                </div>
+                <div class="fix-row">
+                    <div class="fix-pain">Every dollar in ads is rented attention. Stop paying, leads stop.</div>
+                    <div class="fix-solution">SEO compounds. <strong>Every page becomes an asset</strong> that earns for years.</div>
+                </div>
+                <div class="fix-row">
+                    <div class="fix-pain">Your business shouldn't depend on a contractor in another city understanding what you sell.</div>
+                    <div class="fix-solution">You own the system. The workshop hands it to you. <strong>You keep it.</strong></div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- TAILFEATHER GUARANTEE -->
+    <section class="section section--darker">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Risk Reversal</span>
+                <h2 class="section-title">The Tailfeather Guarantee</h2>
+            </div>
+            <div class="guarantee-card">
+                <p class="promise">Show up. Do the work. If it's not worth it, <span class="gradient">full refund plus $500 toward your travel.</span></p>
+                <p class="tagline">You back yourself to show up. I back myself to deliver.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ONE THING BEFORE OUR CALL -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Before Our Call</span>
+                <h2 class="section-title">One thing to do</h2>
+            </div>
+            <div class="before-call-card">
+                <h3>Open the email I just sent you</h3>
+                <p>Reply with one question you want me to come prepared on. Anything. The more I know going in, the more useful 15 minutes becomes.</p>
+            </div>
+            <p class="signoff">Talk soon,<br><strong>Harry</strong></p>
         </div>
     </section>
 
@@ -595,67 +813,30 @@
         </div>
     </section>
 
-    <!-- RESULTS METRICS -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Real Results From StudioHawk</span>
-                <h2 class="section-title">The Same Playbook You'll Learn</h2>
-            </div>
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-num">+555%</div>
-                    <div class="result-metric">Organic Traffic</div>
-                    <div class="result-client">Waverley Forklifts</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-num">+283%</div>
-                    <div class="result-metric">Top 3 Rankings</div>
-                    <div class="result-client">Coreplus</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-num">+102%</div>
-                    <div class="result-metric">eCommerce Keywords</div>
-                    <div class="result-client">De Bortoli Wine</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-num">+94%</div>
-                    <div class="result-metric">Keyword Growth</div>
-                    <div class="result-client">Bondi Sands</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-num">+60%</div>
-                    <div class="result-metric">Organic Traffic</div>
-                    <div class="result-client">Officeworks</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- MICRO Q&A (text-only, accordion) -->
     <section class="section section--darker">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">While You Wait</span>
-                <h2 class="section-title">Things People Ask After Applying</h2>
+                <span class="section-label">Before the Call</span>
+                <h2 class="section-title">Questions you might be sitting with</h2>
             </div>
             <div class="qa-list">
                 <div class="qa-item">
                     <button class="qa-q" aria-expanded="false">
-                        When will I hear back?
+                        When is my call?
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     </button>
                     <div class="qa-a">
-                        <p>Within 48 hours. Sometimes faster. If Harry's on the road or at a workshop it might stretch to 72, but we'll never leave you hanging longer than that. Check your spam folder if you don't see a reply.</p>
+                        <p>Check the calendar invite sent to your email &mdash; it has the date, time, and Zoom/Google Meet link. It's also been added to your calendar automatically. If you can't find it, check spam, then reply to Harry's email and he'll re-send.</p>
                     </div>
                 </div>
                 <div class="qa-item">
                     <button class="qa-q" aria-expanded="false">
-                        What if I get rejected?
+                        What if I need to reschedule?
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     </button>
                     <div class="qa-a">
-                        <p>We reject applications when we don't think the workshop is the right fit. Usually that means you're too early (no business yet) or too late (already doing $200k+/month and need agency-level work). If that's you, we'll tell you exactly why and point you to the free Hawk Academy course, or a better-fit path.</p>
+                        <p>Use the reschedule link in your Calendly confirmation email &mdash; one click and you can pick a new time. Try to do it at least 24 hours out so we can offer the slot to someone else.</p>
                     </div>
                 </div>
                 <div class="qa-item">
@@ -685,20 +866,6 @@
                         <p>No. If you can use Google Docs, you can use the AI tools we show you. The whole point of the workshop is that AI collapses the technical gap. Founders with no SEO background walk out with live pages by Day 2.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHILE YOU WAIT  -  free course (ONLY outbound link) -->
-    <section class="section section--darker">
-        <div class="container">
-            <div class="wait-card">
-                <h3>While you wait, start with the free course</h3>
-                <p>3,400+ founders have taken Hawk Academy's free SEO course. It won't replace the workshop, but it'll give you a head start before we talk.</p>
-                <a href="https://hawkacademy.co" class="btn" target="_blank" rel="noopener">
-                    Start the Free Course
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-                </a>
             </div>
         </div>
     </section>
@@ -735,12 +902,10 @@
 
             if (firstName && !looksUnsubstituted(firstName)) {
                 firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
-                document.getElementById('first-name').textContent = firstName;
+                var el = document.getElementById('first-name');
+                if (el) el.textContent = firstName;
             }
-            if (city && !looksUnsubstituted(city)) {
-                city = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
-                document.getElementById('workshop-city').textContent = city + ' workshop';
-            }
+            // city param kept in URL for analytics but no longer rendered in hero
         })();
 
         // ============================================================
