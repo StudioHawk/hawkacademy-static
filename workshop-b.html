@@ -1630,9 +1630,9 @@
                     <span class="date-badge date-badge--open apply-trigger" data-city="Melbourne" style="cursor:pointer;">Accepting Applications</span>
                 </div>
                 <div class="date-item">
-                    <span class="date-text">TBA, Sydney</span>
-                    <span class="date-spots"><strong>8 out of 30</strong> Spots Taken</span>
-                    <span class="date-badge date-badge--open apply-trigger" data-city="Sydney" style="cursor:pointer;">Accepting Applications</span>
+                    <span class="date-text">Next session TBC, Sydney</span>
+                    <span class="date-spots"><strong>0 remaining</strong></span>
+                    <span class="date-badge date-badge--sold apply-trigger" data-city="Sydney" style="cursor:pointer;">Sold Out</span>
                 </div>
                 <div class="date-item">
                     <span class="date-text">TBA, Brisbane</span>
@@ -1653,7 +1653,7 @@
                     <span style="font-size:14px;font-weight:600;color:var(--gold);">Applications close when seats fill. Melbourne is filling fast.</span>
                 </div>
             </div>
-            <p class="dates-note" style="margin-top:16px;">30 seats per workshop. Melbourne &amp; Sydney open to applicants now. Other cities accepting expressions of interest.</p>
+            <p class="dates-note" style="margin-top:16px;">30 seats per workshop. Melbourne open to applicants now. Sydney sold out - next session TBC. Other cities accepting expressions of interest.</p>
             <p class="dates-note" style="margin-top:12px;">Can't make any of these dates? Enquire anyway and let us know. We'll let you know if we do another one in the future.</p>
             <p class="dates-note" style="margin-top:8px;font-style:italic;">Last updated 5th May 2026</p>
         </div>
@@ -2040,9 +2040,9 @@
                     // Update the dates note
                     const datesNotes = document.querySelectorAll('.dates-note');
                     if (datesNotes.length && country === 'GB') {
-                        datesNotes[0].innerHTML = '30 seats per workshop. London expressions of interest open now. Melbourne &amp; Sydney accepting applications.';
+                        datesNotes[0].innerHTML = '30 seats per workshop. London expressions of interest open now. Melbourne accepting applications - Sydney sold out.';
                     } else if (datesNotes.length && country === 'US') {
-                        datesNotes[0].innerHTML = '30 seats per workshop. Atlanta expressions of interest open now. Melbourne &amp; Sydney accepting applications.';
+                        datesNotes[0].innerHTML = '30 seats per workshop. Atlanta expressions of interest open now. Melbourne accepting applications - Sydney sold out.';
                     }
 
                     // Pre-select local city in form dropdown
