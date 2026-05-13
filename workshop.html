@@ -1225,7 +1225,7 @@
                         </button>
                     </div>
                     <div style="text-align:center;margin-top:16px;">
-                        <div class="video-intro-btn" style="display:inline-flex;align-items:center;gap:8px;background:var(--gradient-brand);color:var(--black);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;padding:10px 24px;border-radius:8px;">
+                        <div class="video-intro-btn" id="video-intro-btn" role="button" tabindex="0" style="cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:var(--gradient-brand);color:var(--black);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;padding:10px 24px;border-radius:8px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                             Workshop Introduction Video - Watch This First
                         </div>
@@ -1283,6 +1283,31 @@
                                         player.requestFullscreen().catch(function () { /* fullscreen may be unavailable */ });
                                     }
                                 });
+                            }
+
+                            // Workshop intro pill - heatmap shows ~36% of clicks
+                            // land here. Wire it up to play+unmute the hero video.
+                            var introBtn = document.getElementById('video-intro-btn');
+                            if (introBtn) {
+                                function triggerIntroPlay(e) {
+                                    if (e && e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+                                    if (e && e.preventDefault) e.preventDefault();
+                                    var w = document.getElementById('hero-video-wrap');
+                                    if (w && w.scrollIntoView) w.scrollIntoView({behavior:'smooth', block:'center'});
+                                    if (overlay && !overlay.classList.contains('hidden')) {
+                                        // Reuse the overlay's full flow (handles
+                                        // Instagram WebView + standard Vimeo path)
+                                        overlay.click();
+                                    } else {
+                                        // Already unmuted before. Restart playback.
+                                        Promise.all([
+                                            player.setCurrentTime(0).catch(function(){}),
+                                            player.play().catch(function(){})
+                                        ]);
+                                    }
+                                }
+                                introBtn.addEventListener('click', triggerIntroPlay);
+                                introBtn.addEventListener('keydown', triggerIntroPlay);
                             }
                         }
                         setup();
@@ -2311,6 +2336,22 @@
         }
         body { padding-bottom: 100px; }
     }
+        /* Workshop intro pill - interactive feedback */
+        .video-intro-btn {
+            transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+            user-select: none;
+        }
+        .video-intro-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            filter: brightness(1.05);
+            box-shadow: 0 8px 24px rgba(173,186,255,0.3);
+        }
+        .video-intro-btn:active { transform: translateY(0) scale(0.98); }
+        .video-intro-btn:focus-visible {
+            outline: 2px solid var(--lavender);
+            outline-offset: 4px;
+        }
+
     </style>
     <script>
     (function () {
