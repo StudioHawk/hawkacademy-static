@@ -53,6 +53,9 @@
     <link rel="icon" href="https://harrysanders.com/wp-content/uploads/2024/06/Studiohawk-Favicon-2.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://player.vimeo.com">
+    <link rel="preconnect" href="https://i.vimeocdn.com">
+    <link rel="preconnect" href="https://f.vimeocdn.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ============================================================
@@ -1198,6 +1201,7 @@
                     <div class="hero-video-wrap video-pulse-container" id="hero-video-wrap" style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;background:#111;">
                         <iframe
                             id="hero-video"
+                            fetchpriority="high"
                             src="https://player.vimeo.com/video/1187962086?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;playsinline=1&amp;controls=1&amp;loop=0&amp;title=0&amp;byline=0&amp;portrait=0"
                             frameborder="0"
                             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -1782,7 +1786,8 @@
             <div class="fade-up video-testimonials-grid">
                 <div class="video-card">
                     <iframe
-                        src="https://player.vimeo.com/video/1189260236?badge=0&amp;autopause=0&amp;app_id=58479&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;playsinline=1"
+                        data-src="https://player.vimeo.com/video/1189260236?badge=0&amp;autopause=0&amp;app_id=58479&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;playsinline=1"
+                        fetchpriority="low"
                         loading="lazy"
                         frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -1791,7 +1796,8 @@
                 </div>
                 <div class="video-card">
                     <iframe
-                        src="https://player.vimeo.com/video/1189260481?badge=0&amp;autopause=0&amp;app_id=58479&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;playsinline=1"
+                        data-src="https://player.vimeo.com/video/1189260481?badge=0&amp;autopause=0&amp;app_id=58479&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;playsinline=1"
+                        fetchpriority="low"
                         loading="lazy"
                         frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -1800,7 +1806,8 @@
                 </div>
                 <div class="video-card">
                     <iframe
-                        src="https://player.vimeo.com/video/1189997181?badge=0&amp;autopause=0&amp;app_id=58479&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;playsinline=1"
+                        data-src="https://player.vimeo.com/video/1189997181?badge=0&amp;autopause=0&amp;app_id=58479&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;playsinline=1"
+                        fetchpriority="low"
                         loading="lazy"
                         frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -1809,7 +1816,8 @@
                 </div>
                 <div class="video-card">
                     <iframe
-                        src="https://player.vimeo.com/video/1190354133?badge=0&amp;autopause=0&amp;app_id=58479&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;playsinline=1"
+                        data-src="https://player.vimeo.com/video/1190354133?badge=0&amp;autopause=0&amp;app_id=58479&amp;dnt=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;playsinline=1"
+                        fetchpriority="low"
                         loading="lazy"
                         frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -1817,6 +1825,28 @@
                         title="Workshop testimonial"></iframe>
                 </div>
             </div>
+
+            <script data-cfasync="false">
+                // Defer testimonial iframes so they don't compete with the
+                // hero video for the Vimeo connection pool on first paint.
+                (function () {
+                    function loadTestimonials() {
+                        var iframes = document.querySelectorAll('.video-testimonials-grid iframe[data-src]');
+                        for (var i = 0; i < iframes.length; i++) {
+                            iframes[i].src = iframes[i].getAttribute('data-src');
+                            iframes[i].removeAttribute('data-src');
+                        }
+                    }
+                    if (document.readyState === 'complete') {
+                        setTimeout(loadTestimonials, 0);
+                    } else {
+                        window.addEventListener('load', function () {
+                            // Wait a beat so the hero gets a clear runway.
+                            setTimeout(loadTestimonials, 500);
+                        });
+                    }
+                })();
+            </script>
 
             <!-- Bottom row: 3 more Google review screenshots -->
             <div class="fade-up reviews-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start;">
