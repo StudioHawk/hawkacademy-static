@@ -30,7 +30,10 @@ const CONFIG = {
   // To split evenly across 4 content variants: { a: 1, b: 1, c: 1, d: 1 }
   // To split 50/50 A vs C:    { a: 1, b: 0, c: 1, d: 0 }
   // Force any variant for QA via ?ab=a-a etc. — works regardless of weights.
-  WEIGHTS: { a: 1, b: 1, c: 1, d: 1, e: 1, f: 1, g: 1, 'a-a': 0, 'a-b': 0 },
+  // 2026-05-19: killed a/c/d based on submission data (a=control underperforming,
+  // c/d middling). Boosted b 3x as it was the clear winner (~27% of submissions
+  // on 14% of traffic). Keeping e, f, g at 1 each to keep challengers in rotation.
+  WEIGHTS: { a: 0, b: 3, c: 0, d: 0, e: 1, f: 1, g: 1, 'a-a': 0, 'a-b': 0 },
   COOKIE_DAYS: 30,
 };
 
