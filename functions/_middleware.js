@@ -21,8 +21,9 @@ const CONFIG = {
     f: '/workshop-f.html',           // was D: 'Same SEO Playbook 120 Specialists' angle + bullets + Three things + mid-page CTA
 
     g: '/workshop-g.html',           // light theme A/B test against dark default
-    'a-a': '/workshop-a-a.html',     // price variant: $3,000
-    'a-b': '/workshop-a-b.html',     // price variant: $2,500
+    h: '/workshop-h.html',           // single $2,490 price (vs everyone else on $1,490/$2,490 two-tier)
+    'a-a': '/workshop-a-a.html',     // retired - was price variant $3,000
+    'a-b': '/workshop-a-b.html',     // retired - was price variant $2,500
   },
   // Relative traffic weights. All traffic currently goes to A.
   // Price-test variants (a-a $3k, a-b $2.5k) parked at 0 — flip on later
@@ -33,7 +34,10 @@ const CONFIG = {
   // 2026-05-19: killed a/c/d based on submission data (a=control underperforming,
   // c/d middling). Boosted b 3x as it was the clear winner (~27% of submissions
   // on 14% of traffic). Keeping e, f, g at 1 each to keep challengers in rotation.
-  WEIGHTS: { a: 0, b: 3, c: 0, d: 0, e: 1, f: 1, g: 1, 'a-a': 0, 'a-b': 0 },
+  // 2026-05-19 (later): site-wide pricing changed to two-tier $1,490/$2,490.
+  // Added variant h = single $2,490 price (B's content) to test single vs tier.
+  // Old price-test variants a-a/a-b retired (pricing now universal).
+  WEIGHTS: { a: 0, b: 3, c: 0, d: 0, e: 1, f: 1, g: 1, h: 1, 'a-a': 0, 'a-b': 0 },
   COOKIE_DAYS: 30,
 };
 
