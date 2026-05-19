@@ -1169,7 +1169,7 @@
                 </p>
 
                 <!-- HERO PRICING CHIP -->
-                <div class="fade-up" style="text-align:center;margin-top:28px;">
+                <div class="fade-up hero-pricing-chip" style="text-align:center;margin-top:28px;">
                     <div style="display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;padding:12px 22px;background:rgba(173,186,255,0.08);border:1px solid rgba(173,186,255,0.28);border-radius:100px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--lavender);">
                         <span style="color:var(--white);font-weight:700;letter-spacing:0.04em;"><span class="geo-price">From $1,490 AUD</span></span>
                         <span style="opacity:0.35;">&middot;</span>
@@ -2419,6 +2419,8 @@
             outline: 2px solid var(--lavender);
             outline-offset: 4px;
         }
+
+        @media (max-width: 768px) { .hero-pricing-chip { display: none !important; } }
 
     </style>
     <script>
